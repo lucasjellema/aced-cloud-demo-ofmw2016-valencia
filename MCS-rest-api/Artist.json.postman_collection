@@ -1,0 +1,54 @@
+{
+	"id": "7915cc51-921d-1779-85cc-66869f31f7a7",
+	"name": "Artist",
+	"description": "Collection to test artist application",
+	"order": [
+		"81eb560b-d013-750d-c6d0-d32a05f0559c",
+		"07b49072-93ed-825c-4b6c-9d13d34eeaba"
+	],
+	"folders": [],
+	"timestamp": 1455799972987,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "07b49072-93ed-825c-4b6c-9d13d34eeaba",
+			"headers": "oracle-mobile-backend-id: 55bc25a9-52ee-4a63-8db2-ce18cab1948b\nAuthorization: basic TUNTREVNMDAwMV9NT0JJTEVQT1JUQUxTRVRSSUFMMTMwNERFVl9NT0JJTEVfQU5PTllNT1VTX0FQUElEOmR5Nm91NW5wX3RnbE5r\n",
+			"url": "https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/1",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455801321762,
+			"name": "https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/1",
+			"description": "gets all the acts",
+			"collectionId": "7915cc51-921d-1779-85cc-66869f31f7a7",
+			"responses": []
+		},
+		{
+			"id": "81eb560b-d013-750d-c6d0-d32a05f0559c",
+			"headers": "oracle-mobile-backend-id: 55bc25a9-52ee-4a63-8db2-ce18cab1948b\nAuthorization: basic TUNTREVNMDAwMV9NT0JJTEVQT1JUQUxTRVRSSUFMMTMwNERFVl9NT0JJTEVfQU5PTllNT1VTX0FQUElEOmR5Nm91NW5wX3RnbE5r\n",
+			"url": "https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455801202482,
+			"name": "getAllActs",
+			"description": "gets all the acts",
+			"collectionId": "7915cc51-921d-1779-85cc-66869f31f7a7",
+			"responses": []
+		}
+	]
+}

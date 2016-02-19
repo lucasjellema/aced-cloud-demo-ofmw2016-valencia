@@ -1,0 +1,84 @@
+#%RAML 0.8
+title: Artist API
+version: 1.0
+baseUri: /mobile/custom/artistapi
+protocols: [HTTPS]
+mediaType: "application/json"
+/acts:
+  displayName: Acts
+  description: |
+    List of all candidate acts (with per act the name, number of votes, date added)
+    
+  get:
+    protocols: [HTTPS]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [{
+                "id":"1",
+                "name":"David Bowie",
+                "number of votes":"1000000",
+                "date added":"2016-02-01"
+              },
+               {
+                 "id":"2",
+                 "name":"Hardwell",
+                 "number of votes":"2000000",
+                 "date added":"2016-02-23"
+               },
+               { "id":"3",
+                 "name":"Tailor Swift",
+                "number of votes":"1500000",
+                "date added":"2016-01-10"
+               }
+              ]
+              
+  /{id}:
+    displayName: GetDetails
+    description: |
+      Details of the act
+      
+    uriParameters:
+      id:
+        displayName: id
+        description: |
+          the id of the act
+          
+        type: string
+        required: true
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {"description":"a tribute to David Bowie",
+                 "biography":"Driven by an entirely deeper dynamic than most pop artists, David Bowie inhabits a very special world of extraordinary sounds and endless vision. Unwilling to stay on the treadmill of rock legend and avoiding the descent into ever demeaning and decreasing circles of cliché, Bowie writes and performs what he wants, when he wants. His absence from the endless list of “important events” has just fuelled interest. Constant speculation about what the guy was up to has even led some to wonder if this is his greatest reinvention ever. David Robert Jones was born in Brixton on January 8, 1947. At age thirteen, inspired by the jazz of the London West End, he picked up the saxophone and called up Ronnie Ross for lessons. Early bands he played with – The Kon-Rads, The King Bees, the Mannish Boys and the Lower Third –provided him with an introduction into the showy world of pop and mod, and by 1966 he was David Bowie, with long hair and aspirations of stardom rustling about his head. Kenneth Pitt signed on as his manager, and his career began with a handful of mostly forgotten singles but a head full of ideas. It was not until 1969 that the splash onto the charts would begin, with the legendary Space Oddity (which peaked at No. 5 in the UK). Amidst his musical wanderings in the late 60s, he experimented with mixed media, cinema, mime, Tibetan Buddhism, acting and love. The album, originally titled David Bowie then subsequently Man of Words, Man of Music, pays homage to all the influences of the London artistic scene. It shows the early song-writing talent that was yet to yield some of rock-n-roll’s finest work, even if it would take the rest of the world a few years to catch up with him.",
+                 "discography":[
+                 {"year":"1967",
+                 "title":"David Bowie"},
+                {"year":"1969",
+                  "title":"Space oddity"}
+                  ]
+                }
+                
+    /{imageID}:
+      displayName: getImage
+      description: |
+        the image of the act
+        
+      uriParameters:
+        imageID:
+          displayName: imageID
+          description: |
+            the image of the act
+            
+          type: string
+          required: true
+      get:
+        responses:
+          200:
+            body:
+              image/png:
