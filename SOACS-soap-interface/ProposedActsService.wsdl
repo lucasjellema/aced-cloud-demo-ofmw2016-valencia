@@ -1,0 +1,36 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ProposedActsService"
+     targetNamespace="aced.cloud.demo"
+     xmlns:tns="aced.cloud.demo"
+     xmlns:acd="aced.cloud.demo"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="aced.cloud.demo" schemaLocation="../Schemas/ProposedActsService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getProposedActsRequest">
+        <wsdl:part name="part1" element="acd:getProposedActsRequestMessage"/>
+    </wsdl:message>
+    <wsdl:message name="getProposedActsResponse">
+        <wsdl:part name="part1" element="acd:getProposedActsResponseMessage"/>
+    </wsdl:message>
+    <wsdl:message name="getProposedActDetailsRequest">
+        <wsdl:part name="part1" element="acd:getProposedActDetailsRequestMessage"/>
+    </wsdl:message>
+    <wsdl:message name="getProposedActDetailsResponse">
+        <wsdl:part name="part1" element="tns:getProposedActDetailsResponseMessage"/>
+    </wsdl:message>
+    <wsdl:portType name="ProposedActsService">
+        <wsdl:operation name="getProposedActs">
+            <wsdl:input message="tns:getProposedActsRequest"/>
+            <wsdl:output message="tns:getProposedActsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProposedActDetails">
+            <wsdl:input message="tns:getProposedActDetailsRequest"/>
+            <wsdl:output message="tns:getProposedActDetailsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<getProposedActsResponseMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                xsi:schemaLocation="aced.cloud.demo SOA/Schemas/ProposedActsService.xsd"
+                                xmlns="aced.cloud.demo">
+  <proposedActs>
+    <ProposedActSummary>
+      <id>1</id>
+      <name>Sandra Reemer</name>
+      <numberOfVotes>2</numberOfVotes>
+      <registrationDate>2016-03-01</registrationDate>
+    </ProposedActSummary>
+    <ProposedActSummary>
+      <id>2</id>
+      <name>Ben Cramer</name>
+      <numberOfVotes>1</numberOfVotes>
+      <registrationDate>2016-03-15</registrationDate>
+    </ProposedActSummary>
+  </proposedActs>
+</getProposedActsResponseMessage>
