@@ -136,7 +136,7 @@
       <aced:getProposedActsRequestMessage>        
       </aced:getProposedActsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:80/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActsRequestMessage>
@@ -146,4 +146,69 @@
         
       </aced:getProposedActsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="NewActProposalsServiceBinding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL"><con:part><con:url>http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:acd="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices!1.0/WSDLs/NewActProposalsService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="aced.cloud.demo" schemaLocation="http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?XSD=../Schemas/NewActProposalsService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="submitActProposalRequest">
+    <wsdl:part name="part1" element="tns:submitActProposalRequestMessage"/>
+  </wsdl:message>
+  <wsdl:message name="submitActProposalResponse">
+    <wsdl:part name="part1" element="tns:submitActProposalResponseMessage"/>
+  </wsdl:message>
+  <wsdl:portType name="NewActProposalsService">
+    <wsdl:operation name="submitActProposal">
+      <wsdl:input message="tns:submitActProposalRequest"/>
+      <wsdl:output message="tns:submitActProposalResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NewActProposalsServiceBinding" type="tns:NewActProposalsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitActProposal">
+      <soap:operation style="document" soapAction="submitActProposal"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NewActProposalsService">
+    <wsdl:port name="NewActProposalsService_pt" binding="tns:NewActProposalsServiceBinding">
+      <soap:address location="http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?XSD=../Schemas/NewActProposalsService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="aced.cloud.demo" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo">
+  <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
+  <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
+  <xsd:complexType name="submitActProposalResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="submitActProposalRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:submitActProposalRequestMessage>
+         <aced:name>Jan Smit</aced:name>
+         <aced:numberOfVotes>31</aced:numberOfVotes>
+         <aced:description>The voice of Volendam</aced:description>
+         <aced:imageURL>https://www.artiestennieuws.nl/wp-content/uploads/2014/08/30342.jpg</aced:imageURL>
+      </aced:submitActProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
