@@ -1,0 +1,12 @@
+{
+  "name" : "artistapi",
+  "version" : "1.0.0",
+  "description" : "the API to get artist and attendance",
+  "main" : "artistapi.js",
+  "oracleMobile" : {
+    "dependencies" : {
+      "apis" : { },
+      "connectors" : { }
+    }
+  }
+}

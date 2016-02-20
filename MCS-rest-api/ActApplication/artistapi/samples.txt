@@ -1,0 +1,249 @@
+/**
+ * This file contains a selection of Oracle MCS custom code examples
+ */
+
+
+/**
+ *  Simple Example
+ *  Log at several levels and return a simple javascript object
+ */
+service.get('/mobile/custom/myapi/helloWorld', function(req,res) {
+	// Logging
+	console.info("info log message");
+	console.severe("severe log message");
+	console.fine("fine log message");
+	//a sample object
+	var item1 = {"id": 1,"title": "Test Item 1"};
+	// Send our item with http status code 200
+	res.send(200, item1);
+
+});
+
+/**
+ *  Offline Support
+ *  Format your response to make data available offline when using Oracle's client side SDK.
+ *  Note the use of the sdk which is found in req.oracleMobile.  The sdk.sync object provides
+ *  A set of functions for offline support.  Examples can be seen below.
+ */
+service.get('/mobile/custom/myapi/Sync', function(req,res) {
+	sdk = req.oracleMobile;
+
+	//a sample object
+	var item1 = {"id": 1,"title": "Test Item 1"};
+	
+	//If your result is a collection, use this syntax
+	// parameters are the res parameters passed to this function, the uri of the item,
+	// and the etag of the item
+	sdk.sync.addItem(res, item1, '/itemss/1', '1');
+	//For single results, substitute this line:
+	//sdk.sync.setItem(res, item1);
+	
+	//Set a timeout:
+	res.setHeader('Oracle-Mobile-Sync-Expires', 'Mon, 05 May 2014 14:46:43 GMT');
+	
+	// To disable offline access add this line:
+	// res.setHeader('Oracle-Mobile-Sync-No-Store', true);
+	
+	res.end();
+});
+
+/*
+ *  ----  Service Invocation ---- 
+ * 
+ *  The rest of the examples in the file show examples of simple service invocation
+ *  Before the examples there is some explanation of the meanings of some of the code
+ *  that is common to all examples and some common code you should use for all examples
+ *
+ *  Service invocation happens using a Rest-based URI
+ *  We have chosen to use the node.js Request module and your requests follow the format
+ *  it specifies.
+ *  The URLs you use to call MCS are defined in two ways
+ *  1. The REST APIs for services that are part of the MCS platform are documented in their
+ *  individual documentation sections
+ *  2. The REST APIs used to call connectors and other custom code libraries are defined directly
+ *  in the portal as you develop them
+ *
+ *  In each service invocation, you will see a variable called optionsList
+ *  The optionsList variable encapsulates the request you are making back into MCS
+ *  The optionsList MUST include a uri
+ *
+ *  Our SDK provides functions that allow the use of our sync library and helper methods
+ *  for sending REST requests back to MCS.  It is available in the "req" variable passed
+ *  as part of the callback for your request.  You can get it like this as req.oracleMobile;
+ *  The sdk provides a set of functions for making calls back into mcs through its rest object.  
+ *  Supported verbs include get, put, post, delete, patch, head.  Examples in the functions below.
+ */
+
+/**
+ *  Example Handler
+ *  All service invocations need to specify a handler function that is called back with the result
+ *  The following handler is referenced in all the examples below 
+ *  and simply forwards the result of your service invocation back to your mobile app
+ *  To use the examples, you should either copy this handler, or provide your own
+ */
+
+var handler=function(error,response,body) {
+	var responseMessage=body;
+	if(error){
+		responseMessage=error.message;
+	}
+	res.status(response.statusCode).send(responseMessage);
+	res.end();
+};
+
+
+
+/**
+ *  ----  Service Invocation Examples ----
+ *  Below there is a collection of examples of how to invoke various MCS Services
+ */ 
+
+
+/**
+ *  Call Custom API
+ *  The following example calls another custom API called '/mobile/custom/IncidentReportsAPI'
+ *  And does a GET on the 'incidents' resource within it.
+ */
+service.get('/mobile/custom/myapi/CustomCode', function(req,res) {
+	var optionsList={uri: '/mobile/custom/IncidentReportsAPI/incidents'};
+
+	// Set a payload for my call
+	var payload="{"id" : 1}";
+	optionsList.body=payload;
+	
+	// Header to specify the version of a connector or custom api to call
+	// This header can be specified in your custom code, or omitted if you choose to 
+	// express your dependencies in package.json
+	optionsList.headers["oracle-mobile-api-version"]="1.0";
+
+	// our sdk provides a REST based way of calling our APIs.  At the moment, get, put, post, 
+        // patch, delete, options and head are supported.  The example below uses get. 
+	req.oracleMobile.rest.get(optionsList,handler);
+});
+
+/**
+ *  Call a REST connector
+ *  The following example calls out to a REST connector called '/mobile/connector/MyRESTConnector'
+ *  It hits the resource 'resourceName' on that connector and adds query parameters to the call
+ */
+service.get('/mobile/custom/myapi/RestConnector', function(req,res) {
+	var optionsList={uri: '/mobile/connector/MyRESTConnector/resourceName'};
+
+	// build an object to describe the query parameters for the call
+	var queryObject={};
+	queryObject.param1='param1';
+	queryObject.param2= param2';
+	optionsList.qs=queryObject;
+
+	var r=req.oracleMobile.rest.get(optionsList,handler);
+});
+
+/**
+ *  Call a SOAP connector
+ *  The following example calls out to a SOAP connector called '/mobile/connector/MySOAPConnector'
+ *  It hits the resource 'resourceName'.
+ *  The details of the request are built as a javascript object and sent as the body of a POST
+ */
+service.get('/mobile/custom/myapi/SOAPConnector', function(req,res) {
+	var optionsList={uri: '/mobile/connector/MySOAPConnector/resourceName'};
+
+	optionsList.headers={'content-type' : 'application/json;charset=UTF-8'};
+
+	// the details of the request are provided in a javascript object
+	var outgoingMessage = {Header: null, Body: {"UserName": username}};	      
+	optionsList.body=JSON.stringify(outgoingMessage);
+
+	var r=req.oracleMobile.rest.post(optionsList,handler);
+});
+
+
+/**
+ *  Call Analytics API
+ *  The following example posts an event to our analytics platform service
+ */
+service.get('/mobile/custom/myapi/Analytics', function(req,res) {
+
+	// Events are posted as an array
+	var events = [];
+	var timestamp = (new Date()).toISOString();
+
+	// The first element in your array is always just gives context
+	events[0] = {name: "$context", timestamp: timestamp};
+	// The rest of the events in the array are custom events that you define.  This is an example
+	events[1] = {name: "EventName", timestamp: timestamp, properties: { property1: "property1", property2: "property2"} };
+
+	var optionsList={uri: '/mobile/platform/analytics/events'};
+	optionsList.body = JSON.stringify(events);
+	optionsList.headers={'content-type' : 'application/json'};
+
+	var r=req.oracleMobile.rest.post(optionsList,handler);
+});
+
+
+
+/**
+ *  Call into the User Management Serivce
+ *  This kind of call can be used to to custom access checks within custom code
+ */
+service.get('/mobile/custom/myapi/ums', function(req,res) {
+
+	// get the username from a query parameter
+	var username = req.params.username;
+
+	// uri includes the query parameter
+	var optionsList={uri: '/mobile/platform/users/'+username};
+	req.oracleMobile.rest.get(optionsList,handler);
+});
+
+
+/**
+ *  Retrieve contents of a storage collection called 'coll1'
+ */
+service.get('/mobile/custom/myapi/storage', function(req,res) {
+  	var optionsList={uri: '/mobile/platform/storage/collections/coll1/objects'};
+  	req.oracleMobile.rest.get(optionsList,handler);
+});
+
+
+/**
+ *  Send a notification
+ *  This is a two step process
+ *  1. Get an authorization token for an MCS user with access to authorization
+ *  2. Use that token to send the authorization
+ */
+service.get('/mobile/custom/myapi/Notifications', function(req,res) {
+	// This handler response to the request and uses the token to call the notifications REST API
+	var initialRequestHandler=function(error,response,body) {
+		// if there is an error, return it
+		if(error !=null && error!=undefined ){
+			req.send(response.statusCode, error);
+		}
+
+		// the uri for notifications
+		var optionsList={uri: '/mobile/system/notifications/notifications/'};
+
+		// Build a list of notifications.
+		// Here we will send a very simple notification to all users of role 'Technician'
+		var notification = {};
+		notification.message = "New Incident";
+		notification.roles = ['Technician'];
+		optionsList.body = JSON.stringify(notification);
+
+		// note the authorization token is set here
+		// note also the X-Backend-Token: This information will be unnecessary in the final release, but is currently required
+		optionsList.headers={'content-type' : 'application/json', 'authorization': 'Bearer ' + body};
+		var r=sdk.rest.post(optionsList,handler);
+	};
+
+	// URI of the UMS API that provides token
+	var optionsList={uri: '/mobile/platform/ums/tokens/'};
+	var request = {};
+	request.name = 'MyBackendName';
+	request.version = 'MyBackendVersion';
+	request.username = 'NotificationsUserName';
+	optionsList.body = JSON.stringify(request);
+	optionsList.headers={'content-type' : 'application/json'};
+
+	// get token for notification
+	var r=req.oracleMobile.rest.post(optionsList,initialRequestHandler);
+});
