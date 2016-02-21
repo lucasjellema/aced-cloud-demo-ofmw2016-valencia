@@ -1,0 +1,32 @@
+This document contains some practical details regarding the demo, such as the endpoints of services.
+
+
+ICS/PCS (REST/JSON) - Submit community suggestion for an act
+============================================================
+<to be defined>
+
+
+SOACS - (SOAP/XML) Submit a new Proposed Act
+============================================
+NewActProposalService:
+http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL
+(this is the address of the proxy running on Google AppEngine; the true address for the service is: 
+http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL
+also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
+
+Note: this service uses a connection to Spotify to enrich act. This connection could be ICS, SOA CS itself, Node.js on ACC
+
+
+SOACS - (SOAP/XML) Retrieve details for earlier Proposed Acts
+=============================================================
+ProposedActsService:
+http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService?wsdl
+(this is the address of the proxy running on Google AppEngine; the true address for the service is: 
+http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService?wsdl
+also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
+
+
+
+MCS - (REST/JSON) Retrieve list and details of Proposed Acts
+============================================================
+<to be defined>
