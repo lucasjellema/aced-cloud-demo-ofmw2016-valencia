@@ -22,9 +22,11 @@ exports.getActs = function (req, res) {
     var optionsList = {uri: '/mobile/connector/ActsSOAP/getProposedActs'};
     optionsList.headers = {'content-type': 'application/json;charset=UTF-8'}; 
     
+    var minimumVotes = req.query.minimumVotes ? req.query.minimumVotes : 0;
+    
     var outgoingMessage = {Header: null,
         Body: {"getProposedActsRequestMessage": {
-                "mininumNumberOfVotes": req.query.minimumVotes,
+                "mininumNumberOfVotes": minimumVotes,
                 "addedSince": req.query.addedSince,
                 "maxNumberOfProposals": req.query.max
             }}};
