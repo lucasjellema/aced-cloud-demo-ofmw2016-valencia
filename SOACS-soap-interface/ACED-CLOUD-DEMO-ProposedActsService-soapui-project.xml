@@ -123,11 +123,11 @@
       <xsd:element name="coverImageUrl" type="xsd:string" minOccurs="0"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getProposedActDetails" name="getProposedActDetails" bindingOperationName="getProposedActDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="request-proposedActDetails-act-5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getProposedActDetails" name="getProposedActDetails" bindingOperationName="getProposedActDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="request-proposedActDetails-act-77"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActDetailsRequestMessage>
-         <aced:proposedActId>21</aced:proposedActId>
+         <aced:proposedActId>77</aced:proposedActId>
       </aced:getProposedActDetailsRequestMessage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call><con:call name="mock-request-proposedActDetails"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
@@ -210,14 +210,40 @@
       <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-JanSmit"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-SpandauBallet"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
-         <aced:name>Jan Smit</aced:name>
+         <aced:name>spandau ballet</aced:name>
          <aced:numberOfVotes>314</aced:numberOfVotes>
-         <aced:description>The voice of Volendam</aced:description>
-         <aced:imageURL>https://www.artiestennieuws.nl/wp-content/uploads/2014/08/30342.jpg</aced:imageURL>
+         <aced:description>Gold and True</aced:description>
+      </aced:submitActProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-BruceSpringsteen"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:submitActProposalRequestMessage>
+         <aced:name>Bruce Springsteen</aced:name>
+         <aced:numberOfVotes>817</aced:numberOfVotes>
+         <aced:description>Down to earth rock hero, beloved across the world</aced:description>
+      </aced:submitActProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-Adele"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:submitActProposalRequestMessage>
+         <aced:name>adele</aced:name>
+         <aced:numberOfVotes>119</aced:numberOfVotes>
+         <aced:description>19, 21 and 25 - young and vibrant, powerful and enaging. </aced:description>
+      </aced:submitActProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-LadyGaga"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:submitActProposalRequestMessage>
+         <aced:name>lady gaga</aced:name>
+         <aced:numberOfVotes>45</aced:numberOfVotes>
+         <aced:description>Surprising, sparkling and a little scandalous.</aced:description>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ArtistsService-binding" type="wsdl" bindingName="{aced.cloud.demo}ArtistsService-binding" soapVersion="1_1" anonymous="optional" definition="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/FINDARTISTBYNAME/v01/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/FINDARTISTBYNAME/v01/?wsdl"><con:part><con:url>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/FINDARTISTBYNAME/v01/?wsdl</con:url><con:content><![CDATA[<WL5G3N2:definitions name="ArtistsService" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:WL5G3N1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N3="aced.cloud.demo" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
@@ -309,13 +335,9 @@
 </WL5G3N2:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/FINDARTISTBYNAME/v01/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="aced.cloud.demo/findArtist" name="findArtist" bindingOperationName="findArtist" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/FINDARTISTBYNAME/v01/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:aced="aced.cloud.demo" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header>
       <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
-         <wsu:Timestamp wsu:Id="TS-EDDAFB38A1F866289C14560468381463">
-            <wsu:Created>2016-02-21T09:27:18.146Z</wsu:Created>
-            <wsu:Expires>2016-02-21T09:28:18.146Z</wsu:Expires>
-         </wsu:Timestamp>
-         <wsu:Timestamp wsu:Id="TS-EDDAFB38A1F866289C14560462837032">
-            <wsu:Created>2016-02-21T09:18:03.702Z</wsu:Created>
-            <wsu:Expires>2016-02-21T09:19:03.702Z</wsu:Expires>
+         <wsu:Timestamp wsu:Id="TS-EDDAFB38A1F866289C14560470523604">
+            <wsu:Created>2016-02-21T09:30:52.360Z</wsu:Created>
+            <wsu:Expires>2016-02-21T11:10:52.360Z</wsu:Expires>
          </wsu:Timestamp>
          <wsse:UsernameToken wsu:Id="UsernameToken-EDDAFB38A1F866289C14560459414131">
             <wsse:Username>gse_cloud-admin@oracleads.com</wsse:Username>
