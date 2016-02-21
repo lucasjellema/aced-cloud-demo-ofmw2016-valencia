@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo" targetNamespace="aced.cloud.demo"
+            elementFormDefault="qualified">
+            
+            
+
+  <xsd:element name="getProposedActsRequestMessage" type="acd:getProposedActsRequestMessageType"/>
+  <xsd:element name="getProposedActsResponseMessage" type="acd:getProposedActsResponseMessageType"/>
+
+  <xsd:element name="getProposedActDetailsRequestMessage" type="acd:getProposedActDetailsRequestMessageType"/>
+  <xsd:element name="getProposedActDetailsResponseMessage" type="acd:getProposedActDetailsResponseMessageType"/>
+            
+  <xsd:complexType name="getProposedActsRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="mininumNumberOfVotes" type="xsd:integer" minOccurs="0"/>
+      <xsd:element name="addedSince" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="maxNumberOfProposals" type="xsd:integer" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActsResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActs" type="acd:proposedActsListType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActDetailsRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActDetailsResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActDetails" type="acd:proposedActDetailsType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="proposedActsListType">
+    <xsd:sequence>
+      <xsd:element name="ProposedActSummary" type="acd:proposedActSummaryType" maxOccurs="unbounded"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="proposedActSummaryType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="registrationDate" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="proposedActDetailsType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="registrationDate" type="xsd:date"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="genres" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="biography" type="xsd:string"/>
+      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
+      <xsd:element name="discography">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="album" type="acd:albumType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="albumType">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string"/>
+      <xsd:element name="year" type="xsd:integer" minOccurs="0"/>
+      <xsd:element name="coverImageUrl" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,19 @@
+{
+  "name": "mediator-proxy",
+  "version": "0.0.1",
+  "description": "A connector for HTTP requests between network domains having trouble reaching each other",
+  "repository": "https://github.com/lucasjellema/node-mediator-proxy",
+  "main": "mediator-proxy.js",
+  "scripts": {
+    "start": "node mediator-proxy.js",
+    "monitor": "nodemon mediator-proxy.js"
+  },
+  "author": "Lucas Jellema",
+  "license": "Apache Version 2.0",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "engines": {
+    "node": ">=0.12.7"
+  }
+}

@@ -1,0 +1,114 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Feb 21 14:59:52 CET 2016
+  Author:  lucas_j
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="NewActProposalProcessor"
+               targetNamespace="aced.cloud.demo"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="aced.cloud.demo"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns1="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="aced.cloud.demo" location="../WSDLs/NewActProposalsServiceWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="NewActProposalProcessor" partnerLinkType="client:NewActProposalProcessor" myRole="NewActProposalsService"/>
+    <partnerLink name="ArtistAPIReference" partnerLinkType="ns1:ArtistAPIReference"
+                 partnerRole="ArtistAPIReferenceProvider"/>
+    <partnerLink name="submitNewActProposal" partnerLinkType="ns2:submitNewActProposal_plt"
+                 partnerRole="submitNewActProposal_role"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:submitActProposalRequest"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:submitActProposalResponse"/>
+    <variable name="PersistNewActProposal_InputVariable" messageType="ns2:args_in_msg"/>
+    <variable name="PersistNewActProposal_submitNewActProposal_OutputVariable" messageType="ns2:args_out_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in NewActProposalProcessor.wsdl) -->
+    <receive name="receiveInput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="inputVariable" createInstance="yes"/>
+    <scope name="EnrichWithArtistData">
+      <variables>
+        <variable name="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                  messageType="ns1:FetchArtistDetails_inputMessage"/>
+        <variable name="InvokeArtistAPI_FetchArtistDetails_OutputVariable"
+                  messageType="ns1:FetchArtistDetails_outputMessage"/>
+      </variables>
+      <sequence name="Sequence1">
+        <assign name="AssignInputForArtistAPI">
+          <copy>
+            <from>$inputVariable.part1/client:name</from>
+            <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
+                portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
+                inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
+        <assign name="AssignEnrichedProposalData">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
+            <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+          </copy>
+        </assign>
+      </sequence>
+    </scope>
+    <invoke name="PersistNewActProposal" bpelx:invokeAsDetail="no" partnerLink="submitNewActProposal"
+            portType="ns2:submitNewActProposal_ptt" operation="submitNewActProposal"
+            inputVariable="PersistNewActProposal_InputVariable"
+            outputVariable="PersistNewActProposal_submitNewActProposal_OutputVariable"/>
+    <assign name="AssignActProposalIdentifier">
+      <copy>
+        <from>$PersistNewActProposal_submitNewActProposal_OutputVariable.OutputParameters/ns3:P_ID</from>
+        <to>$outputVariable.part1/client:proposedActId</to>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="outputVariable"/>
+  </sequence>
+</process>

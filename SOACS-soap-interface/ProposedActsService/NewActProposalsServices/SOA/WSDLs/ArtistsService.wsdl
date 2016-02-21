@@ -1,0 +1,45 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ArtistsService"
+     targetNamespace="aced.cloud.demo"
+     xmlns:tns="aced.cloud.demo"
+     xmlns:acd="aced.cloud.demo"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo" targetNamespace="aced.cloud.demo"
+            elementFormDefault="qualified">
+            
+  <xsd:element name="findArtistRequestMessage" type="acd:findArtistRequestMessageType"/>
+  <xsd:element name="findArtistResponseMessage" type="acd:findArtistResponseMessageType"/>
+
+  <xsd:complexType name="findArtistRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="findArtistResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="genre" type="xsd:string"/>
+      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="findArtistRequest">
+        <wsdl:part name="part1" element="acd:findArtistRequestMessage"/>
+    </wsdl:message>
+    <wsdl:message name="findArtistResponse">
+        <wsdl:part name="part1" element="acd:findArtistResponseMessage"/>
+    </wsdl:message>
+    <wsdl:portType name="ArtistsService">
+        <wsdl:operation name="findArtist">
+            <wsdl:input message="tns:findArtistRequest"/>
+            <wsdl:output message="tns:findArtistResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

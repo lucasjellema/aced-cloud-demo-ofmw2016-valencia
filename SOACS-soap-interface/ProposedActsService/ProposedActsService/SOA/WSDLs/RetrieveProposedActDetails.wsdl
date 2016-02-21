@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="RetrieveProposedActDetails"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/ProposedActsService/RetrieveProposedActDetails"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/ProposedActsService/RetrieveProposedActDetails"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveProposedActDetails"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="RetrieveProposedActDetails_plt" >
+    <plt:role name="RetrieveProposedActDetails_role" >
+      <plt:portType name="tns:RetrieveProposedActDetails_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveProposedActDetails" schemaLocation="../Schemas/RetrieveProposedActDetails_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:ProposedActsPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="ProposedActsCollection_msg">
+        <wsdl:part name="ProposedActsCollection" element="top:ProposedActsCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="RetrieveProposedActDetails_ptt">
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:ProposedActsCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

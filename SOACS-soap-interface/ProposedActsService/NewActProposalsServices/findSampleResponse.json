@@ -1,0 +1,163 @@
+{
+  "artists" : {
+    "href" : "https://api.spotify.com/v1/search?query=meat+loaf&offset=0&limit=20&type=artist",
+    "items" : [ {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/7dnB1wSxbYa8CejeVg98hz"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 123039
+      },
+      "genres" : [ "album rock" ],
+      "href" : "https://api.spotify.com/v1/artists/7dnB1wSxbYa8CejeVg98hz",
+      "id" : "7dnB1wSxbYa8CejeVg98hz",
+      "images" : [ {
+        "height" : 1506,
+        "url" : "https://i.scdn.co/image/54b6368cd4dcf3aad997719c32d6ceac3b1bc3e0",
+        "width" : 1000
+      }, {
+        "height" : 964,
+        "url" : "https://i.scdn.co/image/322c5bd7df045da0030fbf9a6e41db37af52eb1e",
+        "width" : 640
+      }, {
+        "height" : 301,
+        "url" : "https://i.scdn.co/image/6c1fee34a4efd93691b797967de31a6cd7eaab2d",
+        "width" : 200
+      }, {
+        "height" : 96,
+        "url" : "https://i.scdn.co/image/1254cedb0f6bae2521d779e14a95132668c3c50b",
+        "width" : 64
+      } ],
+      "name" : "Meat Loaf",
+      "popularity" : 62,
+      "type" : "artist",
+      "uri" : "spotify:artist:7dnB1wSxbYa8CejeVg98hz"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/1PO9QJH1pKi51pPmfPvDw2"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 2170
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/1PO9QJH1pKi51pPmfPvDw2",
+      "id" : "1PO9QJH1pKi51pPmfPvDw2",
+      "images" : [ ],
+      "name" : "Meat Loaf (with Ellen Foley)",
+      "popularity" : 30,
+      "type" : "artist",
+      "uri" : "spotify:artist:1PO9QJH1pKi51pPmfPvDw2"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/5vmmDFIlCyNZy8lJbdmbTU"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 8
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/5vmmDFIlCyNZy8lJbdmbTU",
+      "id" : "5vmmDFIlCyNZy8lJbdmbTU",
+      "images" : [ ],
+      "name" : "Meat Loaf & Cher",
+      "popularity" : 0,
+      "type" : "artist",
+      "uri" : "spotify:artist:5vmmDFIlCyNZy8lJbdmbTU"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/3kwWxOYIXCMdnd6qOeW1BQ"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 15
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/3kwWxOYIXCMdnd6qOeW1BQ",
+      "id" : "3kwWxOYIXCMdnd6qOeW1BQ",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://i.scdn.co/image/2e76fd88f79dfc943b1e8083e0946562e0aa87cd",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://i.scdn.co/image/35da22f17c8b7a5d11f67cc7797a16a0a7efec5f",
+        "width" : 300
+      }, {
+        "height" : 64,
+        "url" : "https://i.scdn.co/image/79ab65f2349e51c27091158afedac4f9fb4f35e9",
+        "width" : 64
+      } ],
+      "name" : "Meat Loaf And Friends",
+      "popularity" : 0,
+      "type" : "artist",
+      "uri" : "spotify:artist:3kwWxOYIXCMdnd6qOeW1BQ"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/4SQMaMXpd7uxusZRGkUbmU"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 12
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/4SQMaMXpd7uxusZRGkUbmU",
+      "id" : "4SQMaMXpd7uxusZRGkUbmU",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://i.scdn.co/image/1a98a42e40d21b6ffb722a01f94d4e85d287dad7",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://i.scdn.co/image/3012bb36d6ee81fd975b90a66bb3e638ce512792",
+        "width" : 300
+      }, {
+        "height" : 64,
+        "url" : "https://i.scdn.co/image/636a96b41e45741eb8952b6aa39fc7c9f7499dae",
+        "width" : 64
+      } ],
+      "name" : "Jimmy \"Meat Loaf\" Welham",
+      "popularity" : 0,
+      "type" : "artist",
+      "uri" : "spotify:artist:4SQMaMXpd7uxusZRGkUbmU"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/0kp2UR8Pl3PEO3FxQIfN02"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 3
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/0kp2UR8Pl3PEO3FxQIfN02",
+      "id" : "0kp2UR8Pl3PEO3FxQIfN02",
+      "images" : [ ],
+      "name" : "Meat Loaf feat. Cher",
+      "popularity" : 0,
+      "type" : "artist",
+      "uri" : "spotify:artist:0kp2UR8Pl3PEO3FxQIfN02"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/4OM3omvKfgSx7CEkU3hTAx"
+      },
+      "followers" : {
+        "href" : null,
+        "total" : 1
+      },
+      "genres" : [ ],
+      "href" : "https://api.spotify.com/v1/artists/4OM3omvKfgSx7CEkU3hTAx",
+      "id" : "4OM3omvKfgSx7CEkU3hTAx",
+      "images" : [ ],
+      "name" : "Meat Loaf Tribute Band",
+      "popularity" : 0,
+      "type" : "artist",
+      "uri" : "spotify:artist:4OM3omvKfgSx7CEkU3hTAx"
+    } ],
+    "limit" : 20,
+    "next" : null,
+    "offset" : 0,
+    "previous" : null,
+    "total" : 7
+  }
+}
