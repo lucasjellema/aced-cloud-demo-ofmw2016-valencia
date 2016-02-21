@@ -123,25 +123,34 @@
       <xsd:element name="coverImageUrl" type="xsd:string" minOccurs="0"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getProposedActDetails" name="getProposedActDetails" bindingOperationName="getProposedActDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getProposedActDetails" name="getProposedActDetails" bindingOperationName="getProposedActDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="request-proposedActDetails-act-5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActDetailsRequestMessage>
-         <aced:proposedActId>5</aced:proposedActId>
+         <aced:proposedActId>21</aced:proposedActId>
       </aced:getProposedActDetailsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="getProposedActs" name="getProposedActs" bindingOperationName="getProposedActs" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call><con:call name="mock-request-proposedActDetails"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
-      <aced:getProposedActsRequestMessage>        
+      <aced:getProposedActDetailsRequestMessage>
+         <aced:proposedActId>42</aced:proposedActId>
+      </aced:getProposedActDetailsRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="getProposedActs" name="getProposedActs" bindingOperationName="getProposedActs" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="getAllProposedActs"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:getProposedActsRequestMessage>   
+       <aced:mininumNumberOfVotes>5</aced:mininumNumberOfVotes>
+            
       </aced:getProposedActsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:80/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call><con:call name="getMockProposedActs"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActsRequestMessage>
          <!--Optional:-->
-         <aced:mininumNumberOfVotes>1</aced:mininumNumberOfVotes>
+         <aced:mininumNumberOfVotes>5</aced:mininumNumberOfVotes>
          
         
       </aced:getProposedActsRequestMessage>
@@ -201,12 +210,12 @@
       <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
     </xsd:sequence>
   </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-JanSmit"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
          <aced:name>Jan Smit</aced:name>
-         <aced:numberOfVotes>31</aced:numberOfVotes>
+         <aced:numberOfVotes>314</aced:numberOfVotes>
          <aced:description>The voice of Volendam</aced:description>
          <aced:imageURL>https://www.artiestennieuws.nl/wp-content/uploads/2014/08/30342.jpg</aced:imageURL>
       </aced:submitActProposalRequestMessage>
