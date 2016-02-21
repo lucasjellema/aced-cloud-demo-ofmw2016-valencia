@@ -1,15 +1,17 @@
 exports.actSummarySOAP2REST = function (act) {
+  console.log('transforming act summary');
   var actSummaryRest = {
       id: act.id, 
       name: act.name, 
       numberOfVotes: act.numberOfVotes,
       registrationDate: act.registrationDate
   };
+  console.log(actSummaryRest);
   return actSummaryRest;
 };
  
 exports.actDetailsSOAP2REST = function(act) {
-  var albums = act.discography ? act.discography.map(albumSOAP2REST) : [];
+  var albums = act.discography && act.discography.album ? act.discography.album.map(albumSOAP2REST): [];
   var actRest = {
      id: act.id, 
       name: act.name, 
@@ -22,7 +24,6 @@ exports.actDetailsSOAP2REST = function(act) {
       image: act.image,
       discography: albums
   };
-  
   return actRest;
 };
   
@@ -30,7 +31,7 @@ exports.actDetailsSOAP2REST = function(act) {
   var albumRest = {
       title: album.title, 
       year: album.year, 
-    imageURL: album.imageURL
+      imageURL: album.coverImageUrl
   };
   return albumRest;
 };

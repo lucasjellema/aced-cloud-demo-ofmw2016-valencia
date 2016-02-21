@@ -1,13 +1,15 @@
 var transform = require("./actTransformations");
 
 exports.getActs = function (req, res) {
+    console.log('in getActs');
     var handler = function (error, response, body) {
+        console.log('body: ', body);
         var responseMessage = body;
         if (error) {
             res.status(500).send(error.message);
         } else if (parseInt(response.statusCode) === 200) {
             var json = JSON.parse(body);
-            var resultArray = json.Body.getProposedActsResponse.result;
+            var resultArray = json.Body.getProposedActsResponseMessage.proposedActs.ProposedActSummary;
             removeNullAttrs(resultArray);
             var transformFunction = transform.actSummarySOAP2REST;
             var acts = resultArray.map(transformFunction);
@@ -17,19 +19,22 @@ exports.getActs = function (req, res) {
         res.end();
     };
 
-    var optionsList = {uri: '/mobile/connector/actsSOAP/getProposedActs'};
-    optionsList.headers = {'content-type': 'application/json;charset=UTF-8'};
-    var outgoingMessage = { 
+    var optionsList = {uri: '/mobile/connector/ActsSOAP/getProposedActs'};
+    optionsList.headers = {'content-type': 'application/json;charset=UTF-8'}; 
+    
+    var outgoingMessage = {Header: null,
         Body: {"getProposedActsRequestMessage": {
-          "mininumNumberOfVotes":req.params.minimumVotes,
-          "addedSince":req.params.addedSince,
-          "maxNumberOfProposals" : req.params.max
-        }}};
+                "mininumNumberOfVotes": req.query.minimumVotes,
+                "addedSince": req.query.addedSince,
+                "maxNumberOfProposals": req.query.max
+            }}};
     optionsList.body = JSON.stringify(outgoingMessage);
+    console.log('optionsList: ', optionsList);
     var r = req.oracleMobile.rest.post(optionsList, handler);
 };
 
 exports.getActDetailsById = function (req, res) {
+    console.log('in getActDetailsById');
     var handler = function (error, response, body) {
         var responseMessage = body;
         var statusCode = response.statusCode;
@@ -37,8 +42,8 @@ exports.getActDetailsById = function (req, res) {
             res.status(500).send(error.message);
         } else if (parseInt(response.statusCode) === 200) {
             var json = JSON.parse(body);
-            if (json.Body.getActDetailsByIdResponse) {
-                var act = json.Body.getActDetailsByIdResponse.result;
+            if (json.Body.getProposedActDetailsResponseMessage) {
+                var act = json.Body.getProposedActDetailsResponseMessage.proposedActDetails;
                 removeNullAttrs(act);
                 var actResponse = transform.actDetailsSOAP2REST(act);
                 responseMessage = JSON.stringify(actResponse);
@@ -51,9 +56,13 @@ exports.getActDetailsById = function (req, res) {
         res.end();
     };
 
-    var optionsList = {uri: '/mobile/connector/actsSOAP/getProposedActsDetails'};
+    var optionsList = {uri: '/mobile/connector/ActsSOAP/getProposedActDetails'};
     optionsList.headers = {'content-type': 'application/json;charset=UTF-8'};
-    var outgoingMessage = {Body: {"getProposedActDetailsRequestMessage": {"proposedActId": req.params.id}}};
+    var outgoingMessage = {Header: null, Body:
+                {"getProposedActDetailsRequestMessage":
+                            {"proposedActId": req.params.id}
+                }
+    };
     optionsList.body = JSON.stringify(outgoingMessage);
     var r = req.oracleMobile.rest.post(optionsList, handler);
 
@@ -63,20 +72,19 @@ function removeNullAttrs(obj) {
     for (var k in obj)
     {
         var value = obj[k];
-        if (typeof value === "object" && value['@nil'] === 'true') {
+        if (value) {
+            if (typeof value === "object" && value['@nil'] === 'true') {
+                delete obj[k];
+            }
+            // recursive call if an object
+            else if (typeof value === "object") {
+                removeNullAttrs(value);
+            }
+        }
+        else{
             delete obj[k];
         }
-        // recursive call if an object
-        else if (typeof value === "object") {
-            removeNullAttrs(value);
-        }
     }
-
-    var optionsList = {uri: '/mobile/connector//getDepartments'};
-    optionsList.headers = {'content-type': 'application/json;charset=UTF-8'};
-    var outgoingMessage = {Body: {"getDepartments": {"departmentId": req.params.id}}};
-    optionsList.body = JSON.stringify(outgoingMessage);
-    var r = req.oracleMobile.rest.post(optionsList, handler);
 }
 ;
 

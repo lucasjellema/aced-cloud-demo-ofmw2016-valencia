@@ -6,7 +6,7 @@
   "oracleMobile" : {
     "dependencies" : {
       "apis" : { },
-      "connectors" : { }
+      "connectors" : {"/mobile/connector/ActsSOAP": "1.0" }
     }
   }
 }
