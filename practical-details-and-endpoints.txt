@@ -61,7 +61,10 @@ also accessible - thanks to a routing rule in OTD on the Load Balancer - at port
 
 MCS - (REST/JSON) Retrieve list and details of Proposed Acts
 ============================================================
-<to be defined>
+https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi
+
+What are the username/password for this endpoint?
+
 
 
 Oracle JET Web Application
