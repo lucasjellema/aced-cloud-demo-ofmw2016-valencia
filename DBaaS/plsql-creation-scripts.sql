@@ -81,11 +81,11 @@ begin
       from   table(	p_artist.albums) abm  
       ) uab
       where uab.seq = 1
+      and not exists (select 'x'from act_albums abm where abm.act_id = p_id and abm.title = uab.title)
       ;
 end submit_act_proposal;
 
 end act_proposal_api;
-
 
 create or replace 
 type album_t as object (
