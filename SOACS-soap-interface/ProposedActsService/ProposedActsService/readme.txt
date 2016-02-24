@@ -10,8 +10,10 @@ TODO
 - implement REST interface in ICS to submit act proposal (POST with act name, number of votes, description, image url (optional) and perhaps image as well???
 - create SoapUI test for REST interface in ICS
 & implement getProposedActDetails
-- add enrichment - act details, act discography
+& add enrichment - act details, act discography
 
+- bonus refinement: add release date for albums, filter albums on uniqueness
+- move ArtistApi from Google AppEngine to Application Container Cloud
 
 Spotify APIs for details on artists and albums 
 
