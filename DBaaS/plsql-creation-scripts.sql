@@ -70,22 +70,42 @@ begin
 , coverImageUrl varchar2(500) null
 );
   */
-  FOR i IN p_artist.albums.FIRST..p_artist.albums.LAST
-    LOOP
+  
       insert into act_albums
       (act_id, title, coverImageUrl)
-      values
-      ( p_id, p_artist.albums(i).title ,p_artist.albums(i).cover_image_url) 
+      select p_id, uab.title, uab.cover_image_url 
+      from 
+      (
+      select abm.*
+      ,      row_number() over (partition by abm.title order by release_date asc) seq
+      from   table(	p_artist.albums) abm  
+      ) uab
+      where uab.seq = 1
       ;
-   END LOOP;
 end submit_act_proposal;
 
 end act_proposal_api;
 
 
+create or replace 
+type album_t as object (
+    title varchar2(200)
+  , release_date date
+  , cover_image_url varchar2(500)
+);
+
+create or replace 
+type discography_t as table of album_t
+;
+
+
 declare
   l_id number(10);
-  l_artist artist_t := artist_t('Bruce Springsteen','Rock', 'interesting story', 'https://lh5.googleusercontent.com/-p_K5qbCOZ6Q/AAAAAAAAAAI/AAAAAAAAALc/KHank3SfKrE/s0-c-k-no-ns/photo.jpg', null );
+  l_discography discography_t := discography_t( album_t('The River', sysdate-40*365, 'someURL')
+                                             ,album_t('The River', sysdate-30*365, 'someURL') 
+											 , album_t('Devils and Dust', sysdate-15*365, 'someOtherURL')
+											 );
+  l_artist artist_t := artist_t('Bruce Springsteen','Rock', 'interesting story', 'https://lh5.googleusercontent.com/-p_K5qbCOZ6Q/AAAAAAAAAAI/AAAAAAAAALc/KHank3SfKrE/s0-c-k-no-ns/photo.jpg', l_discography );
 begin
 act_proposal_api.submit_act_proposal
 ( p_description => 'American Rock Artist'
