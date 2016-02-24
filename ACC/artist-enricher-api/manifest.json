@@ -1,0 +1,9 @@
+{
+  "runtime":{
+    "majorVersion":"0.12"
+  },
+  "command": "node artist-enricher-api.js",
+  "release": {},
+  "notes": "A REST API (GET requests) to retrieve rich information about a muscial artist: e.g. http://host:port/artists/get?artist=the+beatles"
+}
+

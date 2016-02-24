@@ -1,9 +1,41 @@
 This document contains some practical details regarding the demo, such as the endpoints of services.
 
+See the SoapUI test project for sample calls to these services.
 
-ICS/PCS (REST/JSON) - Submit community suggestion for an act
+
+ICS/PCS (SOAP/XML) - Submit community suggestion for an act
 ============================================================
-<to be defined>
+http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
+
+The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/ (ws-security username token  and timestamp required)
+
+
+ICS - (REST/JSON, POST) Submit a new Proposed Act
+============================================
+http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
+
+The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
+
+
+
+
+ACC - Artist Enrichment API
+===========================
+Artist enrichment API - Node.js application on application container cloud (EMEA Data Center).
+
+Example calls:
+https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get?artist=the+beatles
+https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get?artist=madonna
+https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get?artist=udo+jurgens
+
+This API is leveraged from SOA CS to enrich the submit new proposal; perhaps I will relocate this API to Oracle ACC.
+
+
+This API is also available from the proxy (on Google AppEngine):
+
+API for retrieving artist information (from Spotify and Echonest)
+http://104.155.85.98/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/get?artist=bon+jovi, http://104.155.85.98/artists/get?artist=the+beatles ...) 
+
 
 
 SOACS - (SOAP/XML) Submit a new Proposed Act
@@ -26,31 +58,12 @@ http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/P
 also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
 
 
-ICS - (SOAP/XML) Submit a new Proposed Act
-============================================
-http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
-
-The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/ (ws-security username token  and timestamp required)
-
-
-ICS - (REST/JSON, POST) Submit a new Proposed Act
-============================================
-http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
-
-The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
-
-
 
 MCS - (REST/JSON) Retrieve list and details of Proposed Acts
 ============================================================
 <to be defined>
 
 
-
-FYI/Bonus:
-==========
-Google AppEngine Proxy
-
-API for retrieving artist information (from Spotify and Echonest)
-http://104.155.85.98/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/get?artist=bon+jovi, http://104.155.85.98/artists/get?artist=the+beatles ...) 
-This API is leveraged from SOA CS to enrich the submit new proposal; perhaps I will relocate this API to Oracle ACC.
+Oracle JET Web Application
+==========================
+<to be defined>
