@@ -63,7 +63,12 @@ MCS - (REST/JSON) Retrieve list and details of Proposed Acts
 ============================================================
 https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi
 
-What are the username/password for this endpoint?
+The example call can be found in postman, including the header (see github).
+
+oracle-mobile-backend-id 55bc25a9-52ee-4a63-8db2-ce18cab1948b
+Authorization basic TUNTREVNMDAwMV9NT0JJTEVQT1JUQUxTRVRSSUFMMTMwNERFVl9NT0JJTEVfQU5PTllNT1VTX0FQUElEOmR5Nm91NW5wX3RnbE5r
+
+There is no authentication (anonymous access right now).
 
 
 
