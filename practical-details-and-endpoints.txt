@@ -26,6 +26,20 @@ http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/P
 also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
 
 
+ICS - (SOAP/XML) Submit a new Proposed Act
+============================================
+http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
+
+The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/ (ws-security username token  and timestamp required)
+
+
+ICS - (REST/JSON, POST) Submit a new Proposed Act
+============================================
+http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
+
+The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
+
+
 
 MCS - (REST/JSON) Retrieve list and details of Proposed Acts
 ============================================================
