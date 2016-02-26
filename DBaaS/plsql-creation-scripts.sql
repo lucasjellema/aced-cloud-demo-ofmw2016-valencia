@@ -72,8 +72,8 @@ begin
   */
   
       insert into act_albums
-      (act_id, title, coverImageUrl)
-      select p_id, uab.title, uab.cover_image_url 
+      (act_id, title, coverImageUrl, RELEASE_DATE)
+      select p_id, uab.title, uab.cover_image_url, release_date 
       from 
       (
       select abm.*
@@ -87,16 +87,6 @@ end submit_act_proposal;
 
 end act_proposal_api;
 
-create or replace 
-type album_t as object (
-    title varchar2(200)
-  , release_date date
-  , cover_image_url varchar2(500)
-);
-
-create or replace 
-type discography_t as table of album_t
-;
 
 
 declare
