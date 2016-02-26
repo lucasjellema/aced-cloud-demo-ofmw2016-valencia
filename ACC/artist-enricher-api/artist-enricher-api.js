@@ -1,9 +1,13 @@
+/*
+example call:  http://127.0.0.1:5100/artists/get?artist=madonna
 
+*/
 
 var https = require('https'),
     http = require('http'),
 	url = require('url'),
-	request = require('request')
+	request = require('request'),
+	async = require('async')
 	;
 /* docs:
 https://nodejs.org/api/https.html
@@ -51,13 +55,27 @@ app.get('/hello', function(req, res) {
 app.get('/artists/*', function(req,res){ handleArtists(req, res);} );
 
 
-function handleArtists(req, res) {
+function composeArtisResponse(res, artist) {
+	                            // compose and return response
+						  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+                          res.setHeader('Access-Control-Allow-Origin', '*');
+						  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+						  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+                          res.setHeader('Access-Control-Allow-Credentials', true);
+                          res.statusCode =200;
+                          res.send(JSON.stringify(artist));
+}
 
+function handleArtists(req, res) {
+console.log('handle artists');
   var spotifyAPI ='https://api.spotify.com/v1';
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   
-  request(spotifyAPI + '/search?q='+encodeURI(query.artist)+'&type=artist', function (error, response, body) {  
+  var artistUrl = spotifyAPI + '/search?q='+encodeURI(query.artist)+'&type=artist';
+  console.log(artistUrl);
+  request( artistUrl, function (error, response, body) {  
+  console.log('back from spotify '+error+response+body);
     if (!error && response.statusCode == 200) {
       var artistsResponse = JSON.parse(body);
       var artist ={};
@@ -88,12 +106,10 @@ function handleArtists(req, res) {
 		   if (albumsResponse.items[i].images.length > 0) {
 		     album.imageURL = albumsResponse.items[i].images[0].url;
 		   }
+		   album.spotifyId = albumsResponse.items[i].id;
 		   artist.albums.push(album);
          };// for loop over albums
-		 /*  NOTE: I can use https://api.spotify.com/v1/albums/?ids=41MnTivkwTO3UUJ8DrqEJJ,6JWc4iAiJ9FjyK0B59ABb4,6UXCm6bOO4gFlDQZV5yL37
-		           to retrieve details for 20 albums at a time - including release date and tracks.  (see https://developer.spotify.com/web-api/get-several-albums/) 
-				   */
-		 
+
 		 var echoNestAPI = "http://developer.echonest.com/api/v4";
 		 var echoNestDeveloperKey = "0B3N8LMO4XG3BXPSY";
 		 var searchURL = echoNestAPI+ "/artist/search";
@@ -112,13 +128,45 @@ function handleArtists(req, res) {
                           var echonestBioSearchResponse = JSON.parse(body);
                           var bio = echonestBioSearchResponse.response.biographies[0].text;
     					  artist.biography = bio;
-						  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-                          res.setHeader('Access-Control-Allow-Origin', '*');
-						  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-						  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-                          res.setHeader('Access-Control-Allow-Credentials', true);
-                          res.statusCode =200;
-                          res.send(JSON.stringify(artist));
+
+						  /* use https://github.com/caolan/async#map to execute multiple of these calls in parallel; see forEachOf  */
+						  
+
+						        /* fetch album details */
+		 /*  NOTE: I can use https://api.spotify.com/v1/albums/?ids=41MnTivkwTO3UUJ8DrqEJJ,6JWc4iAiJ9FjyK0B59ABb4,6UXCm6bOO4gFlDQZV5yL37
+		           to retrieve details for 20 albums at a time - including release date and tracks.  (see https://developer.spotify.com/web-api/get-several-albums/) 
+				   */
+      var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
+	  var albumArrays = [];
+      var i,j,chunk = 15;
+      for (i=0,j=artist.albums.length; i<j; i+=chunk) {
+   	     albumArrays.push(artist.albums.slice(i,i+chunk));
+      }
+	  // parallel execution of each of the album arrays
+	  async.forEachOf(albumArrays, function (value, key, callback) {
+         var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
+	     for (var i = 0; i < value.length ; i++) {
+	       albumsDetailsURL+= (i>0?',':'')+value[i].spotifyId;
+	     }
+		 // invoke REST API to retrieve details for a set of albums
+ 		 request(albumsDetailsURL, function (error, response, body) {  	  
+            var albumDetailsResponse = JSON.parse(body);
+     	    for (var i = 0; i < albumDetailsResponse.albums.length ; i++) {
+		      // clumsy way to correct for incomplete release dates (year only for example)
+	          artist.albums[(i+ key* chunk)].releaseDate= 
+			  ( albumDetailsResponse.albums[i].release_date_precision =='day'
+			  ? albumDetailsResponse.albums[i].release_date
+			  : albumDetailsResponse.albums[i].release_date+'-01-01'
+			  );
+	        }
+			// return to forEachOf
+            callback();       
+	  	 });
+       }, function (err) {
+	         // done with all parallel processing; now create the final response
+			 composeArtisResponse(res, artist);
+		  }	 
+       );
 
 						  }//if
 						  else {
