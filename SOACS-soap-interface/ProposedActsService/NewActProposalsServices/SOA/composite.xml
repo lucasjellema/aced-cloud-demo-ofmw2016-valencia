@@ -17,6 +17,8 @@
   <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
           location="WSDLs/ArtistAPIReference.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/NewActProposalsServiceWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists"
+          location="WSDLs/verifyActProposalExists.wsdl" importType="wsdl"/>
   <service name="NewActProposalsService" ui:wsdlLocation="WSDLs/NewActProposalsService.wsdl">
     <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
     <binding.ws port="aced.cloud.demo#wsdl.endpoint(NewActProposalsService/NewActProposalsService_pt)">
@@ -40,6 +42,21 @@
     </componentType>
     <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
   </component>
+  <component name="NewActProposalsMediator">
+    <implementation.mediator src="Mediators/NewActProposalsMediator.mplan"/>
+    <componentType>
+      <service name="NewActProposalsMediator" ui:wsdlLocation="WSDLs/NewActProposalsService.wsdl">
+        <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
+      </service>
+      <reference name="NewActProposalProcessor.NewActProposalProcessor"
+                 ui:wsdlLocation="WSDLs/NewActProposalsServiceWrapper.wsdl">
+        <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
+      </reference>
+      <reference name="verifyActProposalExists" ui:wsdlLocation="WSDLs/verifyActProposalExists.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists#wsdl.interface(verifyActProposalExists_ptt)"/>
+      </reference>
+    </componentType>
+  </component>
   <reference name="submitNewActProposal" ui:wsdlLocation="WSDLs/submitNewActProposal.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal#wsdl.interface(submitNewActProposal_ptt)"/>
     <binding.jca config="Adapters/submitNewActProposal_db.jca"/>
@@ -52,10 +69,14 @@
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference#wsdl.interface(ArtistAPIReference_ptt)"/>
     <binding.rest config="Adapters/ArtistAPIReference.wadl" location="http://104.155.85.98"/>
   </reference>
-  <wire>
-    <source.uri>NewActProposalsService</source.uri>
-    <target.uri>NewActProposalProcessor/NewActProposalProcessor</target.uri>
-  </wire>
+  <reference name="verifyActProposalExists" ui:wsdlLocation="WSDLs/verifyActProposalExists.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists#wsdl.interface(verifyActProposalExists_ptt)"/>
+    <binding.jca config="Adapters/verifyActProposalExists_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
   <wire>
     <source.uri>NewActProposalProcessor/ArtistAPIReference</source.uri>
     <target.uri>ArtistAPIReference</target.uri>
@@ -63,5 +84,17 @@
   <wire>
     <source.uri>NewActProposalProcessor/submitNewActProposal</source.uri>
     <target.uri>submitNewActProposal</target.uri>
+  </wire>
+  <wire>
+    <source.uri>NewActProposalsService</source.uri>
+    <target.uri>NewActProposalsMediator/NewActProposalsMediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>NewActProposalsMediator/NewActProposalProcessor.NewActProposalProcessor</source.uri>
+    <target.uri>NewActProposalProcessor/NewActProposalProcessor</target.uri>
+  </wire>
+  <wire>
+    <source.uri>NewActProposalsMediator/verifyActProposalExists</source.uri>
+    <target.uri>verifyActProposalExists</target.uri>
   </wire>
 </composite>

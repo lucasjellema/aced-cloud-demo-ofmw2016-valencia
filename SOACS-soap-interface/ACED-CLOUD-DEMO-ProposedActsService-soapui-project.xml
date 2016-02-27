@@ -127,7 +127,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActDetailsRequestMessage>
-         <aced:proposedActId>77</aced:proposedActId>
+         <aced:proposedActId>187</aced:proposedActId>
       </aced:getProposedActDetailsRequestMessage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call><con:call name="mock-request-proposedActDetails"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
@@ -156,13 +156,45 @@
         
       </aced:getProposedActsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SOACS-NewActProposalsServiceBinding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL"><con:part><con:url>http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:acd="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="NewActProposalsServiceBinding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL"><con:part><con:url>http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:acd="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:documentation>
     <abstractWSDL>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices!1.0/WSDLs/NewActProposalsService.wsdl</abstractWSDL>
   </wsdl:documentation>
   <wsdl:types>
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-      <xsd:import namespace="aced.cloud.demo" schemaLocation="http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?XSD=../Schemas/NewActProposalsService.xsd"/>
+    <xsd:schema targetNamespace="aced.cloud.demo" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
+      <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
+      <xsd:element name="verifyExistenceProposalRequestMessage" type="acd:verifyExistenceProposalRequestMessageType"/>
+      <xsd:element name="verifyExistenceProposalResponseMessage" type="acd:verifyExistenceProposalResponseMessageType"/>
+      <xsd:complexType name="submitActProposalResponseMessageType">
+        <xsd:sequence>
+          <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="submitActProposalRequestMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="numberOfVotes" type="xsd:integer"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="verifyExistenceProposalRequestMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="verifyExistenceProposalResponseMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="proposalExistsYN" type="xsd:string"/>
+          <xsd:element name="numberOfVotes" type="xsd:integer"/>
+          <xsd:element name="registrationDate" type="xsd:date"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="submitActProposalRequest">
@@ -171,10 +203,20 @@
   <wsdl:message name="submitActProposalResponse">
     <wsdl:part name="part1" element="tns:submitActProposalResponseMessage"/>
   </wsdl:message>
+  <wsdl:message name="verifyExistenceProposalRequest">
+    <wsdl:part name="part1" element="tns:verifyExistenceProposalRequestMessage"/>
+  </wsdl:message>
+  <wsdl:message name="verifyExistenceProposalResponse">
+    <wsdl:part name="part1" element="tns:verifyExistenceProposalResponseMessage"/>
+  </wsdl:message>
   <wsdl:portType name="NewActProposalsService">
     <wsdl:operation name="submitActProposal">
       <wsdl:input message="tns:submitActProposalRequest"/>
       <wsdl:output message="tns:submitActProposalResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="verifyExistenceActProposal">
+      <wsdl:input message="tns:verifyExistenceProposalRequest"/>
+      <wsdl:output message="tns:verifyExistenceProposalResponse"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NewActProposalsServiceBinding" type="tns:NewActProposalsService">
@@ -188,30 +230,22 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="verifyExistenceActProposal">
+      <soap:operation style="document" soapAction="verifyExistenceActProposal"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="NewActProposalsService">
     <wsdl:port name="NewActProposalsService_pt" binding="tns:NewActProposalsServiceBinding">
       <soap:address location="http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?XSD=../Schemas/NewActProposalsService.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="aced.cloud.demo" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo">
-  <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
-  <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
-  <xsd:complexType name="submitActProposalResponseMessageType">
-    <xsd:sequence>
-      <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="submitActProposalRequestMessageType">
-    <xsd:sequence>
-      <xsd:element name="name" type="xsd:string"/>
-      <xsd:element name="numberOfVotes" type="xsd:integer"/>
-      <xsd:element name="description" type="xsd:string"/>
-      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
-    </xsd:sequence>
-  </xsd:complexType>
-</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-SpandauBallet"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-SpandauBallet"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
@@ -233,7 +267,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
-         <aced:name>adele</aced:name>
+         <aced:name>u2</aced:name>
          <aced:numberOfVotes>119</aced:numberOfVotes>
          <aced:description>19, 21 and 25 - young and vibrant, powerful and enaging. </aced:description>
       </aced:submitActProposalRequestMessage>
@@ -247,7 +281,14 @@
          <aced:description>Surprising, sparkling and a little scandalous.</aced:description>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="Actproposals" path="/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals"><con:settings/><con:parameters/><con:method name="ProposeNewAct" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Fault</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:request>{ "proposedAct": { "artist" : "Luv"
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="verifyExistenceActProposal" name="verifyExistenceActProposal" bindingOperationName="verifyExistenceActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:verifyExistenceProposalRequestMessage>
+         <aced:name>adele</aced:name>
+      </aced:verifyExistenceProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="Actproposals" path="/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals"><con:settings/><con:parameters/><con:method name="ProposeNewAct" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Fault</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:request>{ "proposedAct": { "artist" : "Luv"
                  , "numberOfVotes" : 432
 				 , "description" : "A leading female artist seems quite the novelty for OOW. Agewise there must be a connection with the audience"
 				 , "imageURL" : "http://blog.masslive.com/entertainment/2009/07/large_071609madonna-stage.jpg"
