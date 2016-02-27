@@ -11,7 +11,7 @@ var appname = 'frontend';
 
 gulp.task('deploy', gulp.series(_clean, _zip, _deploy));
 gulp.task('undeploy', gulp.series(_undeploy));
-gulp.task('update', gulp.series(_clean, _zip, _update));
+gulp.task('redeploy', gulp.series(_clean, _zip, _redeploy));
 
 gulp.task('serve', _serve);
 
@@ -22,20 +22,21 @@ function _clean() {
 }
 
 function _zip() {
-    return gulp.src('**/*')
+    return gulp.src(['**/*', '!manifest.json', '!deployment.json', '!ocloud.js', '!gulpfile.js'])
         .pipe(zip('frontend.zip'))
         .pipe(gulp.dest('dist'));
 }
 
 function _deploy() {
-    createApp(appname, fs.createReadStream('dist/frontend.zip'), require('./ocloud'), response => { console.log('CREATED', response) });
+    createApp(appname, fs.createReadStream('manifest.json'), fs.createReadStream('deployment.json'), fs.createReadStream('dist/frontend.zip'),
+        require('./ocloud'), response => { console.log('CREATED', response) });
 }
 
 function _undeploy() {
     deleteApp(appname, require('./ocloud'), response => { console.log('REMOVED', response) });
 }
 
-function _update() {
+function _redeploy() {
     updateApp(appname, fs.createReadStream('dist/frontend.zip'), require('./ocloud'), response => { console.log('UPDATED', response) });
 }
 
@@ -50,12 +51,14 @@ function _serve() {
 
 // ===============================================
 
-function createApp(name, zipstream, ocloud, callback) {
+function createApp(name, manifest, deployment, archive, ocloud, callback) {
     var form = new FormData();
     form.append('name', name);
     form.append('runtime', 'node');
     form.append('subscription', 'Hourly');
-    form.append('archive', zipstream);
+    manifest && form.append('manifest', manifest);
+    deployment && form.append('deployment', deployment);
+    archive && form.append('archive', archive);
     ocloudPost(form, 'post', '', ocloud, callback);
 }
 

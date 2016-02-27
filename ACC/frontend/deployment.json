@@ -1,0 +1,8 @@
+{
+    "environment": {
+        "MCS_BACKEND_ID": "55bc25a9-52ee-4a63-8db2-ce18cab1948b",
+        "MCS_URL": "https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443",
+        "MCS_USER": "MCSDEM0001_MOBILEPORTALSETRIAL1304DEV_MOBILE_ANONYMOUS_APPID",
+        "MCS_PWD": "dy6ou5np_tglNk"
+    }
+}
