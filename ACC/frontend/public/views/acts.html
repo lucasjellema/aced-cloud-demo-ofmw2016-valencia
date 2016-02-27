@@ -1,1 +1,9 @@
 Acts!!
+<ul data-bind="foreach: acts">
+    <li data-bind="text: name"></li>
+    <ul>
+        <li data-bind="text: id"></li>
+        <li data-bind="text: numberOfVotes"></li>
+        <li data-bind="text: registrationDate"></li>
+    </ul>
+</ul>
