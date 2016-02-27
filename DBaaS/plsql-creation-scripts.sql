@@ -32,6 +32,17 @@ procedure submit_act_proposal
 , p_id out number
 );
 
+procedure verify_proposal_for_act
+( p_act_name in out varchar2
+, p_act_proposed_yn out varchar2
+, p_registration_date out date
+, p_description out varchar2
+, p_image_url out varchar2
+, p_number_of_votes out number
+, p_id out number
+);
+
+
 end act_proposal_api;
 
 
@@ -85,6 +96,34 @@ begin
       ;
 end submit_act_proposal;
 
+procedure verify_proposal_for_act
+( p_act_name in out varchar2
+, p_act_proposed_yn out varchar2
+, p_registration_date out date
+, p_description out varchar2
+, p_image_url out varchar2
+, p_number_of_votes out number
+, p_id out number
+) is
+begin
+
+  begin
+    select pa.name,  pa.image_url, pa.description, pa.number_of_votes, pa.id, pa.proposal_timestamp
+	into   p_act_name, p_image_url, p_description, p_number_of_votes,p_id,p_registration_date
+	from   proposed_acts pa
+	where  upper(pa.name) = upper(p_act_name)
+	and    rownum = 1 /* prevent too many rows */
+	;
+	p_act_proposed_yn:= 'Y';
+
+  exception
+     when no_data_found
+	 then
+	   p_act_proposed_yn:= 'N';
+  end;
+end verify_proposal_for_act;
+
+
 end act_proposal_api;
 
 
@@ -106,3 +145,4 @@ act_proposal_api.submit_act_proposal
 );
  commit;
 end;
+
