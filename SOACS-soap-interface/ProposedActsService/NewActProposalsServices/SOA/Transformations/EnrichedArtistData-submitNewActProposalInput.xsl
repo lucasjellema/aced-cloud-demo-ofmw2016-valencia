@@ -59,7 +59,7 @@
       </xsl:if>
       <tns:P_ARTIST>
         <tns:NAME>
-           <xsl:value-of select="/ns0:Artist/name"/>
+          <xsl:value-of select="/ns0:Artist/name"/>
         </tns:NAME>
         <tns:GENRES>
           <xsl:value-of select="/ns0:Artist/genres"/>
@@ -68,15 +68,14 @@
           <xsl:value-of select="substring(/ns0:Artist/biography,1,2000)"/>
         </tns:BIOGRAPHY>
         <tns:IMAGE_URL>
-        <xsl:choose>
-          <xsl:when test="$inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL and $inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL!=''">
-            <xsl:value-of select="$inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="/ns0:Artist/imageURL"/>
-          </xsl:otherwise>
-        </xsl:choose>
-          
+          <xsl:choose>
+            <xsl:when test="$inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL and $inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL!=''">
+              <xsl:value-of select="$inputVariable.part1/ns1:submitActProposalRequestMessage/ns1:imageURL"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="/ns0:Artist/imageURL"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </tns:IMAGE_URL>
         <tns:ALBUMS>
           <xsl:for-each select="/ns0:Artist/albums">
@@ -84,6 +83,9 @@
               <tns:TITLE>
                 <xsl:value-of select="title"/>
               </tns:TITLE>
+              <tns:RELEASE_DATE>
+                <xsl:value-of select="releaseDate"/>
+              </tns:RELEASE_DATE>
               <tns:COVER_IMAGE_URL>
                 <xsl:value-of select="imageURL"/>
               </tns:COVER_IMAGE_URL>

@@ -17,6 +17,7 @@ elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" 
                            <xsd:sequence>
                               <xsd:element name="title" type="xsd:string"/>
                               <xsd:element name="imageURL" type="xsd:string"/>
+                              <xsd:element name="releaseDate" type="xsd:date"/>
                            </xsd:sequence>
                         </xsd:complexType>
                      </xsd:element>
