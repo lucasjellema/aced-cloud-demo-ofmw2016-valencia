@@ -34,7 +34,7 @@ This API is leveraged from SOA CS to enrich the submit new proposal; perhaps I w
 This API is also available from the proxy (on Google AppEngine):
 
 API for retrieving artist information (from Spotify and Echonest)
-http://104.155.85.98/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/get?artist=bon+jovi, http://104.155.85.98/artists/get?artist=the+beatles ...) 
+http://104.155.85.98/artists/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/artists/get?artist=bon+jovi, http://104.155.85.98/artists/artists/get?artist=the+beatles ...) 
 
 
 
@@ -47,6 +47,10 @@ http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServic
 also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
 
 Note: this service uses a connection to Spotify to enrich act. This connection could be ICS, SOA CS itself, Node.js on ACC
+
+This service exposes  two operations:
+- submitActProposal
+- verifyExistenceActProposal
 
 
 SOACS - (SOAP/XML) Retrieve details for earlier Proposed Acts
