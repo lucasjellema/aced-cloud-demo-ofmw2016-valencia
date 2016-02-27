@@ -4,13 +4,18 @@ const gulp = require('gulp'),
     del = require('del'),
     zip = require('gulp-zip'),
     FormData = require('form-data'),
-    fs = require('fs');
+    fs = require('fs'),
+    browserSync = require('browser-sync').create();
 
-var appname = 'frontend2';
+var appname = 'frontend';
 
 gulp.task('deploy', gulp.series(_clean, _zip, _deploy));
 gulp.task('undeploy', gulp.series(_undeploy));
 gulp.task('update', gulp.series(_clean, _zip, _update));
+
+gulp.task('serve', _serve);
+
+// ===============================================
 
 function _clean() {
     return del(['dist/**']);
@@ -33,6 +38,17 @@ function _undeploy() {
 function _update() {
     updateApp(appname, fs.createReadStream('dist/frontend.zip'), require('./ocloud'), response => { console.log('UPDATED', response) });
 }
+
+function _serve() {
+    browserSync.init({
+        server: {
+            baseDir: "public"
+        }
+    });
+    gulp.watch("public/**/*", browserSync.reload);
+}
+
+// ===============================================
 
 function createApp(name, zipstream, ocloud, callback) {
     var form = new FormData();

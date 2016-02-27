@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lucasjellema/aced-cloud-demo-ofmw2016-valencia#readme",
   "devDependencies": {
+    "browser-sync": "^2.11.1",
     "del": "^2.2.0",
     "form-data": "^0.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
