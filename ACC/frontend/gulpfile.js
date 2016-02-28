@@ -5,26 +5,52 @@ const gulp = require('gulp'),
     zip = require('gulp-zip'),
     FormData = require('form-data'),
     fs = require('fs'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    rjs = require('gulp-requirejs'),
+    uglify = require('gulp-uglify'),
+    through2 = require('through2');
 
 var appname = 'frontend';
 
-gulp.task('deploy', gulp.series(_clean, _zip, _deploy));
-gulp.task('undeploy', gulp.series(_undeploy));
-gulp.task('redeploy', gulp.series(_clean, _zip, _redeploy));
 
+gulp.task('deploy', gulp.series(_clean, _rjs, _zip, _deploy));
+gulp.task('undeploy', gulp.series(_undeploy));
+gulp.task('redeploy', gulp.series(_clean, _rjs, _zip, _redeploy));
+
+gulp.task('clean', gulp.series(_clean));
+gulp.task('rjs', gulp.series(_rjs));
 gulp.task('serve', _serve);
 
 // ===============================================
 
 function _clean() {
-    return del(['dist/**']);
+    return del(['dist/**', 'public/opt/**']);
 }
 
 function _zip() {
     return gulp.src(['**/*', '!manifest.json', '!deployment.json', '!ocloud.js', '!gulpfile.js'])
         .pipe(zip('frontend.zip'))
         .pipe(gulp.dest('dist'));
+}
+
+function _rjs() {
+    return rjs({
+        baseUrl: 'public',
+        mainConfigFile: 'public/main.js', // needed for library paths
+        name: 'main',
+        out: 'optimized.js',
+        optimize: 'none',
+        include: 'views/acts'
+    })
+    // workaround for gulp-requirejs not signaling end of stream
+    // https://github.com/RobinThrift/gulp-requirejs/issues/5#issuecomment-71415187
+        .pipe(through2.obj(function (file, enc, next) {
+            this.push(file);
+            this.end();
+            next();
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/opt/'));
 }
 
 function _deploy() {
