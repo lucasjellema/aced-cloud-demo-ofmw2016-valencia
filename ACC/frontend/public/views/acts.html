@@ -8,19 +8,6 @@
         <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
     </div>
     <ul data-bind="foreach: sortedActs">
-        <li data-bind="text: name"></li>
-        <ul>
-            <li>id:
-                <!--ko text: id-->
-                <!--/ko-->
-            </li>
-            <li>
-                <!--ko text: numberOfVotes-->
-                <!--/ko-->votes</li>
-            <li>registration date:
-                <!--ko text: registrationDate-->
-                <!--/ko-->
-            </li>
-        </ul>
+        <div data-bind="ojModule: { name: 'act', params: $data }"> </div>
     </ul>
 </div>
