@@ -1,6 +1,7 @@
 <h1>List of proposed acts</h1>
 <div data-bind="ifnot: fetched">Fetching...</div>
 <div data-bind="if: fetched">
+
     <div id="sort" data-bind="ojComponent: {component: 'ojButtonset', checked: sort}" aria-label="Choose sorting.">
         <label for="votes"></label>
         <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
@@ -10,4 +11,7 @@
     <ul data-bind="foreach: sortedActs">
         <div data-bind="ojModule: { name: 'act', params: $data }"> </div>
     </ul>
+
+    <div data-bind="ojModule: { name: 'chart', params: sortedActs }"> </div>
+
 </div>
