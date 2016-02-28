@@ -1,4 +1,7 @@
-<li data-bind="text: act.name"></li>
+<li>
+    <button data-bind="attr: {id: 'btn-'+act.id()}, ojComponent: {component: 'ojButton', label: act.name}, 
+    click:function(viewModel,evt){$('#detail-'+viewModel.act.id()).ojPopup('open', evt.currentTarget)}"></button>
+</li>
 <ul>
     <li>id:
         <!--ko text: act.id-->
@@ -6,9 +9,13 @@
     </li>
     <li>
         <!--ko text: act.numberOfVotes-->
-        <!--/ko-->votes</li>
+        <!--/ko-->&nbsp;votes</li>
     <li>registration date:
         <!--ko text: act.registrationDate-->
         <!--/ko-->
     </li>
 </ul>
+<div style="display:none" data-bind="attr: {id: 'detail-'+act.id()}, 
+    ojComponent:{component: 'ojPopup', tail: 'simple', position:{at:'end center',my:'start center'}}">
+    Hello World!!!
+</div>
