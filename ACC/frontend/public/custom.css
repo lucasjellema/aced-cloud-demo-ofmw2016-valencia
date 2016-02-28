@@ -1,0 +1,9 @@
+body.started #waiting {
+    display: none;
+}
+body #mainContent {
+    display: none;
+}
+body.started #mainContent {
+    display: block;
+}

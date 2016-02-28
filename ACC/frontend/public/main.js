@@ -48,6 +48,7 @@ require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojmodule'],
         // look for view models and view templates in same folder. That's easier for editing
         oj.ModuleBinding.defaults.modelPath = 'views/';
         ko.applyBindings(); // activate knockout
+        $('body').addClass('started');
         // ko.applyBindings(new RootViewModel(), document.getElementById('app'));
 
         function RootViewModel() {
