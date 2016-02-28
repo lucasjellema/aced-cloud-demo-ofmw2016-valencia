@@ -1,6 +1,12 @@
-This document contains some practical details regarding the demo, such as the endpoints of services.
+This document contains some practical details regarding the demo, such as the endpoints of services and the URL for the frontend. See the SoapUI test project for sample calls to the web services mentioned below.
 
-See the SoapUI test project for sample calls to these services.
+
+
+Final JET based Frontend application - the Oracle OpenWorld Appreciation Event latest news portal:
+
+https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/
+
+
 
 
 ICS/PCS (SOAP/XML) - Submit community suggestion for an act

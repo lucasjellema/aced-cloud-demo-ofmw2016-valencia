@@ -19,7 +19,17 @@
          xmlns:ns1="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
          xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal"
          xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +86,16 @@
         <variable name="InvokeArtistAPI_FetchArtistDetails_OutputVariable"
                   messageType="ns1:FetchArtistDetails_outputMessage"/>
       </variables>
+      <faultHandlers>
+        <catchAll>
+          <assign name="AssigMissingEnrichment">
+            <copy>
+              <from>concat('Failed to retrieve artist enrichment data from ArtistAPI',$inputVariable.part1/client:name,' because of ',ora:getFaultAsString())</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:BIOGRAPHY</to>
+            </copy>
+          </assign>
+        </catchAll>
+      </faultHandlers>
       <sequence name="Sequence1">
         <assign name="AssignInputForArtistAPI">
           <copy>
