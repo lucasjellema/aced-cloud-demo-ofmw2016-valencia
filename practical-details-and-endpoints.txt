@@ -10,11 +10,22 @@ http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsd
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/ (ws-security username token  and timestamp required)
 
 
+
 ICS - (REST/JSON, POST) Submit a new Proposed Act
 ============================================
 http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
+
+
+
+ICS/PCS (SOAP/XML) - Verify whether a proposal already exists for a certain act
+===============================================================================
+http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl  - on the proxy (no security tokens needed)
+
+The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl
+
+(ws-security username token  and timestamp required)
 
 
 

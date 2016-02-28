@@ -418,4 +418,135 @@
          <aced:imageURL>http://images.popmatters.com/blog_art/p/pearljamtwenty.jpg</aced:imageURL>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:username>gse_cloud-admin@oracleads.com</con:username><con:password>bristlyYear5^</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo.ics/submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="GetArtictsRichDetails-ACC" path="/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="GetArtictsRichDetails-Proxy" path="/artists/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>gse_cloud-admin@oracleads.com</con:username><con:password>bristlyYear5^</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo.ics/submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="GetArtictsRichDetails-ACC" path="/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="GetArtictsRichDetails-Proxy" path="/artists/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ICS-SOAP-NewActProposalsService-binding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsService-binding" soapVersion="1_1" anonymous="optional" definition="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl"><con:part><con:url>http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl</con:url><con:content><![CDATA[<WL5G3N2:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:WL5G3N1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N3="aced.cloud.demo" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:Policy WL5G3N1:Id="wss_username_token_over_ssl_service_policy">
+    <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+      <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <sp:AlgorithmSuite>
+          <wsp:Policy>
+            <sp:Basic128/>
+          </wsp:Policy>
+        </sp:AlgorithmSuite>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken RequireClientCertificate="false">
+              <wsp:Policy/>
+            </sp:HttpsToken>
+          </wsp:Policy>
+        </sp:TransportToken>
+        <sp:Layout>
+          <wsp:Policy>
+            <sp:Lax/>
+          </wsp:Policy>
+        </sp:Layout>
+        <sp:IncludeTimestamp/>
+      </wsp:Policy>
+    </sp:TransportBinding>
+    <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+      <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+          <wsp:Policy>
+            <sp:WssUsernameToken10/>
+          </wsp:Policy>
+        </sp:UsernameToken>
+      </wsp:Policy>
+    </sp:SupportingTokens>
+  </WL5G3N0:Policy>
+  <WL5G3N2:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="aced.cloud.demo" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:acd="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
+      <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
+      <xsd:element name="verifyExistenceProposalRequestMessage" type="acd:verifyExistenceProposalRequestMessageType"/>
+      <xsd:element name="verifyExistenceProposalResponseMessage" type="acd:verifyExistenceProposalResponseMessageType"/>
+      <xsd:complexType name="submitActProposalResponseMessageType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="proposedActId" type="xsd:integer"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="submitActProposalRequestMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="numberOfVotes" type="xsd:integer"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="imageURL" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="image" type="xsd:base64Binary"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="verifyExistenceProposalRequestMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="verifyExistenceProposalResponseMessageType">
+        <xsd:sequence>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="proposalExistsYN" type="xsd:string"/>
+          <xsd:element name="numberOfVotes" type="xsd:integer"/>
+          <xsd:element name="registrationDate" type="xsd:date"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="imageURL" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </WL5G3N2:types>
+  <WL5G3N2:message name="verifyExistenceProposalRequest">
+    <WL5G3N2:part name="part1" element="WL5G3N3:verifyExistenceProposalRequestMessage"/>
+  </WL5G3N2:message>
+  <WL5G3N2:message name="verifyExistenceProposalResponse">
+    <WL5G3N2:part name="part1" element="WL5G3N3:verifyExistenceProposalResponseMessage"/>
+  </WL5G3N2:message>
+  <WL5G3N2:portType name="NewActProposalsService">
+    <WL5G3N2:operation name="verifyExistenceActProposal">
+      <WL5G3N2:input message="WL5G3N3:verifyExistenceProposalRequest"/>
+      <WL5G3N2:output message="WL5G3N3:verifyExistenceProposalResponse"/>
+    </WL5G3N2:operation>
+  </WL5G3N2:portType>
+  <WL5G3N2:binding name="NewActProposalsService-binding" type="WL5G3N3:NewActProposalsService">
+    <WL5G3N0:Policy>
+      <WL5G3N0:PolicyReference URI="#wss_username_token_over_ssl_service_policy"/>
+    </WL5G3N0:Policy>
+    <WL5G3N4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N2:operation name="verifyExistenceActProposal">
+      <WL5G3N4:operation soapAction="aced.cloud.demo/verifyExistenceActProposal"/>
+      <WL5G3N2:input>
+        <WL5G3N4:body use="literal"/>
+      </WL5G3N2:input>
+      <WL5G3N2:output>
+        <WL5G3N4:body use="literal"/>
+      </WL5G3N2:output>
+    </WL5G3N2:operation>
+  </WL5G3N2:binding>
+  <WL5G3N2:service name="NewActProposalsService-bindingQSService">
+    <WL5G3N2:documentation>OSB Service</WL5G3N2:documentation>
+    <WL5G3N2:port name="NewActProposalsService-bindingQSPort" binding="WL5G3N3:NewActProposalsService-binding">
+      <WL5G3N4:address location="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/"/>
+    </WL5G3N2:port>
+  </WL5G3N2:service>
+</WL5G3N2:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint><con:endpoint>http://127.0.0.1:5100/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="aced.cloud.demo/verifyExistenceActProposal" name="verifyExistenceActProposal" bindingOperationName="verifyExistenceActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="verify-adele"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:aced="aced.cloud.demo" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsu:Timestamp wsu:Id="TS-99E63BB678A353587C14566464763085">
+            <wsu:Created>2016-02-28T08:01:16.308Z</wsu:Created>
+            <wsu:Expires>2016-02-28T08:02:16.308Z</wsu:Expires>
+         </wsu:Timestamp>
+         <wsse:UsernameToken wsu:Id="UsernameToken-99E63BB678A353587C14566413705292">
+            <wsse:Username>gse_cloud-admin@oracleads.com</wsse:Username>
+            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">bristlyYear5^</wsse:Password>
+            <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">DrVIhyom6ae54becN/Tajw==</wsse:Nonce>
+            <wsu:Created>2016-02-28T06:36:10.529Z</wsu:Created>
+         </wsse:UsernameToken>
+      </wsse:Security>
+   </soapenv:Header>
+   <soapenv:Body>
+      <aced:verifyExistenceProposalRequestMessage>
+         <aced:name>adele</aced:name>
+      </aced:verifyExistenceProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>gse_cloud-admin@oracleads.com</con:username><con:password>bristlyYear5^</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo/verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="verify-adele-through-proxy"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <aced:verifyExistenceProposalRequestMessage>
+         <aced:name>adele</aced:name>
+      </aced:verifyExistenceProposalRequestMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo/verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
