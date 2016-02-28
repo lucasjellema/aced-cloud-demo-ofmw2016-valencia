@@ -32,7 +32,11 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
                 });
             }
             var ActsCollection = oj.Collection.extend({
-                url: settings.baseUrl + '/mobile/custom/artistapi/acts'
+                url: settings.baseUrl + '/mobile/custom/artistapi/acts',
+                parse: function (response) {
+                    response.forEach(function (row) { row.registrationDate = new Date(row.registrationDate); });
+                    return response;
+                }
             });
         }
 
