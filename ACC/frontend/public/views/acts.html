@@ -1,9 +1,26 @@
-Acts!!
-<ul data-bind="foreach: acts">
-    <li data-bind="text: name"></li>
-    <ul>
-        <li data-bind="text: id"></li>
-        <li data-bind="text: numberOfVotes"></li>
-        <li data-bind="text: registrationDate"></li>
+<h1>List of proposed acts</h1>
+<div data-bind="ifnot: fetched">Fetching...</div>
+<div data-bind="if: fetched">
+    <div id="sort" data-bind="ojComponent: {component: 'ojButtonset', checked: sort}" aria-label="Choose sorting.">
+        <label for="votes"></label>
+        <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
+        <label for="date"></label>
+        <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
+    </div>
+    <ul data-bind="foreach: sortedActs">
+        <li data-bind="text: name"></li>
+        <ul>
+            <li>id:
+                <!--ko text: id-->
+                <!--/ko-->
+            </li>
+            <li>
+                <!--ko text: numberOfVotes-->
+                <!--/ko-->votes</li>
+            <li>registration date:
+                <!--ko text: registrationDate-->
+                <!--/ko-->
+            </li>
+        </ul>
     </ul>
-</ul>
+</div>
