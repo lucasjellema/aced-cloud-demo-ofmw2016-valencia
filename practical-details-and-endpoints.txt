@@ -4,7 +4,7 @@ This document contains some practical details regarding the demo, such as the en
 
 Final JET based Frontend application - the Oracle OpenWorld Appreciation Event latest news portal:
 
-https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/
+https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
 
 
 
@@ -12,6 +12,17 @@ ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
 =================================================================================
 This service uses an integration on ICS that is currently mapped to the SOA CS NewActProposalService (bypassing the human workflow). 
 As soon as the PCS API is established, integration under this service will be reconfigured, to link to PCS and initiate the workflow to approve the suggestion
+
+http://104.155.85.98/ics/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
+
+POST a JSON payload similar to:
+
+{ "proposal" : 
+  { "artist" : "dj tiesto"
+  , "numberOfVotes" : 21
+  , "source": "twitter"
+  } 
+}
 
 
 
