@@ -8,26 +8,36 @@ https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/
 
 
 
+ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
+=================================================================================
+This service uses an integration on ICS that is currently mapped to the SOA CS NewActProposalService (bypassing the human workflow). 
+As soon as the PCS API is established, integration under this service will be reconfigured, to link to PCS and initiate the workflow to approve the suggestion
 
-ICS/PCS (SOAP/XML) - Submit community suggestion for an act
-============================================================
+
+
+ICS (SOAP/XML) - Submit a new proposed act (to be called by PCS after the act has been approved)
+=================================================================================================
 http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
+=> this service invokes the corresponding service on SOA CS
+
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/ (ws-security username token  and timestamp required)
 
 
 
-ICS - (REST/JSON, POST) Submit a new Proposed Act
-============================================
+ICS - (REST/JSON, POST) Submit a new Proposed Act (to be called by PCS after the act has been approved)
+=======================================================================================================
 http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
+=> this service invokes the corresponding service on SOA CS
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
 
 
 
-ICS/PCS (SOAP/XML) - Verify whether a proposal already exists for a certain act
+ICS (SOAP/XML) - Verify whether a proposal already exists for a certain act
 ===============================================================================
 http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl  - on the proxy (no security tokens needed)
+=> this service invokes the corresponding service on SOA CS
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl
 
