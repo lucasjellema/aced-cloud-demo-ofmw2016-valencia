@@ -1,0 +1,5 @@
+{ "tweet" : { "message": "My heartfelt message to the world"
+            , "id" : "243145735212777472"
+			, "publictionTime" : "Wed Sep 05 00:37:15 +0000 2015"
+			}
+}			

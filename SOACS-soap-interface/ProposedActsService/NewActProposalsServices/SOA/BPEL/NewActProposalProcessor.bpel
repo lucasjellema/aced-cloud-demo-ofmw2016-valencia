@@ -29,7 +29,9 @@
          xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
          xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
          xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
-         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap">
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns4="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
+         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +52,8 @@
                  partnerRole="ArtistAPIReferenceProvider"/>
     <partnerLink name="submitNewActProposal" partnerLinkType="ns2:submitNewActProposal_plt"
                  partnerRole="submitNewActProposal_role"/>
+    <partnerLink name="TweetNewArtistProposal" partnerLinkType="ns4:TweetNewArtistProposal"
+                 partnerRole="TweetNewArtistProposalProvider"/>
   </partnerLinks>
 
   <!-- 
@@ -130,5 +134,27 @@
     </assign>
     <!-- Generate reply to synchronous request -->
     <reply name="replyOutput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="outputVariable"/>
+    <scope name="TweetAboutNewActProposal">
+      <variables>
+        <variable name="InvokePublishTweet_PublishTweet_InputVariable" messageType="ns4:PublishTweet_inputMessage"/>
+        <variable name="InvokePublishTweet_PublishTweet_OutputVariable" messageType="ns4:PublishTweet_outputMessage"/>
+      </variables>
+      <sequence name="Sequence2">
+        <assign name="AssignTweetRequest">
+          <copy>
+            <from>'ACECLOUD'</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:tag</to>
+          </copy>
+          <copy>
+            <from>concat('New Act Proposal for ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME, ' #votes: ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES, ' latest album ',  $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:ALBUMS/ns3:ALBUMS_ITEM/ns3:TITLE)</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:message</to>
+          </copy>
+        </assign>
+        <invoke name="InvokePublishTweet" bpelx:invokeAsDetail="no" partnerLink="TweetNewArtistProposal"
+                portType="ns4:TweetNewArtistProposal_ptt" operation="PublishTweet"
+                inputVariable="InvokePublishTweet_PublishTweet_InputVariable"
+                outputVariable="InvokePublishTweet_PublishTweet_OutputVariable"/>
+      </sequence>
+    </scope>
   </sequence>
 </process>

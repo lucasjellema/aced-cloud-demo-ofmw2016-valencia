@@ -19,6 +19,8 @@
   <import namespace="aced.cloud.demo" location="WSDLs/NewActProposalsServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists"
           location="WSDLs/verifyActProposalExists.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
+          location="WSDLs/TweetNewArtistProposal.wsdl" importType="wsdl"/>
   <service name="NewActProposalsService" ui:wsdlLocation="WSDLs/NewActProposalsService.wsdl">
     <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
     <binding.ws port="aced.cloud.demo#wsdl.endpoint(NewActProposalsService/NewActProposalsService_pt)">
@@ -38,6 +40,9 @@
       </reference>
       <reference name="submitNewActProposal" ui:wsdlLocation="WSDLs/submitNewActProposal.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal#wsdl.interface(submitNewActProposal_ptt)"/>
+      </reference>
+      <reference name="TweetNewArtistProposal" ui:wsdlLocation="WSDLs/TweetNewArtistProposal.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal#wsdl.interface(TweetNewArtistProposal_ptt)"/>
       </reference>
     </componentType>
     <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
@@ -77,6 +82,11 @@
     <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
     <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
   </reference>
+  <reference name="TweetNewArtistProposal" ui:wsdlLocation="WSDLs/TweetNewArtistProposal.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal#wsdl.interface(TweetNewArtistProposal_ptt)"/>
+    <binding.rest config="Adapters/TweetNewArtistProposal.wadl"
+                  location="http://104.155.85.98/ics/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01"/>
+  </reference>
   <wire>
     <source.uri>NewActProposalProcessor/ArtistAPIReference</source.uri>
     <target.uri>ArtistAPIReference</target.uri>
@@ -96,5 +106,9 @@
   <wire>
     <source.uri>NewActProposalsMediator/verifyActProposalExists</source.uri>
     <target.uri>verifyActProposalExists</target.uri>
+  </wire>
+  <wire>
+    <source.uri>NewActProposalProcessor/TweetNewArtistProposal</source.uri>
+    <target.uri>TweetNewArtistProposal</target.uri>
   </wire>
 </composite>

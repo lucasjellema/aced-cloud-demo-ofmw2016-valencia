@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_response" targetNamespace="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_response" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="US-ASCII">
+   <xsd:element name="publishTweetResponse">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="tweet">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="message" type="xsd:string"/>
+                     <xsd:element name="id" type="xsd:integer"/>
+                     <xsd:element name="publictionTime" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>
