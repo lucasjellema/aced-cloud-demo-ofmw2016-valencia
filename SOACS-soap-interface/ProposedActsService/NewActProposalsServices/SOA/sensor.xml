@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="ArtistName" kind="service" target="undefined" filter="" xmlns:acd="aced.cloud.demo">
+        <serviceConfig service="NewActProposalsService" expression="$in.part1/acd:submitActProposalRequestMessage/acd:name" operation="submitActProposal" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>
