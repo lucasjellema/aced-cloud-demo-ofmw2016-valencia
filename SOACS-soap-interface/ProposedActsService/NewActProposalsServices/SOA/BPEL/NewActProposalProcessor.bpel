@@ -139,6 +139,11 @@
         <variable name="InvokePublishTweet_PublishTweet_InputVariable" messageType="ns4:PublishTweet_inputMessage"/>
         <variable name="InvokePublishTweet_PublishTweet_OutputVariable" messageType="ns4:PublishTweet_outputMessage"/>
       </variables>
+      <faultHandlers>
+        <catchAll>
+          <empty name="DoNothing_FailedTweetIsNoProblem"/>
+        </catchAll>
+      </faultHandlers>
       <sequence name="Sequence2">
         <assign name="AssignTweetRequest">
           <copy>
