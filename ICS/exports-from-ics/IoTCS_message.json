@@ -1,0 +1,8 @@
+[ { "id": "Id Value"
+,"source": "someValue"
+, "sentTime": "someOtherValue"
+, "eventTime": "someEventOtherValue"
+  , "payload" :     { "data":  {"max_of_data_hashtag": "artistname", "count_of_data_hashtag": 3.0}
+}
+}
+]
