@@ -1,5 +1,3 @@
-rem TODO : only insert unique album-titles that do not already exist in table act_albums
-
 create or replace 
 type album_t as object (
     title varchar2(200)
@@ -46,6 +44,7 @@ procedure verify_proposal_for_act
 end act_proposal_api;
 
 
+
 create or replace
 package body act_proposal_api
 is
@@ -57,9 +56,10 @@ procedure submit_act_proposal
 , p_artist in artist_t
 , p_id out number
 ) is
+  l_dummy_name varchar2(50):='The Artist Without Name';
 begin
   merge into proposed_acts pa
-    using (select p_artist.name name, p_description description, p_number_of_votes number_of_votes, p_artist.image_url image_url
+    using (select nvl(p_artist.name,l_dummy_name ) name, p_description description, p_number_of_votes number_of_votes, p_artist.image_url image_url
     , p_image image ,p_artist.biography biography, p_artist.genres genres from dual) new_act
     ON (pa.name = new_act.name)
   WHEN MATCHED THEN
@@ -72,15 +72,8 @@ begin
   select pa.id
   into   p_id
   from   proposed_acts pa
-  where  pa.name = p_artist.name;
-  /* and now insert into act_albums the details from p_artist 
-  create table act_albums
-( act_id number(10) not null
-, title varchar2(250) not null
-, release_date date null
-, coverImageUrl varchar2(500) null
-);
-  */
+  where  pa.name = nvl(p_artist.name, l_dummy_name);
+
   
       insert into act_albums
       (act_id, title, coverImageUrl, RELEASE_DATE)
@@ -125,6 +118,7 @@ end verify_proposal_for_act;
 
 
 end act_proposal_api;
+
 
 
 
