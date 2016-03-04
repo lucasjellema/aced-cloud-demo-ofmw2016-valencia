@@ -97,6 +97,22 @@
               <from>concat('Failed to retrieve artist enrichment data from ArtistAPI',$inputVariable.part1/client:name,' because of ',ora:getFaultAsString())</from>
               <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:BIOGRAPHY</to>
             </copy>
+            <copy>
+              <from>$inputVariable.part1/client:name</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:imageURL</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:IMAGE_URL</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:description</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_DESCRIPTION</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:numberOfVotes</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES</to>
+            </copy>
           </assign>
         </catchAll>
       </faultHandlers>
