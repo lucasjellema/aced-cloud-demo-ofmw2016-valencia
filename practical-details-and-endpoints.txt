@@ -25,6 +25,53 @@ POST a JSON payload similar to:
 }
 
 
+ICS (REST/JSON, POST) - IoT CS Drop Off for community suggestions (to be called from IoT CS)
+============================================================================================
+This service uses an integration on ICS that is currently mapped to the SOA CS NewActProposalService (bypassing the human workflow). 
+It accepts a JSON payload in a format that is native to IoT CS:
+
+[ { "id": "Id Value"
+,"source": "someValue"
+, "sentTime": "someOtherValue"
+, "eventTime": "someEventOtherValue"
+  , "payload" :     { "data":  {"max_of_data_hashtag": "mahalia jackson", "count_of_data_hashtag": 48}
+}
+}
+]
+
+As soon as the PCS API is established, integration under this service will be reconfigured, to link to PCS and initiate the workflow to approve the suggestion
+
+http://104.155.85.98/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
+
+or directly to ICS, with Authorization Header:
+
+https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
+
+
+
+PCS (SOAP/XML) - one way Submit an act proposal - to be called from ICS when IoT CS has dropped off a suggestion
+================================================================================================================
+(note: this PCS service invokes the next ICS service "Submit a new proposed act" for an act proposal that been approved; it also invokes the "Verify whether a proposal already exists for a certain act" service on ICS (see below); any act for which a proposal already exists is immediately forwarded to "Submit a new proposed act" on ICS; the result is that the number of votes for that act is increased and a new Tweet is published)
+
+http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service (via proxy, no authorization)
+
+or directly at PCS:
+
+https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service
+
+current request message:
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kic="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <kic:start>
+         <name>jacques brel</name>
+         <voteCount>11</voteCount>
+      </kic:start>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
 
 ICS (SOAP/XML) - Submit a new proposed act (to be called by PCS after the act has been approved)
 =================================================================================================
@@ -55,6 +102,21 @@ The real address: https://icsdem0058service-icsdem0058.integration.us2.oracleclo
 (ws-security username token  and timestamp required)
 
 
+ICS (REST/JSON, POST) - Tweet
+=============================
+Straightforward service with Twitter Adapter to tweet a message; currently configured for the Saibot Airport Twitter account at https://twitter.com/SaibotAirport
+
+The endpoint is:
+
+http://104.155.85.98/ics/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets (through proxy, no authorization)
+
+The payload:
+{ "tweet" : { "message": "Tweet through proxy no authorization" 
+, "tag" : "saibot" } 
+}
+
+directly on ICS, requiring authorization and Data Center nearness):
+https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets
 
 
 ACC - Artist Enrichment API
@@ -116,4 +178,6 @@ There is no authentication (anonymous access right now).
 
 Oracle JET Web Application
 ==========================
-<to be defined>
+live JET application at:
+
+https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
