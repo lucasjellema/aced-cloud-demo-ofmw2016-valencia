@@ -72,6 +72,18 @@ current request message:
 </soapenv:Envelope>
 
 
+ICS seems to have a problem with one way REST or SOAP connections; that is why I created a two way REST service on the proxy that routes through to PCS:
+at : REST POST to http://104.155.85.98/pcs/rest/artistProposals
+
+{ "artistProposal" : 
+  { "artistName" : "u2" 
+  , "numberOfVotes" : 99
+  , "source"         : "twitter"
+  }
+}  
+
+response:
+{"artistProposalSubmissionResult": {"status": "OK, I guess for u2"}}
 
 ICS (SOAP/XML) - Submit a new proposed act (to be called by PCS after the act has been approved)
 =================================================================================================
