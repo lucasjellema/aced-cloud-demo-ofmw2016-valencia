@@ -10,8 +10,7 @@ https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.
 
 ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
 =================================================================================
-This service uses an integration on ICS that is currently mapped to the SOA CS NewActProposalService (bypassing the human workflow). 
-As soon as the PCS API is established, integration under this service will be reconfigured, to link to PCS and initiate the workflow to approve the suggestion
+This service uses an integration on ICS that is mapped to the REST POST service on top of PCS to submit a proposal to initiate the workflow to approve the suggestion
 
 http://104.155.85.98/ics/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
 
