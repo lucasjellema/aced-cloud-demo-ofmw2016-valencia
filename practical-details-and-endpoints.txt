@@ -26,7 +26,16 @@ POST a JSON payload similar to:
 
 ICS (REST/JSON, POST) - IoT CS Drop Off for community suggestions (to be called from IoT CS)
 ============================================================================================
-This service uses an integration on ICS that is currently mapped to the SOA CS NewActProposalService (bypassing the human workflow). 
+This service routes to PCS.
+
+Through the proxy - no authorization required and now problems with Data Center hops:
+
+http://104.155.85.98/ics/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events
+
+and directly on ICS
+https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events
+
+
 It accepts a JSON payload in a format that is native to IoT CS:
 
 [ { "id": "Id Value"
@@ -38,13 +47,27 @@ It accepts a JSON payload in a format that is native to IoT CS:
 }
 ]
 
-As soon as the PCS API is established, integration under this service will be reconfigured, to link to PCS and initiate the workflow to approve the suggestion
+
+IoT CS Drop Off that bypasses PCS workflow:
+===========================================
+As an alternative there is the IoT CS drop off that is  mapped to the SOA CS NewActProposalService (bypassing the human workflow on PCS). 
 
 http://104.155.85.98/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
 
 or directly to ICS, with Authorization Header:
+https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
 
-https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
+It accepts a JSON payload in a format that is native to IoT CS:
+
+[ { "id": "Id Value"
+,"source": "someValue"
+, "sentTime": "someOtherValue"
+, "eventTime": "someEventOtherValue"
+  , "payload" :     { "data":  {"max_of_data_hashtag": "mahalia jackson", "count_of_data_hashtag": 48}
+}
+}
+]
+
 
 
 
