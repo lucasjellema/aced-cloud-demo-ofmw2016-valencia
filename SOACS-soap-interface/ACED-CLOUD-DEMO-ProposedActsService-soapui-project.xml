@@ -156,7 +156,7 @@
         
       </aced:getProposedActsRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="NewActProposalsServiceBinding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL"><con:part><con:url>http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:acd="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActs"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SOA CS NewActProposalsServiceBinding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL"><con:part><con:url>http://oc-140-86-4-95.compute.oraclecloud.com/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:acd="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:documentation>
     <abstractWSDL>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices!1.0/WSDLs/NewActProposalsService.wsdl</abstractWSDL>
   </wsdl:documentation>
@@ -288,7 +288,7 @@
          <aced:name>adele</aced:name>
       </aced:verifyExistenceProposalRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="Actproposals" path="/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals"><con:settings/><con:parameters/><con:method name="ProposeNewAct" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Fault</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:request>{ "proposedAct": { "artist" : "Luv"
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="ProposeNewAct" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="Actproposals" path="/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals"><con:settings/><con:parameters/><con:method name="ProposeNewAct" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>400</con:status><con:params/><con:element xmlns:act="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals">act:Fault</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://127.0.0.1:5100/ics</con:endpoint><con:request>{ "proposedAct": { "artist" : "Luv"
                  , "numberOfVotes" : 432
 				 , "description" : "A leading female artist seems quite the novelty for OOW. Agewise there must be a connection with the audience"
 				 , "imageURL" : "http://blog.masslive.com/entertainment/2009/07/large_071609madonna-stage.jpg"
@@ -426,7 +426,7 @@
          <aced:imageURL>http://images.popmatters.com/blog_art/p/pearljamtwenty.jpg</aced:imageURL>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo.ics/submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="GetArtictsRichDetails-ACC" path="/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="GetArtictsRichDetails-Proxy" path="/artists/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ICS-SOAP-NewActProposalsService-binding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsService-binding" soapVersion="1_1" anonymous="optional" definition="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl"><con:part><con:url>http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl</con:url><con:content><![CDATA[<WL5G3N2:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:WL5G3N1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N3="aced.cloud.demo" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo.ics/submitActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Artist Enricher on ACC" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="GetArtictsRichDetails-ACC" path="/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="GetArtictsRichDetails-Proxy" path="/artists/artists/get"><con:settings/><con:parameters><con:parameter><con:name>artist</con:name><con:value>the kaiser chiefs</con:value><con:style>QUERY</con:style><con:default>the kaiser chiefs</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Get" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json; charset=utf-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:get="https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get">get:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98</con:endpoint><con:request/><con:originalUri>https://artist-enricher-api-lucasjellema.apaas.em2.oraclecloud.com/artists/get</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>artist</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ICS-SOAP-NewActProposalsService-binding" type="wsdl" bindingName="{aced.cloud.demo}NewActProposalsService-binding" soapVersion="1_1" anonymous="optional" definition="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl"><con:part><con:url>http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl</con:url><con:content><![CDATA[<WL5G3N2:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:WL5G3N1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N3="aced.cloud.demo" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
   <WL5G3N0:Policy WL5G3N1:Id="wss_username_token_over_ssl_service_policy">
     <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
       <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
@@ -583,7 +583,7 @@
          <name xsi:type="def:string" xmlns:def="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">genesis</name>
       </verifyExistenceProposalRequestMessage>
    </env:Body>
-</env:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo/verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="V01" path="/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets"><con:settings/><con:parameters/><con:method name="V01" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/plain</con:mediaType><con:status>401</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:twe="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets">twe:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:request>{ "tweet" : { "message": "Tweet through proxy" 
+</env:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="aced.cloud.demo/verifyExistenceActProposal"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="Tweet Message on ICS" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:endpoint>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com</con:endpoint></con:endpoints><con:resource name="V01" path="/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets"><con:settings/><con:parameters/><con:method name="V01" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/plain</con:mediaType><con:status>401</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json; charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:twe="https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets">twe:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:request>{ "tweet" : { "message": "Tweet through proxy" 
 , "tag" : "saibot" } 
 }</con:request><con:originalUri>https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets</con:originalUri><con:credentials><con:username>gse_cloud-admin@oracleads.com</con:username><con:password>bristlyYear5^</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request><con:request name="Tweet-no-authorization" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://104.155.85.98/ics</con:endpoint><con:request>{ "tweet" : { "message": "Tweet through proxy no authorization" 
 , "tag" : "saibot" } 
@@ -602,16 +602,16 @@
 }
 }
 ]
-</con:request><con:originalUri>http://104.155.85.98/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PCS - submit artist proposal" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval}KickOffApprovalBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:endpoint>https://127.0.0.1:5100/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:endpoint>https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint></con:endpoints><con:operation isOneWay="false" action="start" name="start" bindingOperationName="start" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kic="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval">
+</con:request><con:originalUri>http://104.155.85.98/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PCS - submit artist proposal" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval}KickOffApprovalBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:endpoint>https://127.0.0.1:5100/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:endpoint>https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint></con:endpoints><con:operation isOneWay="false" action="start" name="start" bindingOperationName="start" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:5100/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kic="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval">
    <soapenv:Header/>
    <soapenv:Body>
       <kic:start>
-         <name>jacques brel</name>
-         <voteCount>11</voteCount>
+         <name>u2</name>
+         <voteCount>19</voteCount>
       </kic:start>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:username>cloud.admin</con:username><con:password>gLvHRTttU_7A</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="start"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="PCS-twoway-proposal-submission" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://127.0.0.1:5100</con:endpoint><con:endpoint>http://http://104.155.85.98/pcs/rest</con:endpoint></con:endpoints><con:resource name="ArtistProposals" path="/artistProposals"><con:settings/><con:parameters/><con:method name="ArtistProposals" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html; charset=utf-8</con:mediaType><con:status>500</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>text/xml</con:mediaType><con:status>200</con:status><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:art="http://127.0.0.1/pcs/rest/artistProposals">art:Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="propose-RodStewart" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://127.0.0.1:5100/pcs/rest</con:endpoint><con:request>{ "artistProposal" : 
-  { "artistName" : "rod stewart" 
+  { "artistName" : "kate bush" 
   , "numberOfVotes" : 4
   , "source"         : "twitter"
   }
@@ -625,10 +625,378 @@
 , "sentTime": "someOtherValue"
 , "eventTime": "someEventOtherValue"
   , "payload" :     { "data":  
-                         { "max_of_data_hashtag": "u2"
-                         , "count_of_data_hashtag": 11
+                         { "max_of_data_hashtag": "time bandits"
+                         , "count_of_data_hashtag": 19
                          }
                     }
   }
 ]
-</con:request><con:originalUri>http://104.155.85.98/ics/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</con:request><con:originalUri>http://104.155.85.98/ics/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PCS - Submit Artist Proposal V2" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal}SubmitActProposalBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>This is Mark's new PCS component to handle artist proposals</con:description><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://127.0.0.1:5100/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service</con:endpoint><con:endpoint>https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service</con:endpoint></con:endpoints><con:operation isOneWay="false" action="start" name="start" bindingOperationName="start" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="propose U2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:5100/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sub:start>
+         <name>u2</name>
+         <voteCount>23</voteCount>
+      </sub:start>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>cloud.admin</con:username><con:password>gLvHRTttU_7A</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="start"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PCS - Submit Artist Proposal V2" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal}SubmitActProposalPortTypeCallBackBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:description>This is Mark's new PCS component to handle artist proposals</con:description><con:settings/><con:definitionCache type="TEXT" rootPart="https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL"><con:part><con:url>https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0/WSDLs/SubmitActProposal.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="SubmitActProposalPortTypePartnerLinkType">
+    <plnk:role name="SubmitActProposalPortTypeProvider">
+      <plnk:portType name="tns:SubmitActProposalPortType"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Fault_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Input_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+          <sp:Header Name="" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="" Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+          <sp:Header Name="" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="" Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Output_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="wss11_saml_or_username_token_with_message_protection_service_policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token11/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:ProtectTokens/>
+            <sp:OnlySignEntireHeadersAndBody/>
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SamlToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssSamlV11Token11/>
+              </wsp:Policy>
+            </sp:SamlToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssX509V3Token11/>
+              </wsp:Policy>
+            </sp:X509Token>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+            <sp:MustSupportRefThumbprint/>
+            <sp:MustSupportRefEncryptedKey/>
+            <sp:RequireSignatureConfirmation/>
+          </wsp:Policy>
+        </sp:Wss11>
+      </wsp:All>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token11/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:OnlySignEntireHeadersAndBody/>
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10/>
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+            <sp:MustSupportRefThumbprint/>
+            <sp:MustSupportRefEncryptedKey/>
+            <sp:RequireSignatureConfirmation/>
+          </wsp:Policy>
+        </sp:Wss11>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SamlToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssSamlV11Token10/>
+              </wsp:Policy>
+            </sp:SamlToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10/>
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">
+      <xsd:element name="start">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="voteCount" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="endResponse">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="endResponse">
+    <wsdl:part name="parameters" element="tns:endResponse"/>
+  </wsdl:message>
+  <wsdl:message name="start">
+    <wsdl:part name="parameters" element="tns:start"/>
+  </wsdl:message>
+  <wsdl:portType name="SubmitActProposalPortTypeCallBack">
+    <wsdl:operation name="end">
+      <wsdl:input message="tns:endResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SubmitActProposalPortType">
+    <wsdl:operation name="start">
+      <wsdl:input message="tns:start"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SubmitActProposalBinding" type="tns:SubmitActProposalPortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#wss11_saml_or_username_token_with_message_protection_service_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsdl:operation name="start">
+      <wsdlsoap:operation style="document" soapAction="start"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+        <wsp:PolicyReference URI="#SubmitActProposalPortType_Input_Policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SubmitActProposalPortTypeCallBackBinding" type="tns:SubmitActProposalPortTypeCallBack">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="end">
+      <wsdlsoap:operation style="document" soapAction="end"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal" namespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SubmitActProposal.service">
+    <wsdl:port name="SubmitActProposalPortType" binding="tns:SubmitActProposalBinding">
+      <wsdlsoap:address location="https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service"/>
+      <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsa:Address>https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service</wsa:Address>
+        <wsid:Identity xmlns:wsid="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <dsig:KeyInfo xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+            <dsig:X509Data>
+              <dsig:X509Certificate>MIICozCCAYugAwIBAgIGAVLY+obaMA0GCSqGSIb3DQEBCwUAMHgxCzAJBgNVBAYTAlVTMRAwDgYDVQQIEwdNeVN0YXRlMQ8wDQYDVQQHEwZNeVRvd24xFzAVBgNVBAoTDk15T3JnYW5pemF0aW9uMRkwFwYDVQQLExBGT1IgVEVTVElORyBPTkxZMRIwEAYDVQQDEwlDZXJ0R2VuQ0EwHhcNMTYwMjEzMDQ1NDAzWhcNMjEwMjExMDQ1NDAzWjAOMQwwCgYDVQQDEwNQQ1MwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANEvOF8AmMddnqPE0S6qGExXHTG11o6j98R2RVvAaQxKu75eqazMH984hbLOMF3RvyeMfv+mJ1TGqCwMzJdphuFH392CyTkc35qPGozpdPNp+uQnSsItZHnmHJ9fu2xVc2iV/IXrAv0b2+k3g1HJZFOtU/8/IEhFLYOEp2rrnSNNAgMBAAGjITAfMB0GA1UdDgQWBBQzbtE+F+wT+C2Aqt6/NG9sIwtjJjANBgkqhkiG9w0BAQsFAAOCAQEALXHIOEpKe94f2DxB3xJ0IWqWIaXmEJ+Hb5uOfMup9iF7E8sOACpZi7fbG0nB3ZjeEFY2Bx30kHKbmMBLhzwCh+F37pxu3GptlJr/i91nvJEdOPE6hwjEZC6iRjO4cEN55iZYD5SPYrxlCBmtdWhOIl12Nx8Mfyzfg9VEP1rOmZlZ4qQtUXLhy+rUE1r77u1CdWNPL7glZVrG1dJetdboJlSe8bX/UvmQuMuEcrdgs0aBXAzWqGFCD0/P90R1lt4jmGy8hNX8xuON6V+yKDRnaHC0AT5uBoLO9wXqe05Ox9/4odQQxb3ly24CyWWjgdzYSxL8830SpAawyQCIL6qGpQ==</dsig:X509Certificate>
+              <dsig:X509IssuerSerial>
+                <dsig:X509IssuerName>CN=CertGenCA, OU=FOR TESTING ONLY, O=MyOrganization, L=MyTown, ST=MyState, C=US</dsig:X509IssuerName>
+                <dsig:X509SerialNumber>1455339243226</dsig:X509SerialNumber>
+              </dsig:X509IssuerSerial>
+              <dsig:X509SubjectName>CN=PCS</dsig:X509SubjectName>
+              <dsig:X509SKI>M27RPhfsE/gtgKrevzRvbCMLYyY=</dsig:X509SKI>
+            </dsig:X509Data>
+          </dsig:KeyInfo>
+        </wsid:Identity>
+      </wsa:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints/><con:operation isOneWay="false" action="end" name="end" bindingOperationName="end" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sub:endResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="end"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

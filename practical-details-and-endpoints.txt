@@ -75,14 +75,34 @@ PCS (SOAP/XML) - one way Submit an act proposal - to be called from ICS when IoT
 ================================================================================================================
 (note: this PCS service invokes the next ICS service "Submit a new proposed act" for an act proposal that been approved; it also invokes the "Verify whether a proposal already exists for a certain act" service on ICS (see below); any act for which a proposal already exists is immediately forwarded to "Submit a new proposed act" on ICS; the result is that the number of votes for that act is increased and a new Tweet is published)
 
+http://104.155.85.98/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service (via proxy, no authorization)
+
+
+or directly at PCS - with authorization:
+
+https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL
+
+request message looks like this:
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+  xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sub:start>
+         <name>u2</name>
+         <voteCount>7</voteCount>
+      </sub:start>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+Note: a fallback service on PCS was created earlier with the following details:
+
 http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service (via proxy, no authorization)
-
 or directly at PCS:
-
 https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service
 
 current request message:
-
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:kic="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval">
    <soapenv:Header/>
    <soapenv:Body>
@@ -93,7 +113,7 @@ current request message:
    </soapenv:Body>
 </soapenv:Envelope>
 
-
+=============================================================
 ICS seems to have a problem with one way REST or SOAP connections; that is why I created a two way REST service on the proxy that routes through to PCS:
 at : REST POST to http://104.155.85.98/pcs/rest/artistProposals
 
