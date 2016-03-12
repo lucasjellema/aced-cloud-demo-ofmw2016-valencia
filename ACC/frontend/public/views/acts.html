@@ -9,11 +9,47 @@
             <label for="date"></label>
             <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
         </div>
-        <ul data-bind="foreach: sortedActs">
-            <div data-bind="ojModule: { name: 'act', params: $data }"> </div>
-        </ul>
+
+        <ul id="listview" data-bind="ojComponent: {component: 'ojListView', data: dataSource, optionChange: drill, item: {template: 'server_template'}}"></ul>
+        <script type="text/html" id="server_template">
+            <li>
+                <div class="oj-flex">
+                    <div class="oj-flex-item" data-bind="text: name"></div>
+                    <div class="oj-flex-item oj-flex-item-initial">
+                        <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-align-items-center">
+                            <div class="oj-flex-item"><span data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
+                            <div class="oj-flex-item oj-fwk-icon oj-listview-drill-icon" style="position:relative; margin:0;"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </script>
     </div>
 
     <div class="oj-flex-item" data-bind="ojModule: { name: 'chart', params: sortedActs }"> </div>
 
 </div>
+
+<!-- TODO:
+X sort by date or #votes
+- highlighted act with image, biography, list of albumes (per album title, year, cover img)
+- select or hover on act to show details (perhaps popup)
+- hor. bar chart with acts and #votes
+- vote on act (link to twitter)
+
+The JET application is supposed to be the attractive front end where anyone interested in the OOW 2016 conference can find 
+some information on that conference – including an overview of all the acts that have been proposed. Acts can be listed by 
+date added and (current) number of votes (this may change if more suggestions have been coming in from Twitter to IoT CS). 
+One or more acts could also be highlighted (perhaps in a periodically refreshed top or side bar) – using an  image, a 
+biography and a list of their albums (per album we have title, release year and cover image (url)). When an act is selected
+(or hovered over) the same set of details can be shown for that particular act, perhaps in a popup?
+
+Perhaps you could show some data in a chart as well (for example horizontal bar chart with acts and number of votes )
+
+If you feel energetic, you could perhaps add an option to vote on a proposed act (which would take the user to Twitter to 
+post a tweet with an act-recommendation). Very nice to have.
+
+The crux of the JET application – apart from being the jewel in the crown or the icing on the cake on the seven interconnected
+cloud services – is to show how a new act proposal created by the audience input makes it all the way to a user interface ,
+leveraging MCS (and indirectly SOA CS and DBaaS).
+-->
