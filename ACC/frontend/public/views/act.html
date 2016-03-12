@@ -1,6 +1,6 @@
 <li>
     <button data-bind="attr: {id: 'btn-'+act.id()}, ojComponent: {component: 'ojButton', label: act.name}, 
-    click:function(viewModel,evt){$('#detail-'+viewModel.act.id()).ojPopup('open', evt.currentTarget)}"></button>
+    click:function(viewModel,evt){details(true); $('#detail-'+viewModel.act.id()).ojPopup('open', evt.currentTarget);}"></button>
 </li>
 <ul>
     <li>id:
@@ -17,5 +17,7 @@
 </ul>
 <div style="display:none" data-bind="attr: {id: 'detail-'+act.id()}, 
     ojComponent:{component: 'ojPopup', tail: 'simple', position:{at:'end center',my:'start center'}}">
-    Hello World!!!
+    <!--ko if: details-->
+    <div data-bind="ojModule: { name: 'details', params: act.id() }"> </div>
+    <!--/ko-->
 </div>
