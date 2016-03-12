@@ -42,9 +42,9 @@ function _rjs() {
         optimize: 'none',
         include: ['views/acts', 'views/act', 'views/chart', 'views/details', 'text']
     })
-    // workaround for gulp-requirejs not signaling end of stream
-    // https://github.com/RobinThrift/gulp-requirejs/issues/5#issuecomment-71415187
-        .pipe(through2.obj(function (file, enc, next) {
+        // workaround for gulp-requirejs not signaling end of stream
+        // https://github.com/RobinThrift/gulp-requirejs/issues/5#issuecomment-71415187
+        .pipe(through2.obj(function(file, enc, next) {
             this.push(file);
             this.end();
             next();
@@ -111,11 +111,11 @@ function ocloudPost(formData, method, urlSuffix, ocloud, callback) {
             path: '/paas/service/apaas/api/v1.1/apps/' + ocloud.domain + (urlSuffix || ''),
             auth: ocloud.username + ':' + ocloud.password,
             headers: { 'X-ID-TENANT-NAME': ocloud.domain }
-        }, function (err, res) {
+        }, function(err, res) {
             if (err) { throw err }
             var body = '';
-            res.on('data', function (chunk) { body += chunk; });
-            res.on('end', function () {
+            res.on('data', function(chunk) { body += chunk; });
+            res.on('end', function() {
                 if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
                     throw new Error('unexpected reply (status ' + res.statusCode + '): ' + body);
                 }
