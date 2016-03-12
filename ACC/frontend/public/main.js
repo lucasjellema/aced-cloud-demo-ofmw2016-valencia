@@ -1,15 +1,15 @@
 requirejs.config({
     // Path mappings for the logical module names
     paths: {
-        'knockout': 'oraclejet/js/libs/knockout/knockout-3.3.0',
-        'jquery': 'oraclejet/js/libs/jquery/jquery-2.1.3.min',
-        'jqueryui-amd': 'oraclejet/js/libs/jquery/jqueryui-amd-1.11.4.min',
-        'ojs': 'oraclejet/js/libs/oj/v1.1.2/debug',
-        'ojL10n': 'oraclejet/js/libs/oj/v1.1.2/ojL10n',
-        'ojtranslations': 'oraclejet/js/libs/oj/v1.1.2/resources',
-        'text': 'oraclejet/js/libs/require/text',
-        'promise': 'oraclejet/js/libs/es6-promise/promise-1.0.0.min',
-        'hammerjs': 'oraclejet/js/libs/hammer/hammer-2.0.4.min'
+        'knockout': '../bower_components/knockout/dist/knockout',
+        'jquery': '../bower_components/jquery/dist/jquery',
+        'jqueryui-amd': '../bower_components/jquery-ui/ui',
+        'ojs': '../bower_components/oraclejet/dist/js/libs/oj/debug',
+        'ojL10n': '../bower_components/oraclejet/dist/js/libs/oj/ojL10n',
+        'ojtranslations': '../bower_components/oraclejet/dist/js/libs/oj/resources',
+        'text': '../bower_components/text/text',
+        'promise': '../bower_components/es6-promise/promise',
+        'hammerjs': '../bower_components/hammerjs/hammer'
     },
     // Shim configurations for modules that do not expose AMD
     shim: {

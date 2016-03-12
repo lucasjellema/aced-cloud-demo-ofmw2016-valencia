@@ -69,7 +69,10 @@ function _redeploy() {
 function _serve() {
     browserSync.init({
         server: {
-            baseDir: "public"
+            baseDir: "public",
+            routes: {
+                '/bower_components': 'bower_components'
+            }
         }
     });
     gulp.watch("public/**/*", browserSync.reload);
