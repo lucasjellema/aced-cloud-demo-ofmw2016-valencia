@@ -12,10 +12,10 @@ const gulp = require('gulp'),
 
 var appname = 'frontend';
 
-
-gulp.task('deploy', gulp.series(_clean, _rjs, _zip, _deploy));
+gulp.task('dist', gulp.series(_clean, _rjs, _zip));
+gulp.task('deploy', gulp.series('dist', _deploy));
 gulp.task('undeploy', gulp.series(_undeploy));
-gulp.task('redeploy', gulp.series(_clean, _rjs, _zip, _redeploy));
+gulp.task('redeploy', gulp.series('dist', _redeploy));
 
 gulp.task('clean', gulp.series(_clean));
 gulp.task('rjs', gulp.series(_rjs));
