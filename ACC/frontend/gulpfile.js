@@ -28,7 +28,7 @@ function _clean() {
 }
 
 function _zip() {
-    return gulp.src(['**/*', '!manifest.json', '!deployment.json', '!ocloud.js', '!gulpfile.js'])
+    return gulp.src(['**/*', '!ocloud*.js', '!gulpfile.js'])
         .pipe(zip('frontend.zip'))
         .pipe(gulp.dest('dist'));
 }
