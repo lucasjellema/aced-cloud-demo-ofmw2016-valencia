@@ -1,0 +1,13 @@
+<adapter-config name="verifyActProposalExists" adapter="db" wsdlLocation="../WSDLs/verifyActProposalExists.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="verifyActProposalExists_ptt" operation="verifyActProposalExists">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="ACD"/>
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="VERIFY_PROPOSAL_FOR_ACT"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

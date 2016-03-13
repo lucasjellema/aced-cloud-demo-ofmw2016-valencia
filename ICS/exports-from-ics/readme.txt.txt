@@ -1,0 +1,1 @@
+PROPOSENEWACTFOROOW2016_01.00.0000.iar = export of an integration that exposes a REST interface for submitting new act proposals through a JSON payload submission (see proposeNewAct_sampleJSON.json for the json structure to submit); file proposeNewActResponse_sampleJSON.json shows what the response will look like.

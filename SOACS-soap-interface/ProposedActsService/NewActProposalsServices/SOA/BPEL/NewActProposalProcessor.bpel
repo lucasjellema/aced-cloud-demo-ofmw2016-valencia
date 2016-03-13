@@ -19,7 +19,19 @@
          xmlns:ns1="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
          xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal"
          xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns4="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
+         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +52,8 @@
                  partnerRole="ArtistAPIReferenceProvider"/>
     <partnerLink name="submitNewActProposal" partnerLinkType="ns2:submitNewActProposal_plt"
                  partnerRole="submitNewActProposal_role"/>
+    <partnerLink name="TweetNewArtistProposal" partnerLinkType="ns4:TweetNewArtistProposal"
+                 partnerRole="TweetNewArtistProposalProvider"/>
   </partnerLinks>
 
   <!-- 
@@ -76,6 +90,32 @@
         <variable name="InvokeArtistAPI_FetchArtistDetails_OutputVariable"
                   messageType="ns1:FetchArtistDetails_outputMessage"/>
       </variables>
+      <faultHandlers>
+        <catchAll>
+          <assign name="AssigMissingEnrichment">
+            <copy>
+              <from>concat('Failed to retrieve artist enrichment data from ArtistAPI',$inputVariable.part1/client:name,' because of ',ora:getFaultAsString())</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:BIOGRAPHY</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:name</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:imageURL</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:IMAGE_URL</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:description</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_DESCRIPTION</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:numberOfVotes</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES</to>
+            </copy>
+          </assign>
+        </catchAll>
+      </faultHandlers>
       <sequence name="Sequence1">
         <assign name="AssignInputForArtistAPI">
           <copy>
@@ -110,5 +150,32 @@
     </assign>
     <!-- Generate reply to synchronous request -->
     <reply name="replyOutput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="outputVariable"/>
+    <scope name="TweetAboutNewActProposal">
+      <variables>
+        <variable name="InvokePublishTweet_PublishTweet_InputVariable" messageType="ns4:PublishTweet_inputMessage"/>
+        <variable name="InvokePublishTweet_PublishTweet_OutputVariable" messageType="ns4:PublishTweet_outputMessage"/>
+      </variables>
+      <faultHandlers>
+        <catchAll>
+          <empty name="DoNothing_FailedTweetIsNoProblem"/>
+        </catchAll>
+      </faultHandlers>
+      <sequence name="Sequence2">
+        <assign name="AssignTweetRequest">
+          <copy>
+            <from>'ACECLOUD'</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:tag</to>
+          </copy>
+          <copy>
+            <from>concat('New Act Proposal for ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME, ' #votes: ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES, ' latest album ',  $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:ALBUMS/ns3:ALBUMS_ITEM/ns3:TITLE)</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:message</to>
+          </copy>
+        </assign>
+        <invoke name="InvokePublishTweet" bpelx:invokeAsDetail="no" partnerLink="TweetNewArtistProposal"
+                portType="ns4:TweetNewArtistProposal_ptt" operation="PublishTweet"
+                inputVariable="InvokePublishTweet_PublishTweet_InputVariable"
+                outputVariable="InvokePublishTweet_PublishTweet_OutputVariable"/>
+      </sequence>
+    </scope>
   </sequence>
 </process>

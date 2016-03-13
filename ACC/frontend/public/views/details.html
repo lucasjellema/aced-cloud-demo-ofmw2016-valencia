@@ -1,0 +1,30 @@
+<button data-bind="click: goBack, ojComponent:{component:'ojButton', icons:{start:'oj-fwk-icon oj-fwk-icon-caret-start'}, label:'Back'}"></button>
+
+<div data-bind="ifnot: fetched">Fetching...</div>
+
+<div data-bind="if: fetched">
+    <img data-bind="attr:{src:data().imageURL}" style="max-width:200px;max-height:200px;float:left;margin-right:12px;"></img>
+    <h1 data-bind="text:data().name"></h1>
+    <h2 data-bind="text:data().description"></h2>
+    <div class="votes-pill"><span data-bind="text:data().numberOfVotes"></span>&nbsp;votes</div>
+
+    <div class="twt-button">
+        <a class="twitter-hashtag-button" data-text="Vote" style="display:none;"
+        data-bind="text: 'Vote ' + nameNoWhitespace(), attr:{
+            href:'https://twitter.com/intent/tweet?button_hashtag=' + nameNoWhitespace(),
+            'data-hashtags': 'ofmaces,' + nameNoWhitespace()
+        }" ></a>
+    </div>
+
+    <i>"<span data-bind="text:data().biography"></span>"</i><br>
+
+    <div class="oj-panel" style="margin: 20px;">
+        <div data-bind="ojComponent: {component: 'ojFilmStrip', arrowPlacement: 'overlay', arrowVisibility: 'visible'}">
+            <!-- ko foreach: data().discography -->
+            <div class="oj-panel oj-panel-alt2" data-bind="style: {display: $parent.getItemInitialDisplay($index())}">
+                <img data-bind="attr:{src:imageURL}" style="max-width:200px;max-height:200px;"></img>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ACEs Cloud Demo</title>
+    <meta name="apple-mobile-web-app-title" content="ACEs Cloud Demo">
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0"/>
+
+    <!--<link rel="icon" type="image/x-icon" href="css/images/favicon.ico">-->
+    <!--<link rel="apple-touch-icon-precomposed" href="css/images/touchicon.png">-->
+
+    <link rel="stylesheet" href="../bower_components/oraclejet/dist/css/alta/oj-alta-min.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+</head>
+
+<body id="app">
+    <div id="waiting">
+        Let's get started!
+    </div>
+    <div id="mainContent" data-bind="ojModule: { name: 'drill'}"> </div>
+
+    <script src="https://platform.twitter.com/widgets.js" id="twitter-wjs"></script>
+    <script src="../bower_components/requirejs/require.js"></script>
+    <script src="opt/optimized.js"></script>
+</body>
+
+</html>

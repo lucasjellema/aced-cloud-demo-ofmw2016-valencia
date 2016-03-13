@@ -17,7 +17,7 @@
         </schema>
    </grammars>
    <resources>
-      <resource path="/artists/get">
+      <resource path="/artists/artists/get">
          <method name="GET" soa:wsdlOperation="FetchArtistDetails">
             <request>
                <param name="artist" style="query" soa:expression="$msg.request/tns:param1" default="" type="xsd:string"/>
