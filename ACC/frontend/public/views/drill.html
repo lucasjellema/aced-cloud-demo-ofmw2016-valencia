@@ -1,5 +1,10 @@
-<div data-bind="ojModule: {
-    name: currentModule, 
-    params: {drillModel: $data},
-    animation: oj.ModuleAnimations.switcher(switcherCallback)
-}"></div>
+<div class="oj-flex">
+    <div class="oj-flex-item" data-bind="ojModule: {
+        name: currentModule, 
+        params: {drillModel: $data},
+        animation: oj.ModuleAnimations.switcher(switcherCallback)
+    }"></div>
+    <div class="oj-flex-item oj-sm-only-hide oj-md-flex-initial">
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/ofmaces" data-widget-id="708745246105051139">#ofmaces Tweets</a>
+    </div>
+</div>

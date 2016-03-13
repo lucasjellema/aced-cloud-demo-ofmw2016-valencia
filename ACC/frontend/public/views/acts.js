@@ -3,7 +3,10 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
         var ActsCollection = oj.Collection.extend({
             url: settings.baseUrl + '/mobile/custom/artistapi/acts',
             parse: function(response) {
-                response.forEach(function(row) { row.registrationDate = new Date(row.registrationDate); });
+                response.forEach(function(row) { 
+                    row.registrationDate = new Date(row.registrationDate);
+                    row.nameNoWhitespace = row.name.replace(/ /g,'');
+                });
                 return response;
             }
         });
@@ -26,6 +29,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
                     self.acts(oj.KnockoutUtils.map(coll)); // map ojCollection to array (of observables)
                     self.dataSource.reset(self.acts()); // force datasource refresh
                     self.fetched(true);
+                    //setTimeout(function() {console.log('load twitter buttons'); twttr && twttr.widgets.load(document.querySelectorAll('.twt-button'))}, 0);
                 }
             });
             this.sort.subscribe(sortChanged.bind(this));

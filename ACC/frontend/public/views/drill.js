@@ -6,12 +6,17 @@ define(['knockout', 'ojs/ojcore', 'ojs/ojmoduleanimations'],
             this.currentModule = ko.observable("acts");
             this.drillId = ko.observable();
             this.switcherCallback = switcherCallback.bind(this);
+            this.handleBindingsApplied = handleBindingsApplied.bind(this);
         }
 
         function switcherCallback(context) {
             // context.valueAccessor().params can be used to access the ojModule params option,
             // which may contain additional states from the router if it is used with ojModule.
             return this.currentModule() === 'acts' ? 'drillOut' : 'drillIn';
+        }
+        
+        function handleBindingsApplied(info) {
+            twttr && twttr.widgets.load(info.element.querySelector('.twitter-timeline'));
         }
 
     });

@@ -17,7 +17,14 @@
                     <div class="oj-flex-item" data-bind="text: name"></div>
                     <div class="oj-flex-item oj-flex-item-initial">
                         <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-align-items-center">
-                            <div class="oj-flex-item"><span data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
+                            <div class="oj-flex-item twt-button">
+                                <a class="twitter-hashtag-button" data-text="Vote" style="display:none;"
+                                   data-bind="text: 'Vote ' + nameNoWhitespace(), attr:{
+                                       href:'https://twitter.com/intent/tweet?button_hashtag=' + nameNoWhitespace(),
+                                       'data-hashtags': 'ofmaces,' + nameNoWhitespace()
+                                   }" ></a>
+                            </div>
+                            <div class="oj-flex-item"><span style="margin-left:8px" data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
                             <div class="oj-flex-item oj-fwk-icon oj-listview-drill-icon" style="position:relative; margin:0;"></div>
                         </div>
                     </div>

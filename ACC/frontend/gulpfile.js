@@ -40,7 +40,7 @@ function _rjs() {
         name: 'main',
         out: 'optimized.js',
         optimize: 'none',
-        include: ['views/acts', 'views/act', 'views/chart', 'views/details', 'text']
+        include: ['views/drill', 'views/acts', 'views/chart', 'views/details', 'text']
     })
         // workaround for gulp-requirejs not signaling end of stream
         // https://github.com/RobinThrift/gulp-requirejs/issues/5#issuecomment-71415187
