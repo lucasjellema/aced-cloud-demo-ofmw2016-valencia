@@ -19,6 +19,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
             this.sortedActs = ko.computed(sortedActs, this);
             this.dataSource = new oj.ArrayTableDataSource(this.sortedActs);
             this.handleActivated = handleActivated.bind(this);
+            this.handleBindingsApplied = handleBindingsApplied.bind(this);
             this.drill = drill.bind(this, moduleParams);
         }
         function handleActivated() {
@@ -29,10 +30,12 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
                     self.acts(oj.KnockoutUtils.map(coll)); // map ojCollection to array (of observables)
                     self.dataSource.reset(self.acts()); // force datasource refresh
                     self.fetched(true);
-                    //setTimeout(function() {console.log('load twitter buttons'); twttr && twttr.widgets.load(document.querySelectorAll('.twt-button'))}, 0);
                 }
             });
             this.sort.subscribe(sortChanged.bind(this));
+        }
+        function handleBindingsApplied(info) {
+            twttr && twttr.widgets.load(info.element.querySelector('.twitter-timeline'));
         }
         function sortChanged(newSort) {
             this.dataSource.reset();

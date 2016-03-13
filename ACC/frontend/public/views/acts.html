@@ -1,40 +1,39 @@
 <h1>List of proposed acts</h1>
-<div data-bind="ifnot: fetched">Fetching...</div>
+<div class="oj-flex">
 
-<div data-bind="if: fetched" class="oj-flex">
-    <div class="oj-flex-item">
-        <div id="sort" data-bind="ojComponent: {component: 'ojButtonset', checked: sort}" aria-label="Choose sorting.">
-            <label for="votes"></label>
-            <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
-            <label for="date"></label>
-            <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
-        </div>
+    <div data-bind="ifnot: fetched">Fetching...</div>
 
-        <ul id="listview" data-bind="ojComponent: {component: 'ojListView', data: dataSource, optionChange: drill, item: {template: 'server_template'}}"></ul>
-        <script type="text/html" id="server_template">
-            <li>
-                <div class="oj-flex">
-                    <div class="oj-flex-item" data-bind="text: name"></div>
-                    <div class="oj-flex-item oj-flex-item-initial">
-                        <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-align-items-center">
-                            <div class="oj-flex-item twt-button">
-                                <a class="twitter-hashtag-button" data-text="Vote" style="display:none;"
-                                   data-bind="text: 'Vote ' + nameNoWhitespace(), attr:{
-                                       href:'https://twitter.com/intent/tweet?button_hashtag=' + nameNoWhitespace(),
-                                       'data-hashtags': 'ofmaces,' + nameNoWhitespace()
-                                   }" ></a>
+    <div data-bind="if: fetched" class="oj-flex-item oj-flex oj-flex-items-pad">
+        <div class="oj-flex-item oj-sm-12 oj-md-12 oj-lg-4">
+            <div id="sort" data-bind="ojComponent: {component: 'ojButtonset', checked: sort}" aria-label="Choose sorting.">
+                <label for="votes"></label>
+                <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
+                <label for="date"></label>
+                <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
+            </div>
+
+            <ul id="listview" data-bind="ojComponent: {component: 'ojListView', data: dataSource, optionChange: drill, item: {template: 'server_template'}}"></ul>
+            <script type="text/html" id="server_template">
+                <li>
+                    <div class="oj-flex">
+                        <div class="oj-flex-item" data-bind="text: name"></div>
+                        <div class="oj-flex-item oj-flex-item-initial">
+                            <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-align-items-center">
+                                <div class="oj-flex-item"><span style="margin-left:8px" data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
+                                <div class="oj-flex-item oj-fwk-icon oj-listview-drill-icon" style="position:relative; margin:0;"></div>
                             </div>
-                            <div class="oj-flex-item"><span style="margin-left:8px" data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
-                            <div class="oj-flex-item oj-fwk-icon oj-listview-drill-icon" style="position:relative; margin:0;"></div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </script>
+                </li>
+            </script>
+        </div>
+
+        <div class="oj-flex-item oj-sm-only-hide oj-md-12 oj-lg-8" data-bind="ojModule: { name: 'chart', params: sortedActs }"> </div>
     </div>
 
-    <div class="oj-flex-item" data-bind="ojModule: { name: 'chart', params: sortedActs }"> </div>
-
+    <div class="oj-flex-item oj-sm-only-hide oj-md-only-hide oj-lg-flex-initial">
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/ofmaces" data-widget-id="708745246105051139">#ofmaces Tweets</a>
+    </div>
 </div>
 
 <!-- TODO:

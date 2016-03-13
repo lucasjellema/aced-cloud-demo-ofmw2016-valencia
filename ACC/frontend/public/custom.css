@@ -7,3 +7,18 @@ body #mainContent {
 body.started #mainContent {
     display: block;
 }
+
+.votes-pill {
+    background-color:red; 
+    border-radius:30px; 
+    box-shadow:1px 1px 1px gray; 
+    padding: 4px 8px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.twt-button {
+    display: inline-block;
+    padding: 4px 8px;
+}

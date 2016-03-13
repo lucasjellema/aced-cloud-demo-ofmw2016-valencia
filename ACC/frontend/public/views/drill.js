@@ -6,7 +6,6 @@ define(['knockout', 'ojs/ojcore', 'ojs/ojmoduleanimations'],
             this.currentModule = ko.observable("acts");
             this.drillId = ko.observable();
             this.switcherCallback = switcherCallback.bind(this);
-            this.handleBindingsApplied = handleBindingsApplied.bind(this);
         }
 
         function switcherCallback(context) {
@@ -15,8 +14,4 @@ define(['knockout', 'ojs/ojcore', 'ojs/ojmoduleanimations'],
             return this.currentModule() === 'acts' ? 'drillOut' : 'drillIn';
         }
         
-        function handleBindingsApplied(info) {
-            twttr && twttr.widgets.load(info.element.querySelector('.twitter-timeline'));
-        }
-
     });
