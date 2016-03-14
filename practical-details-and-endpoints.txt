@@ -190,6 +190,9 @@ This API is also available from the proxy (on Google AppEngine):
 API for retrieving artist information (from Spotify and Echonest)
 http://104.155.85.98/artists/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/artists/get?artist=bon+jovi, http://104.155.85.98/artists/artists/get?artist=the+beatles ...) 
 
+when ACC is broken, the artist enrichment is also done directly on the Proxy:
+
+http://104.155.85.98/artistes/artists/get?artist=the+kaiser+chiefs
 
 
 SOACS - (SOAP/XML) Submit a new Proposed Act
