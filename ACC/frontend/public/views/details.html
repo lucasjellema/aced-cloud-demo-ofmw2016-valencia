@@ -20,8 +20,8 @@
 
     <div class="oj-panel" style="margin: 20px;">
         <div data-bind="ojComponent: {component: 'ojFilmStrip', arrowPlacement: 'overlay', arrowVisibility: 'visible'}">
-            <!-- ko foreach: data().discography -->
-            <div class="oj-panel oj-panel-alt2" data-bind="style: {display: $parent.getItemInitialDisplay($index())}">
+            <!-- ko foreach: data().discography || [] -->
+            <div class="oj-panel oj-panel-alt2" data-bind="if:$data.imageURL, style: {display: $parent.getItemInitialDisplay($index())}">
                 <img data-bind="attr:{src:imageURL}" style="max-width:200px;max-height:200px;"></img>
             </div>
             <!-- /ko -->
