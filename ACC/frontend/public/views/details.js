@@ -39,7 +39,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 
         
         function nameNoWhitespace() {
             var data = this.data();
-            return data && data.name && data.name().replace(/ /g,'');
+            return data && data.name && data.name().replace(/ /g,'_').toLowerCase();
         }
         
     });
