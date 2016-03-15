@@ -13,7 +13,7 @@ create table proposed_acts
 , biography varchar2(4000)
 , number_of_votes number(10)
 , image blob
-, image_url varchar2(250)
+, image_url varchar2(1000)
 );
 
 create table act_albums
