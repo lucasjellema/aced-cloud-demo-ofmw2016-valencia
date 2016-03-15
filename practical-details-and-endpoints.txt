@@ -247,3 +247,33 @@ Oracle JET Web Application
 live JET application at:
 
 https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
+
+
+Oracle PCS
+==========
+
+Workspace Task List : (login as cloud.admin or john.dunbar who are both Process Reviewers)
+https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist.jspx
+(go to Tracking page to review the process execution and recover faults).
+
+Develop Process :
+https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/composer/faces/app/designer/homePage.jspx
+ArtistProposalProcess within ValenciaACED space.
+
+Management UI to Deploy:
+https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/composer/faces/ui/management/management.jspx
+
+Endpoint to invoke process:
+https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_ff482fbe-6823-40d0-a224-ce43361ca652/SubmitActProposal.service?WSDL
+
+
+Oracle Sites Cloud Service
+==========================
+Authoring Environment : (login as cloud.admin)
+https://docs-gse00000225.documents.us2.oraclecloud.com/sites/home/all#
+
+
+Final Microsite will be produced at :
+https://docs-gse00000225.sites.us2.oraclecloud.com/authsite/acedcloud_demo/
+or
+http://tinyurl.com/ACEDCLOUD16
