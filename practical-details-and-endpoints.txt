@@ -4,7 +4,8 @@ This document contains some practical details regarding the demo, such as the en
 
 Final JET based Frontend application - the Oracle OpenWorld Appreciation Event latest news portal:
 
-https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
+https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/acesdemo
+
 
 Twitter account where new proposals are tweeted:  https://twitter.com/SaibotAirport  
 
