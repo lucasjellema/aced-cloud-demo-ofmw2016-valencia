@@ -6,6 +6,9 @@ Final JET based Frontend application - the Oracle OpenWorld Appreciation Event l
 
 https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
 
+Twitter account where new proposals are tweeted:  https://twitter.com/SaibotAirport  
+
+
 
 
 ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
@@ -280,3 +283,31 @@ Final Microsite will be produced at :
 https://docs-gse00000225.sites.us2.oraclecloud.com/authsite/acedcloud_demo/
 or
 http://tinyurl.com/ACEDCLOUD16
+
+
+
+
+ICS Service Console
+===================
+
+https://myservices.us2.oraclecloud.com/mycloud/faces/dashboard.jspx
+
+Identity Domain: icsdem0058
+username: gse_cloud-admin@oracleads.com
+password: bristlyYear_5
+
+
+SOA CS Service Console (and ACC Service Console)
+================================================
+
+https://myservices.emea.oraclecloud.com/mycloud/lucasjellema/faces/dashboard.jspx 
+identity domain: lucasjellema
+username: lucas.jellema@amis.nl
+
+
+
+
+
+logs: (public) http://104.155.85.98/logs
+proxy engine:  (Lucas) https://console.cloud.google.com/compute/instances?project=mediator-proxy&quickstart=1&graph=GCE_CPU&duration=PT1H
+
