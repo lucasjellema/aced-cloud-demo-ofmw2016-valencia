@@ -9,6 +9,12 @@ https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.
 Twitter account where new proposals are tweeted:  https://twitter.com/SaibotAirport  
 
 
+Sites CS:
+
+https://docs-gse00000225.sites.us2.oraclecloud.com/ACEDCLOUD_Kraftwerk/
+
+
+
 
 
 ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
@@ -304,7 +310,10 @@ https://myservices.emea.oraclecloud.com/mycloud/lucasjellema/faces/dashboard.jsp
 identity domain: lucasjellema
 username: lucas.jellema@amis.nl
 
-
+PCS Console
+===========
+https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist.jspx
+john.dunbar/gLvHRTttU_7A
 
 
 
