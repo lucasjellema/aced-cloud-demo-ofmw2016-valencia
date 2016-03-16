@@ -247,6 +247,9 @@ Oracle JET Web Application
 live JET application at:
 
 https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/ - also at: http://bit.ly/1L5kIJM 
+https://frontend-metcsgse00739.apaas.us2.oraclecloud.com/
+https://frontend-deoracleem99369.apaas.us2.oraclecloud.com/
+https://frontend-lucasjellema.apaas.em2.oraclecloud.com/
 
 
 Oracle PCS
