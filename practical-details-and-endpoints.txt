@@ -301,7 +301,6 @@ https://myservices.us2.oraclecloud.com/mycloud/faces/dashboard.jspx
 
 Identity Domain: icsdem0058
 username: gse_cloud-admin@oracleads.com
-password: bristlyYear_5
 
 
 SOA CS Service Console (and ACC Service Console)
@@ -314,7 +313,6 @@ username: lucas.jellema@amis.nl
 PCS Console
 ===========
 https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist.jspx
-john.dunbar/gLvHRTttU_7A
 
 
 
