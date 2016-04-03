@@ -1,207 +1,197 @@
 /*
-example call:  http://127.0.0.1:5100/artists/get?artist=madonna
+example call:  http://127.0.0.1:5100/artists/get?artist=u2
 
 */
 
-var https = require('https'),
-    http = require('http'),
-	url = require('url'),
+var http = require('http'),
 	request = require('request'),
-	async = require('async')
+	util = require('util'),
+	express = require('express'),
+    bodyParser = require('body-parser'), // npm install body-parser
+    async = require('async')
 	;
-/* docs:
-https://nodejs.org/api/https.html
-https://nodejs.org/api/http.html
-
-https://github.com/request/request
-
-*/	
 	
-var express = require('express');
-var app = express();
+var PORT = 5100;
+var spotifyAPI ='https://api.spotify.com/v1';
+var echoNestAPI = "http://developer.echonest.com/api/v4";
+var echoNestDeveloperKey = "0B3N8LMO4XG3BXPSY";
 
-var PORT = process.env.PORT || 5100;
+var app = express()
+           .use(bodyParser.urlencoded({  extended: true}))
+		   .get('/artists/:artistName', function(req,res){ 
+		      var artistName = req.query['artist'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
+		      handleArtists(req, res, artistName);
+	        })
+		   .get('/', function (req, res) {
+              console.log('request received: '+request.url);
+              res.writeHead(200, {'Content-Type': 'text/html'});
+              res.write("Artist Enricher API - No Data Requested, so none is returned");
+              res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
+              res.end();
+            })
+		   .listen(PORT);
 
-
-if (module === require.main) {
-  // [START server]
-  // Start the server
-  var server = app.listen(PORT, function () {
-    var host = server.address().address;
-
-    console.log('App listening at http://%s:%s', host, PORT);
-  });
-  // [END server]
-}
-
-module.exports = app;
-
-
-app.get('/', function (req, res) {
-    console.log('request received: '+request.url);
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write("Artist Enricher API - No Data Requested, so none is returned");
-    res.end();
-});
-
-// Say hello!
-app.get('/hello', function(req, res) {
-  res.status(200).send('Hello, world!');
-});
-// [END hello_world]
-
-
-// e.g. http://host:port/artists/get?artist=the+beatles, e.g. http://host:port/artists/get?artist=madonna
-app.get('/artists/*', function(req,res){ handleArtists(req, res);} );
+console.log('server running on port ',PORT);
 
 
 function composeArtisResponse(res, artist) {
-	                            // compose and return response
-						  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-                          res.setHeader('Access-Control-Allow-Origin', '*');
-						  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-						  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-                          res.setHeader('Access-Control-Allow-Credentials', true);
-                          res.statusCode =200;
-                          res.send(JSON.stringify(artist));
-}
+  res.statusCode =200;
+  res.send(JSON.stringify(artist));
+}//composeArtisResponse
 
-function handleArtists(req, res) {
-console.log('handle artists');
-  var spotifyAPI ='https://api.spotify.com/v1';
-  var url_parts = url.parse(req.url, true);
-  var query = url_parts.query;
-  
-  var artistUrl = spotifyAPI + '/search?q='+encodeURI(query.artist)+'&type=artist';
-  console.log(artistUrl);
-  request( artistUrl, function (error, response, body) {  
-  console.log('back from spotify '+error+response+body);
-    if (!error && response.statusCode == 200) {
-      var artistsResponse = JSON.parse(body);
-      var artist ={};
-	  // if the artist has not been found, return immediately
-	  
-	  if (artistsResponse.artists.total==0) {
-	    res.status(200).send(JSON.stringify(artist));
-		return;
-	  }
-      artist.spotifyId = artistsResponse.artists.items[0].id;
-      artist.name = artistsResponse.artists.items[0].name;
-      artist.genres = JSON.stringify(artistsResponse.artists.items[0].genres);
-	  if (artistsResponse.artists.items[0].images.length>0) {
-        artist.imageURL = artistsResponse.artists.items[0].images[0].url;
-      }
-      artist.spottiyHRef = artistsResponse.artists.items[0].href;
-      /* now get discography 
-	  https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/albums?limit=50&album_type=album
-	  
-	  */
-	  var albumsURL = spotifyAPI + '/artists/'+artist.spotifyId+'/albums'+'?limit=50&album_type=album';
-	  artist.albums=[];
-      request(albumsURL, function (error, response, body) {  	  
-         var albumsResponse = JSON.parse(body);
-		 for (var i = 0; i < albumsResponse.items.length; i++) {
-           var album = {};
-		   album.title = albumsResponse.items[i].name;
-		   if (albumsResponse.items[i].images.length > 0) {
-		     album.imageURL = albumsResponse.items[i].images[0].url;
-		   }
-		   album.spotifyId = albumsResponse.items[i].id;
-		   artist.albums.push(album);
-         };// for loop over albums
+function composeErrorResponse(res, err) {
+  res.statusCode =500;
+  res.send('An internal error occurred: '+JSON.stringify(err));
+}//composeErrorResponse
 
-		 var echoNestAPI = "http://developer.echonest.com/api/v4";
-		 var echoNestDeveloperKey = "0B3N8LMO4XG3BXPSY";
-		 var searchURL = echoNestAPI+ "/artist/search";
-		 var biographiesURL = echoNestAPI+ "/artist/biographies";
-         request(searchURL + '?api_key='+echoNestDeveloperKey+'&format=json&name='+encodeURI(query.artist)+'&results=1', function (error, response, body) {  
-            if (!error && response.statusCode == 200) {
-                var echonestSearchResponse = JSON.parse(body);
-                var echonestArtistId = echonestSearchResponse.response.artists[0].id;
-				artist.echonestArtistId = echonestArtistId;
-				// with id under our belt, time to get the biography
-				var bioURL = biographiesURL + '?api_key='+echoNestDeveloperKey+"&id="+echonestArtistId
-				                                    +'&format=json&results=1&start=0&license=cc-by-sa';
-         		request(bioURL
-					  , function (error, response, body) {  
-                          if (!error && response.statusCode == 200) {
-                          var echonestBioSearchResponse = JSON.parse(body);
-                          var bio = echonestBioSearchResponse.response.biographies[0].text;
-    					  artist.biography = bio;
 
-						  /* use https://github.com/caolan/async#map to execute multiple of these calls in parallel; see forEachOf  */
-						  
-
-						        /* fetch album details */
-		 /*  NOTE: I can use https://api.spotify.com/v1/albums/?ids=41MnTivkwTO3UUJ8DrqEJJ,6JWc4iAiJ9FjyK0B59ABb4,6UXCm6bOO4gFlDQZV5yL37
-		           to retrieve details for 20 albums at a time - including release date and tracks.  (see https://developer.spotify.com/web-api/get-several-albums/) 
-				   */
-      var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
-	  var albumArrays = [];
-      var i,j,chunk = 15;
-      for (i=0,j=artist.albums.length; i<j; i+=chunk) {
-   	     albumArrays.push(artist.albums.slice(i,i+chunk));
-      }
-	  // parallel execution of each of the album arrays
-	  async.forEachOf(albumArrays, function (value, key, callback) {
-         var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
-	     for (var i = 0; i < value.length ; i++) {
-	       albumsDetailsURL+= (i>0?',':'')+value[i].spotifyId;
-	     }
-		 // invoke REST API to retrieve details for a set of albums
- 		 request(albumsDetailsURL, function (error, response, body) {  	  
-            var albumDetailsResponse = JSON.parse(body);
-     	    for (var i = 0; i < albumDetailsResponse.albums.length ; i++) {
-		      // clumsy way to correct for incomplete release dates (year only for example)
-	          artist.albums[(i+ key* chunk)].releaseDate= 
-			  ( albumDetailsResponse.albums[i].release_date_precision =='day'
-			  ? albumDetailsResponse.albums[i].release_date
-			  : albumDetailsResponse.albums[i].release_date+'-01-01'
-			  );
+function handleArtists(req, res, artistName) {
+      var artist ={}; // artist record that will be constructed bit by bit
+      async.parallel([
+	  // first function: call out to Spotify
+	  function(callback){
+	    util.log('Start Spotify Call');
+	  // execute sequential asynchronous calls to functions as waterfall
+	  async.waterfall([
+        function(callback) {
+          var artistUrl = spotifyAPI + '/search?q='+encodeURI(artistName)+'&type=artist'; // use encodeURI to handle special characters in the name in the proper way
+          // invoke Spotify Search API to find the Artist and the spotify identifier; the response brings in genres and an image url 
+          request( artistUrl, function handleSpotifySearchResponse(error, response, body) {  
+		    if (error) {
+    	      console.log("error in processing "+JSON.stringify(error));
+              callback(error, artist.spotifyId);
 	        }
-			// return to forEachOf
-            callback();       
-	  	 });
-       }, function (err) {
-	         // done with all parallel processing; now create the final response
-			 composeArtisResponse(res, artist);
-		  }	 
-       );
 
-						  }//if
-						  else {
-						  console.log('error '+error+" status "+response.statusCode );
-						  }
-						}
-				);// request
-		 
-//		 /artist/biographies?api_key=0B3N8LMO4XG3BXPSY&id=ARH6W4X1187B99274F&format=json&results=1&start=0&license=cc-by-sa
-		 /* retrieve biography 
-		 API KEY = 0B3N8LMO4XG3BXPSY
-		 
-		 http://developer.echonest.com/docs/v4/artist.html#biographies
-		 find artist:
-		 
-		 http://developer.echonest.com/api/v4/artist/search?api_key=0B3N8LMO4XG3BXPSY&format=json&name=radiohead&results=1
-		 id = response.artists[0].id
-		 
-		 http://developer.echonest.com/api/v4/artist/biographies?api_key=0B3N8LMO4XG3BXPSY&id=ARH6W4X1187B99274F&format=json&results=1&start=0&license=cc-by-sa
-		 
-		 http://developer.echonest.com/api/v4/artist/biographies?api_key=0B3N8LMO4XG3BXPSY&id=AR6XZ861187FB4CECD&format=json&name=&results=1&start=0&license=cc-by-sa
-		 bio  = response.biographies[0].text (note: attribute url refers to original publication
-		 
-		 find news about artist:
-		 
-		 http://developer.echonest.com/api/v4/artist/news?api_key=0B3N8LMO4XG3BXPSY&id=spotify:artist:5l8VQNuIg0turYE1VtM9zV&format=json
-		 or
-		 http://developer.echonest.com/api/v4/artist/news?api_key=0B3N8LMO4XG3BXPSY&id=AR6XZ861187FB4CECD&format=json
-		 
-		 */
-		 
-		 }}
-		 );// request echonest search
-      }); // handle response from albums
+            if (!error && response.statusCode == 200) {
+              var artistsResponse = JSON.parse(body);
+	          // if the artist has not been found, return immediately	  
+	          if (artistsResponse.artists.total==0) {
+                callback(null,'not found');
+	          }// if artist not found	  
+              // else continue processing with spotify response
+              artist.spotifyId = artistsResponse.artists.items[0].id;
+              artist.name = artistsResponse.artists.items[0].name;
+              artist.genres = JSON.stringify(artistsResponse.artists.items[0].genres);
+	          if (artistsResponse.artists.items[0].images.length>0) {
+                artist.imageURL = artistsResponse.artists.items[0].images[0].url;
+              }
+              artist.spottiyHRef = artistsResponse.artists.items[0].href;       
+              callback(null, artist.spotifyId);
+		    }//!error in spotify search
+		  });// request
+        }, // go collect list of albums by this artist
+        function(artistSpotifyId, callback) {
+          /* now get discography - the most recent 50 albums (the maximum we can collect in one call)
+   	         https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/albums?limit=50&album_type=album	  
+	       */
+	      var albumsURL = spotifyAPI + '/artists/'+artistSpotifyId+'/albums'+'?limit=50&album_type=album';
+	      artist.albums=[];
+          request(albumsURL, function (error, response, body) {  	  
+            var albumsResponse = JSON.parse(body);
+		    for (var i = 0; i < albumsResponse.items.length; i++) {
+              var album = {};
+		      album.title = albumsResponse.items[i].name;
+		      if (albumsResponse.items[i].images.length > 0) {
+		        album.imageURL = albumsResponse.items[i].images[0].url;
+		      }
+		      album.spotifyId = albumsResponse.items[i].id;
+		      artist.albums.push(album);
+            };// for loop over albums
+            callback(null, artist.albums);
+		  });//request     },
+		},  // go get details on the albums in the list artist.albums
+        function(albums, callback) {
+		  var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
+	      var albumArrays = [];
+          var i,j,chunk = 15;
+		  // create albumArrays with no more than 15 album ids in each of them
+          for (i=0,j=albums.length; i<j; i+=chunk) {
+   	        albumArrays.push(albums.slice(i,i+chunk));
+          }
+          // parallel execution of each of the album arrays - note: we can invoke the albumDetailsURL with a maximum number of album id values per call
+	      async.forEachOf(albumArrays, function (value, key, callback) {
+              var albumsDetailsURL = spotifyAPI + '/albums/?ids=';
+			  // concatenate album id's together
+	          for (var i = 0; i < value.length ; i++) {
+	             albumsDetailsURL+= (i>0?',':'')+value[i].spotifyId;
+	          }//for 
+		      // invoke REST API to retrieve details for a set of albums
+ 		      request(albumsDetailsURL, function (error, response, body) {  	  
+                 var albumDetailsResponse = JSON.parse(body);
+     	         for (var i = 0; i < albumDetailsResponse.albums.length ; i++) {
+		           // clumsy way to correct for incomplete release dates (year only for example)
+	               albums[(i+ key* chunk)].releaseDate= 
+			           ( albumDetailsResponse.albums[i].release_date_precision =='day'
+			           ? albumDetailsResponse.albums[i].release_date
+			           : albumDetailsResponse.albums[i].release_date+'-01-01'
+			           );
+	             }// for
+			    // return the fact that this albumArray is done - up to forEachOf
+                callback();       
+	  	      }); //request
+          }, function (err) { // completion of the forEachOf
+	          // after the asynch.forEachOf, when all branches have done their callback()
+			  // done with all parallel processing; notify the top level (waterfall) that we are done here
+               callback(err, albums);
+		     }	 
+          );// forEachOf						  
+        }
+      ],function (err, result) {// completion of waterfall
+          // result now equals 'done'
+    	  util.log('waterfall done');
+	      util.log('Finished Two Spotify Calls');		
+	      callback(err,'waterfall');
+        }
+	  );//waterfall	
+      },
+	  // second function: call out to EchoNest
+      function(callback){
+	     util.log('Start EchoNest Call');
+        // get artist biography from EchoNest in two steps - first get echonestArtistId, then using that id, get the biography
+	    var searchURL = echoNestAPI+ "/artist/search";
+	    var biographiesURL = echoNestAPI+ "/artist/biographies";
+        request(searchURL + '?api_key='+echoNestDeveloperKey+'&format=json&name='+encodeURI(artistName)+'&results=1', function (error, response, body) {  
+	      // process response from EchoNest, to get the EchoNestArtistId
+          if (error) {
+		  	  console.log("error in processing "+JSON.stringify(err));
+              composeErrorResponse(res, error);
+		  }
+          if (!error && response.statusCode == 200) {
+            var echonestSearchResponse = JSON.parse(body);
+            var echonestArtistId = echonestSearchResponse.response.artists[0].id;
+		    artist.echonestArtistId = echonestArtistId;
+	        // with id under our belt, time to get the biography
+		    var bioURL = biographiesURL + '?api_key='+echoNestDeveloperKey+"&id="+echonestArtistId
+				                                    +'&format=json&results=1&start=0&license=cc-by-sa';
+            request(bioURL, function (error, response, body) {  
+              if (!error && response.statusCode == 200) {
+                var echonestBioSearchResponse = JSON.parse(body);
+                var bio = echonestBioSearchResponse.response.biographies[0].text;
+    		    artist.biography = bio;
+		      }// if !error
+	          util.log('Finished EchoNest Call');
+		      callback(null, 'Echonest'); // notify ASYNC that this task is complete
+	        });// request for bio		 
+		  }// if !error in 1st response from echoNest
+		  else {
+	        callback(null, 'echonest issue'); // notify ASYNC that this task is complete
+		  }
+	    });// request echonest search plus callback
+      }
+], function(err, results){
+    if (err) {
+	  console.log("error in processing "+JSON.stringify(err));
+      composeErrorResponse(res, err);
 	}
-})
-} //handleArtists
+	else {
+      console.log("done with processing "+JSON.stringify(results));
+      // take the artist record as it stands right now and compose the response
+	  composeArtisResponse(res, artist);
+	}
+});
+
+
+
+ } //handleArtists
+
 
