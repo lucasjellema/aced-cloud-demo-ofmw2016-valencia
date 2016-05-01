@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "description": "Sample FrontEnd application for Oracle ACEs Cloud Demo",
+  "authors": [
+    "Wilfred van der Deijl"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/lucasjellema/aced-cloud-demo-ofmw2016-valencia",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "oraclejet": "^2.0.0"
+  }
+}
