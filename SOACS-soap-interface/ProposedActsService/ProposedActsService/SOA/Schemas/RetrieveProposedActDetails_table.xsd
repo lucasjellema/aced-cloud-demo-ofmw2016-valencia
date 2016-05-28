@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveProposedActDetails" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/RetrieveProposedActDetails" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="ProposedActsCollection" type="ProposedActsCollection"/>
+   <xs:complexType name="ProposedActsCollection">
+      <xs:sequence>
+         <xs:element name="ProposedActs" type="ProposedActs" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ProposedActs">
+      <xs:sequence>
+         <xs:element name="id" type="xs:long"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="proposalTimestamp" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="description" type="string200" minOccurs="0" nillable="true"/>
+         <xs:element name="genres" type="string200" minOccurs="0" nillable="true"/>
+         <xs:element name="biography" type="string4000" minOccurs="0" nillable="true"/>
+         <xs:element name="numberOfVotes" type="xs:long" minOccurs="0" nillable="true"/>
+         <xs:element name="image" type="xs:base64Binary" minOccurs="0" nillable="true"/>
+         <xs:element name="imageUrl" type="string250" minOccurs="0" nillable="true"/>
+         <xs:element name="actAlbumsCollection" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="ActAlbums" type="ActAlbums" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ActAlbums">
+      <xs:sequence>
+         <xs:element name="title" type="string250"/>
+         <xs:element name="releaseDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="coverimageurl" type="string500" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="ProposedActsPrimaryKey" type="ProposedActsPrimaryKey"/>
+   <xs:complexType name="ProposedActsPrimaryKey">
+      <xs:sequence>
+         <xs:element name="id" type="xs:long" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string200">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="200"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string4000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="4000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string250">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="250"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string500">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="500"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

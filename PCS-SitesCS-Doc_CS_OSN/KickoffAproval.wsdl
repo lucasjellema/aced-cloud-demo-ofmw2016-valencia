@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+    
+     targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+     xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    >
+    <wsdl:documentation>
+        <abstractWSDL>hhttp://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1/WSDLs/KickOffApproval.wsdl</abstractWSDL>
+    </wsdl:documentation>
+    <plnk:partnerLinkType name="KickOffApprovalPortTypePartnerLinkType">
+        <plnk:role name="KickOffApprovalPortTypeProvider">
+            <plnk:portType name="tns:KickOffApprovalPortType"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+   <wsdl:types>
+        <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval">
+            <xsd:element name="start">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="name" type="xsd:string"/>
+                        <xsd:element name="voteCount" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="endResponse">
+                <xsd:complexType>
+                    <xsd:sequence/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="start">
+        <wsdl:part name="parameters" element="tns:start"/>
+    </wsdl:message>
+    <wsdl:message name="endResponse">
+        <wsdl:part name="parameters" element="tns:endResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="KickOffApprovalPortType">
+        <wsdl:operation name="start">
+            <wsdl:input message="tns:start"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="KickOffApprovalPortTypeCallBack">
+        <wsdl:operation name="end">
+            <wsdl:input message="tns:endResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="KickOffApprovalBinding" type="tns:KickOffApprovalPortType">
+        <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="start">
+            <wsdlsoap:operation style="document" soapAction="start"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="KickOffApprovalPortTypeCallBackBinding" type="tns:KickOffApprovalPortTypeCallBack">
+        <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="end">
+            <wsdlsoap:operation style="document" soapAction="end"/>
+            <wsdl:input>
+                <wsdlsoap:body use="literal" namespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/TakeThree/KickOffApproval"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="KickOffApproval.service">
+        <wsdl:port name="KickOffApprovalPortType" binding="tns:KickOffApprovalBinding">
+            <wsdlsoap:address location="http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service"/>
+            <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing">
+                <wsa:Address xmlns:wsa="http://www.w3.org/2005/08/addressing">http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service</wsa:Address>
+                
+            </wsa:EndpointReference>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

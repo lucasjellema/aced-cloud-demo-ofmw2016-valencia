@@ -1,0 +1,15 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="NewActProposalsService"
+     targetNamespace="aced.cloud.demo"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:tns="aced.cloud.demo"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="NewActProposalProcessor">
+        <plnk:role name="NewActProposalsService" portType="tns:NewActProposalsService"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="aced.cloud.demo" location="NewActProposalsService.wsdl"/>
+</wsdl:definitions>

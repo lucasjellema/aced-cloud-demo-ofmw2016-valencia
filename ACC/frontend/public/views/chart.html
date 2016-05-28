@@ -1,0 +1,47 @@
+<div id="barChart" style="width:100%;height:500px;" data-bind="ojComponent: {
+    component: 'ojChart', 
+    type: type, 
+    orientation: orientation,
+    stack: stack,
+    series: series, 
+    groups: [''],
+    animationOnDisplay: 'auto',
+    animationOnDataChange: 'auto',
+    hoverBehavior: 'dim',
+    translations: {
+        labelSeries: 'Act',
+        labelValue: 'Votes'
+    },
+    valueFormats: [
+        {type:'value', scaling:'none', converter:ko.toJS(votesConverter)},
+        {type:'label', scaling:'none', converter:ko.toJS(votesConverter)}
+    ]
+}">
+</div>
+<div data-bind="ojComponent: {component:'ojToolbar'}" style="max-width:500px;width:100%;">
+    <div data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: type}" class="oj-button-half-chrome">
+        <!-- ko foreach: typeOptions -->
+        <label data-bind="attr: {for: id}"></label>
+        <input type="radio" name="type" data-bind="value: value, attr: {id: id},
+            ojComponent: {component: 'ojButton', label: label, _icons: {start: icon}, _display: 'icons'}" />
+        <!-- /ko -->
+    </div>
+    <!--ko if: type()=='bar'-->
+    <span role="separator" class="oj-toolbar-separator"></span>
+    <div data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: orientation}" class="oj-button-half-chrome">
+        <!-- ko foreach: orientationOptions -->
+        <label data-bind="attr: {for: id}"></label>
+        <input type="radio" name="orientation" data-bind="value: value, attr: {id: id},
+            ojComponent: {component: 'ojButton', label: label, _icons: {start: icon}, _display: 'icons'}" />
+        <!-- /ko -->
+    </div>
+    <span role="separator" class="oj-toolbar-separator"></span>
+    <div data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: stack}" class="oj-button-half-chrome">
+        <!-- ko foreach: stackOptions -->
+        <label data-bind="attr: {for: id}"></label>
+        <input type="radio" name="stack" data-bind="value: value, attr: {id: id},
+            ojComponent: {component: 'ojButton', label: label, _icons: {start: icon}, _display: 'icons'}" />
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>

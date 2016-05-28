@@ -1,0 +1,8 @@
+{
+    "runtime": {
+        "majorVersion": "0.12"
+    },
+    "command": "node index.js",
+    "release": {},
+    "notes": "Static files for frontend application"
+}

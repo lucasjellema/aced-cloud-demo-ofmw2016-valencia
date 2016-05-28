@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/retrieveProposedActs" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/retrieveProposedActs" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="ProposedActsCollection" type="ProposedActsCollection"/>
+   <xs:complexType name="ProposedActsCollection">
+      <xs:sequence>
+         <xs:element name="ProposedActs" type="ProposedActs" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ProposedActs">
+      <xs:sequence>
+         <xs:element name="id" type="xs:long"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="proposalTimestamp" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="numberOfVotes" type="xs:long" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="retrieveProposedActsSelect_pSubmittedSince_pMininumNumberOfVotes_pMaxNumberOfProposalsInputParameters" type="retrieveProposedActsSelect_pSubmittedSince_pMininumNumberOfVotes_pMaxNumberOfProposals"/>
+   <xs:complexType name="retrieveProposedActsSelect_pSubmittedSince_pMininumNumberOfVotes_pMaxNumberOfProposals">
+      <xs:sequence>
+         <xs:element name="pSubmittedSince" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="pMininumNumberOfVotes" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="pMaxNumberOfProposals" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

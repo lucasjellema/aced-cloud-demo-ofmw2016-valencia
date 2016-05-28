@@ -1,0 +1,12 @@
+<adapter-config name="RetrieveProposedActDetails" adapter="db" wsdlLocation="../WSDLs/RetrieveProposedActDetails.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata"> 
+  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="RetrieveProposedActDetails_ptt" operation="selectByPrimaryKey">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="RetrieveProposedActDetails.ProposedActs"/>
+      <property name="QueryName" value="readObject"/>
+      <property name="MappingsMetaDataURL" value="RetrieveProposedActDetails-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

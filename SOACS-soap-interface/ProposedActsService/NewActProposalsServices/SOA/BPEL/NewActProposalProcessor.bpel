@@ -1,0 +1,181 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Sun Feb 21 14:59:52 CET 2016
+  Author:  lucas_j
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="NewActProposalProcessor"
+               targetNamespace="aced.cloud.demo"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="aced.cloud.demo"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns1="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions" xmlns:ess="http://xmlns.oracle.com/scheduler"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns4="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
+         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="aced.cloud.demo" location="../WSDLs/NewActProposalsServiceWrapper.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="NewActProposalProcessor" partnerLinkType="client:NewActProposalProcessor" myRole="NewActProposalsService"/>
+    <partnerLink name="ArtistAPIReference" partnerLinkType="ns1:ArtistAPIReference"
+                 partnerRole="ArtistAPIReferenceProvider"/>
+    <partnerLink name="submitNewActProposal" partnerLinkType="ns2:submitNewActProposal_plt"
+                 partnerRole="submitNewActProposal_role"/>
+    <partnerLink name="TweetNewArtistProposal" partnerLinkType="ns4:TweetNewArtistProposal"
+                 partnerRole="TweetNewArtistProposalProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:submitActProposalRequest"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:submitActProposalResponse"/>
+    <variable name="PersistNewActProposal_InputVariable" messageType="ns2:args_in_msg"/>
+    <variable name="PersistNewActProposal_submitNewActProposal_OutputVariable" messageType="ns2:args_out_msg"/>
+  </variables>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in NewActProposalProcessor.wsdl) -->
+    <receive name="receiveInput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="inputVariable" createInstance="yes"/>
+    <scope name="EnrichWithArtistData">
+      <variables>
+        <variable name="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                  messageType="ns1:FetchArtistDetails_inputMessage"/>
+        <variable name="InvokeArtistAPI_FetchArtistDetails_OutputVariable"
+                  messageType="ns1:FetchArtistDetails_outputMessage"/>
+      </variables>
+      <faultHandlers>
+        <catchAll>
+          <assign name="AssigMissingEnrichment">
+            <copy>
+              <from>concat('Failed to retrieve artist enrichment data from ArtistAPI',$inputVariable.part1/client:name,' because of ',ora:getFaultAsString())</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:BIOGRAPHY</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:name</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:imageURL</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:IMAGE_URL</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:description</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_DESCRIPTION</to>
+            </copy>
+            <copy>
+              <from>$inputVariable.part1/client:numberOfVotes</from>
+              <to>$PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES</to>
+            </copy>
+          </assign>
+        </catchAll>
+      </faultHandlers>
+      <sequence name="Sequence1">
+        <assign name="AssignInputForArtistAPI">
+          <copy>
+            <from>$inputVariable.part1/client:name</from>
+            <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
+                portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
+                inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
+        <assign name="AssignEnrichedProposalData">
+          <bpelx:annotation>
+            <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+          </bpelx:annotation>
+          <copy>
+            <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
+            <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+          </copy>
+        </assign>
+      </sequence>
+    </scope>
+    <invoke name="PersistNewActProposal" bpelx:invokeAsDetail="no" partnerLink="submitNewActProposal"
+            portType="ns2:submitNewActProposal_ptt" operation="submitNewActProposal"
+            inputVariable="PersistNewActProposal_InputVariable"
+            outputVariable="PersistNewActProposal_submitNewActProposal_OutputVariable"/>
+    <assign name="AssignActProposalIdentifier">
+      <copy>
+        <from>$PersistNewActProposal_submitNewActProposal_OutputVariable.OutputParameters/ns3:P_ID</from>
+        <to>$outputVariable.part1/client:proposedActId</to>
+      </copy>
+    </assign>
+    <!-- Generate reply to synchronous request -->
+    <reply name="replyOutput" partnerLink="NewActProposalProcessor" portType="client:NewActProposalsService" operation="submitActProposal" variable="outputVariable"/>
+    <scope name="TweetAboutNewActProposal">
+      <variables>
+        <variable name="InvokePublishTweet_PublishTweet_InputVariable" messageType="ns4:PublishTweet_inputMessage"/>
+        <variable name="InvokePublishTweet_PublishTweet_OutputVariable" messageType="ns4:PublishTweet_outputMessage"/>
+      </variables>
+      <faultHandlers>
+        <catchAll>
+          <empty name="DoNothing_FailedTweetIsNoProblem"/>
+        </catchAll>
+      </faultHandlers>
+      <sequence name="Sequence2">
+        <assign name="AssignTweetRequest">
+          <copy>
+            <from>'ACECLOUD'</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:tag</to>
+          </copy>
+          <copy>
+            <from>concat('New Act Proposal for ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME, ' #votes: ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES, ' latest album ',  $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:ALBUMS/ns3:ALBUMS_ITEM/ns3:TITLE)</from>
+            <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:message</to>
+          </copy>
+        </assign>
+        <invoke name="InvokePublishTweet" bpelx:invokeAsDetail="no" partnerLink="TweetNewArtistProposal"
+                portType="ns4:TweetNewArtistProposal_ptt" operation="PublishTweet"
+                inputVariable="InvokePublishTweet_PublishTweet_InputVariable"
+                outputVariable="InvokePublishTweet_PublishTweet_OutputVariable"/>
+      </sequence>
+    </scope>
+  </sequence>
+</process>

@@ -1,0 +1,13 @@
+<adapter-config name="submitNewActProposal" adapter="db" wsdlLocation="../WSDLs/submitNewActProposal.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/SOADemo"/>
+  <endpoint-interaction portType="submitNewActProposal_ptt" operation="submitNewActProposal">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="ACD"/>
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="SUBMIT_ACT_PROPOSAL"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
