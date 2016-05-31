@@ -1,0 +1,1 @@
+{"artistProposalSubmissionResult": {"status": "OK, I guess for u2"}}

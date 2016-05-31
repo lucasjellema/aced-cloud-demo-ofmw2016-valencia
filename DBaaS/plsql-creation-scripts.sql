@@ -113,6 +113,7 @@ begin
      when no_data_found
 	 then
 	   p_act_proposed_yn:= 'N';
+       p_number_of_votes:= 0;
   end;
 end verify_proposal_for_act;
 

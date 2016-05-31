@@ -85,12 +85,24 @@ PCS (SOAP/XML) - one way Submit an act proposal - to be called from ICS when IoT
 ================================================================================================================
 (note: this PCS service invokes the next ICS service "Submit a new proposed act" for an act proposal that been approved; it also invokes the "Verify whether a proposal already exists for a certain act" service on ICS (see below); any act for which a proposal already exists is immediately forwarded to "Submit a new proposed act" on ICS; the result is that the number of votes for that act is increased and a new Tweet is published)
 
-http://104.155.85.98/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service (via proxy, no authorization)
+http://104.155.85.98/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL (via proxy, no authorization)
 
 
 or directly at PCS - with authorization:
 
-https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_68f55698-0293-4386-b2f6-aa6ee69b497f/SubmitActProposal.service?WSDL
+
+https://pcs1-gse00000196.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL
+
+
+
+https://cloud.oracle.com/en_US/sign-in
+Data Center: US Commercial 2
+Identity Domain: gse00000196
+
+pcsUsername= 'cloud.admin';
+pcsPassword = 'preservedPoundage=4';
+
+Service Console: https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/workspace/faces/jsf/workspace/homePage.jspx 
 
 request message looks like this:
 
@@ -265,19 +277,22 @@ https://frontend-lucasjellema.apaas.em2.oraclecloud.com/
 Oracle PCS
 ==========
 
+
+
 Workspace Task List : (login as cloud.admin or john.dunbar who are both Process Reviewers)
-https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist.jspx
+https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/workspace/faces/jsf/workspace/homePage.jspx 
 (go to Tracking page to review the process execution and recover faults).
 
 Develop Process :
-https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/composer/faces/app/designer/homePage.jspx
+https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/workspace/faces/app/designer/homePage.jspx
+
 ArtistProposalProcess within ValenciaACED space.
 
 Management UI to Deploy:
-https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/composer/faces/ui/management/management.jspx
+https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/composer/faces/ui/management/management.jspx
 
 Endpoint to invoke process:
-https://pcs-gse00000225.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_ff482fbe-6823-40d0-a224-ce43361ca652/SubmitActProposal.service?WSDL
+https://pcs1-gse00000196.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL
 
 
 Oracle Sites Cloud Service
