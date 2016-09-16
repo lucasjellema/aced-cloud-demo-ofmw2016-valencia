@@ -29,8 +29,13 @@
         <dependency>
             <groupId>com.oracle.iot</groupId>
             <artifactId>device-library</artifactId>
-            <version>16.1.5.1.1-29</version>
+            <version>16.3.3.1.1-25</version>
         </dependency>
+		<dependency>
+			<groupId>com.hp.hpl.jena</groupId>
+			<artifactId>json-jena</artifactId>
+			<version>1.0</version>
+		</dependency>
     </dependencies>
 
     <build>
