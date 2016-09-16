@@ -8,6 +8,13 @@
     <artifactId>TwitterCollector</artifactId>
     <version>0.1</version>
 
+    <repositories>
+        <repository>
+            <id>iotclient</id>
+            <url>file://${basedir}/iotclient</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -19,6 +26,16 @@
             <artifactId>twitter4j-stream</artifactId>
             <version>4.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.iot</groupId>
+            <artifactId>device-library</artifactId>
+            <version>16.3.3.1.1-25</version>
+        </dependency>
+		<dependency>
+			<groupId>com.hp.hpl.jena</groupId>
+			<artifactId>json-jena</artifactId>
+			<version>1.0</version>
+		</dependency>
     </dependencies>
 
     <build>
