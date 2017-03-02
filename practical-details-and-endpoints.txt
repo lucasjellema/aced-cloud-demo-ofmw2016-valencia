@@ -1,6 +1,77 @@
 This document contains some practical details regarding the demo, such as the endpoints of services and the URL for the frontend. See the SoapUI test project for sample calls to the web services mentioned below.
 
+Updated for Split, Croatia - March 2017
 
+identity domain partnercloud17
+data Center: US Commercial 2
+https://myservices.us.oraclecloud.com/mycloud/partnercloud17/faces/dashboard.jspx
+
+LJ: +3
+
+
+DBaaS:
+======
+Host: 129.144.152.41
+Service: soacsdb.partnercloud17.oraclecloud.internal
+
+user=cloudace
+
+JCS/SOA CS:
+===========
+Host: 129.144.151.143
+
+
+
+user: weblogic
+
+WLS Console:  https://129.144.151.143:7002/console
+EM FMW Control: https://129.144.151.143:7002/em 
+
+Worklist application:
+https://129.144.151.143/integration/worklistapp/faces/login.jspx
+(note: port 80 - while probably running on managed server/cluster)
+
+Datasource: jdbc/cloudace and  jdbc/cloudaceXA  (to DBaaS - cloudace schema)
+DB Adapter Connection: eis/DB/cloudace, eis/DB/cloudacex
+
+
+ProposedActsService
+http://129.144.151.143/soa-infra/services/default/ProposedActsService/ProposedActsService?WSDL 
+
+NewActProposalService
+http://129.144.151.143/soa-infra/services/default/NewActProposalsServices/NewActProposalsService
+
+
+
+Real Time Business Integration Insight:
+=======================================
+Host: 129.144.252.132
+
+user: weblogic
+
+
+WLS Console: https://129.144.252.132:7002/console 
+EM FMW Control: https://129.144.252.132:7002/em 
+
+Insight Composer: https://129.144.252.132/insight 
+
+
+Application Container Cloud
+===========================
+endpoint Artist-Enricher-API:
+https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com
+
+fetch details on U2:
+https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com/artists/get?artist=u2
+
+
+
+-
+
+
+
+===========================================================================
+old details for Oracle OpenWorld 2016
 
 Final JET based Frontend application - the Oracle OpenWorld Appreciation Event latest news portal:
 
@@ -22,7 +93,7 @@ ICS (REST/JSON, POST) - Submit a community suggestion (to be called from IoT CS)
 =================================================================================
 This service uses an integration on ICS that is mapped to the REST POST service on top of PCS to submit a proposal to initiate the workflow to approve the suggestion
 
-http://104.155.85.98/ics/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
+http://104.155.49.139/ics/integration/flowapi/rest/SUBMITCOMMUNITYARTISTPROPOSAL/v01/artistsuggestions
 
 POST a JSON payload similar to:
 
@@ -40,7 +111,7 @@ This service routes to PCS.
 
 Through the proxy - no authorization required and now problems with Data Center hops:
 
-http://104.155.85.98/ics/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events
+http://104.155.49.139/ics/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events
 
 and directly on ICS
 https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/IOTC_DROP_AND_ROUT_TO_PCS_COMM/v01/iot-events
@@ -62,7 +133,7 @@ IoT CS Drop Off that bypasses PCS workflow:
 ===========================================
 As an alternative there is the IoT CS drop off that is  mapped to the SOA CS NewActProposalService (bypassing the human workflow on PCS). 
 
-http://104.155.85.98/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
+http://104.155.49.139/ics/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
 
 or directly to ICS, with Authorization Header:
 https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/IOTCS_DROPOF_REST_TO_COMMUN/v01/iot-events (no security required)
@@ -85,7 +156,7 @@ PCS (SOAP/XML) - one way Submit an act proposal - to be called from ICS when IoT
 ================================================================================================================
 (note: this PCS service invokes the next ICS service "Submit a new proposed act" for an act proposal that been approved; it also invokes the "Verify whether a proposal already exists for a certain act" service on ICS (see below); any act for which a proposal already exists is immediately forwarded to "Submit a new proposed act" on ICS; the result is that the number of votes for that act is increased and a new Tweet is published)
 
-http://104.155.85.98/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL (via proxy, no authorization)
+http://104.155.49.139/pcs/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL (via proxy, no authorization)
 
 
 or directly at PCS - with authorization:
@@ -102,7 +173,8 @@ Identity Domain: gse00000196
 pcsUsername= 'cloud.admin';
 pcsPassword = 'preservedPoundage=4';
 
-Service Console: https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/workspace/faces/jsf/workspace/homePage.jspx 
+Service Console: 
+	
 
 request message looks like this:
 
@@ -120,7 +192,7 @@ request message looks like this:
 
 Note: a fallback service on PCS was created earlier with the following details:
 
-http://104.155.85.98/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service (via proxy, no authorization)
+http://104.155.49.139/pcs/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service (via proxy, no authorization)
 or directly at PCS:
 https://pcs-gse00000225.process.us2.oraclecloud.com:443/soa-infra/services/default/TakeThree!1*soa_8a16e235-9036-4d22-bc36-f5a32c2b496e/KickOffApproval.service
 
@@ -137,7 +209,7 @@ current request message:
 
 =============================================================
 ICS seems to have a problem with one way REST or SOAP connections; that is why I created a two way REST service on the proxy that routes through to PCS:
-at : REST POST to http://104.155.85.98/pcs/rest/artistProposals
+at : REST POST to http://104.155.49.139/pcs/rest/artistProposals
 
 { "artistProposal" : 
   { "artistName" : "u2" 
@@ -151,7 +223,7 @@ response:
 
 ICS (SOAP/XML) - Submit a new proposed act (to be called by PCS after the act has been approved)
 =================================================================================================
-http://104.155.85.98/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
+http://104.155.49.139/ics/integration/flowsvc/soap/PROPOSENEWACTFOR_SOAP/v01/?wsdl  - on the proxy (no security tokens needed)
 => this service invokes the corresponding service on SOA CS
 
 
@@ -161,7 +233,7 @@ The real address: https://icsdem0058service-icsdem0058.integration.us2.oracleclo
 
 ICS - (REST/JSON, POST) Submit a new Proposed Act (to be called by PCS after the act has been approved)
 =======================================================================================================
-http://104.155.85.98/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
+http://104.155.49.139/ics/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals on the proxy (no authorization required)
 => this service invokes the corresponding service on SOA CS
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowapi/rest/PROPOSENEWACTFOROOW2016/v01/actproposals (with basic authorization as ICS always requires)
@@ -170,7 +242,7 @@ The real address: https://icsdem0058service-icsdem0058.integration.us2.oracleclo
 
 ICS (SOAP/XML) - Verify whether a proposal already exists for a certain act
 ===============================================================================
-http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl  - on the proxy (no security tokens needed)
+http://104.155.49.139/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl  - on the proxy (no security tokens needed)
 => this service invokes the corresponding service on SOA CS
 
 The real address: https://icsdem0058service-icsdem0058.integration.us2.oraclecloud.com/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/?wsdl
@@ -184,7 +256,7 @@ Straightforward service with Twitter Adapter to tweet a message; currently confi
 
 The endpoint is:
 
-http://104.155.85.98/ics/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets (through proxy, no authorization)
+http://104.155.49.139/ics/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01/tweets (through proxy, no authorization)
 
 The payload:
 { "tweet" : { "message": "Tweet through proxy no authorization" 
@@ -210,17 +282,17 @@ This API is leveraged from SOA CS to enrich the submit new proposal; perhaps I w
 This API is also available from the proxy (on Google AppEngine):
 
 API for retrieving artist information (from Spotify and Echonest)
-http://104.155.85.98/artists/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/artists/get?artist=bon+jovi, http://104.155.85.98/artists/artists/get?artist=the+beatles ...) 
+http://104.155.49.139/artists/artists/get?artist=the+kaiser+chiefs (http://104.155.49.139/artists/artists/get?artist=bon+jovi, http://104.155.49.139/artists/artists/get?artist=the+beatles ...) 
 
 when ACC is broken, the artist enrichment is also done directly on the Proxy:
 
-http://104.155.85.98/artistes/artists/get?artist=the+kaiser+chiefs
+http://104.155.49.139/artistes/artists/get?artist=the+kaiser+chiefs
 
 
 SOACS - (SOAP/XML) Submit a new Proposed Act
 ============================================
 NewActProposalService:
-http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL
+http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL
 (this is the address of the proxy running on Google AppEngine; the true address for the service is: 
 http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService?WSDL
 also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
@@ -235,7 +307,7 @@ This service exposes  two operations:
 SOACS - (SOAP/XML) Retrieve details for earlier Proposed Acts
 =============================================================
 ProposedActsService:
-http://104.155.85.98/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService?wsdl
+http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService?wsdl
 (this is the address of the proxy running on Google AppEngine; the true address for the service is: 
 http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService?wsdl
 also accessible - thanks to a routing rule in OTD on the Load Balancer - at port 80)
@@ -260,7 +332,7 @@ https://mobileportalsetrial1304dev-mcsdem0001.mobileenv.us2.oraclecloud.com:443/
 
 access the proxy at:
 
-http://104.155.85.98/mcs/mobile/custom/artistapi/acts
+http://104.155.49.139/mcs/mobile/custom/artistapi/acts
 
 
 
@@ -293,6 +365,7 @@ https://pcs1-gse00000196.process.us2.oraclecloud.com/bpm/composer/faces/ui/manag
 
 Endpoint to invoke process:
 https://pcs1-gse00000196.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_6ce6e099-d89e-4fae-aaf6-c77d44769a11/SubmitActProposal.service?WSDL
+
 
 
 Oracle Sites Cloud Service
@@ -331,6 +404,6 @@ https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist
 
 
 
-logs: (public) http://104.155.85.98/logs
+logs: (public) http://104.155.49.139/logs
 proxy engine:  (Lucas) https://console.cloud.google.com/compute/instances?project=mediator-proxy&quickstart=1&graph=GCE_CPU&duration=PT1H
 
