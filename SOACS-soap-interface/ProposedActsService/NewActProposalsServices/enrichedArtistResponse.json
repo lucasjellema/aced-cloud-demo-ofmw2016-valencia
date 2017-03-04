@@ -1,0 +1,303 @@
+{
+    "spotifyId": "0oSGxfWSnnOXhD2fKuz2Gy",
+    "name": "David Bowie",
+    "genres": "[\"album rock\",\"art rock\",\"classic funk rock\",\"classic rock\",\"dance rock\",\"glam rock\",\"mellow gold\",\"new wave\",\"permanent wave\",\"pop christmas\",\"protopunk\",\"rock\",\"singer-songwriter\",\"soft rock\"]",
+    "imageURL": "https://i.scdn.co/image/6efa04809a6358a5da0e701d24449cfb8348ebf5",
+    "spottiyHRef": "https://api.spotify.com/v1/artists/0oSGxfWSnnOXhD2fKuz2Gy",
+    "albums": [
+        {
+            "title": "Blackstar",
+            "imageURL": "https://i.scdn.co/image/de1c3166528adc912b746cac1f28ccd501801218",
+            "spotifyId": "2w1YJXWMIco6EBf0CovvVN",
+            "releaseDate": "2016-01-08"
+        },
+        {
+            "title": "The Next Day",
+            "imageURL": "https://i.scdn.co/image/1a125efb7731af8628955f8777d2d4d4f1225b8a",
+            "spotifyId": "16F7X7WOFZhMwQNsMil7lq",
+            "releaseDate": "2013-03-08"
+        },
+        {
+            "title": "A Reality Tour",
+            "imageURL": "https://i.scdn.co/image/00a4aa2a3331014d4d19d3fffac57f4b53f91bcc",
+            "spotifyId": "0izhrQQ2IKmo3k02mN91zA",
+            "releaseDate": "2010-01-26"
+        },
+        {
+            "title": "VH1 Storytellers",
+            "imageURL": "https://i.scdn.co/image/ad79a9eed0c9095c138c05b47797ce79fc5b5236",
+            "spotifyId": "1pOR2tIMQZ30GNCVz4TkFp",
+            "releaseDate": "2009-07-06"
+        },
+        {
+            "title": "Reality",
+            "imageURL": "https://i.scdn.co/image/d859629b71f9d8fb34205efe25ee344846c826d9",
+            "spotifyId": "04bKxe1Y7WFw4yrDPlmswG",
+            "releaseDate": "2003-09-16"
+        },
+        {
+            "title": "Heathen",
+            "imageURL": "https://i.scdn.co/image/cf62af9e2b53a5a3a7560e27126ef394e52a5732",
+            "spotifyId": "6cideQBTEM8b6pQ40OHQ2P",
+            "releaseDate": "2002-06-11"
+        },
+        {
+            "title": "Heathen",
+            "imageURL": "https://i.scdn.co/image/11771993fa89ddf56d19e3fd92c1892b6eee58ab",
+            "spotifyId": "4ieG8sqAw1XbNobjOU5CZH",
+            "releaseDate": "2002-06-11"
+        },
+        {
+            "title": "Heathen",
+            "imageURL": "https://i.scdn.co/image/11771993fa89ddf56d19e3fd92c1892b6eee58ab",
+            "spotifyId": "5HiBqXTLyP6RtXQJvh6jrV",
+            "releaseDate": "2002-06-11"
+        },
+        {
+            "title": "'hours...'",
+            "imageURL": "https://i.scdn.co/image/670833ee6faeafa4b05dc0854f1af01d15d539a1",
+            "spotifyId": "6FZqshBCagLrprFeXQqgOP",
+            "releaseDate": "1999-10-04"
+        },
+        {
+            "title": "'hours...' (Expanded Edition)",
+            "imageURL": "https://i.scdn.co/image/d7d76de83839a2bc24da17443bff1e6d6ecf7a67",
+            "spotifyId": "79EPGP6VA65fDFs4fgFpel",
+            "releaseDate": "1999-09-29"
+        },
+        {
+            "title": "Earthling",
+            "imageURL": "https://i.scdn.co/image/32c78378b4c25865f2659c08874dcab3a6b0f576",
+            "spotifyId": "1LCF3So9B9X0xreRtYbYIr",
+            "releaseDate": "1997-01-30"
+        },
+        {
+            "title": "Earthling (Expanded Edition)",
+            "imageURL": "https://i.scdn.co/image/84a2552913c9c664b7de814fbe07650df00eb5cf",
+            "spotifyId": "4yRoLvuzNxFDdodNNrZAEM",
+            "releaseDate": "1997-01-30"
+        },
+        {
+            "title": "1. Outside (Expanded Edition)",
+            "imageURL": "https://i.scdn.co/image/d2ad8182583b8428be393bbb32993f634be8f813",
+            "spotifyId": "0pUursvGUAgcDiEqYlnZ0q",
+            "releaseDate": "1995-09-26"
+        },
+        {
+            "title": "1. Outside",
+            "imageURL": "https://i.scdn.co/image/8ee6e28a09667a8b06cfb452621e49ecf848e2de",
+            "spotifyId": "6lo9vk77R6NAzAg3tTcJxc",
+            "releaseDate": "1995-09-26"
+        },
+        {
+            "title": "Live In Santa Monica '72",
+            "imageURL": "https://i.scdn.co/image/a3343b20b6132e02c5461caa5a5131dee4ae5d33",
+            "spotifyId": "2RgLZn9d5JPBTC4dinpLio",
+            "releaseDate": "1994-04-25"
+        },
+        {
+            "title": "Buddha Of Suburbia",
+            "imageURL": "https://i.scdn.co/image/e9c3ffb9ca984e3171e944889cb08332b6e07118",
+            "spotifyId": "1ffVrnHH8i2POp5M7AzEDi",
+            "releaseDate": "1993-11-08"
+        },
+        {
+            "title": "Black Tie White Noise",
+            "imageURL": "https://i.scdn.co/image/0e61367cb1d6330293b98d263d905c8a29cf8f1c",
+            "spotifyId": "1yFItZkb7DBAkQ5RB8OJv9",
+            "releaseDate": "1993-04-05"
+        },
+        {
+            "title": "Black Tie White Noise Extras",
+            "imageURL": "https://i.scdn.co/image/db131a8c8a33daed54b9ce60ba2587cb170f65d9",
+            "spotifyId": "329GKhK03PzYbbhaWg9K70",
+            "releaseDate": "1993-04-05"
+        },
+        {
+            "title": "Peter & The Wolf",
+            "imageURL": "https://i.scdn.co/image/072810976598252b87ab2c19e095d367e855a356",
+            "spotifyId": "106wKTd4duv3VjKzl4dTxo",
+            "releaseDate": "1988-01-01"
+        },
+        {
+            "title": "David Bowie Narrates Peter And The Wolf",
+            "imageURL": "https://i.scdn.co/image/aa386be1364fc62bcf6b603675ea0c79af96fe24",
+            "spotifyId": "60i2lSdCpjiAFmYw3x5gAw",
+            "releaseDate": "1988-01-01"
+        },
+        {
+            "title": "David Bowie Narrates Peter And The Wolf",
+            "imageURL": "https://i.scdn.co/image/71b4463141eae0c45ed8044a0c8f455e12d3f6f0",
+            "spotifyId": "6BTvQoynusQzFYAUcaOyVE",
+            "releaseDate": "1989-01-03"
+        },
+        {
+            "title": "Never Let Me Down",
+            "imageURL": "https://i.scdn.co/image/75473922be9adfe7e76de76bd80c115f3d5e89ae",
+            "spotifyId": "2qpGtrtpFA3WtJIuGKQioh",
+            "releaseDate": "1987-04-21"
+        },
+        {
+            "title": "Never Let Me Down",
+            "imageURL": "https://i.scdn.co/image/8035eed1026fd1f9c605e9da9bc96aeb8f673c15",
+            "spotifyId": "0Kzazpd1bFvj1s4kKRJ2ox",
+            "releaseDate": "1987-04-27"
+        },
+        {
+            "title": "Labyrinth (From The Original Soundtrack Of The Jim Henson Film)",
+            "imageURL": "https://i.scdn.co/image/a7c2dd9c7078239c8fe20af2b9aade30bf1ddcc7",
+            "spotifyId": "2w3FKVaH3aaVVIAn6KFKKS",
+            "releaseDate": "1986-01-01"
+        },
+        {
+            "title": "Labyrinth (From The Original Soundtrack Of The Jim Henson Film)",
+            "imageURL": "https://i.scdn.co/image/4ad3d1b0458bc513d2042d5f5149de818e08aa4b",
+            "spotifyId": "6cvdkUIC4IdBypl9L5Ae74",
+            "releaseDate": "1986-01-01"
+        },
+        {
+            "title": "Tonight",
+            "imageURL": "https://i.scdn.co/image/c8c133a7cc4baa26a22c75e8c6b29e350f7ca5bb",
+            "spotifyId": "0x0rVyhppIuVdrHmlB15bn",
+            "releaseDate": "1984-09-01"
+        },
+        {
+            "title": "Ziggy Stardust And The Spiders From Mars (The Motion Picture Soundtrack)",
+            "imageURL": "https://i.scdn.co/image/c771c00d81c68a2e9089be5aaf4979be0062df1e",
+            "spotifyId": "44jkgfcuBri1LuAsdLRlbt",
+            "releaseDate": "1983-10-01"
+        },
+        {
+            "title": "Let's Dance",
+            "imageURL": "https://i.scdn.co/image/12168e7d4f2b515f6116cdb13a945f87c8ff22f2",
+            "spotifyId": "37KYBt1Lzn4eJ4KoCFZcnR",
+            "releaseDate": "1983-04-14"
+        },
+        {
+            "title": "Scary Monsters",
+            "imageURL": "https://i.scdn.co/image/591da524087a4a73dea8d3f6b7583a21bd2c5ca0",
+            "spotifyId": "53YfKqwV8lphizo06QSxEe",
+            "releaseDate": "1980-09-12"
+        },
+        {
+            "title": "Lodger",
+            "imageURL": "https://i.scdn.co/image/293be5e361bf0faa6703c2ac1da1b1525271d8fb",
+            "spotifyId": "5HFp1l4n85DnXWl0q6M2mq",
+            "releaseDate": "1979-05-18"
+        },
+        {
+            "title": "Stage",
+            "imageURL": "https://i.scdn.co/image/d1d019f18013fe603842f1efa806582411c4ce1f",
+            "spotifyId": "3WmFXvoEvGcV793mtaTeUc",
+            "releaseDate": "1978-09-08"
+        },
+        {
+            "title": "David Bowie narrates Prokofiev's Peter and the Wolf & The Young Person's Guide to the Orchestra",
+            "imageURL": "https://i.scdn.co/image/a8bef75c920a87bb49f556b9ac38f6f2bc184848",
+            "spotifyId": "1ZDPe7QlFtKG0nSjHSKaSE",
+            "releaseDate": "1978-05-02"
+        },
+        {
+            "title": "Heroes",
+            "imageURL": "https://i.scdn.co/image/8771a9bd1635a028d05965e7a3de2c2f2871109f",
+            "spotifyId": "3lFioPGhn7x5Y3H3YbPV83",
+            "releaseDate": "1977-10-14"
+        },
+        {
+            "title": "Low",
+            "imageURL": "https://i.scdn.co/image/52bfdb137df31491d6e973264e1eff1c381ba98b",
+            "spotifyId": "0Oqi3Mm316FRX5H9mHjF0b",
+            "releaseDate": "1977-01-14"
+        },
+        {
+            "title": "Station To Station (2016 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/6fdcb4ed6086589bc60dcd8358741f44740c9065",
+            "spotifyId": "0MWrKayUshRuT8maG4ZAOU",
+            "releaseDate": "1976-01-23"
+        },
+        {
+            "title": "Live Nassau Coliseum '76",
+            "imageURL": "https://i.scdn.co/image/2c8bc8d5b0c3266ff7763de47e5245f45bb538dc",
+            "spotifyId": "49tQPxVOXs6kdrpxuKhu91",
+            "releaseDate": "1976-01-01"
+        },
+        {
+            "title": "Young Americans (2016 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/6195b5e575de33e6906fb157cab06a48676d5d16",
+            "spotifyId": "0lITGovWgaQGi42EfqcE5P",
+            "releaseDate": "1975-03-07"
+        },
+        {
+            "title": "David Live (2005 Mix, Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/64c3beb0d0f4d730946d21153eca012dea248538",
+            "spotifyId": "57iVS4xHxJlKW3COk2AaIs",
+            "releaseDate": "1974-10-29"
+        },
+        {
+            "title": "Diamond Dogs (2016 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/f31be09fa54736eae036e3144ff2e4bb45090493",
+            "spotifyId": "72mfhbEsMtXR6s7v9UhKe3",
+            "releaseDate": "1974-05-24"
+        },
+        {
+            "title": "PinUps (2015 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/a137cebeca7fcfcdd097752d26fcc219e9c86869",
+            "spotifyId": "71nxmbr3tHAVyvdHXc0ltd",
+            "releaseDate": "1973-10-19"
+        },
+        {
+            "title": "Aladdin Sane (2013 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/fa5ebe1346df2e47069d22c067f7b65d5ba6a946",
+            "spotifyId": "3HZKOk1knxrUU3y5ZIOdbz",
+            "releaseDate": "1973-04-13"
+        },
+        {
+            "title": "The Rise And Fall Of Ziggy Stardust And The Spiders From Mars (2012 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/65d1d0b438352ba17cbf4548f5e3b63b9455ca68",
+            "spotifyId": "48D1hRORqJq52qsnUYZX56",
+            "releaseDate": "1972-06-06"
+        },
+        {
+            "title": "Hunky Dory (2015 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/a0bf968e76d470c4ac57958e132dafcea3f42666",
+            "spotifyId": "6fQElzBNTiEMGdIeY0hy5l",
+            "releaseDate": "1971-12-17"
+        },
+        {
+            "title": "The Man Who Sold The World (2015 Remastered Version)",
+            "imageURL": "https://i.scdn.co/image/77a88b13809ed3f58b8175fa373ce9b4209a0ed4",
+            "spotifyId": "4h9rWFWhgCSSrvIEQ0YhYG",
+            "releaseDate": "1970-11-04"
+        },
+        {
+            "title": "David Bowie (aka Space Oddity) [2015 Remastered Version]",
+            "imageURL": "https://i.scdn.co/image/3ecb55e1d28f4763a38d63cf1a9d4ca43ad070ba",
+            "spotifyId": "1ay9Z4R5ZYI2TY7WiDhNYQ",
+            "releaseDate": "1969-11-04"
+        },
+        {
+            "title": "David Bowie",
+            "imageURL": "https://i.scdn.co/image/e3dcecf4888e8d6167850e3b4fdcf7ce7c956b0a",
+            "spotifyId": "0RlVSyFuyxXbZBrXRDLr3q",
+            "releaseDate": "1967-06-01"
+        },
+        {
+            "title": "David Bowie",
+            "imageURL": "https://i.scdn.co/image/b594556cbcd99c989ab90876c8f396b3f4745eb0",
+            "spotifyId": "5tfpaG0PjUQEpEQJqtjORc",
+            "releaseDate": "1967-06-01"
+        },
+        {
+            "title": "David Bowie (Deluxe Edition)",
+            "imageURL": "https://i.scdn.co/image/33b94d1378a6daa3f6413a821632cc7486152ea8",
+            "spotifyId": "1Rf6MUCYFyfAgoTtDG1O27",
+            "releaseDate": "1967-06-01"
+        },
+        {
+            "title": "David Bowie (Deluxe Edition)",
+            "imageURL": "https://i.scdn.co/image/484c9132563a71e3abeb107eba0e6492d560ac28",
+            "spotifyId": "7qhsv50p7oe4jl5DxaljKq",
+            "releaseDate": "1967-06-01"
+        }
+    ]
+}

@@ -31,7 +31,8 @@
          xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
          xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
          xmlns:ns4="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
-         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request">
+         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request"
+         xmlns:ns6="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +55,8 @@
                  partnerRole="submitNewActProposal_role"/>
     <partnerLink name="TweetNewArtistProposal" partnerLinkType="ns4:TweetNewArtistProposal"
                  partnerRole="TweetNewArtistProposalProvider"/>
+    <partnerLink name="ArtistEnricherMediator.ArtistEnricherMediator"
+                 partnerLinkType="client:ArtistEnricherMediator.ArtistEnricherMediator" partnerRole="ArtistsService"/>
   </partnerLinks>
 
   <!-- 
@@ -117,25 +120,57 @@
         </catchAll>
       </faultHandlers>
       <sequence name="Sequence1">
-        <assign name="AssignInputForArtistAPI">
-          <copy>
-            <from>$inputVariable.part1/client:name</from>
-            <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
-          </copy>
-        </assign>
-        <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
-                portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
-                inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
-                outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
-        <assign name="AssignEnrichedProposalData">
-          <bpelx:annotation>
-            <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
-          </bpelx:annotation>
-          <copy>
-            <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
-            <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
-          </copy>
-        </assign>
+        <scope name="ArtistEnrichmentScope">
+          <variables>
+            <variable name="InvokeArtistEnricherAPI_findArtist_InputVariable" messageType="client:findArtistRequest"/>
+            <variable name="InvokeArtistEnricherAPI_findArtist_OutputVariable" messageType="client:findArtistResponse"/>
+          </variables>
+          <sequence name="Sequence3">
+            <assign name="AssignInputForArtistEnrichment">
+              <copy>
+                <from>$inputVariable.part1/client:name</from>
+                <to>$InvokeArtistEnricherAPI_findArtist_InputVariable.part1/client:name</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeArtistEnricherAPI" bpelx:invokeAsDetail="no"
+                    partnerLink="ArtistEnricherMediator.ArtistEnricherMediator" portType="client:ArtistsService"
+                    operation="findArtist" inputVariable="InvokeArtistEnricherAPI_findArtist_InputVariable"
+                    outputVariable="InvokeArtistEnricherAPI_findArtist_OutputVariable"/>
+            <assign name="AssignArtistEnrichedProposalData">
+              <bpelx:annotation>
+                <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+              </bpelx:annotation>
+              <copy>
+                <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistAndRequest-to-PersistNewActProposal.xsl", $InvokeArtistEnricherAPI_findArtist_OutputVariable.part1, "inputVariable.part1", $inputVariable.part1)</from>
+                <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
+        <scope name="ScopeOldArtistAPICall">
+          <bpelx:skipCondition>true()</bpelx:skipCondition>
+          <sequence>
+            <assign name="AssignInputForArtistAPI">
+              <copy>
+                <from>$inputVariable.part1/client:name</from>
+                <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
+                    portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
+                    inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                    outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
+            <assign name="AssignEnrichedProposalData">
+              <bpelx:annotation>
+                <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+              </bpelx:annotation>
+              <copy>
+                <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
+                <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
       </sequence>
     </scope>
     <invoke name="PersistNewActProposal" bpelx:invokeAsDetail="no" partnerLink="submitNewActProposal"

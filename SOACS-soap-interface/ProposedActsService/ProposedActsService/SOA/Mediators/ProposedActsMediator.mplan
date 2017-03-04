@@ -23,7 +23,7 @@
             <action>
                <transform>
                   <part name="$out.retrieveProposedActsSelect_inputParameters"
-                        function="xslt(../Transformations/getProposedActsRequestMessage_To_retrieveProposedActsSelect_pSubmittedSince_pMininumNumberOfVotes_pMaxNumberOfProposalsInputParameters1.xsl, $in.part1)"/>
+                        function="xslt(../Transformations/getProposedActsRequestMessage_To_retrieveProposedActsSelect.xsl, $in.part1)"/>
                </transform>
                <invoke reference="retrieveProposedActs" operation="retrieveProposedActsSelect">
                   <onReply>

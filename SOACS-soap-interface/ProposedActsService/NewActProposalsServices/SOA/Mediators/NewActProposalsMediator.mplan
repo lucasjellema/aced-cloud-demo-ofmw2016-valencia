@@ -36,4 +36,7 @@
       </case>
     </switch>
   </operation>
+   <operation name="findArtist" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
+      <switch/>
+   </operation>
 </Mediator>

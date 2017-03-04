@@ -1,18 +1,8 @@
-<?xml version="1.0" encoding="windows-1252" ?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo" targetNamespace="aced.cloud.demo"
-            elementFormDefault="qualified">
-            
-  <xsd:element name="findArtistRequestMessage" type="acd:findArtistRequestMessageType"/>
-  <xsd:element name="findArtistResponseMessage" type="acd:findArtistResponseMessageType"/>
-
-  <xsd:complexType name="findArtistRequestMessageType">
-    <xsd:sequence>
-      <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="findArtistResponseMessageType">
-    <xsd:sequence>
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response" targetNamespace="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="artist">
+      <xsd:complexType>
+         <xsd:sequence>
             <xsd:element name="spotifyId" type="xsd:string"/>
             <xsd:element name="name" type="xsd:string"/>
             <xsd:element name="genres" type="xsd:string"/>
@@ -29,6 +19,10 @@
                </xsd:complexType>
             </xsd:element>
          </xsd:sequence>
-  </xsd:complexType>
-
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=/C:/data/aced-cloud-demo-ofmw2016-valencia/SOACS-soap-interface/ProposedActsService/NewActProposalsServices/enrichedArtistResponse.json</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
 </xsd:schema>

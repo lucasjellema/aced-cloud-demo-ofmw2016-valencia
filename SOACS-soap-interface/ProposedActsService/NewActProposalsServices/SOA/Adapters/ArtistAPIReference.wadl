@@ -1,6 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference" xmlns="http://wadl.dev.java.net/2009/02"
- >
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference" xmlns="http://wadl.dev.java.net/2009/02">
    <doc title="ArtistAPIReference">RestReference</doc>
    <grammars>
       <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -17,7 +16,7 @@
         </schema>
    </grammars>
    <resources>
-      <resource path="/artists/artists/get">
+      <resource path="/artists/get">
          <method name="GET" soa:wsdlOperation="FetchArtistDetails">
             <request>
                <param name="artist" style="query" soa:expression="$msg.request/tns:param1" default="" type="xsd:string"/>
