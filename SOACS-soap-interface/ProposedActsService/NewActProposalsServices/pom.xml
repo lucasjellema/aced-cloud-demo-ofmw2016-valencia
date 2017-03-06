@@ -102,4 +102,55 @@
         </resources>
         <outputDirectory>SOA/SCA-INF/classes/</outputDirectory>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>SOA-Designtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>SOA-Runtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>BPEL-Runtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>Mediator-Runtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>MDS-Runtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>BC4J-Service-Runtime</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.adf.library</groupId>
+            <artifactId>SOA-Workflow</artifactId>
+            <version>12.1.3-0-0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

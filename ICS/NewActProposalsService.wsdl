@@ -1,45 +1,106 @@
-<?xml version= '1.0' encoding= 'UTF-8' ?>
-<wsdl:definitions
-     name="NewActProposalsService"
-     targetNamespace="aced.cloud.demo.ics"
-     xmlns:tns="aced.cloud.demo.ics"
-     xmlns:acd="aced.cloud.demo.ics"
-     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    >
-    <wsdl:types>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo.ics" targetNamespace="aced.cloud.demo.ics"
-            elementFormDefault="qualified">
-            
-  <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
-  <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
-
-  <xsd:complexType name="submitActProposalResponseMessageType">
-    <xsd:sequence>
-      <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
-    </xsd:sequence>
-  </xsd:complexType>
-
-  <xsd:complexType name="submitActProposalRequestMessageType">
-    <xsd:sequence>
-      <xsd:element name="artistName" type="xsd:string"/>
-      <xsd:element name="numberOfVotes" type="xsd:integer"/>
-      <xsd:element name="description" type="xsd:string"/>
-      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
-      <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
-    </xsd:sequence>
-  </xsd:complexType>
-
-</xsd:schema>    </wsdl:types>
-    <wsdl:message name="submitActProposalRequest">
-        <wsdl:part name="part1" element="acd:submitActProposalRequestMessage"/>
-    </wsdl:message>
-    <wsdl:message name="submitActProposalResponse">
-        <wsdl:part name="part1" element="acd:submitActProposalResponseMessage"/>
-    </wsdl:message>
-    <wsdl:portType name="NewActProposalsService">
-        <wsdl:operation name="submitActProposal">
-            <wsdl:input message="tns:submitActProposalRequest"/>
-            <wsdl:output message="tns:submitActProposalResponse"/>
-        </wsdl:operation>
-    </wsdl:portType>
-</wsdl:definitions>
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N2:definitions name="NewActProposalsService" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:WL5G3N1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N3="aced.cloud.demo" xmlns:WL5G3N4="http://schemas.xmlsoap.org/wsdl/soap/">
+<WL5G3N0:Policy WL5G3N1:Id="wss_username_token_over_ssl_service_policy">
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic128/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="false">
+<wsp:Policy/>
+</sp:HttpsToken>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:Layout>
+<wsp:Policy>
+<sp:Lax/>
+</wsp:Policy>
+</sp:Layout>
+<sp:IncludeTimestamp/>
+</wsp:Policy>
+</sp:TransportBinding>
+<sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+<sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+<wsp:Policy>
+<sp:WssUsernameToken10/>
+</wsp:Policy>
+</sp:UsernameToken>
+</wsp:Policy>
+</sp:SupportingTokens>
+</WL5G3N0:Policy>
+    <WL5G3N2:types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="aced.cloud.demo" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="aced.cloud.demo" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:acd="aced.cloud.demo" xmlns:tns="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="submitActProposalRequestMessage" type="acd:submitActProposalRequestMessageType"/>
+            <xsd:element name="submitActProposalResponseMessage" type="acd:submitActProposalResponseMessageType"/>
+            <xsd:element name="verifyExistenceProposalRequestMessage" type="acd:verifyExistenceProposalRequestMessageType"/>
+            <xsd:element name="verifyExistenceProposalResponseMessage" type="acd:verifyExistenceProposalResponseMessageType"/>
+            <xsd:complexType name="submitActProposalResponseMessageType">
+                <xsd:sequence>
+                    <xsd:element maxOccurs="1" minOccurs="1" name="proposedActId" type="xsd:integer"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="submitActProposalRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="numberOfVotes" type="xsd:integer"/>
+                    <xsd:element name="description" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="imageURL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="image" type="xsd:base64Binary"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="verifyExistenceProposalRequestMessageType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="verifyExistenceProposalResponseMessageType">
+                <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="proposalExistsYN" type="xsd:string"/>
+                    <xsd:element name="numberOfVotes" type="xsd:integer"/>
+                    <xsd:element name="registrationDate" type="xsd:date"/>
+                    <xsd:element name="description" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="imageURL" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </WL5G3N2:types>
+    <WL5G3N2:message name="verifyExistenceProposalRequest">
+        <WL5G3N2:part name="part1" element="WL5G3N3:verifyExistenceProposalRequestMessage"/>
+    </WL5G3N2:message>
+    <WL5G3N2:message name="verifyExistenceProposalResponse">
+        <WL5G3N2:part name="part1" element="WL5G3N3:verifyExistenceProposalResponseMessage"/>
+    </WL5G3N2:message>
+    <WL5G3N2:portType name="NewActProposalsService">
+        <WL5G3N2:operation name="verifyExistenceActProposal">
+            <WL5G3N2:input message="WL5G3N3:verifyExistenceProposalRequest"/>
+            <WL5G3N2:output message="WL5G3N3:verifyExistenceProposalResponse"/>
+        </WL5G3N2:operation>
+    </WL5G3N2:portType>
+    <WL5G3N2:binding name="NewActProposalsService-binding" type="WL5G3N3:NewActProposalsService">
+<WL5G3N0:Policy>
+<WL5G3N0:PolicyReference URI="#wss_username_token_over_ssl_service_policy"/>
+</WL5G3N0:Policy>
+        <WL5G3N4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <WL5G3N2:operation name="verifyExistenceActProposal">
+            <WL5G3N4:operation soapAction="aced.cloud.demo/verifyExistenceActProposal"/>
+            <WL5G3N2:input>
+                <WL5G3N4:body use="literal"/>
+            </WL5G3N2:input>
+            <WL5G3N2:output>
+                <WL5G3N4:body use="literal"/>
+            </WL5G3N2:output>
+        </WL5G3N2:operation>
+    </WL5G3N2:binding>
+    <WL5G3N2:service name="NewActProposalsService-bindingQSService">
+        <WL5G3N2:documentation>OSB Service</WL5G3N2:documentation>
+        <WL5G3N2:port name="NewActProposalsService-bindingQSPort" binding="WL5G3N3:NewActProposalsService-binding">
+            <WL5G3N4:address location="http://104.155.85.98/ics/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/"/>
+        </WL5G3N2:port>
+    </WL5G3N2:service>
+</WL5G3N2:definitions>

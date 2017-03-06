@@ -58,6 +58,8 @@
       </reference>
     </componentType>
     <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+    <property name="configuration.sensorLocation" type="xs:string" many="false">BPEL/NewActProposalProcessor_sensor.xml</property>
+    <property name="configuration.sensorActionLocation" type="xs:string" many="false">BPEL/NewActProposalProcessor_sensorAction.xml</property>
   </component>
   <component name="NewActProposalsMediator">
     <implementation.mediator src="Mediators/NewActProposalsMediator.mplan"/>

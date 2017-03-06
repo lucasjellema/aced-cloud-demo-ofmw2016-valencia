@@ -11,7 +11,11 @@ var http = require('http'),
     async = require('async')
 	;
 	
-var PORT = 5100;
+//var PORT = 5100;
+var PORT = process.env.PORT || 5100;
+
+var appVersion = "0.9.1";
+
 var spotifyAPI ='https://api.spotify.com/v1';
 var echoNestAPI = "http://developer.echonest.com/api/v4";
 var echoNestDeveloperKey = "0B3N8LMO4XG3BXPSY";
@@ -25,7 +29,7 @@ var app = express()
 		   .get('/', function (req, res) {
               console.log('request received: '+request.url);
               res.writeHead(200, {'Content-Type': 'text/html'});
-              res.write("Artist Enricher API - No Data Requested, so none is returned");
+              res.write("Artist Enricher API ("+appVersion+ ") - No Data Requested, so none is returned");
               res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
               res.end();
             })
@@ -36,6 +40,7 @@ console.log('server running on port ',PORT);
 
 function composeArtisResponse(res, artist) {
   res.statusCode =200;
+	res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(artist));
 }//composeArtisResponse
 
@@ -143,7 +148,10 @@ function handleArtists(req, res, artistName) {
 	      callback(err,'waterfall');
         }
 	  );//waterfall	
-      },
+      }
+			
+	/* ECHO NEST no longer available 
+			,
 	  // second function: call out to EchoNest
       function(callback){
 	     util.log('Start EchoNest Call');
@@ -153,7 +161,7 @@ function handleArtists(req, res, artistName) {
         request(searchURL + '?api_key='+echoNestDeveloperKey+'&format=json&name='+encodeURI(artistName)+'&results=1', function (error, response, body) {  
 	      // process response from EchoNest, to get the EchoNestArtistId
           if (error) {
-		  	  console.log("error in processing "+JSON.stringify(err));
+		  	  console.log("error in processing "+JSON.stringify(error));
               composeErrorResponse(res, error);
 		  }
           if (!error && response.statusCode == 200) {
@@ -177,8 +185,10 @@ function handleArtists(req, res, artistName) {
 	        callback(null, 'echonest issue'); // notify ASYNC that this task is complete
 		  }
 	    });// request echonest search plus callback
-      }
-], function(err, results){
+      } */
+]
+
+, function(err, results){
     if (err) {
 	  console.log("error in processing "+JSON.stringify(err));
       composeErrorResponse(res, err);

@@ -11,9 +11,10 @@
   "author": "Lucas Jellema",
   "license": "Apache Version 2.0",
   "dependencies": {
-    "express": "^4.13.4", 
-    "request": ">=2.69.0",
-    "async": ">=1.5.2"
+    "async": ">=1.5.2",
+    "body-parser": "^1.16.1",
+    "express": "^4.13.4",
+    "request": ">=2.69.0"
   },
   "engines": {
     "node": ">=0.12.7"

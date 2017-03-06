@@ -18,7 +18,7 @@ user=cloudace
 
 JCS/SOA CS:
 ===========
-Host: 129.144.151.143
+public host: 129.144.151.143
 
 
 
@@ -31,15 +31,39 @@ Worklist application:
 https://129.144.151.143/integration/worklistapp/faces/login.jspx
 (note: port 80 - while probably running on managed server/cluster)
 
-Datasource: jdbc/cloudace and  jdbc/cloudaceXA  (to DBaaS - cloudace schema)
+Datasource: jdbc/cloudaceDS,  jdbc/worldDS and  jdbc/cloudaceXA  (to DBaaS - cloudace schema)
 DB Adapter Connection: eis/DB/cloudace, eis/DB/cloudacex
 
+
+internal endpoint for webservice calls: http://soacs4emeapartner-jcs-wls-1:9073 
 
 ProposedActsService
 http://129.144.151.143/soa-infra/services/default/ProposedActsService/ProposedActsService?WSDL 
 
+
+
 NewActProposalService
 http://129.144.151.143/soa-infra/services/default/NewActProposalsServices/NewActProposalsService
+
+
+JCS
+===
+
+REST API for Logging (to be picked up by Log Analytics)
+
+http://129.144.151.143:80/WebLogicLoggerService/resources/logger/log
+
+
+context root: SoaringProposalManager
+
+ADF Application:
+
+http://129.144.151.143/SoaringProposalManager/
+
+
+REST API for retrieving news stories:
+
+http://129.144.151.143/SoaringTheWorldAtRestService/resources/world-rss/feed/nos
 
 
 
@@ -64,10 +88,82 @@ https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com
 fetch details on U2:
 https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com/artists/get?artist=u2
 
+(spotify API:  https://developer.spotify.com/web-api/ )
 
 
 -
 
+Event Hub Platform
+==================
+public IP:  	129.144.150.6
+
+connect descriptor: 	129.144.150.6:6667
+
+Zookeeper: port 2181
+
+REST proxy:  129.144.152.204	
+
+Topic: partnercloud17-SoaringEventBus 
+
+
+EH Service (== Topic)
+=====================
+https://psm.us.oraclecloud.com/psmui/faces/paasRunner.jspx?serviceType=OEHCS
+
+REST Endpoint for Topic SoaringEventBus 
+
+https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus
+
+
+REST for Service Management:
+https://psm.us.oraclecloud.com/paas/api/v1.1/instancemgmt/partnercloud17/services/cs/instances
+
+curl -I -X GET       -u "lucas.jellema@amis.nl:password"      -H "X-ID-TENANT-NAME: {partnercloud17}"      -H "Accept: application/json"       https://psm.us.oraclecloud.com/paas/api/v1.1/instancemgmt/partnercloud17/services/cs/instances
+
+
+
+
+REST API:  https://apicatalog.oraclecloud.com/ui/views/apicollection/oracle-public/oehcs-produce-consume/1.0/oehcs-produce-consume
+
+Doc on REST API:
+http://docs.oracle.com/cloud/latest/event-hub-cloud/EHKRA/api-Topics.html
+
+Doc Platform REST API: http://docs.oracle.com/cloud/latest/event-hub-cloud/EHPRA/index.html  
+
+Docs: http://docs.oracle.com/cloud/latest/event-hub-cloud/index.html 
+
+
+
+Using CLI
+---------
+- run Ubuntu VM
+- follow instructions for Python v3.3 : https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-ubuntu-16-04 
+- download CLI (http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/downloading-cli-using-rest-api.html)
+curl -X GET -u lucas.jellema@amis.nl:password -H X-ID-TENANT-NAME:partnercloud17 https://psm.us.oraclecloud.com/paas/core/api/v1.1/cli/partnercloud17/client -o psmcli.zip
+
+-- install
+sudo —H pip3 install -U psmcli.zip
+
+-- configure (http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/configuring-command-line-interface-1.html) 
+psm setup
+
+-- test
+psm --version
+
+
+-- accessing event hub through CLI: http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/oehcs-commands.html
+
+list all services (topics)
+psm oehcs services
+
+-- details for a single servicepsm oehcs service --service-name partnercloud17-SoaringEventBus
+
+
+
+IoT CS
+======
+identity domain: iotpartner217
+Service Console: https://iotpartner217-iotpartner217.iot.us.oraclecloud.com/ui/ 
 
 
 ===========================================================================
