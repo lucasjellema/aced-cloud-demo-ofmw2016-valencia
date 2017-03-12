@@ -32,7 +32,7 @@ function _zip() {
         .pipe(zip('frontend.zip'))
         .pipe(gulp.dest('dist'));
 }
-
+//Creates the optimized js bundle. 
 function _rjs() {
     return rjs({
         baseUrl: 'public',
