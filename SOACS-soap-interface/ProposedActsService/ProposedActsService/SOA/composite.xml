@@ -22,6 +22,10 @@
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">NEVER</property>
     </binding.ws>
   </service>
+  <service name="ProposedActsRestService" ui:wsdlLocation="WSDLs/ProposedActsService.wsdl">
+    <interface.wsdl interface="aced.cloud.demo#wsdl.interface(ProposedActsService)"/>
+    <binding.rest config="Adapters/ProposedActsRestService.wadl"/>
+  </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
   <property name="compositeID" type="xs:string" many="false">8bfa6439-ee41-4fd9-b7d6-51ee68473186</property>
   <component name="ProposedActsMediator">
@@ -65,5 +69,9 @@
   <wire>
     <source.uri>ProposedActsMediator/retrieveProposedActs</source.uri>
     <target.uri>retrieveProposedActs</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ProposedActsRestService</source.uri>
+    <target.uri>ProposedActsMediator/ProposedActsMediator</target.uri>
   </wire>
 </composite>

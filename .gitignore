@@ -1,4 +1,16 @@
 ACC/frontend/dist
 ACC/frontend/node_modules
+ACC/*/node_modules
 ACC/frontend/deploy
 ACC/frontend/bower_components
+
+classes/
+/.data/
+.data/
+.data/*
+
+*.class 
+*.jdb
+*.lck
+*.jar
+*.iar

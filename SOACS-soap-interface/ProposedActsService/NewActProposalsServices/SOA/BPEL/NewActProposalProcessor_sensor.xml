@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sensors targetNamespace="aced.cloud.demo" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="aced.cloud.demo" xmlns:pc="http://xmlns.oracle.com/bpel/sensor">
+   <sensor sensorName="InvokeArtistEnricherAPI" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="InvokeArtistEnricherAPI">
+      <activityConfig evalTime="activation"/>
+   </sensor>
+   <sensor sensorName="RecordProposal" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="PersistNewActProposal">
+      <activityConfig evalTime="all"/>
+   </sensor>
+   <sensor sensorName="PublishTweetOnNewProposal" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="InvokePublishTweet">
+      <activityConfig evalTime="all"/>
+   </sensor>
+   <sensor sensorName="FaultInTweeting" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="AssigMissingEnrichment">
+      <activityConfig evalTime="all"/>
+   </sensor>
+</sensors>

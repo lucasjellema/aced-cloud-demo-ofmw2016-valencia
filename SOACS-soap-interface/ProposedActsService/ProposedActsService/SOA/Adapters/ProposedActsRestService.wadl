@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:acd="aced.cloud.demo" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="ProposedActsRestService">ProposedActsRestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:acd="aced.cloud.demo" targetNamespace="aced.cloud.demo" elementFormDefault="qualified" xmlns:tns="aced.cloud.demo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            
+            
+
+  <xsd:element name="getProposedActsRequestMessage" type="acd:getProposedActsRequestMessageType"/>
+  <xsd:element name="getProposedActsResponseMessage" type="acd:getProposedActsResponseMessageType"/>
+
+  <xsd:element name="getProposedActDetailsRequestMessage" type="acd:getProposedActDetailsRequestMessageType"/>
+  <xsd:element name="getProposedActDetailsResponseMessage" type="acd:getProposedActDetailsResponseMessageType"/>
+            
+  <xsd:complexType name="getProposedActsRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="mininumNumberOfVotes" type="xsd:integer" minOccurs="0"/>
+      <xsd:element name="addedSince" type="xsd:date" minOccurs="0"/>
+      <xsd:element name="maxNumberOfProposals" type="xsd:integer" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActsResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActs" type="acd:proposedActsListType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActDetailsRequestMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActId" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="getProposedActDetailsResponseMessageType">
+    <xsd:sequence>
+      <xsd:element name="proposedActDetails" type="acd:proposedActDetailsType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="proposedActsListType">
+    <xsd:sequence>
+      <xsd:element name="ProposedActSummary" type="acd:proposedActSummaryType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="proposedActSummaryType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="registrationDate" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="proposedActDetailsType">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="numberOfVotes" type="xsd:integer"/>
+      <xsd:element name="registrationDate" type="xsd:date"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="genres" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="biography" type="xsd:string"/>
+      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="image" type="xsd:base64Binary" minOccurs="0"/>
+      <xsd:element name="discography">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="album" type="acd:albumType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="albumType">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string"/>
+      <xsd:element name="year" type="xsd:integer" minOccurs="0"/>
+      <xsd:element name="coverImageUrl" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:wsdlOperation="getProposedActs">
+            <request>
+               <param name="mininumNumberOfVotes" style="query" soa:expression="$msg.part1/acd:mininumNumberOfVotes" default="" type="xsd:integer"/>
+               <param name="addedSince" style="query" soa:expression="$msg.part1/acd:addedSince" default="" type="xsd:date"/>
+               <param name="maxNumberOfProposals" style="query" soa:expression="$msg.part1/acd:maxNumberOfProposals" default="" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:getProposedActsResponseMessage" xmlns:cns="aced.cloud.demo"/>
+               <representation mediaType="application/json" element="cns:getProposedActsResponseMessage" xmlns:cns="aced.cloud.demo"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/proposedacts">
+         <method name="GET" soa:wsdlOperation="getProposedActDetails">
+            <request>
+               <param name="proposedActId" style="query" soa:expression="$msg.part1/acd:proposedActId" default="" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:getProposedActDetailsResponseMessage" xmlns:cns="aced.cloud.demo"/>
+               <representation mediaType="application/json" element="cns:getProposedActDetailsResponseMessage" xmlns:cns="aced.cloud.demo"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

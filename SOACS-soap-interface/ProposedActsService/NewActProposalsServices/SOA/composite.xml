@@ -25,6 +25,8 @@
           location="WSDLs/ArtistEnricherAPIReference.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/ArtistsService.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/ArtistsServiceWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP"
+          location="WSDLs/TweetServiceSOAP.wsdl" importType="wsdl"/>
   <service name="NewActProposalsService" ui:wsdlLocation="WSDLs/NewActProposalsService.wsdl">
     <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
     <binding.ws port="aced.cloud.demo#wsdl.endpoint(NewActProposalsService/NewActProposalsService_pt)">
@@ -34,6 +36,12 @@
   <service name="ArtistEnricherMediator_ep" ui:wsdlLocation="WSDLs/ArtistsService.wsdl">
     <interface.wsdl interface="aced.cloud.demo#wsdl.interface(ArtistsService)"/>
     <binding.ws port="aced.cloud.demo#wsdl.endpoint(ArtistEnricherMediator_ep/ArtistsService_pt)"/>
+  </service>
+  <service name="TweetServiceSOAP" ui:wsdlLocation="WSDLs/TweetServiceSOAP.wsdl">
+    <interface.wsdl interface="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP#wsdl.interface(execute_ptt)"/>
+    <binding.ws port="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP#wsdl.endpoint(TweetServiceSOAP/execute_pt)">
+      <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">NEVER</property>
+    </binding.ws>
   </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
   <property name="compositeID" type="xs:string" many="false">a37feb43-7067-440d-9c2e-65064fa2154f</property>
@@ -87,6 +95,17 @@
       </reference>
     </componentType>
   </component>
+  <component name="TweetMediator">
+    <implementation.mediator src="Mediators/TweetMediator.mplan"/>
+    <componentType>
+      <service name="TweetMediator" ui:wsdlLocation="WSDLs/TweetServiceSOAP.wsdl">
+        <interface.wsdl interface="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP#wsdl.interface(execute_ptt)"/>
+      </service>
+      <reference name="TweetNewArtistProposal" ui:wsdlLocation="WSDLs/TweetNewArtistProposal.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal#wsdl.interface(TweetNewArtistProposal_ptt)"/>
+      </reference>
+    </componentType>
+  </component>
   <reference name="submitNewActProposal" ui:wsdlLocation="WSDLs/submitNewActProposal.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal#wsdl.interface(submitNewActProposal_ptt)"/>
     <binding.jca config="Adapters/submitNewActProposal_db.jca"/>
@@ -111,7 +130,7 @@
   <reference name="TweetNewArtistProposal" ui:wsdlLocation="WSDLs/TweetNewArtistProposal.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal#wsdl.interface(TweetNewArtistProposal_ptt)"/>
     <binding.rest config="Adapters/TweetNewArtistProposal.wadl"
-                  location="http://104.155.85.98/ics/integration/flowapi/rest/TWEET_MESSAGE_VIA_SAIBOTAI/v01"/>
+                  location="https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01"/>
   </reference>
   <reference name="ArtistEnricherAPIReference" ui:wsdlLocation="WSDLs/ArtistEnricherAPIReference.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference#wsdl.interface(ArtistEnricherAPIReference_ptt)"/>
@@ -153,5 +172,13 @@
   <wire>
     <source.uri>NewActProposalProcessor/ArtistEnricherMediator.ArtistEnricherMediator</source.uri>
     <target.uri>ArtistEnricherMediator/ArtistEnricherMediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>TweetServiceSOAP</source.uri>
+    <target.uri>TweetMediator/TweetMediator</target.uri>
+  </wire>
+  <wire>
+    <source.uri>TweetMediator/TweetNewArtistProposal</source.uri>
+    <target.uri>TweetNewArtistProposal</target.uri>
   </wire>
 </composite>

@@ -118,7 +118,7 @@ https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus
 REST for Service Management:
 https://psm.us.oraclecloud.com/paas/api/v1.1/instancemgmt/partnercloud17/services/cs/instances
 
-curl -I -X GET       -u "lucas.jellema@amis.nl:password"      -H "X-ID-TENANT-NAME: {partnercloud17}"      -H "Accept: application/json"       https://psm.us.oraclecloud.com/paas/api/v1.1/instancemgmt/partnercloud17/services/cs/instances
+curl -I -X GET       -u "lucas.jellema@amis.nl:password"      -H "X-ID-TENANT-NAME: partnercloud17"      -H "Accept: application/json"       https://psm.us.oraclecloud.com/paas/api/v1.1/instancemgmt/partnercloud17/services/cs/instances
 
 
 
@@ -133,30 +133,57 @@ Doc Platform REST API: http://docs.oracle.com/cloud/latest/event-hub-cloud/EHPRA
 Docs: http://docs.oracle.com/cloud/latest/event-hub-cloud/index.html 
 
 
+See SOAP UI:
 
-Using CLI
----------
-- run Ubuntu VM
-- follow instructions for Python v3.3 : https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-ubuntu-16-04 
-- download CLI (http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/downloading-cli-using-rest-api.html)
-curl -X GET -u lucas.jellema@amis.nl:password -H X-ID-TENANT-NAME:partnercloud17 https://psm.us.oraclecloud.com/paas/core/api/v1.1/cli/partnercloud17/client -o psmcli.zip
+produce messages
 
--- install
-sudo —H pip3 install -U psmcli.zip
+consume message from partition
+create consumer instance
 
--- configure (http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/configuring-command-line-interface-1.html) 
-psm setup
-
--- test
-psm --version
+http://docs.oracle.com/cloud/latest/event-hub-cloud/EHKRA/op-restproxy-consumers-%7BgroupName%7D-post.html
 
 
+consume messages in consumer group as consumer instance
+
+
+using CLI: PSM
 -- accessing event hub through CLI: http://docs.oracle.com/en/cloud/paas/java-cloud/pscli/oehcs-commands.html
 
 list all services (topics)
 psm oehcs services
 
--- details for a single servicepsm oehcs service --service-name partnercloud17-SoaringEventBus
+-- details for a single service
+psm oehcs service --service-name partnercloud17-SoaringEventBus
+psm oehcs service --service-name SoaringEventBus
+
+topic: partnercloud17-SoaringEventBus
+
+Rest Proxy URI:
+https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus
+
+
+creating a consumer instance - response:
+{
+   "instance_id": "my_consumer",
+   "base_uri": "http://localhost:8082/consumers/ConsumerGroupA/instances/my_consumer"
+}
+
+/restproxy/consumers/ConsumerGroupA/instances/my_consumer/topics/partnercloud17-SoaringEventBus
+
+
+API Platform CS
+===============
+
+https://129.144.150.67:7002/console
+
+https://129.144.150.67:7202/apiplatform
+
+weblogic/1PaaS5pl1t
+
+
+DevCS
+=====
+https://developer.us2.oraclecloud.com/developer85307-partnercloud17 
 
 
 
@@ -164,6 +191,12 @@ IoT CS
 ======
 identity domain: iotpartner217
 Service Console: https://iotpartner217-iotpartner217.iot.us.oraclecloud.com/ui/ 
+
+
+OMC
+===
+https://myservices.us2.oraclecloud.com/mycloud/faces/dashboard.jspx
+
 
 
 ===========================================================================

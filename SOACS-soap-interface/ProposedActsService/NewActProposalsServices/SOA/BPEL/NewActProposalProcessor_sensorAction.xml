@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<actions targetNamespace="aced.cloud.demo" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="aced.cloud.demo" xmlns:pc="http://xmlns.oracle.com/bpel/sensor">
+   <action name="LogToLogger" publishName="" publishType="Custom" enabled="true" filter="" publishTarget="soaring.clouds.SensorLogger">
+      <sensorName>InvokeArtistEnricherAPI</sensorName>
+      <sensorName>RecordProposal</sensorName>
+      <sensorName>PublishTweetOnNewProposal</sensorName>
+      <sensorName>FaultInTweeting</sensorName>
+   </action>
+</actions>
