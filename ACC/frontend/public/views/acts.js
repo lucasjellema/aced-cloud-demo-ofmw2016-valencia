@@ -52,9 +52,8 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
         }
         function drill(moduleParams, event, ui) {
             var row = ui.value;
-            var id = row[0]();
+            var id = row[0];
             moduleParams.drillModel.drillId(id);
             moduleParams.drillModel.currentModule("details");
         }
-
     });
