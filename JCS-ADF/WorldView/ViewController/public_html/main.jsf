@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <af:document title="main.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="50px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Header -->
+                        <af:panelHeader text="The World" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:outputFormatted id="otf" value="#{mainBean.welcome}" />
+                            <af:image source="images/3dchess_javafx.png" id="i1"/>
+                            <af:image source="images/imaginary-image.png" id="i2"/>
+                        </af:panelHeader>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Content -->
+                        <af:decorativeBox id="db1">
+                            <f:facet name="center">
+                            <af:panelHeader text="Areas of interest" id="ph2">
+                                    <h:graphicImage url="https://0.s3.envato.com/files/54406840/590x590.jpg"
+                                                    height="100" width="100" id="gi1"/>
+                                    <af:button text="Map" id="b1" action="map" partialSubmit="false"/>
+                                    <af:button text="News" id="b2" action="news" partialSubmit="false"/>
+                                    <af:button text="Countries Catalog" id="b3" action="catalog" partialSubmit="false"/>
+                                    <af:button text="Errors" id="b4" action="errors" partialSubmit="false"/>
+                                    <af:link text="Worldly Talk" id="l1" destination="/worldlytalk"/>
+                                </af:panelHeader>
+                            </f:facet>
+                            <f:facet name="top"/>
+                        </af:decorativeBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

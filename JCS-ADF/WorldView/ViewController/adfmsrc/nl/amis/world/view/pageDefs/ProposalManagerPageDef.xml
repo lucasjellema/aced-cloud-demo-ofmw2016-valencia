@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="ProposalManagerPageDef"
+                Package="nl.amis.world.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ProposedActsView2" RangeSize="25" DataControl="SoaringProposalServiceDataControl"
+              id="ProposedActsView2Iterator"/>
+    <searchRegion Binds="ProposedActsView2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ProposedActsView2Query"/>
+    <iterator Binds="AlbumsView2" RangeSize="25" DataControl="SoaringProposalServiceDataControl"
+              id="AlbumsView2Iterator"/>
+    <searchRegion Binds="AlbumsView2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="AlbumsView2Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="ProposedActsView2Iterator" id="ProposedActsView2">
+      <nodeDefinition DefName="nl.amis.world.model.ProposedActsView" Name="ProposedActsView20">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="ProposalTimestamp"/>
+          <Item Value="Description"/>
+          <Item Value="Genres"/>
+          <Item Value="NumberOfVotes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="AlbumsView2Iterator" id="AlbumsView2">
+      <nodeDefinition DefName="nl.amis.world.model.AlbumsView" Name="AlbumsView20">
+        <AttrNames>
+          <Item Value="Title"/>
+          <Item Value="ReleaseDate"/>
+          <Item Value="Coverimageurl"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="SoaringProposalServiceDataControl"/>
+  </bindings>
+</pageDefinition>

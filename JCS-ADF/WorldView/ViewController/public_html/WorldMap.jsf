@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces" xmlns:h="http://java.sun.com/jsf/html">
+    <af:document title="WorldMap.jsf" id="d1">
+  <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="70px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Header -->
+                        <af:panelHeader text="Map of The World" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:outputFormatted id="otf" value="Presented to our special guest #{mainBean.welcome}" />
+                            <af:button text="Main"  id="b1" action="main"/>
+                        </af:panelHeader>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Content -->
+                        <af:decorativeBox id="db1">
+                            <f:facet name="center">
+                            <af:panelHeader text="Map" id="ph2">
+                                    <dvt:thematicMap basemap="world" id="tm1" summary="Countries of the World">
+                                        <dvt:areaLayer layer="countries" id="al1"/>
+                                    </dvt:thematicMap>
+                                </af:panelHeader>
+                            </f:facet>
+                            <f:facet name="top"/>
+                        </af:decorativeBox>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

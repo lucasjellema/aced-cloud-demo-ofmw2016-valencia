@@ -9,6 +9,8 @@ https://myservices.us.oraclecloud.com/mycloud/partnercloud17/faces/dashboard.jsp
 LJ: +3
 
 
+passphrase keys: welcome1
+
 DBaaS:
 ======
 Host: 129.144.152.41

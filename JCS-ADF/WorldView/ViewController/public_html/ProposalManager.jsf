@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="ProposalManager.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="80px" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Header -->
+                        <af:panelHeader text="Soaring through the Clouds - Artist Proposals Manager" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:button text="Main" id="b1" action="main"/>
+                            <af:button actionListener="#{bindings.Commit.execute}" text="Save changes"
+                                       disabled="#{!bindings.Commit.enabled}" id="b2"/>
+                            <af:link text="Index" id="l1" destination="index.html"/>
+                            <af:outputText id="otl" value="#{requestScope.loggerBean.someValue}"/>
+                        </af:panelHeader>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="300">
+                            <f:facet name="first">
+                                <af:panelCollection id="pc1">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.ProposedActsView2.collectionModel}" var="row"
+                                              rows="#{bindings.ProposedActsView2.rangeSize}"
+                                              emptyText="#{bindings.ProposedActsView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0" fetchSize="#{bindings.ProposedActsView2.rangeSize}"
+                                              selectedRowKeys="#{bindings.AlbumsView1.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.AlbumsView1.collectionModel.makeCurrent}"
+                                              filterModel="#{bindings.ProposedActsView2Query.queryDescriptor}"
+                                              queryListener="#{bindings.ProposedActsView2Query.processQuery}"
+                                              filterVisible="true" varStatus="vs" id="t1" rowSelection="single">
+                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.Name.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ProposedActsView2.hints.Name.label}" id="c1">
+                                            <af:inputText value="#{row.bindings.Name.inputValue}"
+                                                          label="#{bindings.ProposedActsView2.hints.Name.label}"
+                                                          required="#{bindings.ProposedActsView2.hints.Name.mandatory}"
+                                                          columns="#{bindings.ProposedActsView2.hints.Name.displayWidth}"
+                                                          maximumLength="#{bindings.ProposedActsView2.hints.Name.precision}"
+                                                          shortDesc="#{bindings.ProposedActsView2.hints.Name.tooltip}"
+                                                          id="it1">
+                                                <f:validator binding="#{row.bindings.Name.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.ProposalTimestamp.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ProposedActsView2.hints.ProposalTimestamp.label}"
+                                                   id="c2">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.ProposedActsView2Query.queryDescriptor.filterConjunctionCriterion.criterionMap.ProposalTimestamp.value}"
+                                                              id="id1">
+                                                    <af:convertDateTime pattern="#{bindings.ProposedActsView2.hints.ProposalTimestamp.format}"/>
+                                                </af:inputDate>
+                                            </f:facet>
+                                            <af:inputDate value="#{row.bindings.ProposalTimestamp.inputValue}"
+                                                          label="#{bindings.ProposedActsView2.hints.ProposalTimestamp.label}"
+                                                          required="#{bindings.ProposedActsView2.hints.ProposalTimestamp.mandatory}"
+                                                          columns="#{bindings.ProposedActsView2.hints.ProposalTimestamp.displayWidth}"
+                                                          shortDesc="#{bindings.ProposedActsView2.hints.ProposalTimestamp.tooltip}"
+                                                          id="id2">
+                                                <f:validator binding="#{row.bindings.ProposalTimestamp.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.ProposedActsView2.hints.ProposalTimestamp.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.Description.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ProposedActsView2.hints.Description.label}"
+                                                   id="c3">
+                                            <af:inputText value="#{row.bindings.Description.inputValue}"
+                                                          label="#{bindings.ProposedActsView2.hints.Description.label}"
+                                                          required="#{bindings.ProposedActsView2.hints.Description.mandatory}"
+                                                          columns="#{bindings.ProposedActsView2.hints.Description.displayWidth}"
+                                                          maximumLength="#{bindings.ProposedActsView2.hints.Description.precision}"
+                                                          shortDesc="#{bindings.ProposedActsView2.hints.Description.tooltip}"
+                                                          id="it2">
+                                                <f:validator binding="#{row.bindings.Description.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.Genres.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ProposedActsView2.hints.Genres.label}"
+                                                   id="c4">
+                                            <af:inputText value="#{row.bindings.Genres.inputValue}"
+                                                          label="#{bindings.ProposedActsView2.hints.Genres.label}"
+                                                          required="#{bindings.ProposedActsView2.hints.Genres.mandatory}"
+                                                          columns="#{bindings.ProposedActsView2.hints.Genres.displayWidth}"
+                                                          maximumLength="#{bindings.ProposedActsView2.hints.Genres.precision}"
+                                                          shortDesc="#{bindings.ProposedActsView2.hints.Genres.tooltip}"
+                                                          id="it3">
+                                                <f:validator binding="#{row.bindings.Genres.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.NumberOfVotes.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.ProposedActsView2.hints.NumberOfVotes.label}"
+                                                   id="c5">
+                                            <af:inputText value="#{row.bindings.NumberOfVotes.inputValue}"
+                                                          label="#{bindings.ProposedActsView2.hints.NumberOfVotes.label}"
+                                                          required="#{bindings.ProposedActsView2.hints.NumberOfVotes.mandatory}"
+                                                          columns="#{bindings.ProposedActsView2.hints.NumberOfVotes.displayWidth}"
+                                                          maximumLength="#{bindings.ProposedActsView2.hints.NumberOfVotes.precision}"
+                                                          shortDesc="#{bindings.ProposedActsView2.hints.NumberOfVotes.tooltip}"
+                                                          id="it4">
+                                                <f:validator binding="#{row.bindings.NumberOfVotes.validator}"/>
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.ProposedActsView2.hints.NumberOfVotes.format}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </f:facet>
+                            <f:facet name="second">
+                                <af:panelCollection id="pc2">
+                                    <f:facet name="menus"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="statusbar"/>
+                                    <af:table value="#{bindings.AlbumsView2.collectionModel}" var="row"
+                                              rows="#{bindings.AlbumsView2.rangeSize}"
+                                              emptyText="#{bindings.AlbumsView2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                              rowBandingInterval="0"
+                                              selectedRowKeys="#{bindings.AlbumsView2.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.AlbumsView2.collectionModel.makeCurrent}"
+                                              rowSelection="single" fetchSize="#{bindings.AlbumsView2.rangeSize}"
+                                              filterModel="#{bindings.AlbumsView2Query.queryDescriptor}"
+                                              queryListener="#{bindings.AlbumsView2Query.processQuery}"
+                                              filterVisible="true" varStatus="vs" id="t2">
+                                        <af:column sortProperty="#{bindings.AlbumsView2.hints.Title.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.AlbumsView2.hints.Title.label}" id="c6">
+                                            <af:inputText value="#{row.bindings.Title.inputValue}"
+                                                          label="#{bindings.AlbumsView2.hints.Title.label}"
+                                                          required="#{bindings.AlbumsView2.hints.Title.mandatory}"
+                                                          columns="#{bindings.AlbumsView2.hints.Title.displayWidth}"
+                                                          maximumLength="#{bindings.AlbumsView2.hints.Title.precision}"
+                                                          shortDesc="#{bindings.AlbumsView2.hints.Title.tooltip}"
+                                                          id="it5">
+                                                <f:validator binding="#{row.bindings.Title.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.AlbumsView2.hints.ReleaseDate.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.AlbumsView2.hints.ReleaseDate.label}" id="c7">
+                                            <f:facet name="filter">
+                                                <af:inputDate value="#{bindings.AlbumsView2Query.queryDescriptor.filterConjunctionCriterion.criterionMap.ReleaseDate.value}"
+                                                              id="id3">
+                                                    <af:convertDateTime pattern="#{bindings.AlbumsView2.hints.ReleaseDate.format}"/>
+                                                </af:inputDate>
+                                            </f:facet>
+                                            <af:inputDate value="#{row.bindings.ReleaseDate.inputValue}"
+                                                          label="#{bindings.AlbumsView2.hints.ReleaseDate.label}"
+                                                          required="#{bindings.AlbumsView2.hints.ReleaseDate.mandatory}"
+                                                          columns="#{bindings.AlbumsView2.hints.ReleaseDate.displayWidth}"
+                                                          shortDesc="#{bindings.AlbumsView2.hints.ReleaseDate.tooltip}"
+                                                          id="id4">
+                                                <f:validator binding="#{row.bindings.ReleaseDate.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.AlbumsView2.hints.ReleaseDate.format}"/>
+                                            </af:inputDate>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.AlbumsView2.hints.Coverimageurl.name}"
+                                                   filterable="true" sortable="true"
+                                                   headerText="#{bindings.AlbumsView2.hints.Coverimageurl.label}"
+                                                   id="c8">
+                                            <af:inputText value="#{row.bindings.Coverimageurl.inputValue}"
+                                                          label="#{bindings.AlbumsView2.hints.Coverimageurl.label}"
+                                                          required="#{bindings.AlbumsView2.hints.Coverimageurl.mandatory}"
+                                                          columns="#{bindings.AlbumsView2.hints.Coverimageurl.displayWidth}"
+                                                          maximumLength="#{bindings.AlbumsView2.hints.Coverimageurl.precision}"
+                                                          shortDesc="#{bindings.AlbumsView2.hints.Coverimageurl.tooltip}"
+                                                          id="it6">
+                                                <f:validator binding="#{row.bindings.Coverimageurl.validator}"/>
+                                            </af:inputText>
+                                        </af:column>
+                                    </af:table>
+                                </af:panelCollection>
+                            </f:facet>
+                        </af:panelSplitter>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

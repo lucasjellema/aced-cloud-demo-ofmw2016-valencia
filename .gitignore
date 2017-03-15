@@ -7,10 +7,13 @@ ACC/frontend/bower_components
 classes/
 /.data/
 .data/
-.data/*
-
+.data/*/
+/*/classes/
+*/classes/
 *.class 
 *.jdb
 *.lck
 *.jar
 *.iar
+*.jdb
+*.lck
