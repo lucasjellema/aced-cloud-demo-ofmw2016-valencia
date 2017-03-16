@@ -14,7 +14,8 @@
     "async": ">=1.5.2",
     "body-parser": "^1.16.1",
     "express": "^4.13.4",
-    "request": ">=2.69.0"
+    "node-rest-client": "^3.0.3",
+    "request": "^2.81.0"
   },
   "engines": {
     "node": ">=0.12.7"
