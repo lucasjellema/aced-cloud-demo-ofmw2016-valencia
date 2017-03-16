@@ -67,8 +67,8 @@ cacheAPI.registerListeners =
             console.log('Cache-API PUT - now show params');
             console.log('Cache-API PUT params '+JSON.stringify(req.params));
            
-         	var keyString = req.query['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
-
+         	var keyString = req.params['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
+console.log("keystring "+keyString);
             var valString = req.body.value;
 
             // Build the args for the request
@@ -80,7 +80,10 @@ cacheAPI.registerListeners =
 
             // Issue the PUT -- the callback will return the response to the user
             route_options.method = "PUT";
-            route_options.uri = baseCCSURL.concat('/').concat(cacheName).concat('/').concat(keyString);
+//            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(keyString);
+            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat("TheKey");
+console.log("Target URL "+route_options.uri);
+
             route_options.body = args.data;
             route_options.headers = args.headers;
 
@@ -88,7 +91,7 @@ cacheAPI.registerListeners =
 
             request(route_options, function (error, rawResponse, body) {
                 if (error) {
-                    console.log(error);
+                    console.log(JSON.stringify(error));
                 } else {
                     console.log(rawResponse.statusCode);
                     console.log("BODY:" + JSON.stringify(body));
