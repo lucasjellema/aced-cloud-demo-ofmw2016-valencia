@@ -5,4 +5,4 @@ settings.PORT= 5100;  // Note: 5100 for running locally, 80 for running in the c
 
 settings.logFile = 'mediator-proxy.txt';
 
-settings.APP_VERSION = "0.1.23";
+settings.APP_VERSION = "0.1.25";

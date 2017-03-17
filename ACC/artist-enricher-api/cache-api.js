@@ -6,6 +6,7 @@ var https = require('https'),
     qs = require('querystring'),
     bodyParser = require('body-parser')
     ;
+var logger = require("./logger.js");
 
 var mv = require('./multivalue.js');
 // not available locally, only on ACCS 
@@ -19,7 +20,7 @@ var settings = require("./proxy-settings.js");
 
 var cacheAPI = module.exports;
 var apiURL = "/cache-api";
-
+var moduleName = "accs.cacheAPI";
 
 var CCSHOST = process.env.CACHING_INTERNAL_CACHE_URL || "dummy_host";
 //var CCSHOST = "/";
@@ -40,6 +41,7 @@ cacheAPI.registerListeners =
             console.log('Cache-API GET params ' + JSON.stringify(req.params));
             var keyString = req.params['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
             console.log("keystring " + keyString);
+            logger.log("request value from cache under key "+keyString,moduleName, logger.DEBUG);
 
             var route_options = {};
 
@@ -62,6 +64,7 @@ cacheAPI.registerListeners =
                     // If nothing there, return not found
                     if (rawResponse.statusCode == 404) {
                         responseBody['error'] = 'Key not found error.';
+                        logger.log("failed cache request for key "+keyString,moduleName, logger.INFO);
                     }
                     else {
                         // Create the response to the caller.
@@ -83,6 +86,7 @@ cacheAPI.registerListeners =
             console.log("content type " + req.headers['content-type']);
             var keyString = req.params['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
             console.log("keystring " + keyString);
+            logger.log("stored value in cache for key "+keyString,moduleName, logger.INFO);
             var valString = JSON.stringify(req.body);
             console.log("value submitted in PUT to be stored in Cache" + valString);
 

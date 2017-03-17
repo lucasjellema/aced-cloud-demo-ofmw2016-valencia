@@ -14,6 +14,8 @@ var http = require('http'),
 var settings = require("./proxy-settings.js");
 
 var cacheAPI = require("./cache-api.js");
+var logger = require("./logger.js");
+var moduleName = "accs.ArtistEnricher-API";
 
 
 //var PORT = 5100;
@@ -38,34 +40,37 @@ console.log('server running on port ', PORT);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: '*/*' }));
 app.use(function (request, response, next) {
-  response.setHeader('Access-Control-Allow-Origin', '*');
-  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  response.setHeader('Access-Control-Allow-Credentials', true);
-  next();
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	response.setHeader('Access-Control-Allow-Credentials', true);
+	next();
 });
 cacheAPI.registerListeners(app);
+logger.registerListeners(app);
 
 
 app.get('/artists/:artistName', function (req, res) {
 	var artistName = req.query['artist'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
+	logger.log("Retrieved enriched data for " + artistName, moduleName, logger.INFO);
+
 	handleArtists(req, res, artistName);
 });
-	app.get('/about', function (req, res) {
-		res.writeHead(200, { 'Content-Type': 'text/html' });
-		res.write("About Artist Enricher API, Version " + settings.APP_VERSION + ". No Data Requested, so none is returned. ");
-		res.write("Supported URLs:");
-		res.write("/cache-api/about , /artists/:artistName");
-		res.write("incoming headers" + JSON.stringify(req.headers));
-		res.end();
-	});
-	app.get('/', function (req, res) {
-		console.log('request received: ' + req.url);
-		res.writeHead(200, { 'Content-Type': 'text/html' });
-		res.write("Artist Enricher API (" + appVersion + ") - No Data Requested, so none is returned");
-		res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
-		res.end();
-	});
+app.get('/about', function (req, res) {
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write("About Artist Enricher API, Version " + settings.APP_VERSION + ". No Data Requested, so none is returned. ");
+	res.write("Supported URLs:");
+	res.write("/cache-api/about , /artists/:artistName");
+	res.write("incoming headers" + JSON.stringify(req.headers));
+	res.end();
+});
+app.get('/', function (req, res) {
+	console.log('request received: ' + req.url);
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write("Artist Enricher API (" + appVersion + ") - No Data Requested, so none is returned");
+	res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
+	res.end();
+});
 
 
 
@@ -78,6 +83,7 @@ function composeArtisResponse(res, artist) {
 }//composeArtisResponse
 
 function composeErrorResponse(res, err) {
+	logger.log("Error in compsing artist response: " + JSON.stringify(err), moduleName, logger.ERROR);
 	res.statusCode = 500;
 	res.send('An internal error occurred: ' + JSON.stringify(err));
 }//composeErrorResponse
@@ -97,6 +103,7 @@ function handleArtists(req, res, artistName) {
 					request(artistUrl, function handleSpotifySearchResponse(error, response, body) {
 						if (error) {
 							console.log("error in processing " + JSON.stringify(error));
+							logger.log("Error in processing artist enrichment: " + JSON.stringify(err), moduleName, logger.ERROR);
 							callback(error, artist.spotifyId);
 						}
 
@@ -119,9 +126,9 @@ function handleArtists(req, res, artistName) {
 					});// request
 				}, // go collect list of albums by this artist
 				function (artistSpotifyId, callback) {
-          /* now get discography - the most recent 50 albums (the maximum we can collect in one call)
-   	         https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/albums?limit=50&album_type=album	  
-	       */
+					/* now get discography - the most recent 50 albums (the maximum we can collect in one call)
+							 https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2/albums?limit=50&album_type=album	  
+					 */
 					var albumsURL = spotifyAPI + '/artists/' + artistSpotifyId + '/albums' + '?limit=50&album_type=album';
 					artist.albums = [];
 					request(albumsURL, function (error, response, body) {
@@ -223,6 +230,7 @@ function handleArtists(req, res, artistName) {
 
 		, function (err, results) {
 			if (err) {
+				logger.log("Error in processing artist enrichment: " + JSON.stringify(err), moduleName, logger.ERROR);
 				console.log("error in processing " + JSON.stringify(err));
 				composeErrorResponse(res, err);
 			}
