@@ -17,7 +17,7 @@ var cacheAPI = require("./cache-api.js");
 
 
 //var PORT = 5100;
-var PORT = process.env.PORT || 5100;
+var PORT = process.env.PORT || 5101;
 
 var appVersion = "0.9.1";
 
@@ -33,19 +33,17 @@ server.listen(PORT, function () {
 	console.log('Server running, version ' + settings.APP_VERSION + ', Express is listening... at ' + PORT + " for Artist Enricher API");
 });
 
-var allowCrossDomain = function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-	res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
-	res.header('Access-Control-Allow-Credentials', true);
-	next();
-}
 
 console.log('server running on port ', PORT);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: '*/*' }));
-app.use(allowCrossDomain);
-
+app.use(function (request, response, next) {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  response.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 cacheAPI.registerListeners(app);
 
 
@@ -62,7 +60,7 @@ app.get('/artists/:artistName', function (req, res) {
 		res.end();
 	});
 	app.get('/', function (req, res) {
-		console.log('request received: ' + request.url);
+		console.log('request received: ' + req.url);
 		res.writeHead(200, { 'Content-Type': 'text/html' });
 		res.write("Artist Enricher API (" + appVersion + ") - No Data Requested, so none is returned");
 		res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
