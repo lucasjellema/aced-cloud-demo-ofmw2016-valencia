@@ -7,10 +7,10 @@ var logger = module.exports;
 var loggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/log";
 var apiURL = "/logger-api";
 
-logger.DEBUG ="debug";
-logger.INFO ="info";
-logger.WARN ="warning";
-logger.ERROR ="error";
+logger.DEBUG = "debug";
+logger.INFO = "info";
+logger.WARN = "warning";
+logger.ERROR = "error";
 
 logger.log =
     function (message, moduleName, loglevel) {
@@ -24,12 +24,12 @@ logger.log =
   	
   }
   */
-var logRecord = {
-                "logLevel": loglevel
-                , "module": "soaring.clouds." + moduleName
-                , "message": message
+        var logRecord = {
+            "logLevel": loglevel
+            , "module": "soaring.clouds." + moduleName
+            , "message": message
 
-            };
+        };
         var args = {
             data: JSON.stringify(logRecord),
             headers: { "Content-Type": "application/json" }
@@ -55,14 +55,31 @@ var logRecord = {
                 console.log(rawResponse.statusCode);
                 console.log("BODY:" + JSON.stringify(body));
             }//else
+            var msg = {
+                "records": [{
+                    "key": "log", "value": {
+                        "logLevel": loglevel
+                        , "module": "soaring.clouds." + moduleName
+                        , "message": message
+
+                    }
+                }]
+            };
+
+            postMessagesToEventHub(msg
+                , function (response) {
+                    console.log("Published log-record to Kafka- response" + JSON.stringify(response));
+                });
+
+
         });//request
 
 
     }//logger.log
 
-    logger.registerListeners =
+logger.registerListeners =
     function (app) {
-        app.post(apiURL , function (req, res) {
+        app.post(apiURL, function (req, res) {
             // Get the key and value
             console.log('Logger-API POST - now show params');
             console.log('body in request' + JSON.stringify(req.body));
@@ -70,12 +87,12 @@ var logRecord = {
             var logRecord = req.body;
             console.log("value submitted in POST to be logged " + JSON.stringify(logRecord));
             logger.log(logRecord.message, logRecord.module, logRecord.logLevel);
-                    var responseBody = {};
-                        responseBody['status'] = 'Successful.';
-                    // Send the response
-                    res.json(responseBody).end();
+            var responseBody = {};
+            responseBody['status'] = 'Successful.';
+            // Send the response
+            res.json(responseBody).end();
 
         });//post
     }//registerListeners
 
-        console.log("Logger API (version " + settings.APP_VERSION + ") initialized at " + apiURL + " running against Logger Service URL " + loggerRESTAPIURL);
+console.log("Logger API (version " + settings.APP_VERSION + ") initialized at " + apiURL + " running against Logger Service URL " + loggerRESTAPIURL);

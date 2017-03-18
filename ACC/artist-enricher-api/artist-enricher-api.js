@@ -14,6 +14,7 @@ var http = require('http'),
 var settings = require("./proxy-settings.js");
 
 var cacheAPI = require("./cache-api.js");
+var eventhubAPI = require("./eventhub-api.js");
 var logger = require("./logger.js");
 var moduleName = "accs.ArtistEnricher-API";
 
@@ -47,6 +48,7 @@ app.use(function (request, response, next) {
 	next();
 });
 cacheAPI.registerListeners(app);
+eventhubAPI.registerListeners(app);
 logger.registerListeners(app);
 
 
@@ -56,11 +58,19 @@ app.get('/artists/:artistName', function (req, res) {
 
 	handleArtists(req, res, artistName);
 });
+app.get('/artists/like/:artistName', function (req, res) {
+	var artistName = req.params['artistName'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
+	logger.log("Register like for proposal for " + artistName, moduleName, logger.INFO);
+
+	handleLikeForArtist(req, res, artistName);
+});
+
 app.get('/about', function (req, res) {
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write("About Artist Enricher API, Version " + settings.APP_VERSION + ". No Data Requested, so none is returned. ");
 	res.write("Supported URLs:");
 	res.write("/cache-api/about , /artists/:artistName");
+	res.write("/artists/like/:artistName");
 	res.write("incoming headers" + JSON.stringify(req.headers));
 	res.end();
 });
@@ -83,11 +93,21 @@ function composeArtisResponse(res, artist) {
 }//composeArtisResponse
 
 function composeErrorResponse(res, err) {
-	logger.log("Error in compsing artist response: " + JSON.stringify(err), moduleName, logger.ERROR);
+	logger.log("Error in composing artist response: " + JSON.stringify(err), moduleName, logger.ERROR);
 	res.statusCode = 500;
 	res.send('An internal error occurred: ' + JSON.stringify(err));
 }//composeErrorResponse
 
+function handleLikeForArtist(req, res, artistName) {
+	var msg = { "records": [{ "key": "like", "value": artistName }] };
+	postMessagesToEventHub(msg
+		, function (response) {
+			res.statusCode = 200;
+			res.setHeader('Content-Type', 'application/json');
+			res.send(JSON.stringify({ "artist": artistName, "status": "Like added", "response": response }));
+		});
+
+}//handleLikeForArtist
 
 function handleArtists(req, res, artistName) {
 	var artist = {}; // artist record that will be constructed bit by bit
