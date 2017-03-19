@@ -36,7 +36,7 @@ function checkLikes() {
             //console.log(response.body);
             var messages = JSON.parse(response.body);
             //console.log("LIKES: %%%%%%%%%%%%%%%%%%%"+JSON.stringify(likesDoc));
-            if (settings.runLocally) {
+            if (settings.runLocally()) {
                 console.log("run locally, so  no cache interaction");
                 var likesDoc;
                 likesDoc = likesDoc = {

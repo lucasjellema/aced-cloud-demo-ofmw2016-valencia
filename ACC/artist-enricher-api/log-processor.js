@@ -13,6 +13,7 @@ var refreshInterval = 15; //seconds
 // it will create a batch of log messages and send them to the Logger REST API (that writes it to the WLS Diagnostics file)
 
 var eventHubConsumerGroupName = "loggerConsumer2";
+var logDocumentKey = "log-tail";
 var logOffset = 0;
 var bulkloggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/bulklog";
 
@@ -45,7 +46,7 @@ function checkLogs() {
     }); //eventhubAPI create consumer group
 
 
-}//checkLikes
+}//checkLogs
 
 function processLogs(messages, offset) {
     var batches = {}
@@ -65,21 +66,58 @@ function processLogs(messages, offset) {
     }//for
     // send batches of log messages to REST API, grouped by  module
     for (module in batches) {
-     if (batches.hasOwnProperty(module))
-     console.log("post batch for "+module);
+        if (batches.hasOwnProperty(module))
+            console.log("post batch for " + module);
         postLogBatch(batches[module]);
     }// for
 
 
-    if (settings.runLocally) {
-        console.log("run locally, so  no cache interaction");
+    if (settings.runLocally()) {
+        console.log("Log-processor: run locally, so  no cache interaction");
     } else {
         // fetch logging document from cache
         // add latest logging at the top
         // slice array at the bottom
         // put back in the cache
+console.log("Log-processor:L try to fetch from cache: "+logDocumentKey);
+        cacheAPI.getFromCache(logDocumentKey, function (response) {
+            try {
+                var logsDoc;
+                if (response.statusCode == '404') {
+console.log("Log-processor:not found in cache");
+                    logsDoc = likesDoc = {
+                        "offset": 0
+                        , "timestamp": Date.now()
+                        , "logs": []
+                    }
+                }
+                else { logsDoc = response.value 
+                console.log("Log-processor: found in cache");
+    
+                };
 
-    }
+
+                logsDoc.timestamp = Date.now();
+                if (messages) {
+                    // reverse messages to have last/most recent one first
+                    messages.reverse();
+                    // merge new messages with existing logs
+                    // retain no more than 200 entries
+                    logsDoc.logs = messages.concat(logsDoc.logs).slice(0,200);
+
+                }
+                console.log("LOGS REAL: %%%%%%%%%%%%%%%%%%%" + JSON.stringify(logsDoc));
+                cacheAPI.putInCache(logDocumentKey, JSON.stringify(logsDoc), function (response) {
+                    console.log("put logsdoc in cache " + response);
+
+                });//putInCache
+            }
+            catch (e) {
+                console.log("Exception in checkLogs" + e);
+                console.log("Exception in checkLogs" + JSON.stringify(e));
+            }
+        });//getFromCache
+    }// not local
 
     // loop over all properties of object batches - i.e. the names of all modules -- ; for each property, post the messages property
     if (messages && messages.length > 0) {
@@ -116,7 +154,7 @@ function postLogBatch(batch) {
 
     route_options.body = args.data;
     route_options.headers = args.headers;
-    console.log("body for batch message logging: "+args.data);
+    console.log("body for batch message logging: " + args.data);
 
 
 

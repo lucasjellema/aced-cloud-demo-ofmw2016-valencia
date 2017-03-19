@@ -78,6 +78,12 @@ app.get('/artists/likes', function (req, res) {
 	handleLikes(req, res);
 });
 
+app.get('/log-tail', function (req, res) {
+	logger.log("Return overview of all logs ", moduleName, logger.DEBUG);
+
+	handleLogs(req, res);
+});
+
 
 app.get('/artists/:artistName', function (req, res) {
 	var artistName = req.query['artist'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
@@ -93,6 +99,7 @@ app.get('/about', function (req, res) {
 	res.write("/cache-api/about , /artists/get?artist=:artistName");
 	res.write("/artists/like/:artistName");
 	res.write("/artists/likes");
+	res.write("/log-tail");
 	res.write("/mailer");
 	res.write("NodeJS runtime version " + process.version);
 	res.write("incoming headers" + JSON.stringify(req.headers));
@@ -143,8 +150,17 @@ function handleLikes(req, res) {
 		res.send(JSON.stringify(response.value));
 	});//getFromCache
 
-}//handleLikeForArtist
+}//handleLikes
 
+function handleLogs(req, res) {
+var logDocumentKey = "log-tail";
+	cacheAPI.getFromCache(logDocumentKey, function (response) {
+		res.statusCode = 200;
+		res.setHeader('Content-Type', 'application/json');
+		res.send(JSON.stringify(response.value));
+	});//getFromCache
+
+}//handleLogs
 
 function handleArtists(req, res, artistName) {
 	var artist = {}; // artist record that will be constructed bit by bit

@@ -45,6 +45,7 @@ logger.log =
                         "logLevel": loglevel
                         , "module": "soaring.clouds." + moduleName
                         , "message": message
+                        , "timestamp": Date.now()
 
                     }
                 }]
