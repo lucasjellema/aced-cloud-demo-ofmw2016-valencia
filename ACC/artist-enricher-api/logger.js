@@ -38,24 +38,7 @@ logger.log =
 
         var route_options = {};
 
-        // Issue the POST  -- the callback will return the response to the user
-        route_options.method = "POST";
-        //            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(keyString);
-        route_options.uri = loggerRESTAPIURL;
-        console.log("Logger Target URL " + route_options.uri);
 
-        route_options.body = args.data;
-        route_options.headers = args.headers;
-
-
-
-        request(route_options, function (error, rawResponse, body) {
-            if (error) {
-                console.log(JSON.stringify(error));
-            } else {
-                console.log(rawResponse.statusCode);
-                console.log("BODY:" + JSON.stringify(body));
-            }//else
             var msg = {
                 "records": [{
                     "key": "log", "value": {
@@ -72,9 +55,26 @@ logger.log =
                     console.log("Published log-record to Kafka- response" + JSON.stringify(response));
                 });
 
+/* no more direct publication to REST API - now go through Kafka
+        // Issue the POST  -- the callback will return the response to the user
+        route_options.method = "POST";
+        //            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(keyString);
+        route_options.uri = loggerRESTAPIURL;
+        console.log("Logger Target URL " + route_options.uri);
+
+        route_options.body = args.data;
+        route_options.headers = args.headers;
+
+        request(route_options, function (error, rawResponse, body) {
+            if (error) {
+                console.log(JSON.stringify(error));
+            } else {
+                console.log(rawResponse.statusCode);
+                console.log("BODY:" + JSON.stringify(body));
+            }//else
 
         });//request
-
+*/
 
     }//logger.log
 

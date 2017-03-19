@@ -24,6 +24,7 @@ var eventhubAPI = require("./eventhub-api.js");
 //var mailerAPI = require("./mailer.js");
 var emailerAPI = require("./emailer.js");
 var likesProcessor = require("./likes-processor.js");
+var logProcessor = require("./log-processor.js");
 var moduleName = "accs.ArtistEnricher-API";
 
 
