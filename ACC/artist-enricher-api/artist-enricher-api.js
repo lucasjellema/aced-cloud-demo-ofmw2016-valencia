@@ -3,6 +3,12 @@ example call:  http://127.0.0.1:5100/artists/get?artist=u2
 
 */
 
+console.log("NodeJS runtime version " + process.version);
+var settings = require("./proxy-settings.js");
+
+console.log('Application version ' + settings.APP_VERSION);
+
+
 var http = require('http'),
 	request = require('request'),
 	util = require('util'),
@@ -11,16 +17,18 @@ var http = require('http'),
 	async = require('async')
 
 	;
-var settings = require("./proxy-settings.js");
 
+var logger = require("./logger.js");
 var cacheAPI = require("./cache-api.js");
 var eventhubAPI = require("./eventhub-api.js");
-var logger = require("./logger.js");
+//var mailerAPI = require("./mailer.js");
+var emailerAPI = require("./emailer.js");
+var likesProcessor = require("./likes-processor.js");
 var moduleName = "accs.ArtistEnricher-API";
 
 
 //var PORT = 5100;
-var PORT = process.env.PORT || 5101;
+var PORT = process.env.PORT || settings.PORT;
 
 var appVersion = "0.9.1";
 
@@ -47,9 +55,27 @@ app.use(function (request, response, next) {
 	response.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
+console.log("Registering Submodules ");
+logger.registerListeners(app);
 cacheAPI.registerListeners(app);
 eventhubAPI.registerListeners(app);
-logger.registerListeners(app);
+//mailerAPI.registerListeners(app);
+emailerAPI.registerListeners(app);
+
+
+app.get('/artists/like/:artistName', function (req, res) {
+	var artistName = req.params['artistName'].replace(/_/g, ' ');	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
+	logger.log("Register like for proposal for " + artistName, moduleName, logger.INFO);
+
+	handleLikeForArtist(req, res, artistName);
+});
+
+
+app.get('/artists/likes', function (req, res) {
+	logger.log("Return overview of all likes ", moduleName, logger.DEBUG);
+
+	handleLikes(req, res);
+});
 
 
 app.get('/artists/:artistName', function (req, res) {
@@ -58,19 +84,16 @@ app.get('/artists/:artistName', function (req, res) {
 
 	handleArtists(req, res, artistName);
 });
-app.get('/artists/like/:artistName', function (req, res) {
-	var artistName = req.params['artistName'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
-	logger.log("Register like for proposal for " + artistName, moduleName, logger.INFO);
-
-	handleLikeForArtist(req, res, artistName);
-});
 
 app.get('/about', function (req, res) {
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write("About Artist Enricher API, Version " + settings.APP_VERSION + ". No Data Requested, so none is returned. ");
 	res.write("Supported URLs:");
-	res.write("/cache-api/about , /artists/:artistName");
+	res.write("/cache-api/about , /artists/get?artist=:artistName");
 	res.write("/artists/like/:artistName");
+	res.write("/artists/likes");
+	res.write("/mailer");
+	res.write("NodeJS runtime version " + process.version);
 	res.write("incoming headers" + JSON.stringify(req.headers));
 	res.end();
 });
@@ -100,14 +123,27 @@ function composeErrorResponse(res, err) {
 
 function handleLikeForArtist(req, res, artistName) {
 	var msg = { "records": [{ "key": "like", "value": artistName }] };
-	postMessagesToEventHub(msg
+	console.log("msg " + JSON.stringify(msg));
+	eventhubAPI.postMessagesToEventHub(msg
 		, function (response) {
 			res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify({ "artist": artistName, "status": "Like added", "response": response }));
+			res.send(JSON.stringify({ "like": msg.records[0], "status": "Like added", "response": response }));
 		});
 
 }//handleLikeForArtist
+
+
+function handleLikes(req, res) {
+	var likesDocumentKey = "artist-likes";
+	cacheAPI.getFromCache(likesDocumentKey, function (response) {
+		res.statusCode = 200;
+		res.setHeader('Content-Type', 'application/json');
+		res.send(JSON.stringify(response.value));
+	});//getFromCache
+
+}//handleLikeForArtist
+
 
 function handleArtists(req, res, artistName) {
 	var artist = {}; // artist record that will be constructed bit by bit

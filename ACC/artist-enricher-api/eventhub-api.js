@@ -23,36 +23,40 @@ eventHubAPI.registerListeners =
 
         app.get(apiURL + '/about', function (req, res) {
             console.log('event Hub: about');
-            handleAbout(req, res);
+            eventHubAPI.handleAbout(req, res);
         });
         app.post(apiURL + '/messages', function (req, res) {
             console.log('EventHub-API POST - now show params');
             console.log('EventHub-API POST params ' + JSON.stringify(req.params));
             console.log('body in request' + JSON.stringify(req.body));
-            postMessages(req, res, req.body);
+            eventHubAPI.postMessages(req, res, req.body);
         });//post messages
 
 
         app.post(apiURL + '/create-consumer-group/:consumerGroupName', function (req, res) {
             var consumerGroupName = req.params['consumerGroupName'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
-            createConsumerGroup(req, res, consumerGroupName);
+            eventHubAPI.createConsumerGroup(consumerGroupName, function(response){
+               res.json(response).end();
+            });
         });//post consumer group
 
         app.post(apiURL + '/create-consumer-group', function (req, res) {
             var consumerGroupName = groupName;
-            createConsumerGroup(req, res, consumerGroupName);
+            eventHubAPI.createConsumerGroup(consumerGroupName, function(response){
+               res.json(response).end();
+            });
         });//post consumer group
 
         app.get(apiURL + '/messages/:consumerGroupName', function (req, res) {
             var consumerGroupName = req.params['consumerGroupName'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
             console.log('EventHub-API GET  - get messages for consumer group ' + consumerGroupName);
-            getMessages(req, res, consumerGroupName);
+            eventHubAPI.getMessages(req, res, consumerGroupName);
         });//get messages for consumer group
 
 
         app.get(apiURL + '/messages', function (req, res) {
             console.log('EventHub-API GET  - get messages');
-            getMessages(req, res, groupName);
+            eventHubAPI.getMessages(req, res, groupName);
         });//get messages
 
     }//registerListeners
@@ -61,7 +65,7 @@ console.log("EventHub API (version " + settings.APP_VERSION + ") initialized at 
 
 
 
-handleAbout = function (req, res) {
+eventHubAPI.handleAbout = function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write("EventHub-API - About - Version " + settings.APP_VERSION + ". ");
     res.write("Supported URLs:");
@@ -74,48 +78,13 @@ handleAbout = function (req, res) {
     res.end();
 }//handleAbout
 
-postMessages = function (req, res, messages) {
-    /*
-    var route_options = {
-        cert: fs.readFileSync('./event-hub.pem'),
-        requestCert: true,
-        rejectUnauthorized: false,
-    };
-
-    // Issue the POST  -- the callback will return the response to the user
-    route_options.method = "POST";
-    route_options.uri = eventhubURL.concat('/topics/').concat(topicName);
-
-    console.log("Target URL " + route_options.uri);
-    var args = {
-        data: {},
-        headers: {
-            "Content-Type": "application/vnd.kafka.json.v1+json"
-            , "Authorization": "Basic YWRtaW46T29vdzIwMTY="
-        }
-    };
-    args.data = messages;
-    route_options.body = JSON.stringify(args.data);
-    route_options.headers = args.headers;
-    request(route_options, function (error, rawResponse, body) {
-        if (error) {
-            console.log("Error in call " + JSON.stringify(error));
-        } else {
-            console.log(rawResponse.statusCode);
-            console.log("BODY:" + JSON.stringify(body));
-            // Proper response is 204, no content.
-            var responseBody = {};
-            responseBody['status'] = 'POST  returned '.concat(rawResponse.statusCode.toString());
-            // Send the response
-            res.json(responseBody).end();
-        }//else
-    });//request */
+eventHubAPI.postMessages = function (req, res, messages) {
     postMessagesToEventHub(messages, function (response) {
-         res.json(response).end();
-    }  )
+        res.json(response).end();
+    })
 }// postMessages
 
-postMessagesToEventHub = function ( messages, callback) {
+eventHubAPI.postMessagesToEventHub = function (messages, callback) {
     var route_options = {
         /*key: fs.readFileSync('ssl/server1.key'),*/
         cert: fs.readFileSync('./event-hub.pem'),
@@ -148,7 +117,7 @@ postMessagesToEventHub = function ( messages, callback) {
             var responseBody = {};
             responseBody['status'] = 'POST  returned '.concat(rawResponse.statusCode.toString());
             if (callback) {
-              callback(responseBody);
+                callback(responseBody);
             }
         }//else
     });//request
@@ -157,7 +126,15 @@ postMessagesToEventHub = function ( messages, callback) {
 
 
 
-getMessages = function (req, res, consumerGroupName) {
+eventHubAPI.getMessages = function (req, res, consumerGroupName) {
+    eventHubAPI.getMessagesFromConsumerGroup(consumerGroupName, function (response) {
+        // Send the response
+        res.json(response).end();
+    });
+
+}//getMessages
+
+eventHubAPI.getMessagesFromConsumerGroup = function (consumerGroupName, callback) {
     var route_options = {
         /*key: fs.readFileSync('ssl/server1.key'),*/
         cert: fs.readFileSync('./event-hub.pem'),
@@ -196,16 +173,16 @@ getMessages = function (req, res, consumerGroupName) {
             // Proper response is 204, no content.
             var responseBody = {};
             responseBody['status'] = 'GET  returned '.concat(rawResponse.statusCode.toString());
+            responseBody['statusCode'] = rawResponse.statusCode;
             responseBody['body'] = body;
-            // Send the response
-            res.json(responseBody).end();
+            callback(responseBody);
         }//else
     });//request
 
-}//getMessages
+}//getMessagesFromConsumerGroup
 
-createConsumerGroup = function (req, res, consumerGroupName) {
 
+eventHubAPI.createConsumerGroup = function ( consumerGroupName, callback) {
     var route_options = {
         /*key: fs.readFileSync('ssl/server1.key'),*/
         cert: fs.readFileSync('./event-hub.pem'),
@@ -233,8 +210,6 @@ createConsumerGroup = function (req, res, consumerGroupName) {
     route_options.body = JSON.stringify(args.data);
     route_options.headers = args.headers;
 
-
-
     request(route_options, function (error, rawResponse, body) {
         if (error) {
             console.log("Error in call " + JSON.stringify(error));
@@ -247,8 +222,7 @@ createConsumerGroup = function (req, res, consumerGroupName) {
             var responseBody = {};
             responseBody['status'] = 'POST  returned '.concat(rawResponse.statusCode.toString());
             responseBody['body'] = body;
-            // Send the response
-            res.json(responseBody).end();
+            callback(responseBody);
         }//else
     });//request
 

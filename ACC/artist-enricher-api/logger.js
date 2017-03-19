@@ -6,6 +6,7 @@ var logger = module.exports;
 
 var loggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/log";
 var apiURL = "/logger-api";
+var eventhubAPI = require("./eventhub-api.js");
 
 logger.DEBUG = "debug";
 logger.INFO = "info";
@@ -66,7 +67,7 @@ logger.log =
                 }]
             };
 
-            postMessagesToEventHub(msg
+           eventhubAPI.postMessagesToEventHub(msg
                 , function (response) {
                     console.log("Published log-record to Kafka- response" + JSON.stringify(response));
                 });
