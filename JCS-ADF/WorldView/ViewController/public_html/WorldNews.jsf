@@ -36,6 +36,7 @@
                             <af:selectItem label="NOS (Dutch)" value="nos" id="si3"/>
                             <af:selectItem label="ABC" value="abc" id="si4"/>
                             <af:selectItem label="reuters" value="reuters" id="si5"/>
+                            <af:selectItem label="Soaring Clouds GitHub" value="git" id="si6"/>
                         </af:selectOneRadio>
                         <!-- when selectOneRadio is switched to different channel, the list view is refreshed -->
                         <af:listView id="lv1" value="#{newsRssBean.rssItems}" varStatus="vs" var="rssItem"

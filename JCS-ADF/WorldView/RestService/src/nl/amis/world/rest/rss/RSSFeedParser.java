@@ -43,6 +43,7 @@ public class RSSFeedParser {
     String abcFeed = "http://feeds.abcnews.com/abcnews/internationalheadlines";
     String cnnFeed = "http://rss.cnn.com/rss/cnn_topstories.rss";
     String reutersFeed = "http://feeds.reuters.com/Reuters/worldNews";
+    String githubFeed = "https://github.com/lucasjellema/aced-cloud-demo-ofmw2016-valencia/commits/master.atom";
 
     public RSSFeedParser(String feedUrl) {
         try {
@@ -90,9 +91,12 @@ public class RSSFeedParser {
             case "nos":
                 urlString = nosFeed;
                 break;
-            case "reuters":
-                urlString = reutersFeed;
-                break;
+                case "reuters":
+                    urlString = reutersFeed;
+                    break;
+                case "git":
+                    urlString = githubFeed;
+                    break;
             default:
                 urlString = cnnFeed;
                 ;
@@ -181,6 +185,8 @@ public class RSSFeedParser {
                 }
             }
         } catch (XMLStreamException e) {
+            _logger.warning("Exception in parsing the feed for "+this.urlString, e);
+
             throw new RuntimeException(e);
         }
         if ("bbc".compareTo(feedIdentifier.toLowerCase()) == 0) {
@@ -192,7 +198,7 @@ public class RSSFeedParser {
             _logger.fine("Done with silly sleep. Back to work.");
         }
 
-        _logger.info("readFeed - return feed after fetching and parsing ");
+        _logger.info("readFeed - return feed after fetching and parsing "+this.urlString);
         return feed;
     }
 

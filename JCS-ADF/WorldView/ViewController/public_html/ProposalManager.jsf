@@ -18,7 +18,6 @@
                             <af:button actionListener="#{bindings.Commit.execute}" text="Save changes"
                                        disabled="#{!bindings.Commit.enabled}" id="b2"/>
                             <af:link text="Index" id="l1" destination="index.html"/>
-                            <af:outputText id="otl" value="#{requestScope.loggerBean.someValue}"/>
                         </af:panelHeader>
                     </af:gridCell>
                 </af:gridRow>
@@ -35,8 +34,8 @@
                                               rows="#{bindings.ProposedActsView2.rangeSize}"
                                               emptyText="#{bindings.ProposedActsView2.viewable ? 'No data to display.' : 'Access Denied.'}"
                                               rowBandingInterval="0" fetchSize="#{bindings.ProposedActsView2.rangeSize}"
-                                              selectedRowKeys="#{bindings.AlbumsView1.collectionModel.selectedRow}"
-                                              selectionListener="#{bindings.AlbumsView1.collectionModel.makeCurrent}"
+                                              selectedRowKeys="#{bindings.ProposedActsView2.collectionModel.selectedRow}"
+                                              selectionListener="#{bindings.ProposedActsView2.collectionModel.makeCurrent}"
                                               filterModel="#{bindings.ProposedActsView2Query.queryDescriptor}"
                                               queryListener="#{bindings.ProposedActsView2Query.processQuery}"
                                               filterVisible="true" varStatus="vs" id="t1" rowSelection="single">
@@ -57,12 +56,6 @@
                                                    filterable="true" sortable="true"
                                                    headerText="#{bindings.ProposedActsView2.hints.ProposalTimestamp.label}"
                                                    id="c2">
-                                            <f:facet name="filter">
-                                                <af:inputDate value="#{bindings.ProposedActsView2Query.queryDescriptor.filterConjunctionCriterion.criterionMap.ProposalTimestamp.value}"
-                                                              id="id1">
-                                                    <af:convertDateTime pattern="#{bindings.ProposedActsView2.hints.ProposalTimestamp.format}"/>
-                                                </af:inputDate>
-                                            </f:facet>
                                             <af:inputDate value="#{row.bindings.ProposalTimestamp.inputValue}"
                                                           label="#{bindings.ProposedActsView2.hints.ProposalTimestamp.label}"
                                                           required="#{bindings.ProposedActsView2.hints.ProposalTimestamp.mandatory}"
@@ -151,12 +144,6 @@
                                         <af:column sortProperty="#{bindings.AlbumsView2.hints.ReleaseDate.name}"
                                                    filterable="true" sortable="true"
                                                    headerText="#{bindings.AlbumsView2.hints.ReleaseDate.label}" id="c7">
-                                            <f:facet name="filter">
-                                                <af:inputDate value="#{bindings.AlbumsView2Query.queryDescriptor.filterConjunctionCriterion.criterionMap.ReleaseDate.value}"
-                                                              id="id3">
-                                                    <af:convertDateTime pattern="#{bindings.AlbumsView2.hints.ReleaseDate.format}"/>
-                                                </af:inputDate>
-                                            </f:facet>
                                             <af:inputDate value="#{row.bindings.ReleaseDate.inputValue}"
                                                           label="#{bindings.AlbumsView2.hints.ReleaseDate.label}"
                                                           required="#{bindings.AlbumsView2.hints.ReleaseDate.mandatory}"

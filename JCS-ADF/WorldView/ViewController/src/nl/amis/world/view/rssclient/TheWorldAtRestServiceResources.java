@@ -23,7 +23,7 @@ import com.sun.jersey.api.uri.UriTemplate;
 import generated.Feed;
 
 @Generated(value = {
-           "wadl|http://141.144.34.222/SoaringTheWorldAtRestService/resources/application.wadl",
+           "wadl|http://129.144.151.143/SoaringTheWorldAtRestService/resources/application.wadl",
            "run|c30b1bd4-85bc-4ed1-9959-7b00936d1dc1" }, comments = "wadl2java, http://wadl.java.net",
            date = "2017-01-20T09:07:38.420+01:00")
 public class TheWorldAtRestServiceResources {
@@ -35,7 +35,7 @@ public class TheWorldAtRestServiceResources {
     public final static URI BASE_URI;
 
     static {
-        URI originalURI = URI.create("http://141.144.34.222:80/TheWorldAtRestService/resources/");
+        URI originalURI = URI.create("http://129.144.151.143/SoaringTheWorldAtRestService/resources/");
         // Look up to see if we have any indirection in the local copy
         // of META-INF/java-rs-catalog.xml file, assuming it will be in the
         // oasis:name:tc:entity:xmlns:xml:catalog namespace or similar duck type

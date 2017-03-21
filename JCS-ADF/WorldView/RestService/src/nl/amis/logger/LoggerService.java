@@ -18,7 +18,7 @@ import nl.amis.world.rest.rss.RSSFeedParser;
 import oracle.adf.share.logging.ADFLogger;
 
 
-// http://141.144.34.222/WebLogicLoggerService/resources/application.wadl
+// http://129.144.151.143/WebLogicLoggerService/resources/application.wadl
 @Path("logger")
 @Consumes("application/json")
 public class LoggerService {
@@ -70,7 +70,6 @@ public class LoggerService {
         for (LogMessage msg : bundle.getMessages()) {
             msgCount++;
             logMessage(msg);
-
         } // loop over all messages in bundle
         return "ok - processed "+msgCount+" messages in the bundle.";
     }
