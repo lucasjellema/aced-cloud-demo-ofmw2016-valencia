@@ -93,8 +93,9 @@ app.get('/artists/:artistName', function (req, res) {
 });
 
 app.get('/about', function (req, res) {
+	logger.log("About requested " , moduleName, logger.DEBUG);
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write("About Artist Enricher API, Version " + settings.APP_VERSION + ". No Data Requested, so none is returned. ");
+	res.write("About Artist Enricher API, Version " + settings.APP_VERSION );
 	res.write("Supported URLs:");
 	res.write("/cache-api/about , /artists/get?artist=:artistName");
 	res.write("/artists/like/:artistName");
@@ -106,10 +107,9 @@ app.get('/about', function (req, res) {
 	res.end();
 });
 app.get('/', function (req, res) {
-	console.log('request received: ' + req.url);
 	res.writeHead(200, { 'Content-Type': 'text/html' });
 	res.write("Artist Enricher API (" + appVersion + ") - No Data Requested, so none is returned");
-	res.write("Try something like http://127.0.0.1:5100/artists/get?artist=madonna");
+	res.write("Try /about");
 	res.end();
 });
 
