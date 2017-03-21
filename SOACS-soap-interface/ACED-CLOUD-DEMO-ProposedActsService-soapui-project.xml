@@ -273,7 +273,7 @@
          <aced:imageURL>http://artcreationforever.com/images/julio-iglesias/julio-iglesias-03.jpg</aced:imageURL>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-JohnDenver"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-JohnDenver"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://129.144.151.143/soa-infra/services/default/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
@@ -287,10 +287,10 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
-         <aced:name>u2</aced:name>
-         <aced:numberOfVotes>19</aced:numberOfVotes>
-         <aced:description>Wow!</aced:description>
-         <aced:imageURL>http://nme.assets.ipccdn.co.uk/images/210116Adele_getty500440292_20_210116.article_x4.jpg</aced:imageURL>
+         <aced:name>Boney M</aced:name>
+         <aced:numberOfVotes>15</aced:numberOfVotes>
+         <aced:description>Flying High!</aced:description>
+         <aced:imageURL></aced:imageURL>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="submitActProposal"/><con:wsrmConfig version="1.2"/></con:call><con:call name="submitProposal-Kraftwerk"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">

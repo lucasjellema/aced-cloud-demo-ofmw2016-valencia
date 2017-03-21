@@ -12,4 +12,10 @@
    <sensor sensorName="FaultInTweeting" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="AssigMissingEnrichment">
       <activityConfig evalTime="all"/>
    </sensor>
+   <sensor sensorName="InvokeEmailerForProposal" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="InvokeEmailer">
+      <activityConfig evalTime="all"/>
+   </sensor>
+   <sensor sensorName="InvokeEmailService" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="InvokeEmailService">
+      <activityConfig evalTime="all"/>
+   </sensor>
 </sensors>

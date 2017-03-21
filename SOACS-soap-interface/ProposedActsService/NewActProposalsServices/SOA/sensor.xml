@@ -3,4 +3,19 @@
     <sensor sensorName="ArtistName" kind="service" target="undefined" filter="" xmlns:acd="aced.cloud.demo">
         <serviceConfig service="NewActProposalsService" expression="$in.part1/acd:submitActProposalRequestMessage/acd:name" operation="submitActProposal" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
     </sensor>
+    <sensor sensorName="ArtistEnricherReferenceOnACCS" kind="reference" target="undefined" filter="" xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference">
+        <referenceConfig reference="ArtistEnricherAPIReference" expression="$in.request/tns:GetArtistDetails_params/tns:param1" operation="GetArtistDetails" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="SendEmail" kind="reference" target="undefined" filter="" xmlns:inp1="http://TargetNamespace.com/MailerService_SendMail_request">
+        <referenceConfig reference="MailerService" expression="concat('Mail to:',$in.request/inp1:email/inp1:addressees,' about ',$in.request/inp1:email/inp1:subject)" operation="SendMail" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="VerifyArtistProposalExistsInDBaaS" kind="reference" target="undefined" filter="" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/verifyActProposalExists">
+        <referenceConfig reference="verifyActProposalExists" expression="concat('For artist: ',$in.InputParameters/db:InputParameters/db:P_ACT_NAME)" operation="verifyActProposalExists" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="SubmitArtistProposalToDBaaS" kind="reference" target="undefined" filter="" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal">
+        <referenceConfig reference="submitNewActProposal" expression="concat('Submitting proposal for ',$in.InputParameters/db:InputParameters/db:P_ARTIST)" operation="submitNewActProposal" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="VerifyExistenceOfArtistProposal" kind="service" target="undefined" filter="" xmlns:acd="aced.cloud.demo">
+        <serviceConfig service="NewActProposalsService" expression="concat('Checking for artist:', $in.part1/acd:verifyExistenceProposalRequestMessage/acd:name)" operation="verifyExistenceActProposal" outputDataType="" outputNamespace=""/>
+    </sensor>
 </sensors>
