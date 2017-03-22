@@ -37,7 +37,7 @@ public class IoTConnector {
     private final static String TRUSTED_ASSETS_STORE = "trusted.assets.file.name";
     private final static String TRUSTED_ASSETS_STORE_PASS = "trusted.assets.file.pass";
     private final static String TWITTER_MODEL_URN = "urn:opitz:iot:twittercollector";
-    public final static String FIELD_ARTIST_NAME = "artistName";
+    public final static String FIELD_ARTIST_NAME = "artistname";
     private Properties configuration;
 
     private DirectlyConnectedDevice device;

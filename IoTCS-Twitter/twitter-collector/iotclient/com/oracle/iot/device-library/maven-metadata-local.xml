@@ -3,6 +3,10 @@
   <groupId>com.oracle.iot</groupId>
   <artifactId>device-library</artifactId>
   <versioning>
+    <release>17.1.5.0.0-11</release>
+    <versions>
+      <version>17.1.5.0.0-11</version>
+    </versions>
     <release>16.1.5.1.1-29</release>
     <versions>
       <version>16.1.5.1.1-29</version>
@@ -14,3 +18,4 @@
     <lastUpdated>20160916100116</lastUpdated>
   </versioning>
 </metadata>
+             17.1.5.0.0-11
