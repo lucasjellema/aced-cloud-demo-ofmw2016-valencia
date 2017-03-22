@@ -45,12 +45,24 @@
                                             <af:inputText value="#{row.bindings.Name.inputValue}"
                                                           label="#{bindings.ProposedActsView2.hints.Name.label}"
                                                           required="#{bindings.ProposedActsView2.hints.Name.mandatory}"
-                                                          columns="#{bindings.ProposedActsView2.hints.Name.displayWidth}"
+                                                          columns="50"
                                                           maximumLength="#{bindings.ProposedActsView2.hints.Name.precision}"
                                                           shortDesc="#{bindings.ProposedActsView2.hints.Name.tooltip}"
                                                           id="it1">
                                                 <f:validator binding="#{row.bindings.Name.validator}"/>
+                                                <af:showPopupBehavior popupId="p1" triggerType="mouseHover"/>
                                             </af:inputText>
+                                            <af:popup childCreation="deferred" autoCancel="enabled" id="p1">
+                                                <af:panelWindow id="pw1">
+                                                    <af:image id="i1"
+                                                              source="#{row.bindings.ImageUrl.inputValue}"
+                                                              inlineStyle="height:350px; width:350px;"/>
+                                                    <af:inputText value="#{row.bindings.Biography.inputValue}"
+                                                                  label="#{bindings.ProposedActsView2.hints.Name.label}"
+                                                                  required="#{bindings.ProposedActsView2.hints.Name.mandatory}"
+                                                                  columns="100" rows="10" id="it112"/>
+                                                </af:panelWindow>
+                                            </af:popup>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.ProposedActsView2.hints.ProposalTimestamp.name}"
                                                    filterable="true" sortable="true"
@@ -59,40 +71,12 @@
                                             <af:inputDate value="#{row.bindings.ProposalTimestamp.inputValue}"
                                                           label="#{bindings.ProposedActsView2.hints.ProposalTimestamp.label}"
                                                           required="#{bindings.ProposedActsView2.hints.ProposalTimestamp.mandatory}"
-                                                          columns="#{bindings.ProposedActsView2.hints.ProposalTimestamp.displayWidth}"
+                                                          columns="50"
                                                           shortDesc="#{bindings.ProposedActsView2.hints.ProposalTimestamp.tooltip}"
                                                           id="id2">
                                                 <f:validator binding="#{row.bindings.ProposalTimestamp.validator}"/>
-                                                <af:convertDateTime pattern="#{bindings.ProposedActsView2.hints.ProposalTimestamp.format}"/>
+                                                <af:convertDateTime dateStyle="medium" timeStyle="long" type="both"/>
                                             </af:inputDate>
-                                        </af:column>
-                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.Description.name}"
-                                                   filterable="true" sortable="true"
-                                                   headerText="#{bindings.ProposedActsView2.hints.Description.label}"
-                                                   id="c3">
-                                            <af:inputText value="#{row.bindings.Description.inputValue}"
-                                                          label="#{bindings.ProposedActsView2.hints.Description.label}"
-                                                          required="#{bindings.ProposedActsView2.hints.Description.mandatory}"
-                                                          columns="#{bindings.ProposedActsView2.hints.Description.displayWidth}"
-                                                          maximumLength="#{bindings.ProposedActsView2.hints.Description.precision}"
-                                                          shortDesc="#{bindings.ProposedActsView2.hints.Description.tooltip}"
-                                                          id="it2">
-                                                <f:validator binding="#{row.bindings.Description.validator}"/>
-                                            </af:inputText>
-                                        </af:column>
-                                        <af:column sortProperty="#{bindings.ProposedActsView2.hints.Genres.name}"
-                                                   filterable="true" sortable="true"
-                                                   headerText="#{bindings.ProposedActsView2.hints.Genres.label}"
-                                                   id="c4">
-                                            <af:inputText value="#{row.bindings.Genres.inputValue}"
-                                                          label="#{bindings.ProposedActsView2.hints.Genres.label}"
-                                                          required="#{bindings.ProposedActsView2.hints.Genres.mandatory}"
-                                                          columns="#{bindings.ProposedActsView2.hints.Genres.displayWidth}"
-                                                          maximumLength="#{bindings.ProposedActsView2.hints.Genres.precision}"
-                                                          shortDesc="#{bindings.ProposedActsView2.hints.Genres.tooltip}"
-                                                          id="it3">
-                                                <f:validator binding="#{row.bindings.Genres.validator}"/>
-                                            </af:inputText>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.ProposedActsView2.hints.NumberOfVotes.name}"
                                                    filterable="true" sortable="true"
@@ -134,12 +118,19 @@
                                             <af:inputText value="#{row.bindings.Title.inputValue}"
                                                           label="#{bindings.AlbumsView2.hints.Title.label}"
                                                           required="#{bindings.AlbumsView2.hints.Title.mandatory}"
-                                                          columns="#{bindings.AlbumsView2.hints.Title.displayWidth}"
+                                                          columns="50"
                                                           maximumLength="#{bindings.AlbumsView2.hints.Title.precision}"
                                                           shortDesc="#{bindings.AlbumsView2.hints.Title.tooltip}"
                                                           id="it5">
                                                 <f:validator binding="#{row.bindings.Title.validator}"/>
+                                                <af:showPopupBehavior popupId="p12" triggerType="mouseHover"/>
                                             </af:inputText>
+                                            <af:popup childCreation="deferred" autoCancel="enabled" id="p12">
+                                                <af:panelWindow id="pw12" title="Album Cover">
+                                                    <af:image id="i121" inlineStyle="height:250px; width:250px;"
+                                                              source="#{row.bindings.Coverimageurl.inputValue}"/>
+                                                </af:panelWindow>
+                                            </af:popup>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.AlbumsView2.hints.ReleaseDate.name}"
                                                    filterable="true" sortable="true"
@@ -147,11 +138,11 @@
                                             <af:inputDate value="#{row.bindings.ReleaseDate.inputValue}"
                                                           label="#{bindings.AlbumsView2.hints.ReleaseDate.label}"
                                                           required="#{bindings.AlbumsView2.hints.ReleaseDate.mandatory}"
-                                                          columns="#{bindings.AlbumsView2.hints.ReleaseDate.displayWidth}"
+                                                          columns="30"
                                                           shortDesc="#{bindings.AlbumsView2.hints.ReleaseDate.tooltip}"
                                                           id="id4">
                                                 <f:validator binding="#{row.bindings.ReleaseDate.validator}"/>
-                                                <af:convertDateTime pattern="#{bindings.AlbumsView2.hints.ReleaseDate.format}"/>
+                                                <af:convertDateTime dateStyle="medium" type="date"/>
                                             </af:inputDate>
                                         </af:column>
                                         <af:column sortProperty="#{bindings.AlbumsView2.hints.Coverimageurl.name}"
@@ -161,7 +152,7 @@
                                             <af:inputText value="#{row.bindings.Coverimageurl.inputValue}"
                                                           label="#{bindings.AlbumsView2.hints.Coverimageurl.label}"
                                                           required="#{bindings.AlbumsView2.hints.Coverimageurl.mandatory}"
-                                                          columns="#{bindings.AlbumsView2.hints.Coverimageurl.displayWidth}"
+                                                          columns="50"
                                                           maximumLength="#{bindings.AlbumsView2.hints.Coverimageurl.precision}"
                                                           shortDesc="#{bindings.AlbumsView2.hints.Coverimageurl.tooltip}"
                                                           id="it6">

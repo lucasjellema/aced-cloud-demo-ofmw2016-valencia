@@ -22,6 +22,8 @@
           <Item Value="Description"/>
           <Item Value="Genres"/>
           <Item Value="NumberOfVotes"/>
+          <Item Value="ImageUrl"/>
+          <Item Value="Biography"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

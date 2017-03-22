@@ -23,11 +23,11 @@
                         <!-- Content -->
                         <af:panelSplitter id="ps1" orientation="vertical" splitterPosition="400">
                             <f:facet name="first">
-                                <af:panelFormLayout id="pfl1">
+                                <af:panelFormLayout id="pfl1" rows="4">
                                     <af:inputText value="#{bindings.Name.inputValue}"
                                                   label="#{bindings.Name.hints.label}"
                                                   required="#{bindings.Name.hints.mandatory}"
-                                                  columns="#{bindings.Name.hints.displayWidth}"
+                                                  columns="30"
                                                   maximumLength="#{bindings.Name.hints.precision}"
                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="it1">
                                         <f:validator binding="#{bindings.Name.validator}"/>
@@ -43,7 +43,7 @@
                                     <af:inputText value="#{bindings.Description.inputValue}"
                                                   label="#{bindings.Description.hints.label}"
                                                   required="#{bindings.Description.hints.mandatory}"
-                                                  columns="#{bindings.Description.hints.displayWidth}"
+                                                  columns="50" rows="4"
                                                   maximumLength="#{bindings.Description.hints.precision}"
                                                   shortDesc="#{bindings.Description.hints.tooltip}" id="it2">
                                         <f:validator binding="#{bindings.Description.validator}"/>
@@ -51,7 +51,7 @@
                                     <af:inputText value="#{bindings.Genres.inputValue}"
                                                   label="#{bindings.Genres.hints.label}"
                                                   required="#{bindings.Genres.hints.mandatory}"
-                                                  columns="#{bindings.Genres.hints.displayWidth}"
+                                                  columns="30"
                                                   maximumLength="#{bindings.Genres.hints.precision}"
                                                   shortDesc="#{bindings.Genres.hints.tooltip}" id="it3">
                                         <f:validator binding="#{bindings.Genres.validator}"/>
@@ -59,9 +59,9 @@
                                     <af:inputText value="#{bindings.Biography.inputValue}"
                                                   label="#{bindings.Biography.hints.label}"
                                                   required="#{bindings.Biography.hints.mandatory}"
-                                                  columns="#{bindings.Biography.hints.displayWidth}"
+                                                  columns="50"
                                                   maximumLength="#{bindings.Biography.hints.precision}"
-                                                  shortDesc="#{bindings.Biography.hints.tooltip}" id="it4">
+                                                  shortDesc="#{bindings.Biography.hints.tooltip}" id="it4" rows="8">
                                         <f:validator binding="#{bindings.Biography.validator}"/>
                                     </af:inputText>
                                     <af:inputText value="#{bindings.NumberOfVotes.inputValue}"
@@ -97,10 +97,17 @@
                                                 <af:button actionListener="#{bindings.Last.execute}" text="Last"
                                                            disabled="#{!bindings.Last.enabled}" partialSubmit="true"
                                                            id="b5"/>
+                                                <af:button actionListener="#{bindings.Delete.execute}" text="Delete"
+                                                           disabled="#{!bindings.Delete.enabled}" id="b7"/>
+                                                <af:button actionListener="#{bindings.Execute.execute}" text="Refresh"
+                                                           disabled="#{!bindings.Execute.enabled}" id="b8"/>
+                                                <af:button actionListener="#{bindings.Commit.execute}" text="Commit"
+                                                            id="b9"/>
                                             </af:panelGroupLayout>
-                                            <af:button text="Submit" id="b6"/>
                                         </af:panelGroupLayout>
                                     </f:facet>
+                                    <af:image source="#{bindings.ImageUrl.inputValue}" id="i1"
+                                              inlineStyle="height:350px; width:350px;"/>
                                 </af:panelFormLayout>
                             </f:facet>
                             <f:facet name="second">
@@ -156,7 +163,14 @@
                                                           shortDesc="#{bindings.AlbumsView2.hints.Coverimageurl.tooltip}"
                                                           id="it8">
                                                 <f:validator binding="#{row.bindings.Coverimageurl.validator}"/>
+                                                <af:showPopupBehavior popupId="p12" triggerType="mouseHover"/>
                                             </af:inputText>
+                                            <af:popup childCreation="deferred" autoCancel="enabled" id="p12">
+                                                <af:panelWindow id="pw12" title="Album Cover">
+                                                    <af:image id="i121" inlineStyle="height:450px; width:450px;"
+                                                              source="#{row.bindings.Coverimageurl.inputValue}"/>
+                                                </af:panelWindow>
+                                            </af:popup>
                                         </af:column>
                                     </af:table>
                                 </af:panelCollection>

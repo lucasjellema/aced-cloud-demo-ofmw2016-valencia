@@ -60,5 +60,9 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <action IterBinding="ProposedActsView2Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="ProposedActsView2Iterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="SoaringProposalServiceDataControl"/>
   </bindings>
 </pageDefinition>
