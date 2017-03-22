@@ -93,9 +93,9 @@ app.get('/artists/:artistName', function (req, res) {
 });
 
 app.get('/about', function (req, res) {
-	logger.log("About requested " , moduleName, logger.DEBUG);
+	logger.log("About requested ", moduleName, logger.DEBUG);
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write("About Artist Enricher API, Version " + settings.APP_VERSION );
+	res.write("About Artist Enricher API, Version " + settings.APP_VERSION);
 	res.write("Supported URLs:");
 	res.write("/cache-api/about , /artists/get?artist=:artistName");
 	res.write("/artists/like/:artistName");
@@ -153,7 +153,7 @@ function handleLikes(req, res) {
 }//handleLikes
 
 function handleLogs(req, res) {
-var logDocumentKey = "log-tail";
+	var logDocumentKey = "log-tail";
 	cacheAPI.getFromCache(logDocumentKey, function (response) {
 		res.statusCode = 200;
 		res.setHeader('Content-Type', 'application/json');
@@ -257,51 +257,47 @@ function handleArtists(req, res, artistName) {
 			], function (err, result) {// completion of waterfall
 				// result now equals 'done'
 				util.log('waterfall done');
-				util.log('Finished Two Spotify Calls');
+				util.log('Finished Two Sequential Spotify Calls');
 				callback(err, 'waterfall');
 			}
 			);//waterfall	
 		}
-
-		/* ECHO NEST no longer available 
-				,
-			// second function: call out to EchoNest
-				function(callback){
-				 util.log('Start EchoNest Call');
-					// get artist biography from EchoNest in two steps - first get echonestArtistId, then using that id, get the biography
-				var searchURL = echoNestAPI+ "/artist/search";
-				var biographiesURL = echoNestAPI+ "/artist/biographies";
-					request(searchURL + '?api_key='+echoNestDeveloperKey+'&format=json&name='+encodeURI(artistName)+'&results=1', function (error, response, body) {  
-					// process response from EchoNest, to get the EchoNestArtistId
-						if (error) {
-						console.log("error in processing "+JSON.stringify(error));
-								composeErrorResponse(res, error);
+		,
+		// second function: call out to cache to get biography
+		function (callback) {
+			var biographyCacheKey = "biography-" + encodeURI(artistName);
+			util.log('Start Cache Call for ' + biographyCacheKey);
+			try { 
+			cacheAPI.getFromCache(biographyCacheKey, function (response) {
+				try {
+					if (response.statusCode == '404') {
+						// biography not found in cache; now what?
+						console.log("bio not found in cache");
+						artist.biography = '(not yet available for '+encodeURI(artistName)+')';
+					}
+					else {
+						// assuming a biography document structured like this: {"biography": "content of biography"}
+						console.log("bio found in cache, adding to artist document "+response.value.biography);
+						
+						artist.biography = response.value.biography;
+					}
+					callback(null, "Biography from cache");
 				}
-						if (!error && response.statusCode == 200) {
-							var echonestSearchResponse = JSON.parse(body);
-							var echonestArtistId = echonestSearchResponse.response.artists[0].id;
-					artist.echonestArtistId = echonestArtistId;
-						// with id under our belt, time to get the biography
-					var bioURL = biographiesURL + '?api_key='+echoNestDeveloperKey+"&id="+echonestArtistId
-																							+'&format=json&results=1&start=0&license=cc-by-sa';
-							request(bioURL, function (error, response, body) {  
-								if (!error && response.statusCode == 200) {
-									var echonestBioSearchResponse = JSON.parse(body);
-									var bio = echonestBioSearchResponse.response.biographies[0].text;
-							artist.biography = bio;
-						}// if !error
-							util.log('Finished EchoNest Call');
-						callback(null, 'Echonest'); // notify ASYNC that this task is complete
-						});// request for bio		 
-				}// if !error in 1st response from echoNest
-				else {
-						callback(null, 'echonest issue'); // notify ASYNC that this task is complete
+				catch (e) {
+					console.log("Exception in get biography from cache" + e);
+					console.log("Exception in checkLikes" + JSON.stringify(e));
+					callback(null, "No biography found yet")
 				}
-				});// request echonest search plus callback
-				} */
+			});// cache request
+				}
+				catch (e) {
+					console.log("Exception in get biography from cache" + e);
+					callback(null, "No biography found yet")
+				}
+		}
 	]
-
 		, function (err, results) {
+			console.log("Done parallel!");
 			if (err) {
 				logger.log("Error in processing artist enrichment: " + JSON.stringify(err), moduleName, logger.ERROR);
 				console.log("error in processing " + JSON.stringify(err));
@@ -312,9 +308,7 @@ function handleArtists(req, res, artistName) {
 				// take the artist record as it stands right now and compose the response
 				composeArtisResponse(res, artist);
 			}
-		});
-
-
+		});//parallel
 
 } //handleArtists
 
