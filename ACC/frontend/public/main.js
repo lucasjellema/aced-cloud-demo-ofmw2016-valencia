@@ -5,11 +5,16 @@ requirejs.config({
         'jquery': '../bower_components/jquery/dist/jquery',
         'jqueryui-amd': '../bower_components/jquery-ui/ui',
         'ojs': '../bower_components/oraclejet/dist/js/libs/oj/debug',
+        'ojdnd': '../bower_components/oraclejet/dist/js/libs/dnd-polyfill/dnd-polyfill-1.0.0',
         'ojL10n': '../bower_components/oraclejet/dist/js/libs/oj/ojL10n',
         'ojtranslations': '../bower_components/oraclejet/dist/js/libs/oj/resources',
         'text': '../bower_components/text/text',
+        'signals': '../bower_components/js-signals/dist/signals',
+        'customElements': '../bower_components/webcomponentsjs/CustomElements',
         'promise': '../bower_components/es6-promise/promise',
-        'hammerjs': '../bower_components/hammerjs/hammer'
+        'proj4': '../bower_components/proj4/dist/proj4-src',
+        'hammerjs': '../bower_components/hammerjs/hammer',
+        'css': '../bower_components/require-css/css'
     },
     // Shim configurations for modules that do not expose AMD
     shim: {

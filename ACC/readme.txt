@@ -6,3 +6,4 @@ The API is also exposed from the Google AppEngine, at http://104.155.85.98/artis
 
 Some sample calls: http://104.155.85.98/artists/get?artist=the+kaiser+chiefs (http://104.155.85.98/artists/get?artist=bon+jovi, http://104.155.85.98/artists/get?artist=the+beatles ...) 
 
+(local testing: http://127.0.0.1:5100/artists/get/?artist=abba )

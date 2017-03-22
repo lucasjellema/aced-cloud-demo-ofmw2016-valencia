@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">WorldMap</property>
+      <property
+         name="page">/WorldMap.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>WorldMap&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">307.79883</property>
+      <property
+         name="x">423.5</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">main</property>
+      <property
+         name="page">/main.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>main&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">180.09766</property>
+      <property
+         name="x">235.5</property>
+   </View>
+</SDM>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.1.3.13.52" id="DataBindings"
+             SeparateXMLFiles="false" Package="nl.amis.world.view" ClientType="Generic">
+  <pageMap>
+    <page path="/CountriesCatalog.jsf" usageId="nl_amis_world_view_CountriesCatalogPageDef"/>
+    <page path="/ProposalManager.jsf" usageId="nl_amis_world_view_ProposalManagerPageDef"/>
+    <page path="/Albums.jsf" usageId="nl_amis_world_view_AlbumsPageDef"/>
+    <page path="/ArtistProposalManager.jsf" usageId="nl_amis_world_view_ArtistProposalManagerPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="nl_amis_world_view_CountriesCatalogPageDef" path="nl.amis.world.view.pageDefs.CountriesCatalogPageDef"/>
+    <page id="nl_amis_world_view_ProposalManagerPageDef" path="nl.amis.world.view.pageDefs.ProposalManagerPageDef"/>
+    <page id="nl_amis_world_view_AlbumsPageDef" path="nl.amis.world.view.pageDefs.AlbumsPageDef"/>
+    <page id="nl_amis_world_view_ArtistProposalManagerPageDef"
+          path="nl.amis.world.view.pageDefs.ArtistProposalManagerPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="WorldModuleDataControl" Package="nl.amis.world.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="WorldModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SoaringProposalServiceDataControl" Package="nl.amis.world.model"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SoaringProposalServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

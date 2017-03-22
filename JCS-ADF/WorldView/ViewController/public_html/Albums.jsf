@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Albums.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="50px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Header -->
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:table value="#{bindings.AlbumsView1.collectionModel}" var="row"
+                                  rows="#{bindings.AlbumsView1.rangeSize}"
+                                  emptyText="#{bindings.AlbumsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.AlbumsView1.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.AlbumsView1.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.AlbumsView1.rangeSize}"
+                                  filterModel="#{bindings.AlbumsView1Query.queryDescriptor}"
+                                  queryListener="#{bindings.AlbumsView1Query.processQuery}" filterVisible="true"
+                                  varStatus="vs" id="t1">
+                            <af:column sortProperty="#{bindings.AlbumsView1.hints.ActId.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.AlbumsView1.hints.ActId.label}" id="c1">
+                                <af:inputText value="#{row.bindings.ActId.inputValue}"
+                                              label="#{bindings.AlbumsView1.hints.ActId.label}"
+                                              required="#{bindings.AlbumsView1.hints.ActId.mandatory}"
+                                              columns="#{bindings.AlbumsView1.hints.ActId.displayWidth}"
+                                              maximumLength="#{bindings.AlbumsView1.hints.ActId.precision}"
+                                              shortDesc="#{bindings.AlbumsView1.hints.ActId.tooltip}" id="it1">
+                                    <f:validator binding="#{row.bindings.ActId.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.AlbumsView1.hints.ActId.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.AlbumsView1.hints.Artist.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.AlbumsView1.hints.Artist.label}" id="c5">
+                                <af:inputText value="#{row.bindings.Artist.inputValue}" readOnly="true"
+                                              label="#{bindings.AlbumsView1.hints.Artist.label}"
+                                              required="#{bindings.AlbumsView1.hints.Artist.mandatory}"
+                                              columns="#{bindings.AlbumsView1.hints.Artist.displayWidth}"
+                                              shortDesc="#{bindings.AlbumsView1.hints.Artist.tooltip}" id="it4">
+                                    <f:validator binding="#{row.bindings.Artist.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.AlbumsView1.hints.Title.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.AlbumsView1.hints.Title.label}" id="c2">
+                                <af:inputText value="#{row.bindings.Title.inputValue}"
+                                              label="#{bindings.AlbumsView1.hints.Title.label}"
+                                              required="#{bindings.AlbumsView1.hints.Title.mandatory}"
+                                              columns="#{bindings.AlbumsView1.hints.Title.displayWidth}"
+                                              maximumLength="#{bindings.AlbumsView1.hints.Title.precision}"
+                                              shortDesc="#{bindings.AlbumsView1.hints.Title.tooltip}" id="it2">
+                                    <f:validator binding="#{row.bindings.Title.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.AlbumsView1.hints.ReleaseDate.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.AlbumsView1.hints.ReleaseDate.label}"
+                                       id="c3">
+                                <f:facet name="filter">
+                                    <af:inputDate value="#{bindings.AlbumsView1Query.queryDescriptor.filterConjunctionCriterion.criterionMap.ReleaseDate.value}"
+                                                  id="id1">
+                                        <af:convertDateTime pattern="#{bindings.AlbumsView1.hints.ReleaseDate.format}"/>
+                                    </af:inputDate>
+                                </f:facet>
+                                <af:inputDate value="#{row.bindings.ReleaseDate.inputValue}"
+                                              label="#{bindings.AlbumsView1.hints.ReleaseDate.label}"
+                                              required="#{bindings.AlbumsView1.hints.ReleaseDate.mandatory}"
+                                              columns="#{bindings.AlbumsView1.hints.ReleaseDate.displayWidth}"
+                                              shortDesc="#{bindings.AlbumsView1.hints.ReleaseDate.tooltip}" id="id2">
+                                    <f:validator binding="#{row.bindings.ReleaseDate.validator}"/>
+                                    <af:convertDateTime pattern="#{bindings.AlbumsView1.hints.ReleaseDate.format}"/>
+                                </af:inputDate>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.AlbumsView1.hints.Coverimageurl.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.AlbumsView1.hints.Coverimageurl.label}"
+                                       id="c4">
+                                <af:inputText value="#{row.bindings.Coverimageurl.inputValue}"
+                                              label="#{bindings.AlbumsView1.hints.Coverimageurl.label}"
+                                              required="#{bindings.AlbumsView1.hints.Coverimageurl.mandatory}"
+                                              columns="#{bindings.AlbumsView1.hints.Coverimageurl.displayWidth}"
+                                              maximumLength="#{bindings.AlbumsView1.hints.Coverimageurl.precision}"
+                                              shortDesc="#{bindings.AlbumsView1.hints.Coverimageurl.tooltip}" id="it3">
+                                    <f:validator binding="#{row.bindings.Coverimageurl.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                        </af:table>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

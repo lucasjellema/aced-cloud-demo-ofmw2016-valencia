@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="AlbumsPageDef"
+                Package="nl.amis.world.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="AlbumsView1" RangeSize="25" DataControl="SoaringProposalServiceDataControl"
+              id="AlbumsView1Iterator"/>
+    <searchRegion Binds="AlbumsView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="AlbumsView1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="AlbumsView1Iterator" id="AlbumsView1">
+      <nodeDefinition DefName="nl.amis.world.model.AlbumsView" Name="AlbumsView10">
+        <AttrNames>
+          <Item Value="ActId"/>
+          <Item Value="Title"/>
+          <Item Value="ReleaseDate"/>
+          <Item Value="Coverimageurl"/>
+          <Item Value="Artist"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

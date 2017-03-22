@@ -1,0 +1,120 @@
+
+
+download agent from dropbox 
+
+wget https://dl.dropboxusercontent.com/u/12217570/AgentInstall.sh
+
+copy agent to omc_cloud
+
+install cloud agent
+===================
+ ./AgentInstall.sh AGENT_TYPE=cloud_agent STAGE_LOCATION=/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloudstage AGENT_REGISTRATION_KEY=RMxMm7chywi-J-VZ7_UfxY5XUU -download_only
+
+cd omc_cloudstage/
+
+ ./AgentInstall.sh AGENT_TYPE=cloud_agent AGENT_REGISTRATION_KEY=RMxMm7chywi-J-VZ7_UfxY5XUU AGENT_BASE_DIR=/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent  -staged
+
+run scrip as root:
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/core/1.15.0/root.sh
+
+cd  cd /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/plugins/oracle.em.sgfm.zip/1.15.0/configs
+vi discovery.properties
+
+disable line about linux host
+
+
+cd /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin
+./omcli config agent listtargets
+
+
+configure entities:
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin/omcli add_entity agent /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/my_entities/weblogic-domain-entities.json
+
+
+
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin/omcli add_entity agent /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/my_entities/weblogic-managedserver-entities.json
+
+
+check for targets:
+
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin/omcli config agent listtargets
+
+
+Fix Bug in Configuration File
+
+No log file entries were published at this point from the JCS VM. Investigation by Eugene van der Voort made clear that a problem existed in the out of the box agent configuration files:
+
+1)      Agent Logfile with error messages: $AGENT_HOME/sysman/log/gcagent.log    ( /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/sysman/log/gcagent.log)
+
+inspect log file /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/sysman/log/gcagent.log
+
+ cd /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/sysman/log
+
+3)      Modify offending file: /u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/sysman/ApplicationsState/loganalytics/logrules_os_file.xml
+
+4)      Locate tag:
+
+<Name>tm_server.log</Name>
+
+<Regex>([\d]{2}:[\d]{2}:[\d]{2},[\d]{3})\s+(.*?)\s+\[(.*)\]\s+\(.*)\s+\[(.*)\]\s+([\d]{4})-([\d]{2})-([\d]{2})\s+([\d]{2}):([\d]{2}):([\d]{2}),([\d]{3})(.*)</Regex>
+
+5)      Change regular expression to :
+
+<Regex>([\d]{2}:[\d]{2}:[\d]{2},[\d]{3})\s+(.*?)\s+\[(.*)\]\s+(.*)\s+\[(.*)\]\s+([\d]{4})-([\d]{2})-([\d]{2})\s+([\d]{2}):([\d]{2}):([\d]{2}),([\d]{3})(.*)</Regex>
+
+6)      Then stop and start the agent:
+
+    
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin/omcli stop agent
+/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloud_agent/agent_inst/bin/omcli start agent
+
+
+Finally: add diagnostics log file to entity:
+https://technology.amis.nl/2017/01/20/expose-custom-application-logging-on-weblogic-in-log-analytics/
+
+install APM agent
+=================
+https://technology.amis.nl/2016/12/14/oracle-management-cloud-application-performance-monitoring-for-java-ee-adf-soa-suite-applications/
+
+
+cd omc_cloudstage/
+
+./AgentInstall.sh AGENT_TYPE=apm_java_as_agent STAGE_LOCATION=/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloudstage AGENT_REGISTRATION_KEY=RMxMm7chywi-J-VZ7_UfxY5XUU
+
+export REG_KEY=RMxMm7chywi-J-VZ7_UfxY5XUU
+export DOMAIN_HOME=/u01/data/domains/soacs4em_domain
+export STAGE_LOCATION=/u01/app/oracle/tools/paas/state/homes/oracle/omc_cloudstage
+
+chmod +x ProvisionApmJavaAsAgent.sh
+
+./ProvisionApmJavaAsAgent.sh -d ${DOMAIN_HOME} -no-wallet
+
+1. Make a backup copy of your startWebLogic.sh file:
+        % cd $DOMAIN_HOME/bin
+        % cp startWebLogic.sh startWebLogic.sh.orig
+
+vi startWebLogic.sh
+
+2. Now edit the script with your favorite text editor (e.g. "vi"), and add the
+   -javaagent option to the set of JAVA_OPTIONS found therein, by adding the
+   following line right after the "setDomainEnv.sh" call:
+
+        JAVA_OPTIONS="${JAVA_OPTIONS} -javaagent:${DOMAIN_HOME}/apmagent/lib/system/ApmAgentInstrumentation.jar"
+
+3. Stop and restart your WebLogic Application Server. Note that you will use
+   the $DOMAIN_HOME/bin version of stopWebLogic.sh, but the $DOMAIN_HOME
+   version of startWebLogic.sh, even though you edited the $DOMAIN_HOME/bin
+   version. The "upper" level one will, in fact, invoke the "lower" level one:
+
+        % cd $DOMAIN_HOME/bin
+        % ./stopWebLogic.sh
+        % cd ..
+        % nohup ./startWebLogic.sh >& startup.log &
+
+4. Finally, if you have any Managed WebLogic Application Servers, stop and
+   restart them also:
+
+        % cd $DOMAIN_HOME/bin
+        % ./stopManagedWebLogic.sh {SERVER_NAME} {ADMIN_URL} {USER_NAME} {PASSWORD}                                                
+        % nohup ./startManagedWebLogic.sh {SERVER_NAME} {ADMIN_URL} >& {SERVER_NAME}.log &
+

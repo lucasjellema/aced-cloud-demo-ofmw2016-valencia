@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Country"
+  Version="12.1.3.10.8"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="COUNTRIES_VW"
+  AliasName="Country"
+  BindingStyle="OracleName"
+  RowClass="nl.amis.world.model.CountryImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="DML"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="RichValue"
+    Precision="11"
+    ColumnName="RICH_VALUE"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"
+    RetrievedOnUpdate="true"
+    RetrievedOnInsert="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Name"
+    Precision="100"
+    ColumnName="NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Code"
+    Precision="5"
+    ColumnName="CODE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Continent"
+    Precision="20"
+    ColumnName="CONTINENT"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Population"
+    Precision="10"
+    Scale="0"
+    ColumnName="POPULATION"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Area"
+    Precision="10"
+    Scale="0"
+    ColumnName="AREA"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Coastline"
+    Precision="10"
+    Scale="0"
+    ColumnName="COASTLINE"
+    SQLType="NUMERIC"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="GovernmentForm"
+    Precision="100"
+    ColumnName="GOVERNMENT_FORM"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CurrencyName"
+    Precision="100"
+    ColumnName="CURRENCY_NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CurrencyUnit"
+    Precision="5"
+    ColumnName="CURRENCY_UNIT"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Birthrate"
+    Precision="4"
+    Scale="1"
+    ColumnName="BIRTHRATE"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Deathrate"
+    Precision="4"
+    Scale="1"
+    ColumnName="DEATHRATE"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="LifeExpectancy"
+    Precision="4"
+    Scale="1"
+    ColumnName="LIFE_EXPECTANCY"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Url"
+    Precision="100"
+    ColumnName="URL"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="COUNTRIES_VW"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="CountryPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="COUNTRY_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="nl.amis.world.model.Country.RichValue"/>
+      <Item Value="nl.amis.world.model.Country.Name"/>
+      <Item Value="nl.amis.world.model.Country.Code"/>
+      <Item Value="nl.amis.world.model.Country.Continent"/>
+      <Item Value="nl.amis.world.model.Country.Population"/>
+      <Item Value="nl.amis.world.model.Country.Area"/>
+      <Item Value="nl.amis.world.model.Country.Coastline"/>
+      <Item Value="nl.amis.world.model.Country.GovernmentForm"/>
+      <Item Value="nl.amis.world.model.Country.CurrencyName"/>
+      <Item Value="nl.amis.world.model.Country.CurrencyUnit"/>
+      <Item Value="nl.amis.world.model.Country.Birthrate"/>
+      <Item Value="nl.amis.world.model.Country.Deathrate"/>
+      <Item Value="nl.amis.world.model.Country.LifeExpectancy"/>
+      <Item Value="nl.amis.world.model.Country.Url"/>
+    </AttrArray>
+  </Key>
+</Entity>

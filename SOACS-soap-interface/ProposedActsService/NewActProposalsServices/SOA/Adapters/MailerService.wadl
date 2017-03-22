@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService" xmlns:ns0="http://TargetNamespace.com/MailerService_SendMail_request" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="MailerService">RestReference</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/MailerService_SendMail_request" schemaLocation="../Schemas/nxsd_email.xsd"/>
+        </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/MailerService_SendMail_response" schemaLocation="../Schemas/nxsd_mailer_response.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/mailer">
+         <method name="POST" soa:wsdlOperation="SendMail">
+            <request>
+               <representation mediaType="application/json" element="cns:email" xmlns:cns="http://TargetNamespace.com/MailerService_SendMail_request"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:mailer_response" xmlns:cns="http://TargetNamespace.com/MailerService_SendMail_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

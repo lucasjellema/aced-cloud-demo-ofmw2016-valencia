@@ -74,6 +74,7 @@
          <string v="JAVASCRIPT"/>
          <string v="Maven"/>
          <string v="SOA"/>
+         <string v="WSPolicy"/>
          <string v="XML"/>
       </list>
    </hash>

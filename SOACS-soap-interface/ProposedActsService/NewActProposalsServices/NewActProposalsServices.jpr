@@ -92,8 +92,10 @@
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="JAVASCRIPT"/>
+         <string v="Java"/>
          <string v="Maven"/>
          <string v="SOA"/>
+         <string v="WSPolicy"/>
          <string v="XML"/>
          <string v="XML_SCHEMA"/>
       </list>
@@ -219,6 +221,9 @@
    </hash>
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
          <list n="url-path">
             <url path="SOA/SCA-INF/src/"/>
          </list>
@@ -265,6 +270,10 @@
             <value n="id" v="BC4J Service Runtime"/>
             <value n="isJDK" v="false"/>
          </hash>
+         <hash>
+            <value n="id" v="SOA Workflow"/>
+            <value n="isJDK" v="false"/>
+         </hash>
       </list>
       <list n="libraryReferences">
          <hash>
@@ -289,6 +298,10 @@
          </hash>
          <hash>
             <value n="id" v="BC4J Service Runtime"/>
+            <value n="isJDK" v="false"/>
+         </hash>
+         <hash>
+            <value n="id" v="SOA Workflow"/>
             <value n="isJDK" v="false"/>
          </hash>
       </list>

@@ -1,6 +1,6 @@
 <adapter-config name="retrieveProposedActs" adapter="db" wsdlLocation="../WSDLs/retrieveProposedActs.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
   
-  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/SOADemo"/>
+  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/cloudacex"/>
   <endpoint-interaction portType="retrieveProposedActs_ptt" operation="retrieveProposedActsSelect">
     <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
       <property name="DescriptorName" value="retrieveProposedActs.ProposedActs"/>

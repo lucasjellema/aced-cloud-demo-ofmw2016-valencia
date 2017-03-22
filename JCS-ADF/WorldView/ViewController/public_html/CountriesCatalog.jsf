@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces" xmlns:h="http://java.sun.com/jsf/html">
+    <af:document title="Country Catalog" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="80px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <af:panelHeader text="Catalog of Countries of The World" id="ph1">
+                            <f:facet name="context"/>
+                            <f:facet name="menuBar"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="legend"/>
+                            <f:facet name="info"/>
+                            <af:button text="Main"  id="b1" action="main"/>
+                        </af:panelHeader>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <af:decorativeBox id="db1">
+                            <f:facet name="center">
+                            <af:panelHeader text="Countries" id="ph2">
+                                </af:panelHeader>
+                            </f:facet>
+                            <f:facet name="top"/>
+                        </af:decorativeBox>
+                        <!-- on panel collection stretching http://rogersuen.blogspot.nl/2014/03/adf-stretch-panelcollection-table.html -->
+                        <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar">
+                                <af:toolbar id="t2">
+                                    <af:button actionListener="#{bindings.Rollback.execute}" text="Cancel"
+                                               immediate="true" id="b2">
+                                        <af:resetActionListener/>
+                                    </af:button>
+                                    <af:button actionListener="#{bindings.Commit.execute}" text="Save"
+                                               id="b3"/>
+                                </af:toolbar>
+                            </f:facet>
+                            <f:facet name="statusbar"/>
+                            <af:table value="#{bindings.CountriesView1.collectionModel}" var="row"
+                                      rows="#{bindings.CountriesView1.rangeSize}"
+                                      emptyText="#{bindings.CountriesView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                      rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.CountriesView1.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.CountriesView1.collectionModel.makeCurrent}"
+                                      rowSelection="single" fetchSize="#{bindings.CountriesView1.rangeSize}"
+                                      filterModel="#{bindings.CountriesView1Query.queryDescriptor}"
+                                      contentDelivery="immediate"
+                                      queryListener="#{bindings.CountriesView1Query.processQuery}" filterVisible="true"
+                                      varStatus="vs" id="t1" columnStretching="last">
+                               
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Name.name}" filterable="true"
+                                           sortable="true" headerText="#{bindings.CountriesView1.hints.Name.label}"
+                                           id="c2">
+                                    <af:inputText value="#{row.bindings.Name.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Name.label}"
+                                                  required="#{bindings.CountriesView1.hints.Name.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Name.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Name.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Name.tooltip}" id="it2">
+                                        <f:validator binding="#{row.bindings.Name.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Code.name}" filterable="true"
+                                           sortable="true" headerText="#{bindings.CountriesView1.hints.Code.label}"
+                                           id="c3">
+                                    <af:inputText value="#{row.bindings.Code.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Code.label}"
+                                                  required="#{bindings.CountriesView1.hints.Code.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Code.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Code.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Code.tooltip}" id="it3">
+                                        <f:validator binding="#{row.bindings.Code.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Continent.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.Continent.label}" id="c4">
+                                    <af:inputText value="#{row.bindings.Continent.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Continent.label}"
+                                                  required="#{bindings.CountriesView1.hints.Continent.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Continent.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Continent.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Continent.tooltip}"
+                                                  id="it4">
+                                        <f:validator binding="#{row.bindings.Continent.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Population.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.Population.label}" id="c5">
+                                    <af:inputText value="#{row.bindings.Population.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Population.label}"
+                                                  required="#{bindings.CountriesView1.hints.Population.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Population.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Population.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Population.tooltip}"
+                                                  id="it5">
+                                        <f:validator binding="#{row.bindings.Population.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CountriesView1.hints.Population.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Area.name}" filterable="true"
+                                           sortable="true" headerText="#{bindings.CountriesView1.hints.Area.label}"
+                                           id="c6">
+                                    <af:inputText value="#{row.bindings.Area.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Area.label}"
+                                                  required="#{bindings.CountriesView1.hints.Area.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Area.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Area.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Area.tooltip}" id="it6">
+                                        <f:validator binding="#{row.bindings.Area.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CountriesView1.hints.Area.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.GovernmentForm.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.GovernmentForm.label}" id="c7">
+                                    <af:inputText value="#{row.bindings.GovernmentForm.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.GovernmentForm.label}"
+                                                  required="#{bindings.CountriesView1.hints.GovernmentForm.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.GovernmentForm.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.GovernmentForm.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.GovernmentForm.tooltip}"
+                                                  id="it7">
+                                        <f:validator binding="#{row.bindings.GovernmentForm.validator}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Birthrate.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.Birthrate.label}" id="c8">
+                                    <af:inputText value="#{row.bindings.Birthrate.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Birthrate.label}"
+                                                  required="#{bindings.CountriesView1.hints.Birthrate.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Birthrate.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Birthrate.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Birthrate.tooltip}"
+                                                  id="it8">
+                                        <f:validator binding="#{row.bindings.Birthrate.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CountriesView1.hints.Birthrate.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.Deathrate.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.Deathrate.label}" id="c9">
+                                    <af:inputText value="#{row.bindings.Deathrate.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.Deathrate.label}"
+                                                  required="#{bindings.CountriesView1.hints.Deathrate.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.Deathrate.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.Deathrate.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.Deathrate.tooltip}"
+                                                  id="it9">
+                                        <f:validator binding="#{row.bindings.Deathrate.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CountriesView1.hints.Deathrate.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CountriesView1.hints.LifeExpectancy.name}"
+                                           filterable="true" sortable="true"
+                                           headerText="#{bindings.CountriesView1.hints.LifeExpectancy.label}" id="c10">
+                                    <af:inputText value="#{row.bindings.LifeExpectancy.inputValue}"
+                                                  label="#{bindings.CountriesView1.hints.LifeExpectancy.label}"
+                                                  required="#{bindings.CountriesView1.hints.LifeExpectancy.mandatory}"
+                                                  columns="#{bindings.CountriesView1.hints.LifeExpectancy.displayWidth}"
+                                                  maximumLength="#{bindings.CountriesView1.hints.LifeExpectancy.precision}"
+                                                  shortDesc="#{bindings.CountriesView1.hints.LifeExpectancy.tooltip}"
+                                                  id="it10">
+                                        <f:validator binding="#{row.bindings.LifeExpectancy.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CountriesView1.hints.LifeExpectancy.format}"/>
+                                    </af:inputText>
+                                </af:column>
+                            </af:table>
+                        </af:panelCollection>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

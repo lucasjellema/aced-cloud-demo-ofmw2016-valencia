@@ -13,11 +13,22 @@
 
   <xsd:complexType name="findArtistResponseMessageType">
     <xsd:sequence>
-      <xsd:element name="name" type="xsd:string"/>
-      <xsd:element name="id" type="xsd:string"/>
-      <xsd:element name="genre" type="xsd:string"/>
-      <xsd:element name="imageURL" type="xsd:string" minOccurs="0"/>
-    </xsd:sequence>
+            <xsd:element name="spotifyId" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="genres" type="xsd:string"/>
+            <xsd:element name="imageURL" type="xsd:string"/>
+            <xsd:element name="spottiyHRef" type="xsd:string"/>
+            <xsd:element name="albums" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="title" type="xsd:string"/>
+                     <xsd:element name="imageURL" type="xsd:string"/>
+                     <xsd:element name="spotifyId" type="xsd:string"/>
+                     <xsd:element name="releaseDate" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
   </xsd:complexType>
 
 </xsd:schema>

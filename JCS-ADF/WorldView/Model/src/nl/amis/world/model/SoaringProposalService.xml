@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SoaringProposalService"
+  Version="12.1.3.13.52"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true"
+  ComponentClass="nl.amis.world.model.SoaringProposalServiceImpl">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewUsage
+    Name="AlbumsView1"
+    ViewObjectName="nl.amis.world.model.AlbumsView"/>
+  <ViewUsage
+    Name="ProposedActsView1"
+    ViewObjectName="nl.amis.world.model.ProposedActsView"/>
+  <ViewUsage
+    Name="ProposedActsView2"
+    ViewObjectName="nl.amis.world.model.ProposedActsView"/>
+  <ViewUsage
+    Name="AlbumsView2"
+    ViewObjectName="nl.amis.world.model.AlbumsView"/>
+  <ViewLinkUsage
+    Name="ActAlbumViewLink"
+    ViewLinkObjectName="nl.amis.world.model.ActAlbumViewLink"
+    SrcViewUsageName="nl.amis.world.model.SoaringProposalService.ProposedActsView2"
+    DstViewUsageName="nl.amis.world.model.SoaringProposalService.AlbumsView2"
+    Reversed="false"/>
+</AppModule>

@@ -1,0 +1,32 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="TweetServiceSOAP"
+     targetNamespace="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP"
+     xmlns:tns="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP"
+     xmlns:inp1="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request"
+     xmlns:inp2="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_response"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request"
+                 schemaLocation="../Schemas/PublishTweet-request.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_response"
+                 schemaLocation="../Schemas/PublishTweet-response.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="part1" element="inp1:tweetRequest"/>
+    </wsdl:message>
+    <wsdl:message name="replyMessage">
+        <wsdl:part name="part1" element="inp2:publishTweetResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="execute_ptt">
+        <wsdl:operation name="execute">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

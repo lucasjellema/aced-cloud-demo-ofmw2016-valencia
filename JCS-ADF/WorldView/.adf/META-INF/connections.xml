@@ -1,0 +1,104 @@
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+  <Reference name="AMISPAAS_DB_SYS" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
+             credentialStoreKey="AMISPAAS_DB_SYS" xmlns="">
+    <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
+    <RefAddresses>
+      <StringRefAddr addrType="subtype">
+        <Contents>oraJDBC</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="user">
+        <Contents>sys</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>141.144.34.158</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="port">
+        <Contents>1521</Contents>
+      </StringRefAddr>
+      <SecureRefAddr addrType="password"/>
+      <StringRefAddr addrType="serviceName">
+        <Contents>PDB1.amispaas.oraclecloud.internal</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="oraDriverType">
+        <Contents>thin</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="role">
+        <Contents>SYSDBA</Contents>
+      </StringRefAddr>
+    </RefAddresses>
+  </Reference>
+  <Reference name="AMISPAAS_DB_WORLD" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
+             credentialStoreKey="AMISPAAS_DB_WORLD" xmlns="">
+    <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
+    <RefAddresses>
+      <StringRefAddr addrType="subtype">
+        <Contents>oraJDBC</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="user">
+        <Contents>world</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>141.144.34.158</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="port">
+        <Contents>1521</Contents>
+      </StringRefAddr>
+      <SecureRefAddr addrType="password"/>
+      <StringRefAddr addrType="serviceName">
+        <Contents>PDB1.amispaas.oraclecloud.internal</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="oraDriverType">
+        <Contents>thin</Contents>
+      </StringRefAddr>
+    </RefAddresses>
+  </Reference>
+  <Reference name="cloudace" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="cloudace"
+             xmlns="">
+    <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
+    <RefAddresses>
+      <StringRefAddr addrType="subtype">
+        <Contents>oraJDBC</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="user">
+        <Contents>cloudace</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>129.144.152.41</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="port">
+        <Contents>1521</Contents>
+      </StringRefAddr>
+      <SecureRefAddr addrType="password"/>
+      <StringRefAddr addrType="serviceName">
+        <Contents>soacsdb.partnercloud17.oraclecloud.internal</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="oraDriverType">
+        <Contents>thin</Contents>
+      </StringRefAddr>
+    </RefAddresses>
+  </Reference>
+  <Reference name="world" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="world" xmlns="">
+    <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
+    <RefAddresses>
+      <StringRefAddr addrType="subtype">
+        <Contents>oraJDBC</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="user">
+        <Contents>cloudace</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="port">
+        <Contents>1521</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>129.144.152.41</Contents>
+      </StringRefAddr>
+      <SecureRefAddr addrType="password"/>
+      <StringRefAddr addrType="serviceName">
+        <Contents>soacsdb.partnercloud17.oraclecloud.internal</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="oraDriverType">
+        <Contents>thin</Contents>
+      </StringRefAddr>
+    </RefAddresses>
+  </Reference>
+</References>

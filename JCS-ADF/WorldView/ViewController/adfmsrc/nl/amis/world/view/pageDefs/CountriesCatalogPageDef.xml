@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="CountriesCatalogPageDef"
+                Package="nl.amis.world.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CountriesView1" RangeSize="15" DataControl="WorldModuleDataControl" id="CountriesView1Iterator"/>
+    <searchRegion Binds="CountriesView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CountriesView1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CountriesView1Iterator" id="CountriesView1">
+      <nodeDefinition DefName="nl.amis.world.model.CountriesView" Name="CountriesView10">
+        <AttrNames>
+          <Item Value="RichValue"/>
+          <Item Value="Name"/>
+          <Item Value="Code"/>
+          <Item Value="Continent"/>
+          <Item Value="Population"/>
+          <Item Value="Area"/>
+          <Item Value="GovernmentForm"/>
+          <Item Value="Birthrate"/>
+          <Item Value="Deathrate"/>
+          <Item Value="LifeExpectancy"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction"
+            DataControl="WorldModuleDataControl"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="WorldModuleDataControl"/>
+  </bindings>
+</pageDefinition>

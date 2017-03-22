@@ -1,0 +1,77 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Artist",
+		"_postman_id": "7915cc51-921d-1779-85cc-66869f31f7a7",
+		"description": "Collection to test artist application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAct 1",
+			"request": {
+				"url": "https://https://mcs4emeapartner-partnercloud17.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "bc8f7a83-3254-4fad-a7ec-57f086b70ad1",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "basic UEFSVE5FUkNMT1VEMTdfTUNTNEVNRUFQQVJUTkVSX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6T3Jza3pldWk2ZF8zdmE=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllActs",
+			"request": {
+				"url": "https://mcs4emeapartner-partnercloud17.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts?minimumVotes=1&max=100",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "bc8f7a83-3254-4fad-a7ec-57f086b70ad1",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "basic UEFSVE5FUkNMT1VEMTdfTUNTNEVNRUFQQVJUTkVSX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6T3Jza3pldWk2ZF8zdmE=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getCollections",
+			"request": {
+				"url": "https://roaring-deoracleem99369.mobileenv.us2.oraclecloud.com:443/mobile/platform/storage/collections",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "bc8f7a83-3254-4fad-a7ec-57f086b70ad1",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfTUNTNEVNRUFQQVJUTkVSX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6T3Jza3pldWk2ZF8zdmE=",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

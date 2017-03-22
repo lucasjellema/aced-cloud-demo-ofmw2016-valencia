@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="WorldOfErrors.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelGridLayout id="pgl1">
+                        <af:gridRow marginTop="5px" height="auto" id="gr1">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc1">
+                                <af:button text="NullPointerException" id="b1"
+                                           actionListener="#{errorGeneratorBean.onSimulateNullPointerException}"
+                                           partialSubmit="true"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr2">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc2">
+                                <af:button text="IndexOutOfBoundsException" id="b3"
+                                           actionListener="#{errorGeneratorBean.onSimulateIndexOutOfBoundsException}"
+                                           partialSubmit="true"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr3">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc3">
+                                <af:button text="NumberFormatException" id="b4"
+                                           actionListener="#{errorGeneratorBean.onSimulateNumberFormatException}"
+                                           partialSubmit="true"/>
+                                <af:inputText label="Set a dummy String to look for in APM" id="it1"
+                                              value="#{errorGeneratorBean.dummyString}"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr4">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc4"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr5">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc5"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr6">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc6"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr7">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc7"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr8">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc8"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" id="gr9">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc9"/>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr10">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc10"/>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top">
+                    <af:button text="Back to Main" id="b2" action="main"/>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

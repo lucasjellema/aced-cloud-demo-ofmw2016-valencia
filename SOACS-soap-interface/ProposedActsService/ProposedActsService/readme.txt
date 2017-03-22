@@ -36,7 +36,7 @@ username/password: acd
 
 DB Adapter JNDI:
 
-eis/DB/aced-demos-dbaas-acd
+eis/DB/cloudace
 
 
 

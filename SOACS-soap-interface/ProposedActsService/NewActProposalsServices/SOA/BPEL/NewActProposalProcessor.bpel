@@ -31,7 +31,11 @@
          xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
          xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
          xmlns:ns4="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
-         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request">
+         xmlns:ns5="http://TargetNamespace.com/TweetNewArtistProposal_PublishTweet_request"
+         xmlns:ns6="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference"
+         xmlns:ns7="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerMediator"
+         xmlns:ns8="http://TargetNamespace.com/MailerService_SendMail_request"
+         xmlns:ns9="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService">
 
   <!-- 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +58,11 @@
                  partnerRole="submitNewActProposal_role"/>
     <partnerLink name="TweetNewArtistProposal" partnerLinkType="ns4:TweetNewArtistProposal"
                  partnerRole="TweetNewArtistProposalProvider"/>
+    <partnerLink name="ArtistEnricherMediator.ArtistEnricherMediator"
+                 partnerLinkType="client:ArtistEnricherMediator.ArtistEnricherMediator" partnerRole="ArtistsService"/>
+    <partnerLink name="MailerMediator.MailerMediator" partnerLinkType="ns7:MailerMediator.MailerMediator"
+                 partnerRole="execute_ptt"/>
+    <partnerLink name="MailerService" partnerLinkType="ns9:MailerService" partnerRole="MailerServiceProvider"/>
   </partnerLinks>
 
   <!-- 
@@ -117,25 +126,57 @@
         </catchAll>
       </faultHandlers>
       <sequence name="Sequence1">
-        <assign name="AssignInputForArtistAPI">
-          <copy>
-            <from>$inputVariable.part1/client:name</from>
-            <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
-          </copy>
-        </assign>
-        <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
-                portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
-                inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
-                outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
-        <assign name="AssignEnrichedProposalData">
-          <bpelx:annotation>
-            <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
-          </bpelx:annotation>
-          <copy>
-            <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
-            <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
-          </copy>
-        </assign>
+        <scope name="ArtistEnrichmentScope">
+          <variables>
+            <variable name="InvokeArtistEnricherAPI_findArtist_InputVariable" messageType="client:findArtistRequest"/>
+            <variable name="InvokeArtistEnricherAPI_findArtist_OutputVariable" messageType="client:findArtistResponse"/>
+          </variables>
+          <sequence name="Sequence3">
+            <assign name="AssignInputForArtistEnrichment">
+              <copy>
+                <from>$inputVariable.part1/client:name</from>
+                <to>$InvokeArtistEnricherAPI_findArtist_InputVariable.part1/client:name</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeArtistEnricherAPI" bpelx:invokeAsDetail="no"
+                    partnerLink="ArtistEnricherMediator.ArtistEnricherMediator" portType="client:ArtistsService"
+                    operation="findArtist" inputVariable="InvokeArtistEnricherAPI_findArtist_InputVariable"
+                    outputVariable="InvokeArtistEnricherAPI_findArtist_OutputVariable"/>
+            <assign name="AssignArtistEnrichedProposalData">
+              <bpelx:annotation>
+                <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+              </bpelx:annotation>
+              <copy>
+                <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistAndRequest-to-PersistNewActProposal.xsl", $InvokeArtistEnricherAPI_findArtist_OutputVariable.part1, "inputVariable.part1", $inputVariable.part1)</from>
+                <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
+        <scope name="ScopeOldArtistAPICall">
+          <bpelx:skipCondition>true()</bpelx:skipCondition>
+          <sequence>
+            <assign name="AssignInputForArtistAPI">
+              <copy>
+                <from>$inputVariable.part1/client:name</from>
+                <to>$InvokeArtistAPI_FetchArtistDetails_InputVariable.request/ns1:param1</to>
+              </copy>
+            </assign>
+            <invoke name="InvokeArtistAPI" bpelx:invokeAsDetail="no" partnerLink="ArtistAPIReference"
+                    portType="ns1:ArtistAPIReference_ptt" operation="FetchArtistDetails"
+                    inputVariable="InvokeArtistAPI_FetchArtistDetails_InputVariable"
+                    outputVariable="InvokeArtistAPI_FetchArtistDetails_OutputVariable"/>
+            <assign name="AssignEnrichedProposalData">
+              <bpelx:annotation>
+                <bpelx:pattern patternName="bpelx:transformation"></bpelx:pattern>
+              </bpelx:annotation>
+              <copy>
+                <from>ora:doXSLTransformForDoc("../Transformations/EnrichedArtistData-submitNewActProposalInput.xsl", $InvokeArtistAPI_FetchArtistDetails_OutputVariable.reply, "inputVariable.part1", $inputVariable.part1)</from>
+                <to variable="PersistNewActProposal_InputVariable" part="InputParameters"/>
+              </copy>
+            </assign>
+          </sequence>
+        </scope>
       </sequence>
     </scope>
     <invoke name="PersistNewActProposal" bpelx:invokeAsDetail="no" partnerLink="submitNewActProposal"
@@ -175,6 +216,65 @@
                 portType="ns4:TweetNewArtistProposal_ptt" operation="PublishTweet"
                 inputVariable="InvokePublishTweet_PublishTweet_InputVariable"
                 outputVariable="InvokePublishTweet_PublishTweet_OutputVariable"/>
+      </sequence>
+    </scope>
+    <scope name="SendEmailAboutNewProposal">
+      <variables>
+        <variable name="InvokeEmailService_SendMail_InputVariable" messageType="ns9:SendMail_inputMessage"/>
+        <variable name="InvokeEmailService_SendMail_OutputVariable" messageType="ns9:SendMail_outputMessage"/>
+      </variables>
+      <faultHandlers>
+        <catchAll><empty name="DoNothing_FailedEmailIsNoBigProblem"
+                         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/></catchAll>
+      </faultHandlers>
+      <sequence name="Sequence5">
+        <assign name="AssignEmailerInput">
+          <copy>
+            <from>concat('Backup Notice: New Artist Proposal was registered: ',$inputVariable.part1/client:name)</from>
+            <to>$InvokeEmailService_SendMail_InputVariable.request/ns8:subject</to>
+          </copy>
+          <copy>
+            <from>concat('New artist proposal; Artist Name:',$inputVariable.part1/client:name,';Number of votes:',$inputVariable.part1/client:numberOfVotes,';Image Url:',$inputVariable.part1/client:numberOfVotes,';Timestamp:',xp20:current-dateTime())</from>
+            <to>$InvokeEmailService_SendMail_InputVariable.request/ns8:mailbodytext</to>
+          </copy>
+          <copy>
+            <from>concat('soaringacrosstheclouds@gmail.com','')</from>
+            <to>$InvokeEmailService_SendMail_InputVariable.request/ns8:addressees</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeEmailService" bpelx:invokeAsDetail="no" partnerLink="MailerService"
+                portType="ns9:MailerService_ptt" operation="SendMail"
+                inputVariable="InvokeEmailService_SendMail_InputVariable"
+                outputVariable="InvokeEmailService_SendMail_OutputVariable"/>
+      </sequence>
+    </scope>
+    <scope name="SendEmailThroughMediator">
+      <variables>
+        <variable name="InvokeEmailer_execute_InputVariable" messageType="ns7:requestMessage"/>
+        <variable name="InvokeEmailer_execute_OutputVariable" messageType="ns7:replyMessage"/>
+      </variables>
+      <faultHandlers>
+        <catchAll><empty name="DoNothing_FailedEmailIsNoBigProblem"
+                         xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"/></catchAll>
+      </faultHandlers>
+      <sequence name="Sequence4">
+        <assign name="AssignEmailDetails">
+          <copy>
+            <from>concat('New Artist Proposal was registered: ',$inputVariable.part1/client:name)</from>
+            <to>$InvokeEmailer_execute_InputVariable.request/ns8:subject</to>
+          </copy>
+          <copy>
+            <from>concat('New artist proposal; Artist Name:',$inputVariable.part1/client:name,';Number of votes:',$inputVariable.part1/client:numberOfVotes,';Timestamp:',xp20:current-dateTime(),';Image Url:',$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:IMAGE_URL)</from>
+            <to>$InvokeEmailer_execute_InputVariable.request/ns8:mailbodytext</to>
+          </copy>
+          <copy>
+            <from>concat('soaringacrosstheclouds@gmail.com','')</from>
+            <to>$InvokeEmailer_execute_InputVariable.request/ns8:addressees</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeEmailer" bpelx:invokeAsDetail="no" partnerLink="MailerMediator.MailerMediator"
+                portType="ns7:execute_ptt" operation="execute" inputVariable="InvokeEmailer_execute_InputVariable"
+                outputVariable="InvokeEmailer_execute_OutputVariable"/>
       </sequence>
     </scope>
   </sequence>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.1.3.13.52" id="ArtistProposalManagerPageDef"
+                Package="nl.amis.world.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ProposedActsView2" RangeSize="25" DataControl="SoaringProposalServiceDataControl"
+              id="ProposedActsView2Iterator"/>
+    <iterator Binds="AlbumsView2" RangeSize="25" DataControl="SoaringProposalServiceDataControl"
+              id="AlbumsView2Iterator"/>
+    <searchRegion Binds="AlbumsView2Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="AlbumsView2Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="ProposalTimestamp">
+      <AttrNames>
+        <Item Value="ProposalTimestamp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="Genres">
+      <AttrNames>
+        <Item Value="Genres"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="Biography">
+      <AttrNames>
+        <Item Value="Biography"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="NumberOfVotes">
+      <AttrNames>
+        <Item Value="NumberOfVotes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ProposedActsView2Iterator" id="ImageUrl">
+      <AttrNames>
+        <Item Value="ImageUrl"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="ProposedActsView2Iterator" id="First" RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="ProposedActsView2Iterator" id="Previous" RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="ProposedActsView2Iterator" id="Next" RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="ProposedActsView2Iterator" id="Last" RequiresUpdateModel="true" Action="last"/>
+    <tree IterBinding="AlbumsView2Iterator" id="AlbumsView2">
+      <nodeDefinition DefName="nl.amis.world.model.AlbumsView" Name="AlbumsView20">
+        <AttrNames>
+          <Item Value="Title"/>
+          <Item Value="ReleaseDate"/>
+          <Item Value="Coverimageurl"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="ProposedActsView2Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action IterBinding="ProposedActsView2Iterator" id="Execute" RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="SoaringProposalServiceDataControl"/>
+  </bindings>
+</pageDefinition>

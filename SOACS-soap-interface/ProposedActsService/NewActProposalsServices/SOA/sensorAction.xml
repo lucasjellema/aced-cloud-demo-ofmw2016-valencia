@@ -5,5 +5,25 @@
     </action>
     <action name="DBSensorAction" enabled="true" publishType="BpelReportsSchema" publishName="" filter="" publishTarget="">
         <sensorName>ArtistName</sensorName>
+        <sensorName>ArtistEnricherReferenceOnACCS</sensorName>
+        <sensorName>SendEmail</sensorName>
+        <sensorName>VerifyArtistProposalExistsInDBaaS</sensorName>
+        <sensorName>SubmitArtistProposalToDBaaS</sensorName>
+        <sensorName>VerifyExistenceOfArtistProposal</sensorName>
+    </action>
+    <action name="JMSSensorAction_ArtistEnricherReferenceOnACCS" enabled="false" publishType="JMSQueue" publishTarget="">
+        <property name="JMSConnectionFactory"/>
+    </action>
+    <action name="JMSSensorAction_SendEmail" enabled="false" publishType="JMSQueue" publishTarget="">
+        <property name="JMSConnectionFactory"/>
+    </action>
+    <action name="JMSSensorAction_VerifyArtistProposalExistsInDBaaS" enabled="false" publishType="JMSQueue" publishTarget="">
+        <property name="JMSConnectionFactory"/>
+    </action>
+    <action name="JMSSensorAction_SubmitArtistProposalToDBaaS" enabled="false" publishType="JMSQueue" publishTarget="">
+        <property name="JMSConnectionFactory"/>
+    </action>
+    <action name="JMSSensorAction_VerifyExistenceOfArtistProposal" enabled="false" publishType="JMSQueue" publishTarget="">
+        <property name="JMSConnectionFactory"/>
     </action>
 </actions>

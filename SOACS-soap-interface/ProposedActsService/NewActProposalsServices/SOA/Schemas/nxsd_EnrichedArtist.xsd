@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response" targetNamespace="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response" elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON" nxsd:encoding="UTF-8">
+   <xsd:element name="artist">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element name="spotifyId" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="genres" type="xsd:string"/>
+            <xsd:element name="imageURL" type="xsd:string"/>
+            <xsd:element name="spottiyHRef" type="xsd:string"/>
+            <xsd:element name="albums" maxOccurs="unbounded">
+               <xsd:complexType>
+                  <xsd:sequence>
+                     <xsd:element name="title" type="xsd:string"/>
+                     <xsd:element name="imageURL" type="xsd:string"/>
+                     <xsd:element name="spotifyId" type="xsd:string"/>
+                     <xsd:element name="releaseDate" type="xsd:string"/>
+                  </xsd:sequence>
+               </xsd:complexType>
+            </xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+<xsd:annotation xmlns="">
+      <xsd:appinfo>NXSDSAMPLE=/C:/data/aced-cloud-demo-ofmw2016-valencia/SOACS-soap-interface/ProposedActsService/NewActProposalsServices/enrichedArtistResponse.json</xsd:appinfo>
+      <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+   </xsd:annotation>
+</xsd:schema>

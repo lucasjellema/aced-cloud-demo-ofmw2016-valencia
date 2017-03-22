@@ -1,0 +1,15 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ArtistsService"
+     targetNamespace="aced.cloud.demo"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+     xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+     xmlns:tns="aced.cloud.demo"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="ArtistEnricherMediator.ArtistEnricherMediator">
+        <plnk:role name="ArtistsService" portType="tns:ArtistsService"/>
+    </plnk:partnerLinkType>
+    <wsdl:import namespace="aced.cloud.demo" location="ArtistsService.wsdl"/>
+</wsdl:definitions>

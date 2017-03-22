@@ -1,0 +1,45 @@
+{
+    "entities": [
+        {
+            "name": "soacs4em_server_1",
+            "type": "omc_weblogic_j2eeserver",
+            "displayName": "Managed Server 1 soacs4em Partnercloud17",
+            "timezoneRegion": "CST",
+            "properties": {
+                "host_name": {
+                    "displayName": "Weblogic Host",
+                    "value": "soacs4emeapartner-jcs-wls-1.compute-partnercloud17.oraclecloud.internal"
+                },
+                "domain_home": {
+                    "displayName": "Domain Home",
+                    "value": "/u01/data/domains/soacs4em_domain"
+                },
+                "listen_port": {
+                    "displayName": "Listen Port",
+                    "value": "9073"
+                },
+                "listen_port_enabled": {
+                    "displayName": "Listen Port Enabled",
+                    "value": "true"
+                },
+                "ssl_listen_port": {
+                    "displayName": "SSL Listen Port",
+                    "value": "9074"
+                },
+                "server_names": {
+                    "displayName": "Server Names",
+                    "value": "soacs4em_server_1"
+                }
+            },
+            "associations": [
+                {
+                    "assocType": "omc_monitored_by",
+                    "sourceEntityName": "soacs4em_server_1",
+                    "sourceEntityType": "omc_weblogic_j2eeserver",
+                    "destEntityName": "soacs4em_domain",
+                    "destEntityType": "omc_weblogic_domain"
+                }
+            ]
+        }
+    ]
+}
