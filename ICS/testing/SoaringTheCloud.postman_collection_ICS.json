@@ -1,0 +1,152 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SoaringTheCloud",
+		"_postman_id": "e3135876-9007-b4b2-0f01-3bb8f0a9a3b3",
+		"description": "REST test project for the ACE Demo at OFM Forum in Split.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IoTCSSubmitAct",
+			"description": "",
+			"item": [
+				{
+					"name": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/metadata",
+					"request": {
+						"url": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/act",
+						"method": "POST",
+						"header": [
+							{
+								"key": "//Accept",
+								"value": "application/json",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic c3Zlbi5iZXJuaGFyZHRAb3BpdHotY29uc3VsdGluZy5jb206JHYzTjMzODFf",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"id\": \"Id Value\"\n,\"source\": \"someValue\"\n, \"sentTime\": \"someOtherValue\"\n, \"eventTime\": \"someEventOtherValue\"\n  , \"payload\" :     { \"data\":  {\"max_of_data_artistname\": \"Tarja Turunen\", \"count_of_data_artistname\": 5000}\n}\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OfmAcedemoActsApi",
+			"description": "",
+			"item": [
+				{
+					"name": "getProposedActDetails",
+					"request": {
+						"url": "http://apics.oracle.com:8001/OfmAcedemoActsApi/proposedacts?proposedActId=21",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "73f119c7-05ad-403e-bde3-ac45ff5d0af5",
+								"description": ""
+							},
+							{
+								"key": "tenant-id",
+								"value": "OFM2017",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic d2VibG9naWM6MVBhYVM1cGwxdA==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:aced=\"aced.cloud.demo\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <aced:getProposedActDetailsRequestMessage>\n         <aced:proposedActId>7</aced:proposedActId>\n      </aced:getProposedActDetailsRequestMessage>\n   </soapenv:Body>\n</soapenv:Envelope>"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "getProposedActs",
+					"request": {
+						"url": "http://apics.oracle.com:8001/OfmAcedemoActsApi?mininumNumberOfVotes=1&maxNumberOfProposals=100",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "d4e79807-532e-46e0-ae07-b7114228b1bc",
+								"description": ""
+							},
+							{
+								"key": "tenant-id",
+								"value": "OFM2017",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic d2VibG9naWM6MVBhYVM1cGwxdA==",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TwitterServiceICS",
+			"description": "Tweet a message using an Integration Cloud Service (ICS) integration leveraging the Twitter Adapter.",
+			"item": [
+				{
+					"name": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01/tweets",
+					"request": {
+						"url": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01/tweets",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic c3Zlbi5iZXJuaGFyZHRAb3BpdHotY29uc3VsdGluZy5jb206JHYzTjMzODFf",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"tweet\" : { \"message\": \"This is a third test tweet...\"\n            , \"tag\" : \"acedclouddemo\"\n\t\t\t}\n}\t\t\t"
+						},
+						"description": "Send a Tweet to the SoaringClouds Twitter account"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
