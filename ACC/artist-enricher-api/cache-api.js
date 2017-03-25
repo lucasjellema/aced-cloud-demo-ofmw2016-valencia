@@ -41,7 +41,7 @@ cacheAPI.registerListeners =
             console.log('Cache-API GET params ' + JSON.stringify(req.params));
             var keyString = req.params['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
             console.log("keystring " + keyString);
-            logger.log("request value from cache under key " + keyString, moduleName, logger.DEBUG);
+            logger.log("*** CacheAPI: request value from cache under key " + keyString, moduleName, logger.DEBUG);
             cacheAPI.getFromCache(keyString, function (response) {                    // Send the response
                 res.json(response).end();
             });
@@ -54,7 +54,7 @@ cacheAPI.registerListeners =
             console.log("content type " + req.headers['content-type']);
             var keyString = req.params['keyString'];	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
             console.log("keystring " + keyString);
-            logger.log("stored value in cache for key " + keyString, moduleName, logger.INFO);
+            logger.log("*** CacheAPI: stored value in cache for key " + keyString, moduleName, logger.INFO);
             var valString = JSON.stringify(req.body);
             console.log("value submitted in PUT to be stored in Cache" + valString);
             cacheAPI.putInCache(keyString, valString, function (response) {
@@ -153,7 +153,7 @@ cacheAPI.registerListeners =
                     responseBody['statusCode'] = rawResponse.statusCode;
                     if (rawResponse.statusCode == 404) {
                         responseBody['error'] = 'Key not found error.';
-                        logger.log("failed cache request for key " + key, moduleName, logger.INFO);
+                        logger.log("*** CacheAPI: failed cache request for key " + key, moduleName, logger.INFO);
                     }
                     else {
                         // Create the response to the caller.

@@ -31,15 +31,18 @@ console.log("Log Processor (version " + settings.APP_VERSION + ") initialized wi
 
 
 function checkLogs() {
-    // console.log('check likes');
+    //console.log('check likes');
     eventhubAPI.createConsumerGroup(eventHubConsumerGroupName, function (response) {
-        //console.log("after create consumer group "+response);
+        console.log("Log Processor - after create consumer group "+response);
         eventhubAPI.getMessagesFromConsumerGroup(eventHubConsumerGroupName, function (response) {
             //  console.log("Events: ");
             //console.log(response.body);
             var messages = JSON.parse(response.body);
             if (messages) {
+                console.log("*** Log Processor: received messages from Event Hub");
                 processLogs(messages);
+            } else {
+                console.log("*** Log Processor: no log messages available from Event Hub");
             }
 
         }); // eventHubAPI get messages
@@ -58,7 +61,7 @@ function processLogs(messages, offset) {
         // only process messages beyond the current offset
         if (msg.offset > logOffset && msg.key == 'log') {
             if (!batches[msg.value.module]) {
-                console.log("new module : " + msg.value.module);
+                console.log("*** Log Processor: new module : " + msg.value.module);
                 batches[msg.value.module] = { "module": msg.value.module, "messages": [] }
             };
             batches[msg.value.module].messages.push({ "message": msg.value.message, "logLevel": msg.value.logLevel });
@@ -67,7 +70,7 @@ function processLogs(messages, offset) {
     // send batches of log messages to REST API, grouped by  module
     for (module in batches) {
         if (batches.hasOwnProperty(module))
-            console.log("post batch for " + module);
+            console.log("*** Log Processor post batch for " + module);
         postLogBatch(batches[module]);
     }// for
 
@@ -154,16 +157,16 @@ function postLogBatch(batch) {
 
     route_options.body = args.data;
     route_options.headers = args.headers;
-    console.log("body for batch message logging: " + args.data);
+    console.log("*** Log Processor Logger body for batch message logging: " + args.data);
 
 
 
     request(route_options, function (error, rawResponse, body) {
         if (error) {
-            console.log(JSON.stringify(error));
+            console.log("*** Log Processor "+ JSON.stringify(error));
         } else {
-            console.log(rawResponse.statusCode);
-            console.log("BODY:" + JSON.stringify(body));
+            console.log("*** Log Processor "+rawResponse.statusCode);
+            console.log("*** Log Processor "+"BODY:" + JSON.stringify(body));
         }//else
     }); //request
 }//postLogBatch

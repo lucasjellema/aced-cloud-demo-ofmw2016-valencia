@@ -265,14 +265,14 @@ function handleArtists(req, res, artistName) {
 		,
 		// second function: call out to cache to get biography
 		function (callback) {
-			var biographyCacheKey = "biography-" + encodeURI(artistName);
+			var biographyCacheKey = "biography-" + encodeURI(artistName).toLowerCase();
 			util.log('Start Cache Call for ' + biographyCacheKey);
 			try { 
 			cacheAPI.getFromCache(biographyCacheKey, function (response) {
 				try {
 					if (response.statusCode == '404') {
 						// biography not found in cache; now what?
-						console.log("bio not found in cache");
+						console.log("bio not found in cache for "+encodeURI(artistName));
 						artist.biography = '(not yet available for '+encodeURI(artistName)+')';
 					}
 					else {
