@@ -60,7 +60,7 @@
                 <tns:GENRES>
                     <xsl:value-of select="/ns0:findArtistResponseMessage/ns0:genres"/>
                 </tns:GENRES>
-                <tns:BIOGRAPHY>To Be Provided</tns:BIOGRAPHY>
+                <tns:BIOGRAPHY><xsl:value-of select="/ns0:findArtistResponseMessage/ns0:biography"/></tns:BIOGRAPHY>
                 <tns:IMAGE_URL>
                     <xsl:value-of select="/ns0:findArtistResponseMessage/ns0:imageURL"/>
                 </tns:IMAGE_URL>

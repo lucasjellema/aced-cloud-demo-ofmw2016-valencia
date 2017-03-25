@@ -14,6 +14,7 @@
   <xsd:complexType name="findArtistResponseMessageType">
     <xsd:sequence>
             <xsd:element name="spotifyId" type="xsd:string"/>
+        <xsd:element name="biography" type="xsd:string"/>
             <xsd:element name="name" type="xsd:string"/>
             <xsd:element name="genres" type="xsd:string"/>
             <xsd:element name="imageURL" type="xsd:string"/>

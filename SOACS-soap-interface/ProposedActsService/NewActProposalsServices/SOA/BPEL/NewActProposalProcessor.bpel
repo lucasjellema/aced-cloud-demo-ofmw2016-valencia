@@ -208,7 +208,7 @@
             <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:tag</to>
           </copy>
           <copy>
-            <from>concat('New Act Proposal for ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME, ' #votes: ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES, ' latest album ',  $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:ALBUMS/ns3:ALBUMS_ITEM/ns3:TITLE)</from>
+            <from>concat('New Act Proposal for ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:NAME, ' #votes: ', $PersistNewActProposal_InputVariable.InputParameters/ns3:P_NUMBER_OF_VOTES, ' latest album ',  $PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:ALBUMS/ns3:ALBUMS_ITEM/ns3:TITLE, ' ',$PersistNewActProposal_InputVariable.InputParameters/ns3:P_ARTIST/ns3:IMAGE_URL)</from>
             <to>$InvokePublishTweet_PublishTweet_InputVariable.request/ns5:tweet/ns5:message</to>
           </copy>
         </assign>
@@ -218,7 +218,11 @@
                 outputVariable="InvokePublishTweet_PublishTweet_OutputVariable"/>
       </sequence>
     </scope>
+    <extensionActivity>
+      <bpelx:dehydrate name="Dehydrate1"/>
+    </extensionActivity>
     <scope name="SendEmailAboutNewProposal">
+      <bpelx:skipCondition>true()</bpelx:skipCondition>
       <variables>
         <variable name="InvokeEmailService_SendMail_InputVariable" messageType="ns9:SendMail_inputMessage"/>
         <variable name="InvokeEmailService_SendMail_OutputVariable" messageType="ns9:SendMail_outputMessage"/>
@@ -238,7 +242,7 @@
             <to>$InvokeEmailService_SendMail_InputVariable.request/ns8:mailbodytext</to>
           </copy>
           <copy>
-            <from>concat('soaringacrosstheclouds@gmail.com','')</from>
+            <from>concat('soaringacrosstheclouds@gmail.com',';lucas.jellema@amis.nl')</from>
             <to>$InvokeEmailService_SendMail_InputVariable.request/ns8:addressees</to>
           </copy>
         </assign>
@@ -249,6 +253,7 @@
       </sequence>
     </scope>
     <scope name="SendEmailThroughMediator">
+      <bpelx:skipCondition>false()</bpelx:skipCondition>
       <variables>
         <variable name="InvokeEmailer_execute_InputVariable" messageType="ns7:requestMessage"/>
         <variable name="InvokeEmailer_execute_OutputVariable" messageType="ns7:replyMessage"/>
@@ -260,7 +265,7 @@
       <sequence name="Sequence4">
         <assign name="AssignEmailDetails">
           <copy>
-            <from>concat('New Artist Proposal was registered: ',$inputVariable.part1/client:name)</from>
+            <from>concat('New Artist Proposal was registered: ',$inputVariable.part1/client:name,' (Timestamp:',xp20:current-dateTime(),')')</from>
             <to>$InvokeEmailer_execute_InputVariable.request/ns8:subject</to>
           </copy>
           <copy>
@@ -268,7 +273,7 @@
             <to>$InvokeEmailer_execute_InputVariable.request/ns8:mailbodytext</to>
           </copy>
           <copy>
-            <from>concat('soaringacrosstheclouds@gmail.com','')</from>
+            <from>concat('soaringacrosstheclouds@gmail.com',';lucas.jellema@amis.nl')</from>
             <to>$InvokeEmailer_execute_InputVariable.request/ns8:addressees</to>
           </copy>
         </assign>

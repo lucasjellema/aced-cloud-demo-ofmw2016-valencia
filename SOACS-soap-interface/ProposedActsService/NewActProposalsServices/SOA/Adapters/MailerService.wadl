@@ -8,6 +8,11 @@
       <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:import namespace="http://TargetNamespace.com/MailerService_SendMail_response" schemaLocation="../Schemas/nxsd_mailer_response.xsd"/>
         </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService" elementFormDefault="qualified">
+            <element name="empty">
+                <complexType/>
+            </element>
+        </schema>
    </grammars>
    <resources>
       <resource path="/mailer">

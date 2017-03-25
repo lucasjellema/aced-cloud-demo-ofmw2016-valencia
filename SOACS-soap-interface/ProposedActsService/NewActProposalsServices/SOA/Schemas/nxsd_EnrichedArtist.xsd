@@ -3,6 +3,7 @@
    <xsd:element name="artist">
       <xsd:complexType>
          <xsd:sequence>
+            <xsd:element name="biography" type="xsd:string"/>
             <xsd:element name="spotifyId" type="xsd:string"/>
             <xsd:element name="name" type="xsd:string"/>
             <xsd:element name="genres" type="xsd:string"/>

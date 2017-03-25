@@ -38,6 +38,9 @@
             <tns:spotifyId>
                 <xsl:value-of select="/ns0:artist/ns0:spotifyId"/>
             </tns:spotifyId>
+            <tns:biography>
+                <xsl:value-of select="/ns0:artist/ns0:biography"/>
+            </tns:biography>
             <tns:name>
                 <xsl:value-of select="/ns0:artist/ns0:name"/>
             </tns:name>

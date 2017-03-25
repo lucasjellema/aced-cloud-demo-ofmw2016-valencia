@@ -7,12 +7,12 @@
       <partnerlink name="NewActProposalProcessor" x="0" y="664" side="left"/>
       <partnerlink name="submitNewActProposal" x="0" y="1042" side="left"/>
       <partnerlink name="ArtistEnricherMediator.ArtistEnricherMediator" x="0" y="376" side="left"/>
-      <partnerlink name="MailerService" x="0" y="1870" side="left"/>
-      <partnerlink name="ArtistAPIReference" x="888" y="758" side="right"/>
-      <partnerlink name="TweetNewArtistProposal" x="888" y="1478" side="right"/>
-      <partnerlink name="MailerMediator.MailerMediator" x="888" y="2265" side="right"/>
+      <partnerlink name="MailerService" x="0" y="20" side="left"/>
+      <partnerlink name="ArtistAPIReference" x="1087" y="758" side="right"/>
+      <partnerlink name="TweetNewArtistProposal" x="1087" y="1478" side="right"/>
+      <partnerlink name="MailerMediator.MailerMediator" x="1087" y="2059" side="right"/>
    </partnerlink_locations>
-   <graph_layout viewport="0,2039,1045,522" show_swimlanes="true">
+   <graph_layout viewport="0,1158,1298,537" show_swimlanes="true">
       <layout_item collapsed="false" xpath="/process" type="process" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[1]" type="scope" showhandlers="true"/>
@@ -25,7 +25,7 @@
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]" type="scope" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/faultHandlers/catchAll" type="catchall"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[2]/sequence" type="sequence"/>
-      <layout_item collapsed="false" xpath="/process/sequence/scope[3]" type="scope" showhandlers="true"/>
+      <layout_item collapsed="true" xpath="/process/sequence/scope[3]" type="scope" showhandlers="true"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[3]/faultHandlers/catchAll" type="catchall"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[3]/sequence" type="sequence"/>
       <layout_item collapsed="false" xpath="/process/sequence/scope[4]" type="scope" showhandlers="true"/>
