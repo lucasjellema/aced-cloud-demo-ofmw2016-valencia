@@ -1,0 +1,113 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Artist OUG-NL",
+		"_postman_id": "34a3d58b-889a-6c06-3542-5f1650e9eba3",
+		"description": "Collection to test artist application with the details that are valid for the OUGNL TEch experience event.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAct 1",
+			"request": {
+				"url": "https://eprombaas-nleproseedtrial0517.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/3",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "5b629543-ee21-4d53-8241-4a601aaffed5",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "basic TkxFUFJPU0VFRFRSSUFMMDUxN19FUFJPTUJBQVNfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDpEd2lvZl9jOWx6azZnZA==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllActs",
+			"request": {
+				"url": {
+					"raw": "https://eprombaas-nleproseedtrial0517.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts?minimumVotes=1&max=100",
+					"protocol": "https",
+					"auth": {},
+					"host": [
+						"eprombaas-nleproseedtrial0517",
+						"mobileenv",
+						"us2",
+						"oraclecloud",
+						"com"
+					],
+					"port": "443",
+					"path": [
+						"mobile",
+						"custom",
+						"artistapi",
+						"acts"
+					],
+					"query": [
+						{
+							"key": "minimumVotes",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "max",
+							"value": "100",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "basic TkxFUFJPU0VFRFRSSUFMMDUxN19FUFJPTUJBQVNfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDpEd2lvZl9jOWx6azZnZA==",
+						"description": ""
+					},
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "5b629543-ee21-4d53-8241-4a601aaffed5",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getCollections",
+			"request": {
+				"url": "https://roaring-deoracleem99369.mobileenv.us2.oraclecloud.com:443/mobile/platform/storage/collections",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "bc8f7a83-3254-4fad-a7ec-57f086b70ad1",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfTUNTNEVNRUFQQVJUTkVSX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6T3Jza3pldWk2ZF8zdmE=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
