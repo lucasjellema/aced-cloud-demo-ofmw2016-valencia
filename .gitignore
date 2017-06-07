@@ -17,3 +17,4 @@ classes/
 *.iar
 *.jdb
 *.lck
+/MCS-rest-api/ActApplicationREST/nbproject/private/

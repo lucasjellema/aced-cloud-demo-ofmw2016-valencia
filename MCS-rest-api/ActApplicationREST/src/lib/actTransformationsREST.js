@@ -1,12 +1,10 @@
 exports.actSummarySOAP2REST = function (act) {
-  console.log('transforming act summary');
   var actSummaryRest = {
       id: act.id, 
       name: act.name, 
       numberOfVotes: act.numberOfVotes,
       registrationDate: act.registrationDate
   };
-  console.log(actSummaryREST);
   return actSummaryRest;
 };
 
