@@ -1,8 +1,8 @@
 {
     "environment": {
-        "MCS_BACKEND_ID": "bc8f7a83-3254-4fad-a7ec-57f086b70ad1",
-        "MCS_URL": "https://mcs4emeapartner-partnercloud17.mobileenv.us2.oraclecloud.com:443",
-        "MCS_USER": "PARTNERCLOUD17_MCS4EMEAPARTNER_MOBILE_ANONYMOUS_APPID",
-        "MCS_PWD": "Orskzeui6d_3va"
+        "MCS_BACKEND_ID": "5b629543-ee21-4d53-8241-4a601aaffed5",
+        "MCS_URL": "https://eprombaas-nleproseedtrial0517.mobileenv.us2.oraclecloud.com:443",
+        "MCS_USER": "NLEPROSEEDTRIAL0517_EPROMBAAS_MOBILE_ANONYMOUS_APPID",
+        "MCS_PWD": "Dwiof_c9lzk6gd"
     }
 }

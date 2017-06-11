@@ -8,7 +8,8 @@ const gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     rjs = require('gulp-requirejs'),
     uglify = require('gulp-uglify'),
-    through2 = require('through2');
+    through2 = require('through2'),
+    proxy = require('http-proxy-middleware');
 
 var appname = 'frontend';
 
@@ -73,8 +74,17 @@ function _serve() {
             routes: {
                 '/bower_components': 'bower_components'
             }
-        }
+        },  
+        middleware: [
+            proxy('/mobile/', { target: process.env.MCS_URL, 
+                                logLevel: 'debug', 
+                                headers: {'oracle-mobile-backend-id': process.env.MCS_BACKEND_ID}, 
+                                auth: { user: process.env.MCS_USER, pass: process.env.MCS_PWD }
+                              })
+        ]
+
     });
+
     gulp.watch("public/**/*", browserSync.reload);
 }
 

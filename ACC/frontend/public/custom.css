@@ -1,15 +1,77 @@
+* {
+  margin: 0;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+
 body.started #waiting {
     display: none;
+    clear: left;
 }
 body #mainContent {
+    position: relative;
     display: none;
+    clear: left;
 }
 body.started #mainContent {
     display: block;
+    clear: left;
+}
+
+.container {
+    padding-bottom: 25px;
+}
+
+.container:after {
+    content: "";
+    display: block;
+}
+
+.header {
+    color: black;
+    font-weight: bold;
+    padding:10px;
+}
+
+.footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:25px;   /* Height of the footer */
+    background: gray;
+}
+
+.beyond-img {
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px;
+    width: 40px;
+}
+
+.like-img {
+    border: 0px;
+    border-radius: 0px;
+    padding: 0px;
+    width: 40px;
 }
 
 .votes-pill {
     background-color:red; 
+    border-radius:30px; 
+    box-shadow:1px 1px 1px gray; 
+    padding: 4px 8px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.likes-pill {
+    background-color:deepskyblue; 
     border-radius:30px; 
     box-shadow:1px 1px 1px gray; 
     padding: 4px 8px;

@@ -27,9 +27,9 @@ define(['knockout', 'ojs/ojchart', 'ojs/ojtoolbar', 'ojs/ojbutton'],
         }
         function series() {
             if (this.type() === 'pie') {
-                return this.acts.map(function (act) { return { name: act.name(), items: [{ value: act.numberOfVotes(), label: act.numberOfVotes() }] } });
+                return this.acts.map(function (act) { return { name: act.name, items: [{ value: act.numberOfVotes, label: act.numberOfVotes }] } });
             } else {
-                return this.acts.map(function (act) { return { name: act.name(), items: [act.numberOfVotes()] } });
+                return this.acts.map(function (act) { return { name: act.name, items: [act.numberOfVotes] } });
             }
         }
 

@@ -6,6 +6,10 @@
     <img data-bind="attr:{src:data().imageURL}" style="max-width:200px;max-height:200px;float:left;margin-right:12px;"></img>
     <h1 data-bind="text:data().name"></h1>
     <h2 data-bind="text:data().description"></h2>
+    
+    <button data-bind="click: like, ojComponent:{component:'ojButton', label:'+'}"></button>
+    <div class="likes-pill"><span data-bind="text:data().likes"></span>&nbsp;likes</div>
+
     <div class="votes-pill"><span data-bind="text:data().numberOfVotes"></span>&nbsp;votes</div>
 
     <div class="twt-button">
