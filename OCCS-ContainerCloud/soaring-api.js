@@ -66,7 +66,7 @@ app.get('/artists/like/:artistName', function (req, res) {
 app.get('/about', function (req, res) {
 	logger.log("About requested ", moduleName, logger.DEBUG);
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write("About "+moduleName+", Version " + settings.APP_VERSION);
+	res.write("About " + moduleName + ", Version " + settings.APP_VERSION);
 	res.write("Supported URLs:");
 	res.write("/artists/like/:artistName");
 	res.write("/artists/likes");
@@ -77,7 +77,7 @@ app.get('/about', function (req, res) {
 });
 app.get('/', function (req, res) {
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write(moduleName+ " (" + appVersion + ") - No Data Requested, so none is returned");
+	res.write(moduleName + " (" + appVersion + ") - No Data Requested, so none is returned");
 	res.write("Try /about");
 	res.end();
 });
@@ -90,8 +90,8 @@ function handleLikeForArtist(req, res, artistName) {
 	likesProcessor.addLike(artistName);
 	console.log("like for " + artistName);
 	res.statusCode = 200;
-			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify({ "like": artistName, "status": "Like added"}));
+	res.setHeader('Content-Type', 'application/json');
+	res.send(JSON.stringify({ "like": artistName, "status": "Like added" }));
 
 }//handleLikeForArtist
 

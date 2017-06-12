@@ -52,11 +52,24 @@ function checkLikes(likes) {
                     // process the results from likes array into the likesDoc
                     // get all messages of type Like
                     // loop through them and aggregate
-                   // processLikes(likesDoc, likes);
+                    processLikes(likesDoc, likes);
                     console.log("LIKES REAL: %%%%%%%%%%%%%%%%%%%" + JSON.stringify(likesDoc));
-                    cacheAPI.putInCache(likesDocumentKey, JSON.stringify(likesDoc), function (response) {
+//                     likesDoc= {
+//                 "offset": 0
+//                 , "timestamp": null
+//                 , "artist_likes": {      "u2": 4,
+//       "bob dylan": 5,
+//       "Bruce Springsteen": 93,
+//       "Manowar": 33,
+//       "ABBA": 16,
+//       "Amon Amarth": 4,
+//       "Metallica": 3
+// }
+//             };
+                    cacheAPI.putInCache(likesDocumentKey, likesDoc, function (response) {
                         console.log("put likesdoc in cache " + response);
-                        likes = [];
+                        // clear all likes
+                        likes.length = 0;
                     })
                 }//if
         }

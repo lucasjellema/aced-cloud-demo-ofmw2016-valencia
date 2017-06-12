@@ -71,7 +71,7 @@ cacheAPI.putInCache = function (key, value, callback) {
         else {
             console.log("Put document under " + key + " in cache");
         }
-var responseBody={};
+        var responseBody = {};
         if (rawResponse.statusCode == 204) {
             responseBody['status'] = 'Successful.';
         }
@@ -83,4 +83,4 @@ var responseBody={};
 }//putInCache
 
 
-console.log(moduleName + " (version " + settings.APP_VERSION + ") initialized at " + apiURL );
+console.log(moduleName + " (version " + settings.APP_VERSION + ") initialized at " + apiURL);
