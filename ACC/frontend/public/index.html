@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>ACEs Cloud Demo</title>
+    <title>OGh Cloud Demo</title>
     <meta name="apple-mobile-web-app-title" content="ACEs Cloud Demo">
-    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="initial-scale=1.0"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
 
     <!--<link rel="icon" type="image/x-icon" href="css/images/favicon.ico">-->
     <!--<link rel="apple-touch-icon-precomposed" href="css/images/touchicon.png">-->
@@ -16,23 +16,32 @@
 </head>
 
 <body id="app">
-    <div id="waiting">
-        Let's get started!
+
+    <div id="container" class="container">
+        <div id="header" class="header">
+            <img class="beyond-img" src="image/beyond.jpg" alt="Beyond">
+            <h1 style="float:left;">Soaring across the Clouds</h1><h1 class="oj-sm-only-hide"> – Artist Proposal Portal</h1>            
+        </div>
+        <div id="waiting">
+            Let's get started!
+        </div>
+        <div id="mainContent" data-bind="ojModule: { name: 'drill'}"> </div>
     </div>
-    <div id="mainContent" data-bind="ojModule: { name: 'drill'}"> </div>
+    <div id="footer" class="footer">
+        <h5 style="float:left;">Copyright 2017</h5><h5 class="oj-sm-only-hide">, Soaring across the Cloud ACE team in combination with Jürgen Kress and Niall Commiskey</h5>   
+    </div>
 
     <script src="https://platform.twitter.com/widgets.js" id="twitter-wjs"></script>
     <script src="../bower_components/requirejs/require.js"></script>
     <script src="opt/optimized.js"></script>
 
     <script>
-          window.apmeum || (apmeum = {
-          });
-          apmeum.customerId = 'nlamistrial73269';
-          apmeum.baseCollectorUrl = 'https://nlamistrial73269.itom2.management.us2.oraclecloud.com/APMaaSCollector/external/collector?';
-        </script>
-        <script async="async"
-                src="https://nlamistrial73269.itom2.management.us2.oraclecloud.com/APMaaSCollector/external/collector/staticlib/apmeum.js"></script>
+        window.apmeum || (apmeum = {
+        });
+        apmeum.customerId = 'nlamistrial73269';
+        apmeum.baseCollectorUrl = 'https://nlamistrial73269.itom2.management.us2.oraclecloud.com/APMaaSCollector/external/collector?';
+    </script>
+    <script async="async" src="https://nlamistrial73269.itom2.management.us2.oraclecloud.com/APMaaSCollector/external/collector/staticlib/apmeum.js"></script>
 </body>
 
 </html>

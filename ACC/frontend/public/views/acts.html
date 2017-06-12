@@ -1,15 +1,18 @@
-<h1>List of proposed acts</h1>
+<!--<h1>List of proposed acts</h1>-->
 <div class="oj-flex">
 
     <div data-bind="ifnot: fetched">Fetching...</div>
 
     <div data-bind="if: fetched" class="oj-flex-item oj-flex oj-flex-items-pad">
+
         <div class="oj-flex-item oj-sm-12 oj-md-12 oj-lg-4">
             <div id="sort" data-bind="ojComponent: {component: 'ojButtonset', checked: sort}" aria-label="Choose sorting.">
-                <label for="votes"></label>
-                <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
                 <label for="date"></label>
                 <input type="radio" name="sort" id="date" data-bind="value: 'date', ojComponent: { component: 'ojButton', label: 'Registration Date' }"></input>
+                <label for="likes"></label>
+                <input type="radio" name="sort" id="likes" data-bind="value: 'likes', ojComponent: { component: 'ojButton', label: 'Likes' }"></input>
+                <label for="votes"></label>
+                <input type="radio" name="sort" id="votes" data-bind="value: 'votes', ojComponent: { component: 'ojButton', label: 'Votes' }"></input>
             </div>
 
             <ul id="listview" data-bind="ojComponent: {component: 'ojListView', data: dataSource, optionChange: drill, item: {template: 'server_template'}}"></ul>
@@ -19,7 +22,8 @@
                         <div class="oj-flex-item" data-bind="text: name"></div>
                         <div class="oj-flex-item oj-flex-item-initial">
                             <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-flex-end oj-sm-align-items-center">
-                                <div class="oj-flex-item"><span style="margin-left:8px" data-bind="text: numberOfVotes"></span> votes&nbsp;</div>
+                                <div class="likes-pill"><span data-bind="text: likes"></span></div>
+                                <div class="votes-pill"><span data-bind="text: numberOfVotes"></span> </div>
                                 <div class="oj-flex-item oj-fwk-icon oj-listview-drill-icon" style="position:relative; margin:0;"></div>
                             </div>
                         </div>
@@ -32,30 +36,9 @@
     </div>
 
     <div class="oj-flex-item oj-sm-only-hide oj-md-only-hide oj-lg-flex-initial">
-        <a class="twitter-timeline" href="https://twitter.com/hashtag/ofmaces" data-widget-id="708745246105051139">#ofmaces Tweets</a>
+        <!-- Twitter widget ID onder persoonlijk twitter account, create widget. -->
+        <!--<a class="twitter-timeline" href="https://twitter.com/hashtag/ofmaces" data-widget-id="708745246105051139">#ofmaces Tweets</a>-->
+        <a class="twitter-timeline"  href="https://twitter.com/hashtag/paasaces" data-widget-id="846750637060771840">#paasaces Tweets</a>
     </div>
 </div>
-
-<!-- TODO:
-X sort by date or #votes
-- highlighted act with image, biography, list of albumes (per album title, year, cover img)
-- select or hover on act to show details (perhaps popup)
-- hor. bar chart with acts and #votes
-- vote on act (link to twitter)
-
-The JET application is supposed to be the attractive front end where anyone interested in the OOW 2016 conference can find 
-some information on that conference – including an overview of all the acts that have been proposed. Acts can be listed by 
-date added and (current) number of votes (this may change if more suggestions have been coming in from Twitter to IoT CS). 
-One or more acts could also be highlighted (perhaps in a periodically refreshed top or side bar) – using an  image, a 
-biography and a list of their albums (per album we have title, release year and cover image (url)). When an act is selected
-(or hovered over) the same set of details can be shown for that particular act, perhaps in a popup?
-
-Perhaps you could show some data in a chart as well (for example horizontal bar chart with acts and number of votes )
-
-If you feel energetic, you could perhaps add an option to vote on a proposed act (which would take the user to Twitter to 
-post a tweet with an act-recommendation). Very nice to have.
-
-The crux of the JET application – apart from being the jewel in the crown or the icing on the cake on the seven interconnected
-cloud services – is to show how a new act proposal created by the audience input makes it all the way to a user interface ,
-leveraging MCS (and indirectly SOA CS and DBaaS).
--->
+            

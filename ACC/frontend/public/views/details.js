@@ -1,45 +1,58 @@
 define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 'ojs/ojbutton'],
     function (ko, oj, settings) {
-        var ActModel = oj.Model.extend({
-            urlRoot: settings.baseUrl + '/mobile/custom/artistapi/acts'
-        });
+
         return DetailsViewModel;
 
         function DetailsViewModel(moduleParams) {
             this.id = moduleParams.drillModel.drillId();
             this.fetched = ko.observable(false);
-            this.data = ko.observableArray();
+            this.data = ko.observable();
             this.nameNoWhitespace = ko.computed(nameNoWhitespace, this);
             this.handleActivated = handleActivated.bind(this);
             this.getItemInitialDisplay = getItemInitialDisplay.bind(this);
             this.goBack = goBack.bind(this, moduleParams);
+            this.like = like.bind(this);
         }
-        
+
         function handleActivated() {
             var self = this;
-            var act = new ActModel();
-            act.id = this.id;
-            act.fetch({
-                success: function (model, response, options) {
-                    self.data(oj.KnockoutUtils.map(model))
+
+            var actPromise = $.getJSON("/mobile/custom/artistapi/acts/" + self.id)
+                .then(function (json) {
+                    json.likes = 0;
+                    self.data(json); // expose on ViewModel
                     self.fetched(true);
-                    twttr && twttr.widgets.load(document.querySelector('.twt-button'));
-                }
-            });
+                    return json;
+                })
+                .catch(function (err) { console.error(err); throw err; });
+            Promise.all([actPromise, $.getJSON("https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/artists/likes")])
+                .then(function (data) {
+                    var act = data[0];
+                    var likes = data[1].artist_likes;
+                    act.likes = likes[act.name] || 0;
+                    self.data(act);
+                })
+                .catch(function (err) { console.error(err); throw err; });
         }
-        
+
         function getItemInitialDisplay(index) {
             return index < 3 ? '' : 'none';
         }
-        
+
         function goBack(moduleParams, event, ui) {
             moduleParams.drillModel.drillId(undefined);
             moduleParams.drillModel.currentModule('acts');
         }
-        
+
+        function like() {
+            this.data().likes++;
+            this.data(this.data());
+            $.getJSON('https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/artists/like/' + this.data().name);
+        }
+
         function nameNoWhitespace() {
             var data = this.data();
-            return data && data.name && data.name().replace(/ /g,'_').toLowerCase();
+            return data && data.name && data.name.replace(/ /g, '_').toLowerCase();
         }
-        
+
     });
