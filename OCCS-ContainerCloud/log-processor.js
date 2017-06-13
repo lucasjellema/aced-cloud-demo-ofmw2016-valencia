@@ -6,7 +6,7 @@ var cacheAPI = require("./cache-api.js");
 var logProcessor = module.exports;
 var moduleName = "soaring.logProcessor";
 
-var refreshInterval = 15; //seconds
+var refreshInterval = 5; //seconds
 
 // the log processor will check the EventHub every refreshInterval seconds for all messages from the logger
 // it will create a batch of log messages and send them to the Logger REST API (that writes it to the WLS Diagnostics file)
@@ -14,6 +14,7 @@ var refreshInterval = 15; //seconds
 var logDocumentKey = "log-tail";
 var logOffset = 0;
 var bulkloggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/bulklog";
+logProcessor.maxLogEntries = 50;
 
 initHeartbeat = function (interval) {
     setInterval(function () {
@@ -27,17 +28,18 @@ initHeartbeat = function (interval) {
 initHeartbeat(refreshInterval)
 console.log("Log Processor (version " + settings.APP_VERSION + ") initialized with refreshInterval of " + refreshInterval + " seconds.");
 
-var logs = [];
+logProcessor.logs = [];
 
 logProcessor.addLog = function (logRecord) {
-    logs.push(logRecord);
+    logProcessor.logs.push(logRecord);
 }
 
 function checkLogs() {
-    if (logs && logs.length>0) {
+    if (logProcessor.logs && logProcessor.logs.length>0) {
         console.log("*** Log Processor: has collected log messages to process");
-        processLogs(logs);
-        logs = [];
+        processLogs(logProcessor.logs);
+        processLogsToLogTailInCache(logProcessor.logs);
+        logProcessor.logs = [];
     } else {
         console.log("*** Log Processor: no log messages available");
     }
@@ -61,6 +63,9 @@ function processLogs(logs) {
             console.log("*** Log Processor post batch for " + module);
         postLogBatch(batches[module]);
     }// for
+}
+
+function processLogsToLogTailInCache(logs) {
 
 
     // fetch logging document from cache
@@ -68,9 +73,9 @@ function processLogs(logs) {
     // slice array at the bottom
     // put back in the cache
     console.log("Log-processor: try to fetch from cache: " + logDocumentKey);
+    var logsDoc={};
     cacheAPI.getFromCache(logDocumentKey, function (response) {
         try {
-            var logsDoc;
             if (response.statusCode == '404') {
                 console.log("Log-processor:not found in cache");
                 logsDoc = {
@@ -80,7 +85,7 @@ function processLogs(logs) {
                 }
             }
             else {
-                logsDoc = response.value
+                logsDoc = JSON.parse(response).value
                 console.log("Log-processor: found in cache");
 
             };
@@ -91,12 +96,12 @@ function processLogs(logs) {
                 // reverse messages to have last/most recent one first
                 logs.reverse();
                 // merge new messages with existing logs
-                // retain no more than 200 entries
-                logsDoc.logs = logs.concat(logsDoc.logs).slice(0, 200);
+                // retain no more than  maxLogEntries entries
+                logsDoc.logs = logs.concat(logsDoc.logs).slice(0,logProcessor.maxLogEntries);
 
             }
             console.log("LOGS REAL: %%%%%%%%%%%%%%%%%%%" + JSON.stringify(logsDoc));
-            cacheAPI.putInCache(logDocumentKey, JSON.stringify(logsDoc), function (response) {
+            cacheAPI.putInCache(logDocumentKey, logsDoc, function (response) {
                 console.log("put logsdoc in cache " + response);
 
             });//putInCache
@@ -108,7 +113,7 @@ function processLogs(logs) {
     });//getFromCache
 
     // loop over all properties of object batches - i.e. the names of all modules -- ; for each property, post the messages property
-}//processLogs   
+}//processLogsToLogTailInCache   
 
 function postLogBatch(batch) {
     /* {
