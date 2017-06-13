@@ -6,7 +6,7 @@ var cacheAPI = require("./cache-api.js");
 var logProcessor = module.exports;
 var moduleName = "soaring.logProcessor";
 
-var refreshInterval = 5; //seconds
+var refreshInterval = 10; //seconds
 
 // the log processor will check the EventHub every refreshInterval seconds for all messages from the logger
 // it will create a batch of log messages and send them to the Logger REST API (that writes it to the WLS Diagnostics file)
@@ -14,7 +14,7 @@ var refreshInterval = 5; //seconds
 var logDocumentKey = "log-tail";
 var logOffset = 0;
 var bulkloggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/bulklog";
-logProcessor.maxLogEntries = 50;
+logProcessor.maxLogEntries = 100;
 
 initHeartbeat = function (interval) {
     setInterval(function () {
@@ -41,7 +41,7 @@ function checkLogs() {
         processLogsToLogTailInCache(logProcessor.logs);
         logProcessor.logs = [];
     } else {
-        console.log("*** Log Processor: no log messages available");
+        //console.log("*** Log Processor: no log messages available");
     }
 }//checkLogs
 

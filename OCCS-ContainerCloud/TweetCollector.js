@@ -3,12 +3,15 @@ var http = require('http'),
   express = require('express'),
   bodyParser = require('body-parser');
 
+
+var icsDropoffProxy = require("./ics-iotdropoff.js");
+
 var APP_VERSION = "0.1.3"
 var APP_NAME = "TweetCollector"
 
 var moduleName = "TweetCollector";
 var tweetCollector = module.exports;
-
+var hashtag = "#paasaces";
 
 console.log("Running " + APP_NAME + "version " + APP_VERSION);
 
@@ -69,3 +72,60 @@ tweetCollector.registerListeners =
       tweets = tweets.slice(0, maxTweets);
     }// postNewTweet
   }
+
+
+var refreshInterval = 30; //seconds
+
+initHeartbeat = function (interval) {
+  setInterval(function () {
+    dropoffTweets(tweets);
+  }
+    , interval ? interval * 1000 : refreshInterval
+  ); // setInterval 
+}//initHeartbeat
+
+
+initHeartbeat(refreshInterval)
+
+// from https://stackoverflow.com/questions/25693456/get-hashtags-from-string-with-trim-spaces-and-new-lines
+function findHashtags(searchText) {
+  var regexp = /(\s|^)\#\w\w+\b/gm
+  result = searchText.match(regexp);
+  if (result) {
+    result = result.map(function (s) { return s.trim(); });
+    console.log(result);
+    return result;
+  } else {
+    return false;
+  }
+}
+
+function dropoffTweets(tweets) {
+  // handle tweets
+  console.log("handle tweets");
+  // go through tweets
+  // in each tweet, try to identify the  hashtag that is not #paasaces - because that will contain the artist
+  var artistCounts = {};
+  for (index = 0; index < tweets.length; ++index) {
+    var artist = "";
+    var tweet = tweets[index].text;
+    var tags = findHashtags(tweet);
+    var i = tags.indexOf(hashtag);
+    if (i > -1) {
+      if (i == 0 && tags.length > 1) {
+        artist = tags[1].substring(1);
+      }
+      if (i == 1) {
+        artist = tags[0].substring(1);
+      }
+      if (!artistCounts[artist]) {
+        artistCounts[artist] = 1;
+      } else {
+        artistCounts[artist] = artistCounts[artist] + 1;
+      }
+    }//if
+    console.log("artist = " + artist);
+  }//for
+  console.log("artistCounts " + JSON.stringify(artistCounts));
+
+}

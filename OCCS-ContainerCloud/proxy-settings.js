@@ -5,7 +5,7 @@ settings.PORT= 5101;  // Note: 5100 for running locally, 80 for running in the c
 
 settings.logFile = 'mediator-proxy.txt';
 
-settings.APP_VERSION = "0.1.03";
+settings.APP_VERSION = "0.1.07";
 
 settings.ChangeHistory ="Local cache-api (that invokes remote on ACCS); local likes and log processing (using in memory array i/o Kafka";
 

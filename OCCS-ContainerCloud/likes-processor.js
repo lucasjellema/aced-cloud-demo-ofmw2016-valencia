@@ -3,7 +3,7 @@ var settings = require("./proxy-settings.js");
 var cacheAPI = require("./cache-api.js");
 
 var likeProcessor = module.exports;
-var moduleName = "accs.likeProcessor";
+var moduleName = "occs.likeProcessor";
 
 var refreshInterval = 3; //seconds
 
@@ -28,6 +28,8 @@ console.log("Like Processor (version " + settings.APP_VERSION + ") initialized w
 
 likeProcessor.addLike = function (like) {
     likeProcessor.likes.push(like);
+    logger.log("Received like for "+like, moduleName, logger.DEBUG);
+
 }
 
 function checkLikes(likes) {
