@@ -15,16 +15,16 @@ var http = require('http'),
 
 var logger = require("./logger.js");
 var cacheAPI = require("./cache-api.js");
-//var tweetCollector = require("./TweetCollector.js");
+var tweetCollector = require("./TweetCollector.js");
 var likesProcessor = require("./likes-processor.js");
 var logProcessor = require("./log-processor.js");
 var moduleName = "occs.Soaring-API";
 
 
 //var PORT = 5100;
-var PORT = process.env.PORT || settings.PORT;
+var PORT = process.env.APP_PORT || settings.PORT;
 
-var appVersion = "0.1.3";
+var appVersion = "0.1.4";
 
 var app = express();
 var server = http.createServer(app);
@@ -37,7 +37,11 @@ server.listen(PORT, function () {
 
 console.log('server running on port ', PORT);
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ type: '*/*' }));
+//app.use(bodyParser.json({ type: '*/*' }));
+// perhaps use bodyParser.text() instead of .json
+// then parse the content after replacing /n and /n characters
+app.use(bodyParser.text({ type: '*/*' }));
+
 app.use(function (request, response, next) {
 	response.setHeader('Access-Control-Allow-Origin', '*');
 	response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -47,7 +51,7 @@ app.use(function (request, response, next) {
 });
 console.log("Registering Submodules ");
 logger.registerListeners(app);
-//tweetCollector.registerListeners(app);
+tweetCollector.registerListeners(app);
 
 app.get('/log-tail', function (req, res) {
 	logger.log("Return overview of all logs ", moduleName, logger.DEBUG);
