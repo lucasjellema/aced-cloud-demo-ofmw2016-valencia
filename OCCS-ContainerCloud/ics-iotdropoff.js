@@ -10,7 +10,7 @@ var logger = require("./logger.js");
 var settings = require("./proxy-settings.js");
 
 var moduleName = "occs.icsProxy";
-
+var  moduleVersion = "0.16";
 var ICS_ENDPOINT = "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest";
 var RESOURCE_IOTCS_DROPOFF = "ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/act";
 
@@ -39,8 +39,8 @@ icsDropoffProxy.reportArtistProposal = function (artist,countOfArtist ){
             "eventTime": null,
             "payload": {
                 "data": {
-                       "count_of_data_artistname_15": countOfArtist
-                    ,  "max_of_data_artistname_12": artist
+                       "count_of_data_artistname": countOfArtist
+                    ,  "max_of_data_artistname": artist
                 }
             }
         },
@@ -61,4 +61,4 @@ icsDropoffProxy.reportArtistProposal = function (artist,countOfArtist ){
 
 }
 
-console.log(moduleName + " running against ICS Endpoint " + ICS_ENDPOINT);
+console.log(moduleName +" version "+ moduleVersion+ " running against ICS Endpoint " + ICS_ENDPOINT);
