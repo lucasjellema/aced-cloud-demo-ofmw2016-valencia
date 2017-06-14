@@ -10,7 +10,7 @@ var logger = require("./logger.js");
 var settings = require("./proxy-settings.js");
 
 var moduleName = "occs.icsProxy";
-var  moduleVersion = "0.18";
+var moduleVersion = "0.19";
 var ICS_ENDPOINT = "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest";
 var RESOURCE_IOTCS_DROPOFF = "ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/act";
 
@@ -20,25 +20,27 @@ var icsDropoffProxy = module.exports;
 
 icsDropoffProxy.registerListeners = function (app) {
     var path = '/icsProxy/iotcs-dropoff';
-    console.log("Register listener for POST to "+'/icsProxy/iotcs-dropoff');
-   app.post(path, function(req,res)
-     { icsDropoffProxy.handleIoT(req, res); 
-     });
+    console.log("Register listener for POST to " + '/icsProxy/iotcs-dropoff');
+    app.post(path, function (req, res) {
+        icsDropoffProxy.handleIoT(req, res);
+    });
 }
 
 icsDropoffProxy.handleIoT = function (req, res) {
-   logger.log("Handle IoT CS call to report new artist proposal for  "+JSON.stringify(req.body), moduleName, logger.DEBUG);
-   var iotmessage = req.body[0];
-   var artist =  iotmessage.payload.data.data_artistname;
-   var countOfArtist = iotmessage.payload.data.count_of_data_artistname_15;
-   icsDropoffProxy.reportArtistProposal (artist,countOfArtist);    
+    logger.log("Handle IoT CS call to report new artist proposal for  " + JSON.stringify(req.body), moduleName, logger.DEBUG);
+    var iotmessage = req.body;
+    var artist = iotmessage.payload.data.data_artistname;
+    var countOfArtist = iotmessage.payload.data.count_of_data_artistname_15;
+    icsDropoffProxy.reportArtistProposal(artist, countOfArtist);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ "status": "message was sent to ICS" }));
 }
 
 
-icsDropoffProxy.reportArtistProposal = function (artist,countOfArtist ){
-   logger.log("Call ICS to report new artist proposal for  "+artist, moduleName, logger.DEBUG);
+icsDropoffProxy.reportArtistProposal = function (artist, countOfArtist) {
+    logger.log("Call ICS to report new artist proposal for  " + artist, moduleName, logger.DEBUG);
 
-   var options = {
+    var options = {
         method: 'POST',
         url: ICS_IOTCS_DROPOFF_ENDPOINT
         ,
@@ -56,8 +58,8 @@ icsDropoffProxy.reportArtistProposal = function (artist,countOfArtist ){
             "eventTime": null,
             "payload": {
                 "data": {
-                       "count_of_data_artistname": countOfArtist
-                    ,  "max_of_data_artistname": artist
+                    "count_of_data_artistname": countOfArtist
+                    , "max_of_data_artistname": artist
                 }
             }
         },
@@ -78,4 +80,4 @@ icsDropoffProxy.reportArtistProposal = function (artist,countOfArtist ){
 
 }
 
-console.log(moduleName +" version "+ moduleVersion+ " running against ICS Endpoint " + ICS_ENDPOINT);
+console.log(moduleName + " version " + moduleVersion + " running against ICS Endpoint " + ICS_ENDPOINT);
