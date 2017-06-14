@@ -1,0 +1,44 @@
+
+{
+    "apiName":"artistapi",
+    "apiVersion":"1.0",
+    "apiId":"8d2e530a-0632-4ec8-81ba-101d912798ca",
+    "baseUrl":"http://<MCS_SERVER>:<MCS_PORT>/",
+    "authorization":{
+        "mobileBackendID":"<YOUR_MOBILE_BACKEND_ID>",
+        "anonymousKey":"<MBE_ANONYMOUS_KEY>",
+        "oauth":{
+            "tokenEndpoint":"<MBE_OAUTH_TOKEN_ENDPOINT>",
+            "clientId":"<MBE_OAUTH_CLIENT_ID>",
+            "clientSecret":"<MBE_OAUTH_CLIENT_ID>"
+        }
+    },
+    "container":{
+        "oracleMobileApiName":"OracleMobileAPI",
+        "port":4000
+    },
+    "deploy":{
+        "tempDirectory":"/tmp/mcs-deploy"
+    },
+    "tests":{
+        "getActs":{
+            "method":"GET",
+            "resource":"/acts"
+        },
+        "getActsIdImageID":{
+            "method":"GET",
+            "resource":"/acts/:id/:imageID",
+            "uriParameters":{
+                "id":"<PARAMETER_VALUE>",
+                "imageID":"<PARAMETER_VALUE>"
+            }
+        },
+        "getActsId":{
+            "method":"GET",
+            "resource":"/acts/:id",
+            "uriParameters":{
+                "id":"<PARAMETER_VALUE>"
+            }
+        }
+    }
+}
