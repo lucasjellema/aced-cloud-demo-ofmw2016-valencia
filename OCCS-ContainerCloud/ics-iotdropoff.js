@@ -10,7 +10,7 @@ var logger = require("./logger.js");
 var settings = require("./proxy-settings.js");
 
 var moduleName = "occs.icsProxy";
-var moduleVersion = "0.21";
+var moduleVersion = "0.23";
 var ICS_ENDPOINT = "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest";
 var RESOURCE_IOTCS_DROPOFF = "ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/act";
 
@@ -28,7 +28,13 @@ icsDropoffProxy.registerListeners = function (app) {
 
 icsDropoffProxy.handleIoT = function (req, res) {
     logger.log("Handle IoT CS call to report new artist proposal for  " + JSON.stringify(req.body), moduleName, logger.DEBUG);
-    var iotmessage = JSON.parse(req.body);
+    var iotbody = JSON.parse(req.body);
+        var iotmessage = iotbody;
+        // cater for an array of messages from IoT CS
+    if (iotbody[0]) {
+        iotmessage = req.body[0];
+    }
+
     console.log("iotmessage "+iotmessage);
     var artist = iotmessage.payload.data.data_artistname;
     var countOfArtist = iotmessage.payload.data.count_of_data_artistname_15;
