@@ -18,6 +18,8 @@ var cacheAPI = require("./cache-api.js");
 var tweetCollector = require("./TweetCollector.js");
 var likesProcessor = require("./likes-processor.js");
 var logProcessor = require("./log-processor.js");
+var icsDropoffProxy = require("./ics-iotdropoff.js");
+
 var moduleName = "occs.Soaring-API";
 
 
@@ -52,6 +54,9 @@ app.use(function (request, response, next) {
 console.log("Registering Submodules ");
 logger.registerListeners(app);
 tweetCollector.registerListeners(app);
+
+icsDropoffProxy.registerListeners(app);
+
 
 app.get('/log-tail', function (req, res) {
 	logger.log("Return overview of all logs ", moduleName, logger.DEBUG);
