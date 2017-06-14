@@ -6,7 +6,7 @@ var http = require('http'),
 
 var icsDropoffProxy = require("./ics-iotdropoff.js");
 
-var APP_VERSION = "0.1.3"
+var APP_VERSION = "0.1.4"
 var APP_NAME = "TweetCollector"
 
 var moduleName = "TweetCollector";
@@ -74,7 +74,9 @@ tweetCollector.registerListeners =
   }
 
 
-var refreshInterval = 30; //seconds
+var refreshInterval = 60; //seconds
+var actThreshold = 2;
+var artistCounts = {};
 
 initHeartbeat = function (interval) {
   setInterval(function () {
@@ -93,7 +95,6 @@ function findHashtags(searchText) {
   result = searchText.match(regexp);
   if (result) {
     result = result.map(function (s) { return s.trim(); });
-    console.log(result);
     return result;
   } else {
     return false;
@@ -102,30 +103,36 @@ function findHashtags(searchText) {
 
 function dropoffTweets(tweets) {
   // handle tweets
-  console.log("handle tweets");
   // go through tweets
   // in each tweet, try to identify the  hashtag that is not #paasaces - because that will contain the artist
-  var artistCounts = {};
   for (index = 0; index < tweets.length; ++index) {
     var artist = "";
     var tweet = tweets[index].text;
     var tags = findHashtags(tweet);
-    var i = tags.indexOf(hashtag);
-    if (i > -1) {
-      if (i == 0 && tags.length > 1) {
-        artist = tags[1].substring(1);
-      }
-      if (i == 1) {
-        artist = tags[0].substring(1);
-      }
-      if (!artistCounts[artist]) {
-        artistCounts[artist] = 1;
-      } else {
-        artistCounts[artist] = artistCounts[artist] + 1;
-      }
-    }//if
-    console.log("artist = " + artist);
+    if (tags) {
+      var i = tags.indexOf(hashtag);
+      if (i > -1) {
+        if (i == 0 && tags.length > 1) {
+          artist = tags[1].substring(1);
+        }
+        if (i == 1) {
+          artist = tags[0].substring(1);
+        }
+        if (!artistCounts[artist]) {
+          artistCounts[artist] = 1;
+        } else {
+          artistCounts[artist] = artistCounts[artist] + 1;
+        }
+      }//if
+    }// if tags
   }//for
-  console.log("artistCounts " + JSON.stringify(artistCounts));
+  for (act in artistCounts) {
+    console.log("artist " + act + " has " + artistCounts[act] + " votes");
+    if (artistCounts[act] >= actThreshold) {
+      //call dropoff
+      icsDropoffProxy.reportArtistProposal(act, artistCounts[act]);
+      artistCounts[act] = -1000; // we have reported this artist, let's not report again until we have collected one hundred nominations
+    }
+  }//for 
 
 }
