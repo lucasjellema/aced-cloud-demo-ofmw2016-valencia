@@ -6,7 +6,7 @@ var logger = module.exports;
 
 var loggerRESTAPIURL = "http://129.144.151.143/SoaringTheWorldAtRestService/resources/logger/log";
 var apiURL = "/logger-api";
-var eventhubAPI = require("./eventhub-api.js");
+//var eventhubAPI = require("./eventhub-api.js");
 
 logger.DEBUG = "debug";
 logger.INFO = "info";
@@ -51,10 +51,10 @@ logger.log =
                 }]
             };
 
-           eventhubAPI.postMessagesToEventHub(msg
-                , function (response) {
-                    console.log("Published log-record to Kafka- response" + JSON.stringify(response));
-                });
+        //    eventhubAPI.postMessagesToEventHub(msg
+        //         , function (response) {
+        //             console.log("Published log-record to Kafka- response" + JSON.stringify(response));
+        //         });
 
 /* no more direct publication to REST API - now go through Kafka
         // Issue the POST  -- the callback will return the response to the user

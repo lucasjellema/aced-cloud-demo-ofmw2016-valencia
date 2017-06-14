@@ -129,84 +129,84 @@ cacheAPI.registerListeners =
 
 
 
-        cacheAPI.getFromCache = function (key, callback) {
+cacheAPI.getFromCache = function (key, callback) {
+    var responseBody = {};
 
-            var route_options = {};
+        var route_options = {};
 
-            // Issue the GET -- the callback will return the response to the user
-            route_options.method = "GET";
-            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(key);
-            console.log("Target URL " + route_options.uri);
-
-
-            // Issue the GET -- our callback function will return the response
-            // to the user
-            request(route_options, function (error, rawResponse, body) {
-                if (error) {
-                    console.log(JSON.stringify(error));
-                } else {
-                    console.log("rawResponse" + rawResponse.statusCode);
-                    console.log("BODY:" + body);
-                    // Proper response is 204, no content.
-                    var responseBody = {};
-                    // If nothing there, return not found
-                    responseBody['statusCode'] = rawResponse.statusCode;
-                    if (rawResponse.statusCode == 404) {
-                        responseBody['error'] = 'Key not found error.';
-                        logger.log("*** CacheAPI: failed cache request for key " + key, moduleName, logger.INFO);
-                    }
-                    else {
-                        // Create the response to the caller.
-                        responseBody['key'] = key;
-                        responseBody['value'] = JSON.parse(body);
-                    }
-                    // Send the response
-                    callback(responseBody);
-                }//else
-            });//request
-
-        }//getFromCache
-
-        cacheAPI.putInCache = function (key, value, callback) {
-            console.log("putInCache Callback = " + callback);
-            // Build the args for the request
-            var args = {
-                data: value,
-                headers: { "Content-Type": "application/octet-stream" }
-            };
-            var route_options = {};
-
-            // Issue the PUT -- the callback will return the response to the user
-            route_options.method = "PUT";
-            //            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(keyString);
-            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(key);
-            console.log("Target URL " + route_options.uri);
-
-            route_options.body = args.data;
-            route_options.headers = args.headers;
+        // Issue the GET -- the callback will return the response to the user
+        route_options.method = "GET";
+        route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(key);
+        console.log("Target URL " + route_options.uri);
 
 
+        // Issue the GET -- our callback function will return the response
+        // to the user
+        request(route_options, function (error, rawResponse, body) {
+            if (error) {
+                console.log(JSON.stringify(error));
+            } else {
+                console.log("rawResponse" + rawResponse.statusCode);
+                console.log("BODY:" + body);
+                // Proper response is 204, no content.
+                var responseBody = {};
+                // If nothing there, return not found
+                responseBody['statusCode'] = rawResponse.statusCode;
+                if (rawResponse.statusCode == 404) {
+                    responseBody['error'] = 'Key not found error.';
+                    logger.log("*** CacheAPI: failed cache request for key " + key, moduleName, logger.INFO);
+                }
+                else {
+                    // Create the response to the caller.
+                    responseBody['key'] = key;
+                    responseBody['value'] = JSON.parse(body);
+                }
+                // Send the response
+                callback(responseBody);
+            }//else
+        });//request
+}//getFromCache
 
-            request(route_options, function (error, rawResponse, body) {
-                if (error) {
-                    console.log(JSON.stringify(error));
-                } else {
-                    console.log(rawResponse.statusCode);
-                    console.log("BODY:" + JSON.stringify(body));
-                    console.log("XXXXXXXXXXXXXXXXXXXX  BODY2:" + JSON.stringify(body) + callback);
-                    // Proper response is 204, no content.
-                    var responseBody = {};
-                    if (rawResponse.statusCode == 204) {
-                        responseBody['status'] = 'Successful.';
-                    }
-                    else {
-                        responseBody['error'] = 'PUT returned error '.concat(rawResponse.statusCode.toString());
-                    }
-                    if (callback) { callback(responseBody) }
-                }//else
-            });//request
+cacheAPI.putInCache = function (key, value, callback) {
+    console.log("putInCache Callback = " + callback);
+    // Build the args for the request
+    var args = {
+        data: value,
+        headers: { "Content-Type": "application/octet-stream" }
+    };
+    var route_options = {};
 
-        }//putInCache
+    // Issue the PUT -- the callback will return the response to the user
+    route_options.method = "PUT";
+    //            route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(keyString);
+    route_options.uri = baseCCSURL.concat(cacheName).concat('/').concat(key);
+    console.log("Target URL " + route_options.uri);
+
+    route_options.body = args.data;
+    route_options.headers = args.headers;
+
+
+
+    request(route_options, function (error, rawResponse, body) {
+        if (error) {
+            console.log(JSON.stringify(error));
+        } else {
+            console.log(rawResponse.statusCode);
+            console.log("BODY:" + JSON.stringify(body));
+            console.log("XXXXXXXXXXXXXXXXXXXX  BODY2:" + JSON.stringify(body) + callback);
+            // Proper response is 204, no content.
+            var responseBody = {};
+            if (rawResponse.statusCode == 204) {
+                responseBody['status'] = 'Successful.';
+            }
+            else {
+                responseBody['error'] = 'PUT returned error '.concat(rawResponse.statusCode.toString());
+            }
+            if (callback) { callback(responseBody) }
+        }//else
+    });//request
+
+}//putInCache
 
 
 console.log("Cache API (version " + settings.APP_VERSION + ") initialized at " + apiURL + " running against CACHE Service URL " + baseCCSURL);

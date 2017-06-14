@@ -20,22 +20,26 @@ var http = require('http'),
 
 var logger = require("./logger.js");
 var cacheAPI = require("./cache-api.js");
-var eventhubAPI = require("./eventhub-api.js");
+var icsProxy = require("./ics-proxy.js");
+//var eventhubAPI = require("./eventhub-api.js");
+//var eventBridge = require("./eventbridge-api.js");
+//var tweetBoard = require("./tweet-board-ms.js");
 //var mailerAPI = require("./mailer.js");
 var emailerAPI = require("./emailer.js");
-var likesProcessor = require("./likes-processor.js");
-var logProcessor = require("./log-processor.js");
+//var likesProcessor = require("./likes-processor.js");
+//var logProcessor = require("./log-processor.js");
 var moduleName = "accs.ArtistEnricher-API";
 
 
 //var PORT = 5100;
 var PORT = process.env.PORT || settings.PORT;
 
-var appVersion = "0.9.1";
+var appVersion = "0.9.4";
 
 var spotifyAPI = 'https://api.spotify.com/v1';
-var echoNestAPI = "http://developer.echonest.com/api/v4";
-var echoNestDeveloperKey = "0B3N8LMO4XG3BXPSY";
+var token = "BQBgKp0l_qVB-2RUaKNYDZXBaWuAc46nFCTOB-HdC5nD5rZ5fKB98FA4Rc8btaJouwJq2BbceHT_rbsPNVxxarognXYQLsx8rCJsZGFCY5wbXkbuJbb0TXLi4_FC_qj6Co1kUq8Tv9knHg";
+// see for example: https://developer.spotify.com/web-api/console/get-search-item/#complete
+
 
 var app = express();
 var server = http.createServer(app);
@@ -59,10 +63,14 @@ app.use(function (request, response, next) {
 console.log("Registering Submodules ");
 logger.registerListeners(app);
 cacheAPI.registerListeners(app);
-eventhubAPI.registerListeners(app);
+icsProxy.registerListeners(app);
+//eventhubAPI.registerListeners(app);
+//eventBridge.registerListeners(app);
+//tweetBoard.registerListeners(app);
 //mailerAPI.registerListeners(app);
 emailerAPI.registerListeners(app);
 
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/artists/like/:artistName', function (req, res) {
 	var artistName = req.params['artistName'].replace(/_/g, ' ');	// to retrieve value of query parameter called artist (?artist=someValue&otherParam=X)
@@ -102,6 +110,7 @@ app.get('/about', function (req, res) {
 	res.write("/artists/likes");
 	res.write("/log-tail");
 	res.write("/mailer");
+	res.write("/eventBridge");
 	res.write("NodeJS runtime version " + process.version);
 	res.write("incoming headers" + JSON.stringify(req.headers));
 	res.end();
@@ -161,6 +170,13 @@ function handleLogs(req, res) {
 	});//getFromCache
 
 }//handleLogs
+					var route_options = {
+						"method": "GET"
+						, "headers": {
+							"Authorization": "Bearer " + token
+						}
+					};
+
 
 function handleArtists(req, res, artistName) {
 	var artist = {}; // artist record that will be constructed bit by bit
@@ -172,8 +188,13 @@ function handleArtists(req, res, artistName) {
 			async.waterfall([
 				function (callback) {
 					var artistUrl = spotifyAPI + '/search?q=' + encodeURI(artistName) + '&type=artist'; // use encodeURI to handle special characters in the name in the proper way
+					// add header
+					// Authorization:
+					// Bearer TOKEN
+					route_options.uri = artistUrl;
+
 					// invoke Spotify Search API to find the Artist and the spotify identifier; the response brings in genres and an image url 
-					request(artistUrl, function handleSpotifySearchResponse(error, response, body) {
+					request(route_options, function handleSpotifySearchResponse(error, response, body) {
 						if (error) {
 							console.log("error in processing " + JSON.stringify(error));
 							logger.log("Error in processing artist enrichment: " + JSON.stringify(err), moduleName, logger.ERROR);
@@ -204,7 +225,8 @@ function handleArtists(req, res, artistName) {
 					 */
 					var albumsURL = spotifyAPI + '/artists/' + artistSpotifyId + '/albums' + '?limit=50&album_type=album';
 					artist.albums = [];
-					request(albumsURL, function (error, response, body) {
+					route_options.uri = albumsURL;
+					request(route_options, function (error, response, body) {
 						var albumsResponse = JSON.parse(body);
 						for (var i = 0; i < albumsResponse.items.length; i++) {
 							var album = {};
@@ -234,7 +256,8 @@ function handleArtists(req, res, artistName) {
 							albumsDetailsURL += (i > 0 ? ',' : '') + value[i].spotifyId;
 						}//for 
 						// invoke REST API to retrieve details for a set of albums
-						request(albumsDetailsURL, function (error, response, body) {
+											route_options.uri = albumsDetailsURL;
+					request(route_options, function (error, response, body) {
 							var albumDetailsResponse = JSON.parse(body);
 							for (var i = 0; i < albumDetailsResponse.albums.length; i++) {
 								// clumsy way to correct for incomplete release dates (year only for example)
@@ -266,35 +289,34 @@ function handleArtists(req, res, artistName) {
 		// second function: call out to cache to get biography
 		function (callback) {
 			var biographyCacheKey = "biography-" + encodeURI(artistName).toLowerCase();
-			util.log('Start Cache Call for ' + biographyCacheKey);
-			try { 
-			cacheAPI.getFromCache(biographyCacheKey, function (response) {
 				try {
-					if (response.statusCode == '404') {
-						// biography not found in cache; now what?
-						console.log("bio not found in cache for "+encodeURI(artistName));
-						artist.biography = '(not yet available for '+encodeURI(artistName)+')';
-					}
-					else {
-						// assuming a biography document structured like this: {"biography": "content of biography"}
-						console.log("bio found in cache, adding to artist document "+response.value.biography);
-						
-						artist.biography = response.value.biography;
-					}
-					callback(null, "Biography from cache");
+					cacheAPI.getFromCache(biographyCacheKey, function (response) {
+						try {
+							if (response.statusCode == '404') {
+								// biography not found in cache; now what?
+								console.log("bio not found in cache for " + encodeURI(artistName));
+								artist.biography = '(not yet available for ' + encodeURI(artistName) + ')';
+							}
+							else {
+								// assuming a biography document structured like this: {"biography": "content of biography"}
+								console.log("bio found in cache, adding to artist document " + response.value.biography);
+
+								artist.biography = response.value.biography;
+							}
+							callback(null, "Biography from cache");
+						}
+						catch (e) {
+							console.log("Exception in get biography from cache" + e);
+							console.log("Exception in checkLikes" + JSON.stringify(e));
+							callback(null, "No biography found yet")
+						}
+					});// cache request
 				}
 				catch (e) {
 					console.log("Exception in get biography from cache" + e);
-					console.log("Exception in checkLikes" + JSON.stringify(e));
 					callback(null, "No biography found yet")
 				}
-			});// cache request
-				}
-				catch (e) {
-					console.log("Exception in get biography from cache" + e);
-					callback(null, "No biography found yet")
-				}
-		}
+			}
 	]
 		, function (err, results) {
 			console.log("Done parallel!");
