@@ -88,7 +88,7 @@ console.log("Log-processor:L try to fetch from cache: "+logDocumentKey);
                 var logsDoc;
                 if (response.statusCode == '404') {
 console.log("Log-processor:not found in cache");
-                    logsDoc = likesDoc = {
+                    logsDoc = {
                         "offset": 0
                         , "timestamp": Date.now()
                         , "logs": []
