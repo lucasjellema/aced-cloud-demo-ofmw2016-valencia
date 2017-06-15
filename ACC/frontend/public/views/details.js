@@ -16,10 +16,12 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 
 
         function handleActivated() {
             var self = this;
-
+            console.log('self.id: ', self.id );
             var actPromise = $.getJSON("/mobile/custom/artistapi/acts/" + self.id)
                 .then(function (json) {
+                    console.log('json: ', json );
                     json.likes = 0;
+                    console.log('data: ', self.data)
                     self.data(json); // expose on ViewModel
                     self.fetched(true);
                     return json;
@@ -47,7 +49,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 
         function like() {
             this.data().likes++;
             this.data(this.data());
-            $.getJSON('https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/artists/like/' + this.data().name);
+            $.getJSON('https://129.144.150.140:8010/artists/like/' + this.data().name);
         }
 
         function nameNoWhitespace() {

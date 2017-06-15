@@ -12,7 +12,7 @@ app.use('/mobile/*', function (req, res) {
 
     //Send info to OMC
     var options = { method: 'POST',
-                    url: 'https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/logger-api',
+                    url: 'http://129.144.150.140:8010/logger-api',
                     headers:
                     {
                         'cache-control': 'no-cache',
@@ -23,6 +23,7 @@ app.use('/mobile/*', function (req, res) {
                         message: 'Artist Proposal Portal is making a request to: ' + url },
                     json: true 
                   };
+                  
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
     console.log(body);
