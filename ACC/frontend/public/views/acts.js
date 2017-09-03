@@ -18,7 +18,6 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
             //Also get the likes for the artists.
             var actsPromise = $.getJSON("/mobile/custom/artistapi/acts")
                 .then(function (json) {
-                    console.log('@@@@', json);
                     $.each(json, function(i, act) {
                         act.registrationDate = new Date(act.registrationDate);
                         act.nameNoWhitespace = act.name && act.name.replace(/ /g,'');
@@ -77,7 +76,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
             xhr.addEventListener("readystatechange", function () { // do not care about response
             });
             
-            xhr.open("POST", "https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/logger-api");
+            xhr.open("POST", "https://129.144.150.140:8010/logger-api");
             xhr.setRequestHeader("content-type", "application/json");
             xhr.setRequestHeader("cache-control", "no-cache");
             xhr.send(data);

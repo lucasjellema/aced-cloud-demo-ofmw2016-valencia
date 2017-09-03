@@ -1,0 +1,12 @@
+{
+	"urn": "urn:nl:amis:iot:device:voting:beacon",
+	"name": "Voting Beacon",
+	"description": "Device model representation of physical vote for ACE demo",
+	"attributes": 
+	[{
+		"name": "artistName",
+		"description": "The name of the artist which person voted for",
+		"type": "STRING",
+		"alias": "artist"
+	}]
+}

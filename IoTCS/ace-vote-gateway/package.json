@@ -1,0 +1,31 @@
+{
+  "name": "amis-beacond-gateway",
+  "version": "1.0.0",
+  "description": "Beacon gateway for receiving BLE packets and connecting to IoT CS",
+  "main": "VoteGateway.js",
+  "files": [
+    "VoteGateway.js",
+    "modules"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org/amisservices/amis-iot-gateway.git"
+  },
+  "keywords": [
+    "amis",
+    "iot",
+    "voting",
+    "gateway"
+  ],
+  "author": "AMIS",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "async": "2.1.4",
+    "bleacon": "0.5.1",
+    "debug": "2.2.0",
+    "eddystone-beacon-scanner": "3.0.0",
+    "mqtt": "2.3.0",
+    "noble": "1.7.0",
+    "node-forge": "0.6.46"
+  }
+}
