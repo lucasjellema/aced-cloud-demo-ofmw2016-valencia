@@ -31,11 +31,11 @@
         </dgm:operations>
     </dgm:gService>
     <dgm:gReference name="RetrieveProposedActDetails">
-        <dgm:body borderWidth="2" arcRad="20" X="786" Y="38" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="882" Y="38" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="776" Y="31" width="156" height="98">
+        <dgm:shadow arcRad="20" X="872" Y="31" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="RetrieveProposedActDetails" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/ProposedActsService/RetrieveProposedActDetails#wsdl.interface(RetrieveProposedActDetails_ptt)"/>
@@ -45,11 +45,11 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gReference name="retrieveProposedActs">
-        <dgm:body borderWidth="2" arcRad="20" X="786" Y="156" width="136" height="84">
+        <dgm:body borderWidth="2" arcRad="20" X="882" Y="156" width="136" height="84">
             <dgm:borderColor r="153" g="153" b="153"/>
             <dgm:bgColor r="255" g="255" b="255"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="776" Y="149" width="156" height="98">
+        <dgm:shadow arcRad="20" X="872" Y="149" width="156" height="98">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="retrieveProposedActs" X="-10" Y="0" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/ProposedActsService/retrieveProposedActs#wsdl.interface(retrieveProposedActs_ptt)"/>
@@ -59,12 +59,12 @@
         </dgm:operations>
     </dgm:gReference>
     <dgm:gComponent name="ProposedActsMediator">
-        <dgm:body borderWidth="2" arcRad="20" X="407" Y="96" width="130" height="86">
+        <dgm:body borderWidth="2" arcRad="20" X="455" Y="96" width="130" height="86">
             <dgm:borderColor r="128" g="92" b="148"/>
             <dgm:lightBgColor r="208" g="169" b="227"/>
             <dgm:darkBgColor r="183" g="132" b="212"/>
         </dgm:body>
-        <dgm:shadow arcRad="20" X="397" Y="89" width="150" height="102">
+        <dgm:shadow arcRad="20" X="445" Y="89" width="150" height="102">
             <dgm:bgColor r="196" g="228" b="240"/>
         </dgm:shadow>
         <dgm:inputPort name="ProposedActsMediator" X="-10" Y="15" diameter="20" imageURI="oracle/tip/tools/ide/fabric/resource/image/visuals_rd1/servicereference.png" interface="aced.cloud.demo#wsdl.interface(ProposedActsService)"/>
@@ -76,28 +76,28 @@
     <dgm:gWireLink source="ProposedActsService" target="ProposedActsMediator/ProposedActsMediator" width="2">
         <dgm:gSegment X1="168" Y1="166" X2="192" Y2="166"/>
         <dgm:gSegment X1="192" Y1="166" X2="192" Y2="121"/>
-        <dgm:gSegment X1="192" Y1="121" X2="397" Y2="121"/>
+        <dgm:gSegment X1="192" Y1="121" X2="445" Y2="121"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="ProposedActsMediator/RetrieveProposedActDetails" target="RetrieveProposedActDetails" width="2">
-        <dgm:gSegment X1="547" Y1="121" X2="571" Y2="121"/>
-        <dgm:gSegment X1="571" Y1="121" X2="571" Y2="48"/>
-        <dgm:gSegment X1="571" Y1="48" X2="776" Y2="48"/>
+        <dgm:gSegment X1="595" Y1="121" X2="619" Y2="121"/>
+        <dgm:gSegment X1="619" Y1="121" X2="619" Y2="48"/>
+        <dgm:gSegment X1="619" Y1="48" X2="872" Y2="48"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="ProposedActsMediator/retrieveProposedActs" target="retrieveProposedActs" width="2">
-        <dgm:gSegment X1="547" Y1="146" X2="571" Y2="146"/>
-        <dgm:gSegment X1="571" Y1="146" X2="571" Y2="166"/>
-        <dgm:gSegment X1="571" Y1="166" X2="776" Y2="166"/>
+        <dgm:gSegment X1="595" Y1="146" X2="619" Y2="146"/>
+        <dgm:gSegment X1="619" Y1="146" X2="619" Y2="166"/>
+        <dgm:gSegment X1="619" Y1="166" X2="872" Y2="166"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>
     <dgm:gWireLink source="ProposedActsRestService" target="ProposedActsMediator/ProposedActsMediator" width="2">
         <dgm:gSegment X1="168" Y1="36" X2="207" Y2="36"/>
         <dgm:gSegment X1="207" Y1="36" X2="207" Y2="121"/>
-        <dgm:gSegment X1="207" Y1="121" X2="397" Y2="121"/>
+        <dgm:gSegment X1="207" Y1="121" X2="445" Y2="121"/>
         <dgm:baseColor r="153" g="153" b="153"/>
         <dgm:selectedColor r="49" g="106" b="196"/>
     </dgm:gWireLink>

@@ -12,7 +12,7 @@ type discography_t as table of album_t
 create or replace 
 type artist_t as object
 ( name varchar2(200)
-, genres varchar2(200)
+, genres varchar2(1000)
 , biography varchar2(4000)
 , image_url varchar2(1000)
 , albums discography_t

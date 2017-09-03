@@ -127,7 +127,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:getProposedActDetailsRequestMessage>
-         <aced:proposedActId>2</aced:proposedActId>
+         <aced:proposedActId>172</aced:proposedActId>
       </aced:getProposedActDetailsRequestMessage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getProposedActDetails"/><con:wsrmConfig version="1.2"/></con:call><con:call name="mock-request-proposedActDetails"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/ProposedActsService/ProposedActsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
@@ -245,7 +245,7 @@
       <soap:address location="http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-SpandauBallet"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://104.155.49.139/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://127.0.0.1:5100/soacs/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:endpoint>http://140.86.4.95:8080/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="submitActProposal" name="submitActProposal" bindingOperationName="submitActProposal" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="submitProposal-DollyParton"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://129.144.151.143/soa-infra/services/aced-cloud-demo/NewActProposalsServices/NewActProposalsService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:aced="aced.cloud.demo">
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
@@ -258,8 +258,8 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
-         <aced:name>Bruce Springsteen</aced:name>
-         <aced:numberOfVotes>817</aced:numberOfVotes>
+         <aced:name>shakira</aced:name>
+         <aced:numberOfVotes>27</aced:numberOfVotes>
          <aced:description>Down to earth rock hero, beloved across the world</aced:description>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>
@@ -287,9 +287,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <aced:submitActProposalRequestMessage>
-         <aced:name>Boney M</aced:name>
-         <aced:numberOfVotes>15</aced:numberOfVotes>
-         <aced:description>Flying High!</aced:description>
+         <aced:name>Duran Duran</aced:name>
+         <aced:numberOfVotes>18</aced:numberOfVotes>
+         <aced:description>Cool act!</aced:description>
          <aced:imageURL></aced:imageURL>
       </aced:submitActProposalRequestMessage>
    </soapenv:Body>

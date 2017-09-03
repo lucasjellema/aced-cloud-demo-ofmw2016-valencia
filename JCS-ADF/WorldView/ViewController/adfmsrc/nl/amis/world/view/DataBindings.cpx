@@ -6,6 +6,7 @@
     <page path="/ProposalManager.jsf" usageId="nl_amis_world_view_ProposalManagerPageDef"/>
     <page path="/Albums.jsf" usageId="nl_amis_world_view_AlbumsPageDef"/>
     <page path="/ArtistProposalManager.jsf" usageId="nl_amis_world_view_ArtistProposalManagerPageDef"/>
+    <page path="/ProposedActsFromWS.jsf" usageId="nl_amis_world_view_ProposedActsFromWSPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="nl_amis_world_view_CountriesCatalogPageDef" path="nl.amis.world.view.pageDefs.CountriesCatalogPageDef"/>
@@ -13,8 +14,11 @@
     <page id="nl_amis_world_view_AlbumsPageDef" path="nl.amis.world.view.pageDefs.AlbumsPageDef"/>
     <page id="nl_amis_world_view_ArtistProposalManagerPageDef"
           path="nl.amis.world.view.pageDefs.ArtistProposalManagerPageDef"/>
+    <page id="nl_amis_world_view_ProposedActsFromWSPageDef"
+          path="nl.amis.world.view.pageDefs.ProposedActsFromWSPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
+    <dc id="ProposedActsServiceDC" path="nl.amis.world.model.ProposedActsServiceDC"/>
     <BC4JDataControl id="WorldModuleDataControl" Package="nl.amis.world.model"
                      FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
                      SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"

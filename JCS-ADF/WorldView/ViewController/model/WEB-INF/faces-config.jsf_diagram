@@ -153,4 +153,39 @@
       <property
          name="sdm:polyPoints">T56,161.37695,367.399,150.0,268.34674,B44</property>
    </NavigationCase>
+   <Page
+      id="Page16">
+      <property
+         name="wildcard">false</property>
+      <property
+         name="y">494.1494</property>
+      <property
+         name="x">611.5586</property>
+      <property
+         name="jspName">/ProposedActsFromWS.jsf</property>
+   </Page>
+   <NavigationCase
+      islink="true"
+      id="NavigationCase17"
+      from="Page2"
+      to="Page16">
+      <property
+         name="fromOutcome">acts</property>
+      <property
+         name="description">Navigation Case</property>
+      <property
+         name="sdm:polyPoints">R66,194.5,221.79883,570.5586,493.79883,L50</property>
+   </NavigationCase>
+   <NavigationCase
+      islink="true"
+      id="NavigationCase18"
+      from="Page16"
+      to="Page2">
+      <property
+         name="fromOutcome">main</property>
+      <property
+         name="description">Navigation Case</property>
+      <property
+         name="sdm:polyPoints">L46,570.5586,490.29883,196.76619,218.29883,R62</property>
+   </NavigationCase>
 </SDM>

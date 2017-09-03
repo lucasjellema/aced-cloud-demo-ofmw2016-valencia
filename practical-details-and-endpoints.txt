@@ -25,9 +25,16 @@ public host: 129.144.151.143
 
 
 user: weblogic
+password: Welcome_1
 
 WLS Console:  https://129.144.151.143:7002/console
 EM FMW Control: https://129.144.151.143:7002/em 
+
+
+/u01/app/oracle/middleware/wlserver
+
+Domain Home:  /u01/data/domains/soacs4em_domain
+
 
 Worklist application:
 https://129.144.151.143/integration/worklistapp/faces/login.jspx
@@ -51,7 +58,7 @@ http://129.144.151.143/soa-infra/services/default/NewActProposalsServices/NewAct
 JCS
 ===
 
-REST API for Logging (to be picked up by Log Analytics)
+REST API fo r Logging (to be picked up by Log Analytics)
 
 http://129.144.151.143:80/WebLogicLoggerService/resources/logger/log
 
@@ -93,7 +100,44 @@ https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com/artists/get
 (spotify API:  https://developer.spotify.com/web-api/ )
 
 
--
+
+using PSM for deployment
+
+list all applications:
+psm accs apps
+
+http://www.olrichs.nl/2017/03/use-psm-to-push-your-application-to-accs.html?m=1
+
+create container in storage cloud:
+
+curl -i -X PUT -u lucas.jellema@amis.nl:password  https://partnercloud17.storage.oraclecloud.com/v1/Storage-partnercloud17/Artist-Enricher-API
+
+Put the application archive in the Storage Container.
+curl -i -X PUT -u lucas.jellema@amis.nl:85tgn7Lex3  https://partnercloud17.storage.oraclecloud.com/v1/Storage-partnercloud17/Artist-Enricher-API/artist-enricher-api.zip -T ./artist-enricher-api.zip
+
+psm accs push -n Artist-Enricher-API  -u Artist-Enricher-API/artist-enricher-api.zip -t "latest" -of json
+
+psm accs operation-status -j 10247694 -of json
+
+
+after deployment:
+
+https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/cache-api/about
+
+Store something in cache:
+PUT https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/cache-api/<key>
+BODY should contain a valid JSON object
+Content-Type application/json
+
+To get something from the cache:
+GET  https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/cache-api/<key>
+
+
+
+
+
+Storage Cloud Service Console: https://storageconsole.us2.oraclecloud.com/aHR0cHM6Ly9wYXJ0bmVyY2xvdWQxNy5zdG9yYWdlLm9yYWNsZWNsb3VkLmNvbS92MS9TdG9yYWdlLXBhcnRuZXJjbG91ZDE3/?root=containers&container=_apaas# 
+
 
 Event Hub Platform
 ==================
@@ -154,6 +198,7 @@ using CLI: PSM
 list all services (topics)
 psm oehcs services
 
+psm oehcs update-service 
 -- details for a single service
 psm oehcs service --service-name partnercloud17-SoaringEventBus
 psm oehcs service --service-name SoaringEventBus
@@ -173,6 +218,97 @@ creating a consumer instance - response:
 /restproxy/consumers/ConsumerGroupA/instances/my_consumer/topics/partnercloud17-SoaringEventBus
 
 
+to fetch the certificate for the REST Proxy:
+
+openssl s_client -connect {HOSTNAME}:{PORT} -showcerts
+https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus
+
+openssl s_client -connect 129.144.152.204:1080 -showcerts
+
+
+-----BEGIN CERTIFICATE-----
+MIIDSDCCAjACCQC7LlUB9gSPQzANBgkqhkiG9w0BAQUFADBmMQswCQYDVQQGEwJV
+UzETMBEGA1UECAwKQ2FsaWZvcm5pYTEXMBUGA1UEBwwOUmVkd29vZCBTaG9yZXMx
+DzANBgNVBAoMBk9yYWNsZTEYMBYGA1UEAwwPb3JhY2xlY2xvdWQuY29tMB4XDTE3
+MDMwMzEwMzk0NVoXDTE4MDMwMzEwMzk0NVowZjELMAkGA1UEBhMCVVMxEzARBgNV
+BAgMCkNhbGlmb3JuaWExFzAVBgNVBAcMDlJlZHdvb2QgU2hvcmVzMQ8wDQYDVQQK
+DAZPcmFjbGUxGDAWBgNVBAMMD29yYWNsZWNsb3VkLmNvbTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAM2kz3f9fUcD6Zdt1Z/z6L4bzTTQLvIvLXikUDeY
+rIEu1FG74NQjQE9xgXXE4BzJVTv3Q/KInjoBjfO8O4OBbIITOisvS0wrXNOkGhKg
+vCHG4JvwngvOyAqS8bjKAPxpF0CIOl+jsJesbRpsOcOC/6ZSdKA3cxy66pRi8Ab1
+V9TxnjQW30nEmMuf35kAjRlBfvIEGtBS36o3uBao/KF9bFjzSmbdPTAipzN+zKBG
+mLJm/KQit8NQQukwvBkZ5SJmxj0j4ft2nvkQPbtzchd7olyPO80Mjqi3OKPfar6I
+CjiVjII53mV9tNApqevIxl+x6zuyNsUOI2EZFf8NJIp8Gz8CAwEAATANBgkqhkiG
+9w0BAQUFAAOCAQEArq8AGDNeVYt21nHOi2xzcfTwpZ/q4s9JuT55MzNUoilN282i
+8zLzCFwAnMCsEr3zI5bpNKHcOhllc+WxDoL8rLdly+96YGolwzR6rxtz9dqZBcqZ
+q5oEs96XgySyQY01CX336szjQer1AAWkt+z+/T5qh7SljEALW1cRyn1b22XIA6qL
+xgvgShApLMAhxn0NIDB2266lbUbuSzimKbYXfgfYR/kqngSF/+JuHr58jNLqvvqj
+/JlLdTKA5OO9A08FgY40nRbRCa2FSac9RzD4dXcTvoU/xWZHMWpgl8NnNPb/KZvH
+8Mh/4W19YfVY/4CEswXYHBpXNpVrDNVm/7E9VA==
+-----END CERTIFICATE-----
+
+
+POST 
+https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/eventhub-api
+
+local: http:127.0.0.1:5101/eventhub-api
+
+body should contain valid JSON object ; under the key records should be an array of objects with each two properties : key and value
+{
+    "records":[
+        {
+            "key":"your key",
+            "value":"your message"
+        },
+        {
+            "value":"Second message",
+            "partition":1
+        },
+        {
+            "value":"Third"
+        }
+    ]
+}
+
+this one works:
+
+
+create consumer group (groupname soaring-events-consumer-group, consumer name: soaring-events-consumer
+curl -u admin:Ooow2016  -k -X POST -H "Content-Type: application/vnd.kafka.json.v1+json"  -d "{ \"name\":  \"soaring-events-consumer\", \"format\": \"json\" }"  https://129.144.152.204:1080/restproxy/consumers/soaring-events-consumer-group
+
+
+check on partitions in topic:
+curl -u admin:Ooow2016  -k https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus/partitions/1
+{"partition":1,"leader":1,"replicas":[{"broker":1,"leader":true,"in_sync":true}]}
+
+Produce message:
+curl -X POST -k -u admin:Ooow2016 -H "Content-Type: application/vnd.kafka.json.v1+json"  -d "{ \"records\": [ { \"key\": \"myKey\", \"value\": \"mySpecialValue\"}] }" "https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus"
+
+
+Consume message - levering the consumer group soaring-events-consumer-group and the consumer instance soaring-events-consumer:
+curl -u admin:Ooow2016  -k --header "Accept: application/vnd.kafka.json.v1+json"  https://129.144.152.204:1080/restproxy/consumers/soaring-events-consumer-group/instances/soaring-events-consumer/topics/partnercloud17-SoaringEventBus
+
+=========================
+
+
+http://127.0.0.1:5101/eventhub-api/create-consumer-group
+
+{
+  "status": "POST  returned 200",
+  "body": "{\"instance_id\":\"soaring-events-consumer\",\"base_uri\":\"http://localhost:8082/consumers/soaring-events-consumer-group/instances/soaring-events-consumer\"}"
+}
+
+
+
+
+EventHub-API GET  - get messages
+===
+http://127.0.0.1:5101/eventhub-api/messages
+
+Target URL https://129.144.152.204:1080/restproxy/consumers/soaring-events-consumer-group/instances/soaring-events-consumer/topics/partnercloud17-SoaringEventBus
+200
+BODY:"[{\"key\":\"tody\",\"value\":\"18th  march 2017\",\"partition\":1,\"offset\":7}]"
+
 API Platform CS
 ===============
 
@@ -181,6 +317,10 @@ https://129.144.150.67:7002/console
 https://129.144.150.67:7202/apiplatform
 
 weblogic/1PaaS5pl1t
+
+129.144.150.67
+
+API Portal: http://129.144.150.67:7201/developers/apis/dev  
 
 
 DevCS
@@ -198,6 +338,17 @@ Service Console: https://iotpartner217-iotpartner217.iot.us.oraclecloud.com/ui/
 OMC
 ===
 https://myservices.us2.oraclecloud.com/mycloud/faces/dashboard.jspx
+
+
+Twitter:
+====
+
+GMail/Google:
+===
+username soaringacrosstheclouds@gmail.com
+password: Ooow2016
+
+
 
 
 
@@ -535,6 +686,32 @@ https://pcs-gse00000225.process.us2.oraclecloud.com/bpm/workspace/faces/worklist
 
 
 
+Google Cloud Platform
+
 logs: (public) http://104.155.49.139/logs
+
 proxy engine:  (Lucas) https://console.cloud.google.com/compute/instances?project=mediator-proxy&quickstart=1&graph=GCE_CPU&duration=PT1H
 
+
+
+Container Cloud
+===============
+Service NAME SoaringContainer
+Public Key: soaCSPubKey.txt
+Admin/Ooow2016
+
+public ip: 
+mgr - 129.144.149.45	
+worker - 129.144.150.140	
+
+from service console:
+- configure Docker Hub account
+- create service
+RequestCounter
+
+
+run OCCS
+GITHUB_URL https://github.com/lucasjellema/aced-cloud-demo-ofmw2016-valencia
+
+HOST:
+129.144.150.140:8010/about

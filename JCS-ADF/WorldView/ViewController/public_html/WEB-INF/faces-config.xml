@@ -21,6 +21,10 @@
       <from-outcome>errors</from-outcome>
       <to-view-id>/WorldOfErrors.jsf</to-view-id>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>acts</from-outcome>
+      <to-view-id>/ProposedActsFromWS.jsf</to-view-id>
+    </navigation-case>
   </navigation-rule>
   <navigation-rule>
     <from-view-id>/WorldNews.jsf</from-view-id>
@@ -45,6 +49,13 @@
   </navigation-rule>
   <navigation-rule>
     <from-view-id>/WorldOfErrors.jsf</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/main.jsf</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/ProposedActsFromWS.jsf</from-view-id>
     <navigation-case>
       <from-outcome>main</from-outcome>
       <to-view-id>/main.jsf</to-view-id>

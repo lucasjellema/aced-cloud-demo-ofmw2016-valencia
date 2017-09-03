@@ -5,7 +5,7 @@
         <af:messages id="m1"/>
         <af:form id="f1">
             <af:panelGridLayout id="pgl1">
-                <af:gridRow height="50px" id="gr1">
+                <af:gridRow height="80px" id="gr1">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
                        <af:panelHeader text="Soaring through the Clouds - Artist Proposals Manager" id="ph1">
                             <f:facet name="context"/>

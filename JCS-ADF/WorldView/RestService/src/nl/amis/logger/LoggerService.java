@@ -62,7 +62,7 @@ public class LoggerService {
         // TODO
         int msgCount =0;
         System.out.println("log bundle of messages for module " + bundle.getModule());
-        if (_logger == null || !(_lastModule.equalsIgnoreCase(bundle.getModule()))) {
+        if (_logger == null || (_lastModule==null || !(_lastModule.equalsIgnoreCase(bundle.getModule())))) {
             // create new logger
             _lastModule = bundle.getModule();
             _logger = ADFLogger.createADFLogger(_lastModule);
@@ -71,7 +71,7 @@ public class LoggerService {
             msgCount++;
             logMessage(msg);
         } // loop over all messages in bundle
-        return "ok - processed "+msgCount+" messages in the bundle.";
+        return "ok - processed "+msgCount+" messages in the bundle (from LoggerService).";
     }
 
     private void logMessage(LogMessage msg) {

@@ -37,7 +37,7 @@ var PORT = process.env.PORT || settings.PORT;
 var appVersion = "0.9.4";
 
 var spotifyAPI = 'https://api.spotify.com/v1';
-var token = "BQBgKp0l_qVB-2RUaKNYDZXBaWuAc46nFCTOB-HdC5nD5rZ5fKB98FA4Rc8btaJouwJq2BbceHT_rbsPNVxxarognXYQLsx8rCJsZGFCY5wbXkbuJbb0TXLi4_FC_qj6Co1kUq8Tv9knHg";
+var token = "BQA-DgJgUR5Hv9iqIWNslY0Mj16lCVSgSefOBGZFO0_WVecsf3PDAsYqLWZxUT2Kh82xMlPEHmonMh5T52oEUK5ULkgKv7ithkGqHBtldnv625nSeb0gaVzTP_9T8FbrOsf83Da68CnxLw";
 // see for example: https://developer.spotify.com/web-api/console/get-search-item/#complete
 
 
@@ -289,6 +289,7 @@ function handleArtists(req, res, artistName) {
 		// second function: call out to cache to get biography
 		function (callback) {
 			var biographyCacheKey = "biography-" + encodeURI(artistName).toLowerCase();
+			/*
 				try {
 					cacheAPI.getFromCache(biographyCacheKey, function (response) {
 						try {
@@ -315,7 +316,8 @@ function handleArtists(req, res, artistName) {
 				catch (e) {
 					console.log("Exception in get biography from cache" + e);
 					callback(null, "No biography found yet")
-				}
+				}*/
+				callback(null, "No biography found yet")
 			}
 	]
 		, function (err, results) {

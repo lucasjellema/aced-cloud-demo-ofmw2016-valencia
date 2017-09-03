@@ -15,6 +15,10 @@
     <Attr Name="_appModuleNames1" Value="nl.amis.world.model.SoaringProposalService"/>
   </DesignTime>
   <Containee
+    Name="aced"
+    PackageName="demo.cloud.aced"
+    ObjectType="JboPackage"/>
+  <Containee
     Name="model"
     PackageName="nl.amis.world.model"
     ObjectType="JboPackage">
