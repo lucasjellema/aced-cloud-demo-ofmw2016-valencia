@@ -1,0 +1,661 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: "AcedemoActsAPI"
+  description: API for requesting all needed information about act proposals already available. 
+               The API is limited to twenty requests per second per application. Requests exceeding this threshold are rejected.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: ACE team
+    email: all@aceteam.org
+host: petstore.swagger.io
+basePath: /acedemoactsapi
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /proposedacts:
+    get:
+      description: |
+        Returns all proposed acts including some meta information, like number of votes and the registration date.
+      operationId: getProposedActs
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: mininumNumberOfVotes
+          in: query
+          description: Minimum number of votes an act should have.
+          required: true
+          type: string
+        - name: maxNumberOfProposals
+          in: query
+          description: Maximum number of proposals an act should have
+          required: false
+          type: string
+        - name: addedSince
+          in: query
+          description: Minimim date of an proposals submission
+          required: false
+          type: string
+      responses:
+        200:
+          description: Proposed acts response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ActOverview'
+          examples:
+            application/json:
+              {
+                "proposedActs": {
+                  "ProposedActSummary": [
+                    {
+                      "id": 21,
+                      "name": "john denver",
+                      "numberOfVotes": 45,
+                      "registrationDate": "2017-03-15T07:48:05.063757+00:00"
+                    },
+                    {
+                      "id": 70,
+                      "name": "Rita Coolidge",
+                      "numberOfVotes": 15,
+                      "registrationDate": "2017-03-19T05:39:14.481048+00:00"
+                    }
+                  ]
+                }
+              }
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+  /proposedacts/{actid}:
+    get:
+      description: |
+        Returns the details for a specific proposed acts
+      operationId: getProposedActDetails
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+      responses:
+        200:
+          description: Proposed act details response
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Act'
+          examples:
+            application/json:
+              {
+                "proposedActDetails": {
+                  "id": 21,
+                  "name": "john denver",
+                  "numberOfVotes": 45,
+                  "description": "The Country Boy. Unfortunately: he is dead",
+                  "genres": "[\"adult standards\",\"christmas\",\"country christmas\",\"folk\",\"folk christmas\",\"folk rock\",\"mellow gold\",\"singer-songwriter\",\"soft rock\",\"traditional country\",\"traditional folk\"]",
+                  "biography": "To Be Provided",
+                  "imageURL": "https://i.scdn.co/image/20231471bcc579479dac4c8f6218182cf0aa16a9",
+                  "image": null,
+                  "discography": {
+                    "album": [
+                      {
+                        "title": "The Classic Christmas Album",
+                        "year": 2012,
+                        "coverImageUrl": "https://i.scdn.co/image/d52ad1ce5441d7d1473462eaf814d37c2fe93c9c"
+                      },
+                      {
+                        "title": "Live At Cedar Rapids - 12/10/87",
+                        "year": 2011,
+                        "coverImageUrl": "https://i.scdn.co/image/9b147bb6da1ea54b3181f88b670477bb697d98c3"
+                      },
+                      {
+                        "title": "Windsong",
+                        "year": 1975,
+                        "coverImageUrl": "https://i.scdn.co/image/32c1eb751db1d180977f953280ce068361dae458"
+                      }
+                    ]
+                  }
+                }
+              }
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+  /proposedacts/{actid}/agentInfo:
+    get:
+      description: |
+        Returns the agent info for a specific act
+      operationId: getProposedActAgentInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+      responses:
+        200:
+          description: Proposed act agent info response
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/AgentInfo'
+          examples:
+            application/json:
+              {
+                "id": 21,
+                "name": "john denver's agent",
+                "phone": "123456789",
+                "email": "johndenvers.agent@canada.cdn",
+                "address": {
+                  "id": 12, 
+                  "city": "Vancouver",
+                  "postalcode": "534635",
+                  "street": "First Street",
+                  "country": "Canada"
+                }
+              }
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+    put:
+      description: |
+        Creates a new agent info record for an act
+      operationId: createProposedActAgentInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+      responses:
+        201:
+          description: Info that Proposed act agent info has been created
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+  /proposedacts/{actid}/agentInfo/{agentid}:
+    post:
+      description: |
+        Updates the existing agent info for an act
+      operationId: updateProposedActAgentInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+        - name: agentid
+          in: path
+          description: Unique identifier for a proposed act's agent info
+          required: true
+          type: string
+      responses:
+        200:
+          description: Info that Proposed act agent info has been updated
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+    delete:
+      description: |
+        Delete the agent info for an act
+      operationId: deleteProposedActAgentInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+        - name: agentid
+          in: path
+          description: Unique identifier for a proposed act's agent info
+          required: true
+          type: string
+      responses:
+        200:
+          description: Info that Proposed act agent info has been deleted
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+  /proposedacts/{actid}/specialInfo:
+    get:
+      description: |
+        Returns the agent info for an act
+      operationId: getProposedActSpecialInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+      responses:
+        200:
+          description: Proposed act special info response
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/ActSpecialInfo'
+          examples:
+            application/json:
+              {
+                "id": 21,
+                "name": "john denver's agent",
+                "phone": "123456789",
+                "email": "johndenvers.agent@canada.cdn",
+                "address": {
+                  "id": 12, 
+                  "city": "Vancouver",
+                  "postalcode": "534635",
+                  "street": "First Street",
+                  "country": "Canada"
+                }
+              }
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+    put:
+      description: |
+        Creates a new special info for an act
+      operationId: createProposedActSpecialInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actid
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+      responses:
+        201:
+          description: Proposed act special info creation response
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+  /proposedacts/{actId}/specialInfo/{specialInfoId}:
+    post:
+      description: |
+        Updates the existing special info for an act
+      operationId: updateProposedActSpecialInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actId
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+        - name: specialInfoId
+          in: path
+          description: Unique identifier for a proposed act's special info
+          required: true
+          type: string
+      responses:
+        200:
+          description: Proposed act special info update response
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+    delete:
+      description: |
+        Deletes the special info
+      operationId: deleteProposedActSpecialInfo
+      parameters:
+        - name: Authorization
+          in: header
+          description: HTTP Basic Authorization Header
+          required: true
+          type: string
+        - name: X-api-key
+          in: header
+          description: The API-Key for this API
+          required: true
+          type: string
+          format: uuid
+        - name: X-tenant-id
+          in: header
+          description: The tenant identifier of the API user
+          required: true
+          type: string
+        - name: actId
+          in: path
+          description: Unique identifier for a proposed act
+          required: true
+          type: string
+        - name: specialInfoId
+          in: path
+          description: Unique identifier for a proposed act's special info
+          required: true
+          type: string
+      responses:
+        200:
+          description: Proposed act special info delete response
+        400:
+          description: Header validation error
+        401:
+          description: Authentication error
+        403:
+          description: Authorization error
+definitions:
+  ActOverview:
+        required:
+          - id
+          - name
+          - numberOfVotes
+          - registrationDate
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: Unique identifier of an act
+          name:
+            type: string
+            description: Name of an act
+          numberOfVotes:
+            type: integer
+            format: int64
+            description: Number of votes for the specific act
+          registrationDate:
+            type: string
+            format: date
+            description: Date of an acts proposal
+  Act:
+        required:
+          - id
+          - name
+          - numberOfVotes
+        properties:
+          id:
+            type: integer
+            format: int64
+            description: Unique identifier of an act
+          name:
+            type: string
+            description: Name of an act
+          numberOfVotes:
+            type: integer
+            format: int64
+            description: Number of votes for the specific act
+          description:
+            type: string
+            description: Short description of the act
+          genres:
+            type: string
+            description: The music genre the act belongs to
+          biography:
+            type: string
+            description: The acts biography
+          imageUrl:
+            type: string
+            format: url
+            description: URL to an act's image
+          image:
+            type: string
+            format: base64
+            description: The acts image
+          discography:
+            type: object
+            items:  
+              $ref: '#/definitions/Discography'
+            description: The acts biography
+  Discography:
+    required:
+      - title
+      - year
+    properties:
+      title:
+        type: string
+        description: Album title
+      year:
+        type: integer
+        format: int64
+        description: Release year of the album
+      coverImageUrl:
+        type: string
+        format: url
+        description: URL to the cover image
+  AgentInfo:
+    required:
+      - id
+      - name
+      - phone
+      - email
+      - address
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Unique agent info identifier
+      name: 
+        type: string
+        description: Name of the agent
+      phone: 
+        type: string
+        description: Phone number of the agent
+      email:
+        type: string
+        description: Email address of the agent
+      address:
+        type: object
+        items:
+          $ref: '#/definitions/Address'
+  Address:
+    required:
+      - id
+      - city
+      - postalcode
+      - street
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Unique address identifier
+      city:
+        type: string
+        description: Name of the city
+      postalcode:
+        type: string
+        description: Info about Postalcode
+      street:
+        type: string 
+        description: Info about street 
+      country:
+        type: string 
+        description: Info about the country 
+  ActSpecialInfo:
+    required:
+      - id
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: Unique special info identifier
+      birthday:
+        type: string
+        format: date
+        description: Artists birthday
+      preferred_hotel:
+        type: string
+        description: The artists preferred hotel
+      favourite_beverage:
+        type: string
+        description: The artists favourite beverage
+      additional_comments:
+        type: string
+        description: Any additional information to make the artist happy
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

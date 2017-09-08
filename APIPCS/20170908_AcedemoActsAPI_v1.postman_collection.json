@@ -1,0 +1,10 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AcedemoActsAPI",
+		"_postman_id": "f00c2d65-69ed-c987-1c6c-41e91ec4d1a4",
+		"description": "API for requesting all needed information about act proposals already available. The API is limited to twenty requests per second per application. Requests exceeding this threshold are rejected.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": []
+}
