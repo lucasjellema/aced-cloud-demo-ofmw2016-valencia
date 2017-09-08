@@ -11,6 +11,14 @@ create table proposed_acts
 , description varchar2(200)
 , genres varchar2(200)
 , biography varchar2(4000)
+, legal_name varchar2(200)
+, country_of_origin varchar2(200)
+, era varchar2(200)
+, genre varchar2(100)
+, artist_type varchar2(20) -- group, person
+, popularity number(3)
+, birthdate_of_artist date
+, enddate_of_artist date
 , number_of_votes number(10)
 , image blob
 , image_url varchar2(1000)
@@ -19,11 +27,21 @@ create table proposed_acts
 create table act_albums
 ( act_id number(10) not null
 , title varchar2(250) not null
+, description varchar2(4000) null
 , release_date date null
 , coverImageUrl varchar2(500) null
+  , genre varchar2(100)
+  , track_count number(3)
 );
 
+alter table proposed_acts
+add constraint pat_pk primary key(id )
+;
 
+
+alter table act_albums
+add constraint abm_pat_fk foreign key (act_id ) references proposed_acts(id) on delete cascade
+;
 
 insert into proposed_acts
 ( name, description, number_of_votes)
