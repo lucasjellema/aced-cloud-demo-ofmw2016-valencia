@@ -1,26 +1,25 @@
 <?xml version= '1.0' encoding= 'UTF-8' ?>
 <wsdl:definitions
-     name="ArtistEnricherAPIReference"
-     targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference"
-     xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference"
-     xmlns:inp1="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response"
+     name="ArtistAPICallout"
+     targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout"
+     xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout"
+     xmlns:inp1="ArtistAPI2"
      xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
     >
-    <plnk:partnerLinkType name="ArtistEnricherAPIReference">
-        <plnk:role name="ArtistEnricherAPIReferenceProvider" portType="tns:ArtistEnricherAPIReference_ptt"/>
+    <plnk:partnerLinkType name="ArtistAPICallout">
+        <plnk:role name="ArtistAPICalloutProvider" portType="tns:ArtistAPICallout_ptt"/>
     </plnk:partnerLinkType>
     <wsdl:types>
         <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:import namespace="http://TargetNamespace.com/ArtistEnricherAPIReference_GetArtistDetails_response"
-                 schemaLocation="../Schemas/nxsd_EnrichedArtist.xsd"/>
+            <xsd:import namespace="ArtistAPI2" schemaLocation="../Schemas/nxsd_enrichedArtistSchema.xsd"/>
         </xsd:schema>
-        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference"
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout"
              elementFormDefault="qualified">
             <element name="GetArtistDetails_params">
                 <complexType>
                     <sequence>
-                        <element name="param1" type="string"/>
+                        <element name="artist" type="string"/>
                     </sequence>
                 </complexType>
             </element>
@@ -30,9 +29,9 @@
         <wsdl:part name="request" element="tns:GetArtistDetails_params"/>
     </wsdl:message>
     <wsdl:message name="GetArtistDetails_outputMessage">
-        <wsdl:part name="reply" element="inp1:artist"/>
+        <wsdl:part name="reply" element="inp1:Artist"/>
     </wsdl:message>
-    <wsdl:portType name="ArtistEnricherAPIReference_ptt">
+    <wsdl:portType name="ArtistAPICallout_ptt">
         <wsdl:operation name="GetArtistDetails">
             <wsdl:input message="tns:GetArtistDetails_inputMessage"/>
             <wsdl:output message="tns:GetArtistDetails_outputMessage"/>

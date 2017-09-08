@@ -9,9 +9,6 @@
     <sensor sensorName="SendEmail" kind="reference" target="undefined" filter="">
         <referenceConfig reference="MailerService" expression="concat('EMail to: soaringclouds@gmail.com')" operation="SendMail" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
     </sensor>
-    <sensor sensorName="ArtistEnricherReferenceOnACCS" kind="reference" target="undefined" filter="">
-        <referenceConfig reference="ArtistEnricherAPIReference" expression="concat('Enrichment for artist ')" operation="GetArtistDetails" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
-    </sensor>
     <sensor sensorName="SubmitArtistProposalToDBaaS" kind="reference" target="undefined" filter="" xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/sp/submitNewActProposal">
         <referenceConfig reference="submitNewActProposal" expression="concat('Submitting proposal for Artist ',$in.InputParameters/db:InputParameters/db:P_ARTIST/db:NAME)" operation="submitNewActProposal" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
     </sensor>

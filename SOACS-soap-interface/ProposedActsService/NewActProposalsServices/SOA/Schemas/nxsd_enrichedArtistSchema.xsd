@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="ArtistAPI2"
+            targetNamespace="ArtistAPI2"
+            elementFormDefault="qualified" xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd" nxsd:version="JSON"
+            nxsd:encoding="UTF-8">
+  <xsd:element name="Artist">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="name" type="xsd:string"/>
+        <xsd:element name="music_graph_id" type="xsd:string"/>
+        <xsd:element name="musicbrainz_id" type="xsd:string"/>
+        <xsd:element name="country_of_origin" type="xsd:string"/>
+        <xsd:element name="decade" type="xsd:string"/>
+        <xsd:element name="gender" type="xsd:string"/>
+        <xsd:element name="primaryGenreName" type="xsd:string"/>
+        <xsd:element name="spotifyId" type="xsd:string"/>
+        <xsd:element name="youtube_id" type="xsd:string"/>
+        <xsd:element name="musicbrainz_image_url" type="xsd:string"/>
+        <xsd:element name="imageURL" type="xsd:string"/>
+        <xsd:element name="popularity" type="xsd:integer"/>
+        <xsd:element name="genres" maxOccurs="unbounded" type="xsd:string"/>
+        <xsd:element name="artistType" type="xsd:string"/>
+        <xsd:element name="country" type="xsd:string"/>
+        <xsd:element name="birthDate" type="xsd:string"/>
+        <xsd:element name="endDate" type="xsd:string"/>
+        <xsd:element name="legalName" type="xsd:string"/>
+        <xsd:element name="itunesId" type="xsd:integer"/>
+        <xsd:element name="albums" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="name" type="xsd:string"/>
+              <xsd:element name="releaseDate" type="xsd:string"/>
+              <xsd:element name="imageURL" type="xsd:string"/>
+              <xsd:element name="trackCount" type="xsd:integer"/>
+              <xsd:element name="genre" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:annotation xmlns="">
+    <xsd:appinfo>NXSDSAMPLE=/D:/data/artist-api/example-artist.json</xsd:appinfo>
+    <xsd:appinfo>USEHEADER=false</xsd:appinfo>
+  </xsd:annotation>
+</xsd:schema>

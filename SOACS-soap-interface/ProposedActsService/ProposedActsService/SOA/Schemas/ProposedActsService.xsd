@@ -54,6 +54,12 @@
     <xsd:sequence>
       <xsd:element name="id" type="xsd:integer"/>
       <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="legalName" type="xsd:string"/>
+      <xsd:element name="country" type="xsd:string"/>
+      <xsd:element name="era" type="xsd:string"/>
+      <xsd:element name="artistType" type="xsd:string"/>
+      <xsd:element name="primaryGenre" type="xsd:string"/>
+      <xsd:element name="popularity" type="xsd:integer"/>
       <xsd:element name="numberOfVotes" type="xsd:integer"/>
       <xsd:element name="registrationDate" type="xsd:date"/>
       <xsd:element name="description" type="xsd:string"/>
@@ -74,7 +80,9 @@
   <xsd:complexType name="albumType">
     <xsd:sequence>
       <xsd:element name="title" type="xsd:string"/>
+      <xsd:element name="genre" type="xsd:string"/>
       <xsd:element name="year" type="xsd:integer" minOccurs="0"/>
+      <xsd:element name="trackCount" type="xsd:integer" minOccurs="0"/>
       <xsd:element name="coverImageUrl" type="xsd:string" minOccurs="0"/>
     </xsd:sequence>
   </xsd:complexType>

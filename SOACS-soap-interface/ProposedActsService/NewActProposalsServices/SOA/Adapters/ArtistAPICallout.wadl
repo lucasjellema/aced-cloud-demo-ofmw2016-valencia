@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="ArtistAPICallout">RestReference</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="ArtistAPI2" schemaLocation="../Schemas/nxsd_enrichedArtistSchema.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout" elementFormDefault="qualified">
+            <element name="GetArtistDetails_params">
+                <complexType>
+                    <sequence>
+                        <element name="artist" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/artists">
+         <method name="GET" soa:wsdlOperation="GetArtistDetails">
+            <request>
+               <param name="artist" style="query" soa:expression="$msg.request/tns:artist" default="" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Artist" xmlns:cns="ArtistAPI2"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

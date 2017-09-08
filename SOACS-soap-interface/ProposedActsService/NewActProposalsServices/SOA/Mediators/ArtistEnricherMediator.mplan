@@ -3,17 +3,17 @@
 <Mediator name="ArtistEnricherMediator" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsdlTargetNamespace="aced.cloud.demo" xmlns="http://xmlns.oracle.com/sca/1.0/mediator">
    <operation name="findArtist" deliveryPolicy="AllOrNothing" priority="4" validateSchema="false">
       <switch>
-         <case executionType="sequential" name="ArtistEnricherAPIReference.GetArtistDetails">
+         <case executionType="sequential" name="ArtistAPICallout.GetArtistDetails">
             <action>
                <transform>
                   <part name="$out.request"
-                        function="xslt(../Transformations/findArtistRequestMessage_To_GetArtistDetails_params1.xsl, $in.part1)"/>
+                        function="xslt(../Transformations/findArtistRequestMessage_To_GetArtistDetailsFromAPI.xsl, $in.part1)"/>
                </transform>
-               <invoke reference="ArtistEnricherAPIReference" operation="GetArtistDetails">
+               <invoke reference="ArtistAPICallout" operation="GetArtistDetails">
                   <onReply>
                      <transform>
                         <part name="$out.part1"
-                              function="xslt(../Transformations/artistFromArtistEnricherAPI_To_findArtistResponseMessage1.xsl, $in.reply)"/>
+                              function="xslt(../Transformations/ArtistFromAPI_To_findArtistResponseMessage.xsl, $in.reply)"/>
                      </transform>
                      <reply/>
                   </onReply>

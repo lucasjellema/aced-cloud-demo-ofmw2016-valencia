@@ -42,9 +42,30 @@
         <tns:name>
           <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:name"/>
         </tns:name>
+        <tns:legalName>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:legalName"/>
+        </tns:legalName>
+        <tns:country>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:countryOfOrigin"/>
+        </tns:country>
+        <tns:era>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:era"/>
+        </tns:era>
+        <tns:artistType>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:artistType"/>
+        </tns:artistType>
+        <tns:primaryGenre>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:genre"/>
+        </tns:primaryGenre>
+        <tns:popularity>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:popularity"/>
+        </tns:popularity>
         <tns:numberOfVotes>
           <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:numberOfVotes"/>
         </tns:numberOfVotes>
+        <tns:registrationDate>
+          <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:proposalTimestamp"/>
+        </tns:registrationDate>
         <tns:description>
           <xsl:value-of select="/ns0:ProposedActsCollection/ns0:ProposedActs/ns0:description"/>
         </tns:description>
@@ -80,6 +101,14 @@
                   <tns:coverImageUrl>
                     <xsl:value-of select="ns0:coverimageurl"/>
                   </tns:coverImageUrl>
+                </xsl:if>
+                <tns:genre>
+                  <xsl:value-of select="ns0:genre"/>
+                </tns:genre>
+                <xsl:if test="ns0:trackCount">
+                  <tns:trackCount>
+                    <xsl:value-of select="ns0:trackCount"/>
+                  </tns:trackCount>
                 </xsl:if>
               </tns:album>
             </xsl:if>

@@ -5,7 +5,7 @@
             <element name="P_DESCRIPTION" type="string" db:index="1" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
             <element name="P_NUMBER_OF_VOTES" type="decimal" db:index="2" db:type="NUMBER" minOccurs="0" nillable="true"/>
             <element name="P_IMAGE" type="base64Binary" db:index="3" db:type="BLOB" minOccurs="0" nillable="true"/>
-            <element name="P_ARTIST" type="db:CLOUDACE.ARTIST_T" db:index="4" db:type="Struct" minOccurs="0" nillable="true"/>
+            <element name="P_ARTIST" type="db:ARTIST_T" db:index="4" db:type="Struct" minOccurs="0" nillable="true"/>
          </sequence>
       </complexType>
    </element>
@@ -16,25 +16,36 @@
          </sequence>
       </complexType>
    </element>
-   <complexType name="CLOUDACE.ALBUM_T">
+   <complexType name="ALBUM_T">
       <sequence>
          <element name="TITLE" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
-         <element name="RELEASE_DATE" type="dateTime" db:type="DATE" minOccurs="0" nillable="true"/>
+         <element name="DESCRIPTION" type="db:string4000" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="RELEASE_DATE" type="db:string100" db:type="VARCHAR2"  minOccurs="0" nillable="true"/>
+         <element name="GENRE" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="TRACK_COUNT" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>
          <element name="COVER_IMAGE_URL" type="db:string500" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
       </sequence>
    </complexType>
-   <complexType name="CLOUDACE.DISCOGRAPHY_T">
-      <sequence>
-         <element name="ALBUMS_ITEM" type="db:CLOUDACE.ALBUM_T" db:type="Struct" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
-      </sequence>
-   </complexType>
-   <complexType name="CLOUDACE.ARTIST_T">
+   <complexType name="ARTIST_T">
       <sequence>
          <element name="NAME" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
-         <element name="GENRES" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="LEGAL_NAME" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="GENRES" type="db:string1000" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="COUNTRY_OF_ORIGIN" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="ERA" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="GENRE" type="db:string100" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="BIOGRAPHY" type="db:string4000" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
-         <element name="IMAGE_URL" type="db:string250" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
-         <element name="ALBUMS" type="db:CLOUDACE.DISCOGRAPHY_T" db:type="Array" minOccurs="0" nillable="true"/>
+         <element name="IMAGE_URL" type="db:string1000" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="ARTIST_TYPE" type="db:string20" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="POPULARITY" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>
+         <element name="BIRTHDATE_OF_ARTIST" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="ENDDATE_OF_ARTIST" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
+         <element name="ALBUMS" type="db:DISCOGRAPHY_T" db:type="Array" minOccurs="0" nillable="true"/>
+      </sequence>
+   </complexType>
+   <complexType name="DISCOGRAPHY_T">
+      <sequence>
+         <element name="ALBUMS_ITEM" type="db:ALBUM_T" db:type="Struct" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
       </sequence>
    </complexType>
    <simpleType name="string200">
@@ -42,14 +53,24 @@
          <maxLength value="200"/>
       </restriction>
    </simpleType>
+   <simpleType name="string1000">
+      <restriction base="string">
+         <maxLength value="1000"/>
+      </restriction>
+   </simpleType>
+   <simpleType name="string100">
+      <restriction base="string">
+         <maxLength value="100"/>
+      </restriction>
+   </simpleType>
    <simpleType name="string4000">
       <restriction base="string">
          <maxLength value="4000"/>
       </restriction>
    </simpleType>
-   <simpleType name="string250">
+   <simpleType name="string20">
       <restriction base="string">
-         <maxLength value="250"/>
+         <maxLength value="20"/>
       </restriction>
    </simpleType>
    <simpleType name="string500">

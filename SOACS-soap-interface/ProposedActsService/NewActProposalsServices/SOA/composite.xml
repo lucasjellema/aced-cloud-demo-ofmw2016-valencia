@@ -14,15 +14,11 @@
   <import namespace="aced.cloud.demo" location="WSDLs/NewActProposalsService.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal"
           location="WSDLs/submitNewActProposal.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference"
-          location="WSDLs/ArtistAPIReference.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/NewActProposalsServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists"
           location="WSDLs/verifyActProposalExists.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/TweetNewArtistProposal"
           location="WSDLs/TweetNewArtistProposal.wsdl" importType="wsdl"/>
-  <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference"
-          location="WSDLs/ArtistEnricherAPIReference.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/ArtistsService.wsdl" importType="wsdl"/>
   <import namespace="aced.cloud.demo" location="WSDLs/ArtistsServiceWrapper.wsdl" importType="wsdl"/>
   <import namespace="http://oracle.com/sca/soapservice/ProposedActsService/NewActProposalsServices/TweetServiceSOAP"
@@ -33,6 +29,8 @@
           location="WSDLs/MailerMediator.wsdl" importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerMediator"
           location="WSDLs/MailerMediatorWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout"
+          location="WSDLs/ArtistAPICallout.wsdl" importType="wsdl"/>
   <service name="NewActProposalsService" ui:wsdlLocation="WSDLs/NewActProposalsService.wsdl">
     <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
     <binding.ws port="aced.cloud.demo#wsdl.endpoint(NewActProposalsService/NewActProposalsService_pt)">
@@ -61,9 +59,6 @@
       <service name="NewActProposalProcessor" ui:wsdlLocation="WSDLs/NewActProposalsServiceWrapper.wsdl">
         <interface.wsdl interface="aced.cloud.demo#wsdl.interface(NewActProposalsService)"/>
       </service>
-      <reference name="ArtistAPIReference" ui:wsdlLocation="WSDLs/ArtistAPIReference.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference#wsdl.interface(ArtistAPIReference_ptt)"/>
-      </reference>
       <reference name="submitNewActProposal" ui:wsdlLocation="WSDLs/submitNewActProposal.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/submitNewActProposal#wsdl.interface(submitNewActProposal_ptt)"/>
       </reference>
@@ -76,9 +71,6 @@
       </reference>
       <reference name="MailerMediator.MailerMediator" ui:wsdlLocation="WSDLs/MailerMediatorWrapper.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerMediator#wsdl.interface(execute_ptt)"/>
-      </reference>
-      <reference name="MailerService" ui:wsdlLocation="WSDLs/MailerService.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService#wsdl.interface(MailerService_ptt)"/>
       </reference>
     </componentType>
     <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
@@ -106,8 +98,8 @@
       <service name="ArtistEnricherMediator" ui:wsdlLocation="WSDLs/ArtistsService.wsdl">
         <interface.wsdl interface="aced.cloud.demo#wsdl.interface(ArtistsService)"/>
       </service>
-      <reference name="ArtistEnricherAPIReference" ui:wsdlLocation="WSDLs/ArtistEnricherAPIReference.wsdl">
-        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference#wsdl.interface(ArtistEnricherAPIReference_ptt)"/>
+      <reference name="ArtistAPICallout" ui:wsdlLocation="WSDLs/ArtistAPICallout.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout#wsdl.interface(ArtistAPICallout_ptt)"/>
       </reference>
     </componentType>
   </component>
@@ -141,11 +133,6 @@
     <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
     <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
   </reference>
-  <reference name="ArtistAPIReference" ui:wsdlLocation="WSDLs/ArtistAPIReference.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPIReference#wsdl.interface(ArtistAPIReference_ptt)"/>
-    <binding.rest config="Adapters/ArtistAPIReference.wadl"
-                  location="https://Artist-Enricher-API-partnercloud17.apaas.us6.oraclecloud.com"/>
-  </reference>
   <reference name="verifyActProposalExists" ui:wsdlLocation="WSDLs/verifyActProposalExists.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/ProposedActsService/NewActProposalsServices/verifyActProposalExists#wsdl.interface(verifyActProposalExists_ptt)"/>
     <binding.jca config="Adapters/verifyActProposalExists_db.jca"/>
@@ -159,20 +146,15 @@
     <binding.rest config="Adapters/TweetNewArtistProposal.wadl"
                   location="https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01"/>
   </reference>
-  <reference name="ArtistEnricherAPIReference" ui:wsdlLocation="WSDLs/ArtistEnricherAPIReference.wsdl">
-    <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistEnricherAPIReference#wsdl.interface(ArtistEnricherAPIReference_ptt)"/>
-    <binding.rest config="Adapters/ArtistEnricherAPIReference.wadl"
-                  location="https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com"/>
-  </reference>
   <reference name="MailerService" ui:wsdlLocation="WSDLs/MailerService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService#wsdl.interface(MailerService_ptt)"/>
     <binding.rest config="Adapters/MailerService.wadl"
                   location="https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com"/>
   </reference>
-  <wire>
-    <source.uri>NewActProposalProcessor/ArtistAPIReference</source.uri>
-    <target.uri>ArtistAPIReference</target.uri>
-  </wire>
+  <reference name="ArtistAPICallout" ui:wsdlLocation="WSDLs/ArtistAPICallout.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout#wsdl.interface(ArtistAPICallout_ptt)"/>
+    <binding.rest config="Adapters/ArtistAPICallout.wadl" location="https://artist-api-hfwgvsrwuh.now.sh"/>
+  </reference>
   <wire>
     <source.uri>NewActProposalProcessor/submitNewActProposal</source.uri>
     <target.uri>submitNewActProposal</target.uri>
@@ -196,10 +178,6 @@
   <wire>
     <source.uri>ArtistEnricherMediator_ep</source.uri>
     <target.uri>ArtistEnricherMediator/ArtistEnricherMediator</target.uri>
-  </wire>
-  <wire>
-    <source.uri>ArtistEnricherMediator/ArtistEnricherAPIReference</source.uri>
-    <target.uri>ArtistEnricherAPIReference</target.uri>
   </wire>
   <wire>
     <source.uri>NewActProposalProcessor/ArtistEnricherMediator.ArtistEnricherMediator</source.uri>
@@ -226,7 +204,7 @@
     <target.uri>MailerMediator/MailerMediator</target.uri>
   </wire>
   <wire>
-    <source.uri>NewActProposalProcessor/MailerService</source.uri>
-    <target.uri>MailerService</target.uri>
+    <source.uri>ArtistEnricherMediator/ArtistAPICallout</source.uri>
+    <target.uri>ArtistAPICallout</target.uri>
   </wire>
 </composite>

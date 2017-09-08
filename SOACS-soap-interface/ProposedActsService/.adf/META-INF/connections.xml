@@ -7,13 +7,13 @@
         <Contents>oraJDBC</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="user">
-        <Contents>cloudace</Contents>
-      </StringRefAddr>
-      <StringRefAddr addrType="hostname">
-        <Contents>129.144.152.41</Contents>
+        <Contents>c##cloudace</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="port">
         <Contents>1521</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="hostname">
+        <Contents>129.144.152.41</Contents>
       </StringRefAddr>
       <SecureRefAddr addrType="password"/>
       <StringRefAddr addrType="serviceName">

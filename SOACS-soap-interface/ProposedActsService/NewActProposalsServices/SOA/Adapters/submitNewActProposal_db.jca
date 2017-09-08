@@ -3,7 +3,7 @@
   <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/cloudacex"/>
   <endpoint-interaction portType="submitNewActProposal_ptt" operation="submitNewActProposal">
     <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
-      <property name="SchemaName" value="cloudace"/>
+      <property name="SchemaName" value="C##CLOUDACE"/>
       <property name="PackageName" value="ACT_PROPOSAL_API"/>
       <property name="ProcedureName" value="SUBMIT_ACT_PROPOSAL"/>
       <property name="GetActiveUnitOfWork" value="false"/>

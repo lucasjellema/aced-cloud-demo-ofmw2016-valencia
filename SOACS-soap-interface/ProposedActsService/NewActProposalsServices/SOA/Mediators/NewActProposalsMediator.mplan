@@ -6,6 +6,10 @@
     <switch>
       <case executionType="sequential" name="NewActProposalProcessor.NewActProposalProcessor.submitActProposal">
         <action>
+          <transform>
+            <part name="$out.part1"
+                  function="xslt(../Transformations/submitActProposalRequestMessage_To_submitActProposalRequestMessage1.xsl, $in.part1)"/>
+          </transform>
           <invoke reference="NewActProposalProcessor.NewActProposalProcessor" operation="submitActProposal">
             <onReply>
               <reply/>
