@@ -1,0 +1,511 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SoaringTheCloud",
+		"_postman_id": "0cd524b3-4125-ee6a-dfc1-89e9a8b328b5",
+		"description": "REST test project for the ACE Demo at OFM Forum in Split.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cache",
+			"description": "",
+			"item": [
+				{
+					"name": "Caching Put",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/log-tail",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n        \"offset\": 0,\n        \"timestamp\": 1497302412879,\n        \"logs\": []\n    }\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cache API About",
+					"request": {
+						"url": "https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/cache-api/about",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching Put Biography Abba",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-abba",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"biography\" : \"ABBA (stylised ᗅᗺᗷᗅ; Swedish pronunciation: [²abːa]) were a Swedish pop group formed in Stockholm by Agnetha Fältskog, Björn Ulvaeus, Benny Andersson, and Anni-Frid Lyngstad. They became one of the most commercially successful acts in the history of popular music, topping the charts worldwide from 1974 to 1982. ABBA won the Eurovision Song Contest 1974 at The Dome in Brighton, UK, giving Sweden its first triumph in the contest, and are the most successful group to ever take part in the competition.ABBA's record sales figure is uncertain and various estimates range from over 140 to over 500 million sold records.[2][3] This makes them one of the best-selling music artists. ABBA were the first group from a non-English-speaking country to achieve consistent success in the charts of English-speaking countries, including the UK, Ireland, Canada, Australia, New Zealand, South Africa, and on a lesser scale, the US. They have a joint record eight consecutive number-one albums in the UK.[4] The group also enjoyed significant success in Hispanic American markets, and recorded a collection of their hit songs in Spanish. During the band's active years, Fältskog & Ulvaeus and Lyngstad & Andersson were married. At the height of their popularity, both relationships were suffering strain which ultimately resulted in the collapse of the Ulvaeus–Fältskog marriage in 1979 and the Andersson–Lyngstad marriage in 1981. These relationship changes were reflected in the group's music, with later compositions featuring more introspective and dark lyrics in contrast to their usual pure-pop sound.[5] After ABBA disbanded in December 1982, Andersson and Ulvaeus achieved success writing music for the stage, while Lyngstad and Fältskog pursued solo careers with mixed success. ABBA's music declined in popularity until the purchase of ABBA's catalogue and record company Polar by Polygram in 1989 enabled the groundwork to be laid for an international re-issue of all their original material and a new Greatest Hits (ABBA Gold) collection in September 1992 which became a worldwide smash. Several films, notably Muriel's Wedding (1994) and The Adventures of Priscilla, Queen of the Desert (1994), further revived public interest in the group and the spawning of several tribute bands. In 1999, ABBA's music was adapted into the successful musical Mamma Mia! that toured worldwide. A film of the same name, released in 2008, became the highest-grossing film in the United Kingdom that year. ABBA were honoured at the 50th anniversary celebration of the Eurovision Song Contest in 2005, when their hit \\\"Waterloo\\\" was chosen as the best song in the competition's history.[6] The group was inducted into the Rock and Roll Hall of Fame in 2010.[7] In 2015, their song \\\"Dancing Queen\\\" was inducted into the Recording Academy's Grammy Hall of Fame.[8]In 2016, the members of ABBA announced an upcoming project in 2017.\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching Put Biography Bruce Springsteen",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-bruce%20springsteen",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"biography\" : \"Bruce Frederick Joseph Springsteen (born September 23, 1949) is an American singer-songwriter. He is known for his work with the E Street Band. Nicknamed 'The Boss', Springsteen is widely known for his brand of poetic lyrics, Americana, working class and sometimes political sentiments centered on his native New Jersey, his distinctive voice, and his lengthy and energetic stage performances—with concerts from the 1970s to the present decade running at up to four hours in length. Springsteen's recordings have included both commercially accessible rock albums and more somber folk-oriented works. His most successful studio albums, Born to Run (1975) and Born in the U.S.A. (1984), find pleasures in the struggles of daily American life. He has sold more 120 million records worldwide and more than 64 million records in the United States, making him one of the world's best-selling artists of all time.[3][4] He has earned numerous awards for his work, including 20 Grammy Awards, two Golden Globes, and an Academy Award as well as being inducted into both the Songwriters Hall of Fame and the Rock And Roll Hall Of Fame in 1999. In 2009, Springsteen was a Kennedy Center Honors recipient, in 2013 was named MusiCares person of the year and in 2016 was awarded the Presidential Medal of Freedom.[5] He married Patti Scialfa in 1991, and the couple have had three children – Evan James, Jessica Rae and Sam Ryan.\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching Put Biography Prince",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-prince",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"biography\" : \"Prince Rogers Nelson (June 7, 1958 – April 21, 2016) was an American singer-songwriter, actor, multi-instrumentalist, philanthropist, dancer and record producer. He was a musical innovator who was known for his eclectic work, flamboyant stage presence, extravagant dress and makeup, and wide vocal range. His music integrates a wide variety of styles, including funk, rock, R&B, new wave, soul, psychedelia, and pop. He has sold over 100 million records worldwide, making him one of the best-selling artists of all time.[2] He won seven Grammy Awards,[3] an American Music Award,[4] a Golden Globe Award,[5] and an Academy Award for the film Purple Rain.[6] He was inducted into the Rock and Roll Hall of Fame in 2004, his first year of eligibility.[7] Rolling Stone ranked Prince at number 27 on its list of 100 Greatest Artists, 'the most influential artists of the rock & roll era'.[8] Prince was born in Minneapolis, Minnesota, and developed an interest in music as a young child.[9] He signed a recording contract with Warner Bros. at the age of 18, and released his debut album For You in 1978. His 1979 album Prince went platinum, and his next three records—Dirty Mind (1980), Controversy (1981), and 1999 (1982)—continued his success, showcasing Prince's prominently sexual lyrics and blending of funk, dance, and rock music.[10] In 1984, he began referring to his backup band as the Revolution and released Purple Rain, the soundtrack album to his eponymous 1984 film debut. It quickly became his most critically and commercially successful release, spending 24 consecutive weeks atop the Billboard 200[11] and selling over 20 million units worldwide.[12] After releasing the albums Around the World in a Day (1985) and Parade (1986), The Revolution disbanded, and Prince released the double album Sign o' the Times (1987) as a solo artist. He released three more solo albums before debuting the New Power Generation band in 1991. In 1993, while in a contractual dispute with Warner Bros., he changed his stage name to Prince logo.svg, an unpronounceable symbol also known as the 'Love Symbol', and began releasing new albums at a faster pace to remove himself from contractual obligations. He released five records between 1994 and 1996 before signing with Arista Records in 1998. In 2000, he began referring to himself as 'Prince' again. He released 16 albums after that, including the platinum-selling Musicology (2004). His final album, Hit n Run Phase Two, was first released on the Tidal streaming service on December 12, 2015. Prince died from a fentanyl overdose at his Paisley Park recording studio and home in Chanhassen, Minnesota, on April 21, 2016, at the age of 57.\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Local Caching Put",
+					"request": {
+						"url": "http://127.0.0.1:5101/cache-api/TheKey",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"myrec\":\"values\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching GET",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/log-tail",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"myrec\":\"values\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching Put Biography U2",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-u2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"biography\" : \"U2 are an Irish rock band from Dublin formed in 1976. The group consists of Bono (lead vocals and guitar), the Edge (guitar, keyboards, and backing vocals), Adam Clayton (bass guitar), and Larry Mullen Jr. (drums and percussion).[1] Initially rooted in post-punk, U2's sound grew to incorporate influences from many genres of popular music, yet has maintained an anthemic sound. Their lyrics, often embellished with spiritual imagery, focus on personal themes and sociopolitical concerns. Popular for their live performances, the group has staged several ambitious and elaborate tours over their career. The band formed at Mount Temple Comprehensive School in 1976 when the members were teenagers with limited musical proficiency. Within four years, they signed with Island Records and released their debut album Boy (1980). Subsequent work such as their first UK number-one album War (1983), and the singles 'Sunday Bloody Sunday' and 'Pride (In the Name of Love)' helped establish U2's reputation as a politically and socially conscious group. By the mid-1980s, they had become renowned globally for their live act, highlighted by their performance at Live Aid in 1985. The group's fifth album, The Joshua Tree (1987), made them international superstars and was their greatest critical and commercial success. Topping music charts around the world, it produced their only number-one singles in the US, 'With or Without You' and 'I Still Haven't Found What I'm Looking For'. Facing a backlash and creative stagnation, U2 reinvented themselves in the 1990s through a new musical direction and public image. Beginning with their acclaimed seventh album, Achtung Baby (1991), and the multimedia intensive Zoo TV Tour, the band integrated influences from alternative rock, electronic dance music, and industrial music into their sound, and embraced a more ironic, flippant image. This experimentation continued through their ninth album, Pop (1997), and the PopMart Tour, which were mixed successes. U2 regained critical and commercial favour with the records All That You Can't Leave Behind (2000) and How to Dismantle an Atomic Bomb (2004), which established a more conventional, mainstream sound for the group. Their U2 360° Tour of 2009–2011 is the highest-attended and highest-grossing concert tour in history. The group's thirteenth album, Songs of Innocence (2014), was released at no cost through the iTunes Store, but received criticism for its automatic placement in users' music libraries. U2 have released 13 studio albums and are one of the world's best-selling music artists of all time, having sold more than 170 million records worldwide.[2] They have won 22 Grammy Awards, more than any other band, and in 2005, they were inducted into the Rock and Roll Hall of Fame in their first year of eligibility. Rolling Stone ranked U2 at number 22 on its list of the '100 Greatest Artists of All Time'.[3] Throughout their career, as a band and as individuals, they have campaigned for human rights and philanthropic causes, including Amnesty International, Jubilee 2000, the ONE/DATA campaigns, Product Red, War Child, and Music Rising.\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching Put TweetBoard",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/tweetboard-document",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                    \"offset\": 0\r\n                    , \"timestamp\": 1212122121\r\n                    , \"tweets\": []\r\n                }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Caching GET TweetBoard",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-u2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"myrec\":\"values\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EventHub",
+			"description": "",
+			"item": [
+				{
+					"name": "Post Messages through EventHub API",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/eventhub-api/messages",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"records\": [{\"key\":\"10\", \"value\":\"TOBNIAS\"},{\"key\":\"20\", \"value\":\"LEX\"}]}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Produce to Topic",
+					"request": {
+						"url": "https://129.144.152.204:1080/restproxy/topics/partnercloud17-SoaringEventBus",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.kafka.json.v1+json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46T29vdzIwMTY=",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"records\":[\r\n        {\r\n            \"key\":\"today\",\r\n            \"value\":\"18th  march 2017 2nd\"\r\n        }\r\n    ]\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Request Event Hub Topics",
+					"request": {
+						"url": "{{OEHPCS-REST-endpoint}}paas/api/v1.1/instancemgmt/{{identityDomainId}}/services/OEHPCS/instances/{{EHinstanceName}}/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic bHVjYXMuamVsbGVtYUBhbWlzLm5sOjg1dGduN0xleDM=",
+								"description": ""
+							},
+							{
+								"key": "X-ID-TENANT-NAME",
+								"value": "{{identityDomainId}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create default consumer group",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/eventhub-api/create-consumer-group/mycons",
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Messages for Default Consumer Group",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/eventhub-api/messages/mycons",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Like for Johnny Cash",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/artists/like/paul_young",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All likes",
+					"request": {
+						"url": "{{NODEJS_API_ENDPOINT}}/artists/likes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TwitterServiceICS",
+			"description": "Tweet a message using an Integration Cloud Service (ICS) integration leveraging the Twitter Adapter.",
+			"item": [
+				{
+					"name": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01/tweets",
+					"request": {
+						"url": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEM_RESTME_TO_TWITTE_INTEGR/v01/tweets",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic c3Zlbi5iZXJuaGFyZHRAb3BpdHotY29uc3VsdGluZy5jb206JHYzTjMzODFf",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"tweet\" : { \"message\": \"The slides for this presentation are on SlideShare https://i.scdn.co/image/be2d7a6a0360b3068a543760a1b1599625a42194 @OracleNL #aced\"\n            , \"tag\" : \"slides\"\n\t\t\t}\n}\t\t\t"
+						},
+						"description": "Send a Tweet to the SoaringClouds Twitter account"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logger Entry",
+			"request": {
+				"url": "{{OCCS_ENDPOINT}}/logger-api",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"logLevel\" : \"info\"\n\t,\"module\" : \"logging.experiment\"\n\t, \"message\" : \"Thursday: Add logging through POST from Postman to logging REST API on ACCS to Kafka and indirectly to WLS diagnostics and Log Analytics\"\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Send email through post to mailer",
+			"request": {
+				"url": "{{NODEJS_API_ENDPOINT}}/mailer",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"subject\":\"Announcing new artist\"\n, \"mailbody\":\"<H1>Well Done Againe Sir !</H1><p>New Artist Proposal</p>\"\n, \"addressees\" :\"lucas.jellema@amis.nl\"\n\t}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get artist enrichment for bruce springsteen",
+			"request": {
+				"url": "{{NODEJS_API_ENDPOINT}}/artists/get?artist=u2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "About",
+			"request": {
+				"url": "{{NODEJS_API_ENDPOINT}}/about",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Caching GET Shakira",
+			"request": {
+				"url": "{{NODEJS_API_ENDPOINT}}/cache-api/biography-shakira",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"myrec\":\"values\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Call to IoT Dropoff in ICS proxy",
+			"request": {
+				"url": "https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com/integration/flowapi/rest/ACEDEMO_IOTCSDROPO_INTEGRATIO/v01/act",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic c3Zlbi5iZXJuaGFyZHRAb3BpdHotY29uc3VsdGluZy5jb206JHYzTjMzODFf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"id\": \"Id Value\"\n,\"source\": \"someValue\"\n, \"sentTime\": \"someOtherValue\"\n, \"eventTime\": \"someEventOtherValue\"\n  , \"payload\" :     { \"data\":  {\"max_of_data_artistname\": \"duranduran\", \"count_of_data_artistname\": 11}\n}\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Call on Google Cloud to IoT Dropoff in ICS proxy",
+			"request": {
+				"url": "http://35.187.66.18/icsProxy/iotcs-dropoff",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic c3Zlbi5iZXJuaGFyZHRAb3BpdHotY29uc3VsdGluZy5jb206JHYzTjMzODFf",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{ \"id\": \"Id Value\"\n,\"source\": \"someValue\"\n, \"sentTime\": \"someOtherValue\"\n, \"eventTime\": \"someEventOtherValue\"\n  , \"payload\" :     { \"data\" : {\n                                                \"data_artistname\" : \"The Cranberries\",\n                                                \"count_of_data_artistname_15\" : 4.0\n                                    }\n}\n}\n]\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Local Like for Johnny Cash",
+			"request": {
+				"url": "{{NODEJS_API}}/artists/likes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
