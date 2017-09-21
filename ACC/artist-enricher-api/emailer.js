@@ -10,7 +10,7 @@ var logger = require("./logger.js");
 
 
 var gmailAccount = "soaringacrosstheclouds@gmail.com";
-var gmailPassword = "Ooow2016";
+var gmailPassword = "Ooow2017";
 
 emailerAPI.registerListeners =
     function (app) {

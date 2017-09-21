@@ -34,11 +34,8 @@ var moduleName = "accs.ArtistEnricher-API";
 //var PORT = 5100;
 var PORT = process.env.PORT || settings.PORT;
 
-var appVersion = "0.9.4";
+var appVersion = "0.9.5";
 
-var spotifyAPI = 'https://api.spotify.com/v1';
-var token = "BQA-DgJgUR5Hv9iqIWNslY0Mj16lCVSgSefOBGZFO0_WVecsf3PDAsYqLWZxUT2Kh82xMlPEHmonMh5T52oEUK5ULkgKv7ithkGqHBtldnv625nSeb0gaVzTP_9T8FbrOsf83Da68CnxLw";
-// see for example: https://developer.spotify.com/web-api/console/get-search-item/#complete
 
 
 var app = express();
