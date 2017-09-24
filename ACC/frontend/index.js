@@ -12,7 +12,7 @@ app.use('/mobile/*', function (req, res) {
 
     //Send info to OMC
     var options = { method: 'POST',
-                    url: 'http://129.144.150.140:8010/logger-api',
+                    url: 'https://soaringthroughtheclouds-a513284.apaas.us2.oraclecloud.com/logger-api',
                     headers:
                     {
                         'cache-control': 'no-cache',
