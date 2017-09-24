@@ -1,0 +1,87 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Artist",
+		"_postman_id": "ff86fe02-1400-dad3-7486-8dc998a6086e",
+		"description": "Collection to test artist application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllActs",
+			"request": {
+				"url": {
+					"raw": "{{base_url}}/mobile/custom/artistapi/acts?minimumVotes=0&addedSince=2016-01-01&max=100",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"mobile",
+						"custom",
+						"artistapi",
+						"acts"
+					],
+					"query": [
+						{
+							"key": "minimumVotes",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "addedSince",
+							"value": "2016-01-01",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "max",
+							"value": "100",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "c9c42b72-a88e-4da9-a002-6bfb1e06de13",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic QTUxMjY0OF9MT05ORUtFREVWQ0hBTVBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDp1dTJvX2ZVbHZtMWJpZQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getActDetails",
+			"request": {
+				"url": "https://mcs4emeapartner-partnercloud17.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/172",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "c9c42b72-a88e-4da9-a002-6bfb1e06de13",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "basic QTUxMjY0OF9MT05ORUtFREVWQ0hBTVBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDp1dTJvX2ZVbHZtMWJpZQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "get the details of one act"
+			},
+			"response": []
+		}
+	]
+}
