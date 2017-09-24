@@ -27,7 +27,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 
                     return json;
                 })
                 .catch(function (err) { console.error(err); throw err; });
-            Promise.all([actPromise, $.getJSON("https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/artists/likes")])
+            Promise.all([actPromise, $.getJSON("https://soaringthroughtheclouds-a513284.apaas.us2.oraclecloud.com/artists/likes")])
                 .then(function (data) {
                     var act = data[0];
                     var likes = data[1].artist_likes;
@@ -49,7 +49,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojfilmstrip', 
         function like() {
             this.data().likes++;
             this.data(this.data());
-            $.getJSON('https://129.144.150.140:8010/artists/like/' + this.data().name);
+            $.getJSON('https://soaringthroughtheclouds-a513284.apaas.us2.oraclecloud.com/artists/like/' + this.data().name);
         }
 
         function nameNoWhitespace() {
