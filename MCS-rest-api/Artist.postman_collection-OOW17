@@ -47,12 +47,12 @@
 				"header": [
 					{
 						"key": "oracle-mobile-backend-id",
-						"value": "c9c42b72-a88e-4da9-a002-6bfb1e06de13",
+						"value": "312fb3e6-89a1-480d-bbee-003f630924d9",
 						"description": ""
 					},
 					{
 						"key": "Authorization",
-						"value": "Basic QTUxMjY0OF9MT05ORUtFREVWQ0hBTVBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDp1dTJvX2ZVbHZtMWJpZQ==",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfU09BUklOR09PV19NT0JJTEVfQU5PTllNT1VTX0FQUElEOm9ybjVvYV91WWhqNHNn",
 						"description": ""
 					}
 				],
@@ -64,17 +64,17 @@
 		{
 			"name": "getActDetails",
 			"request": {
-				"url": "https://mcs4emeapartner-partnercloud17.mobileenv.us2.oraclecloud.com:443/mobile/custom/artistapi/acts/172",
+				"url": "{{base_url}}/mobile/custom/artistapi/acts/1",
 				"method": "GET",
 				"header": [
 					{
 						"key": "oracle-mobile-backend-id",
-						"value": "c9c42b72-a88e-4da9-a002-6bfb1e06de13",
+						"value": "312fb3e6-89a1-480d-bbee-003f630924d9",
 						"description": ""
 					},
 					{
 						"key": "Authorization",
-						"value": "basic QTUxMjY0OF9MT05ORUtFREVWQ0hBTVBfTU9CSUxFX0FOT05ZTU9VU19BUFBJRDp1dTJvX2ZVbHZtMWJpZQ==",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfU09BUklOR09PV19NT0JJTEVfQU5PTllNT1VTX0FQUElEOm9ybjVvYV91WWhqNHNn",
 						"description": ""
 					}
 				],
