@@ -1,0 +1,87 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Artist",
+		"_postman_id": "ff86fe02-1400-dad3-7486-8dc998a6086e",
+		"description": "Collection to test artist application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllActs",
+			"request": {
+				"url": {
+					"raw": "{{base_url}}/mobile/custom/artistapi/acts?minimumVotes=0&addedSince=2016-01-01&max=100",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"mobile",
+						"custom",
+						"artistapi",
+						"acts"
+					],
+					"query": [
+						{
+							"key": "minimumVotes",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "addedSince",
+							"value": "2016-01-01",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "max",
+							"value": "100",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "312fb3e6-89a1-480d-bbee-003f630924d9",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfU09BUklOR09PV19NT0JJTEVfQU5PTllNT1VTX0FQUElEOm9ybjVvYV91WWhqNHNn",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "gets all the acts"
+			},
+			"response": []
+		},
+		{
+			"name": "getActDetails",
+			"request": {
+				"url": "{{base_url}}/mobile/custom/artistapi/acts/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "oracle-mobile-backend-id",
+						"value": "312fb3e6-89a1-480d-bbee-003f630924d9",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic UEFSVE5FUkNMT1VEMTdfU09BUklOR09PV19NT0JJTEVfQU5PTllNT1VTX0FQUElEOm9ybjVvYV91WWhqNHNn",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "get the details of one act"
+			},
+			"response": []
+		}
+	]
+}
