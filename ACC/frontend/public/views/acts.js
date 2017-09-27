@@ -29,7 +29,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
                     return json;
                 })
                 .catch(function(err) { console.error(err); throw err; });
-            Promise.all([actsPromise, $.getJSON("https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com/artists/likes")])
+            Promise.all([actsPromise, $.getJSON("https://soaringthroughtheclouds-a513284.apaas.us2.oraclecloud.com/artists/likes")])
                 .then(function (data) {
                     var acts = data[0];
                     var likes = data[1].artist_likes; 
@@ -76,7 +76,7 @@ define(['knockout', 'ojs/ojcore', 'settings', 'ojs/ojmodel', 'ojs/ojknockout-mod
             xhr.addEventListener("readystatechange", function () { // do not care about response
             });
             
-            xhr.open("POST", "https://129.144.150.140:8010/logger-api");
+            xhr.open("POST", "https://soaringthroughtheclouds-a513284.apaas.us2.oraclecloud.com/logger-api");
             xhr.setRequestHeader("content-type", "application/json");
             xhr.setRequestHeader("cache-control", "no-cache");
             xhr.send(data);
