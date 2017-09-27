@@ -15,7 +15,7 @@ create table proposed_acts
 , country_of_origin varchar2(200)
 , era varchar2(200)
 , genre varchar2(100)
-, artist_type varchar2(20) -- group, person
+, artist_type varchar2(100) -- group, person
 , popularity number(3)
 , birthdate_of_artist date
 , enddate_of_artist date

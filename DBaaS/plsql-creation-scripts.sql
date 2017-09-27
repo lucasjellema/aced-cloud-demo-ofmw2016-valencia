@@ -34,6 +34,11 @@ create or replace
 package act_proposal_api
 is
 
+function get_act_details
+( p_id in number)
+return artist_t
+;
+
 procedure submit_act_proposal
 ( p_description in varchar2
 , p_number_of_votes in number
@@ -60,6 +65,46 @@ create or replace
 package body act_proposal_api
 is
 
+function get_act_details
+( p_id in number)
+return artist_t
+is 
+  l_artist artist_t;
+begin
+  select artist_t(
+name 
+, legal_name 
+, genres 
+, country_of_origin 
+, era 
+, genre 
+, biography 
+, image_url 
+, artist_type 
+, popularity 
+, birthdate_of_artist 
+, enddate_of_artist 
+, cast
+         ( multiset 
+           ( select album_t(title 
+  , description 
+  , release_date 
+  , genre 
+  , track_count 
+  , coverimageurl )
+             from   act_albums abm
+             where  abm.act_id = act.id
+            )
+          as discography_t
+)
+  )
+  into l_artist
+  from proposed_acts act
+  where id = p_id;
+  return l_artist;
+end get_act_details;  
+
+
 procedure submit_act_proposal
 ( p_description in varchar2
 , p_number_of_votes in number
@@ -73,18 +118,26 @@ begin
     using (select nvl(p_artist.name,l_dummy_name ) name, p_description description, p_number_of_votes number_of_votes, p_artist.image_url image_url
     , p_image image ,p_artist.biography biography, p_artist.genres genres
     , p_artist.legal_name legal_name, p_artist.era era, p_artist.genre genre, p_artist.artist_type artist_type
-    , p_artist.popularity popularity, p_artist.country_of_origin country_of_origin from dual) new_act
+    , p_artist.popularity popularity
+    , case  p_artist.country_of_origin
+      when 'England' then 'United Kingdom'
+      else p_artist.country_of_origin
+      end country_of_origin
+    , p_artist.birthdate_of_artist birthdate_of_artist,p_artist.enddate_of_artist enddate_of_artist
+     from dual) new_act
     ON (pa.name = new_act.name)
   WHEN MATCHED THEN
     UPDATE SET pa.number_of_votes = pa.number_of_votes + new_act.number_of_votes
   WHEN NOT MATCHED THEN
     INSERT (name, description, number_of_votes, image_url, image, genres, biography
-    , legal_name, era, genre, artist_type, popularity, country_of_origin)
+    , legal_name, era, genre, artist_type, popularity, country_of_origin
+    ,  birthdate_of_artist ,enddate_of_artist 
+)
     VALUES (new_act.name,new_act.description,new_act.number_of_votes,new_act.image_url
     , new_act.image, new_act.genres, new_act.biography
-, new_act.legal_name, new_act.era, new_act.genre, new_act.artist_type, new_act.popularity, new_act.country_of_origin    )
-   
-    ;
+    , new_act.legal_name, new_act.era, new_act.genre, new_act.artist_type, new_act.popularity, new_act.country_of_origin 
+    , derive_date(new_act.birthdate_of_artist), derive_date(new_act.enddate_of_artist  )
+    );
   select pa.id
   into   p_id
   from   proposed_acts pa
@@ -150,7 +203,19 @@ begin
    exception
      when others
      then
-       null;
+       begin
+         l_date := to_date(substr(p_date_string,1,7),'YYYY-MM');
+       exception
+         when others
+         then
+           begin
+             l_date := to_date(substr(p_date_string,1,4),'YYYY');
+         exception
+           when others
+           then
+             null;
+        end;
+     end;
   end;
   return l_date;
 end derive_date;
@@ -175,57 +240,3 @@ end;
 
 
 
-
-create or replace 
-type artist_v2_t force as object
-( name varchar2(200)
-, legal_name varchar2(200)
-, genres varchar2(1000)
-, country_of_origin varchar2(200)
-, era varchar2(200)
-, genre varchar2(100)
-);
-
-
-create or replace
-package act_proposal_api_v2
-is
-
-procedure submit_act_proposal
-( p_description in varchar2
-, p_number_of_votes in number
-, p_artist in artist_v2_t
-, p_id out number
-);
-
-end act_proposal_api_v2;
-
-create or replace
-package body act_proposal_api_v2
-is
-
-procedure submit_act_proposal
-( p_description in varchar2
-, p_number_of_votes in number
-, p_artist in artist_v2_t
-, p_id out number
-) is 
-begin 
-  p_id := 20;
-  insert into proposals_v2
-  (id, name, description)
-  VALUES
-  (p_id, 'New name', p_description);
-
-end;  
-
-
-end act_proposal_api_v2;
-
-
-create table proposals_v2
-(id number(10)
-, name varchar2(100)
-, description varchar2(100)
-, number_of_votes number(3)
-)
