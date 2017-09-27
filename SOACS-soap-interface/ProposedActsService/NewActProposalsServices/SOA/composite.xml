@@ -148,8 +148,7 @@
   </reference>
   <reference name="MailerService" ui:wsdlLocation="WSDLs/MailerService.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/MailerService#wsdl.interface(MailerService_ptt)"/>
-    <binding.rest config="Adapters/MailerService.wadl"
-                  location="https://artist-enricher-api-partnercloud17.apaas.us6.oraclecloud.com"/>
+    <binding.rest config="Adapters/MailerService.wadl" location="https://emailer-wrapper-api-aahpljqurm.now.sh"/>
   </reference>
   <reference name="ArtistAPICallout" ui:wsdlLocation="WSDLs/ArtistAPICallout.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/ProposedActsService/NewActProposalsServices/ArtistAPICallout#wsdl.interface(ArtistAPICallout_ptt)"/>

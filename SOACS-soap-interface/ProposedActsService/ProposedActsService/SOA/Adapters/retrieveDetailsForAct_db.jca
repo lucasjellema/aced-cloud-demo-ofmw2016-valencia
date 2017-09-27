@@ -1,0 +1,12 @@
+<adapter-config name="retrieveDetailsForAct" adapter="db" wsdlLocation="../WSDLs/retrieveDetailsForAct.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="lj-aced-cloud-demos-acd" location="eis/DB/cloudacex"/>
+  <endpoint-interaction portType="retrieveDetailsForAct_ptt" operation="retrieveDetailsForAct">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="PackageName" value="ACT_PROPOSAL_API"/>
+      <property name="ProcedureName" value="GET_ACT_DETAILS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+     </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

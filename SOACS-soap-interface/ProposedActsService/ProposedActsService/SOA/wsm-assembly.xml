@@ -1,10 +1,3 @@
 <?xml version="1.0" encoding="windows-1252" ?>
 <orawsp:wsm-assembly xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy">
-  <sca11:policySet xmlns:sca11="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="policySet"
-                   appliesTo="SCA-COMPONENT()" attachTo="COMPONENT('ProposedActsMediator')" orawsp:highId="1"
-                   xml:id="SCA-COMPONENT__COMPONENT__ProposedActsMediator__">
-    <wsp:PolicyReference xmlns:wsp="http://www.w3.org/ns/ws-policy"
-                         DigestAlgorithm="http://www.w3.org/ns/ws-policy/Sha1Exc" URI="oracle/log_policy"
-                         orawsp:status="enabled" orawsp:id="1"/>
-  </sca11:policySet>
 </orawsp:wsm-assembly>

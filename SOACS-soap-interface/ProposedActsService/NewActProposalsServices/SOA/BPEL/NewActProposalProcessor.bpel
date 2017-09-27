@@ -215,9 +215,13 @@
             <to>$InvokeEmailer_execute_InputVariable.request/ns8:addressees</to>
           </copy>
         </assign>
-        <invoke name="InvokeEmailer" bpelx:invokeAsDetail="no" partnerLink="MailerMediator.MailerMediator"
+        <invoke name="InvokeEmailer" partnerLink="MailerMediator.MailerMediator"
                 portType="ns7:execute_ptt" operation="execute" inputVariable="InvokeEmailer_execute_InputVariable"
-                outputVariable="InvokeEmailer_execute_OutputVariable"/>
+                outputVariable="InvokeEmailer_execute_OutputVariable" bpelx:invokeAsDetail="no">
+          <bpelx:toProperties>
+            <bpelx:toProperty name="rest.binding.http.Content-Encoding">'UTF-8'</bpelx:toProperty>
+          </bpelx:toProperties>
+        </invoke>
       </sequence>
     </scope>
   </sequence>

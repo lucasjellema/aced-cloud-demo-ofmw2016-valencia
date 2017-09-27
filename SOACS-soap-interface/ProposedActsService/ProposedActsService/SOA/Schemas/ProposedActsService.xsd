@@ -62,6 +62,7 @@
       <xsd:element name="popularity" type="xsd:integer"/>
       <xsd:element name="numberOfVotes" type="xsd:integer"/>
       <xsd:element name="registrationDate" type="xsd:date"/>
+      <xsd:element name="birthDate" type="xsd:date"/>
       <xsd:element name="description" type="xsd:string"/>
       <xsd:element name="genres" type="xsd:string" minOccurs="0"/>
       <xsd:element name="biography" type="xsd:string"/>
