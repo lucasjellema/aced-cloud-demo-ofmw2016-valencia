@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="8f03e2bf-1eed-4075-b49b-8b39fee79bf3" activeEnvironment="Default" name="PCSSoaring" resourceRoot="" soapui-version="5.3.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="17e9111c-4589-4931-bd5a-c0ae05e916b1" wsaVersion="NONE" name="SubmitActProposalBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal}SubmitActProposalBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service</con:endpoint></con:endpoints><con:operation id="69c7a269-b2da-4223-8cec-0889f1b06f96" isOneWay="false" action="start" name="start" bindingOperationName="start" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="168534c6-bf40-4499-bec6-880d7b7c4bfc" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ics4emeapartner-partnercloud17.integration.us2.oraclecloud.com:443/integration/flowsvc/soap/VERIFYEXISTENCEO_FROMSOACS/v01/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <sub:start>\r
+         <name>DavidBowie</name>\r
+         <voteCount>4</voteCount>\r
+      </sub:start>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>lonneke.dikmans@eproseed.com</con:username><con:password>Xa4%33%J</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="start"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="89ca9701-4d4d-41cc-ab5a-ce790a2f6c6f" wsaVersion="NONE" name="SubmitActProposalPortTypeCallBackBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal}SubmitActProposalPortTypeCallBackBinding" soapVersion="1_1" anonymous="optional" definition="https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service?WSDL"><con:part><con:url>https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal" xmlns:tns="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal" xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0/WSDLs/SubmitActProposal.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="SubmitActProposalPortTypePartnerLinkType">
+    <plnk:role name="SubmitActProposalPortTypeProvider">
+      <plnk:portType name="tns:SubmitActProposalPortType"/>
+    </plnk:role>
+  </plnk:partnerLinkType>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Fault_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Input_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+          <sp:Header Name="" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="" Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+          <sp:Header Name="" Namespace="http://www.w3.org/2005/08/addressing"/>
+          <sp:Header Name="" Namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+          <sp:Header Name="fmw-context" Namespace="http://xmlns.oracle.com/fmw/context/1.0"/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="SubmitActProposalPortType_Output_Policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:SignedParts>
+        <sp:SignedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body/>
+        </sp:EncryptedParts>
+        <sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="wsaddr_policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+    <wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"/>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="wss11_saml_or_username_token_with_message_protection_service_policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token11/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:ProtectTokens/>
+            <sp:OnlySignEntireHeadersAndBody/>
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SamlToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssSamlV11Token11/>
+              </wsp:Policy>
+            </sp:SamlToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssX509V3Token11/>
+              </wsp:Policy>
+            </sp:X509Token>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+            <sp:MustSupportRefThumbprint/>
+            <sp:MustSupportRefEncryptedKey/>
+            <sp:RequireSignatureConfirmation/>
+          </wsp:Policy>
+        </sp:Wss11>
+      </wsp:All>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference/>
+                    <sp:WssX509V3Token11/>
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+            <sp:OnlySignEntireHeadersAndBody/>
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10/>
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier/>
+            <sp:MustSupportRefIssuerSerial/>
+            <sp:MustSupportRefThumbprint/>
+            <sp:MustSupportRefEncryptedKey/>
+            <sp:RequireSignatureConfirmation/>
+          </wsp:Policy>
+        </sp:Wss11>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SamlToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssSamlV11Token10/>
+              </wsp:Policy>
+            </sp:SamlToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp/>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10/>
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+      </wsp:All>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic128/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false">
+                  <wsp:Policy/>
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax/>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">
+      <xsd:element name="start">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="voteCount" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="endResponse">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="endResponse">
+    <wsdl:part name="parameters" element="tns:endResponse"/>
+  </wsdl:message>
+  <wsdl:message name="start">
+    <wsdl:part name="parameters" element="tns:start"/>
+  </wsdl:message>
+  <wsdl:portType name="SubmitActProposalPortTypeCallBack">
+    <wsdl:operation name="end">
+      <wsdl:input message="tns:endResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SubmitActProposalPortType">
+    <wsdl:operation name="start">
+      <wsdl:input message="tns:start"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SubmitActProposalBinding" type="tns:SubmitActProposalPortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsp:PolicyReference URI="#wss11_saml_or_username_token_with_message_protection_service_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsp:PolicyReference URI="#wsaddr_policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+    <wsdl:operation name="start">
+      <wsdlsoap:operation style="document" soapAction="start"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal"/>
+        <wsp:PolicyReference URI="#SubmitActProposalPortType_Input_Policy" wsdl:required="false" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SubmitActProposalPortTypeCallBackBinding" type="tns:SubmitActProposalPortTypeCallBack">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="end">
+      <wsdlsoap:operation style="document" soapAction="end"/>
+      <wsdl:input>
+        <wsdlsoap:body use="literal" namespace="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SubmitActProposal.service">
+    <wsdl:port name="SubmitActProposalPortType" binding="tns:SubmitActProposalBinding">
+      <wsdlsoap:address location="https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service"/>
+      <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsa:Address>https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service</wsa:Address>
+        <wsid:Identity xmlns:wsid="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <dsig:KeyInfo xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+            <dsig:X509Data>
+              <dsig:X509Certificate>MIICozCCAYugAwIBAgIGAVpbVVRnMA0GCSqGSIb3DQEBCwUAMHgxCzAJBgNVBAYTAlVTMRAwDgYDVQQIEwdNeVN0YXRlMQ8wDQYDVQQHEwZNeVRvd24xFzAVBgNVBAoTDk15T3JnYW5pemF0aW9uMRkwFwYDVQQLExBGT1IgVEVTVElORyBPTkxZMRIwEAYDVQQDEwlDZXJ0R2VuQ0EwHhcNMTcwMjIwMTE0MzIzWhcNMjIwMjE5MTE0MzIzWjAOMQwwCgYDVQQDEwNQQ1MwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAIgH1ziME/XMe881AmJINixbIDpki6X54wPHAIg/HrcP2xdhebO5B0mHbJtKhG2/Q+YS2K8I9RXp6KVAQVnOOAWO38Uz8d8gn5lS0vi2DfierH0f8Y9aIvW7RRbBRjHY/lDpJd3lAaW6rcElzLhJcjAqb7A/7irEw8g8S2EY6gnpAgMBAAGjITAfMB0GA1UdDgQWBBQaZJsajpzHwKC4CtZRTFq+KeICIjANBgkqhkiG9w0BAQsFAAOCAQEAmQT1c8pIprxhT5D7QJu62QtUn4IFhfQy8Slz9YZllLnDkxXdEGY8OBzkMX77oQxZr7jZUttEVwA/UhZgZj2PhPkopEo6Pf8Rb/6H1PBkiQKstt+RxBd5MZGK6IWv1Pa9LWBnqn2idRYQJDOPLCdX3GTLB2+SU6kttBc8kwfNny3NfQ6MrNKeMz9F0UU+00XU/K8Fh2KPp/h+ELkroQjMZ7SD4a/EsyxStYmjhL1XFEzZyTYyiINrxGfMZIKuGJ+2buCHTasfi6yc/P5liiXvYl86RJSMro4UYnv7ybZpxzxBWL4v4isC/aS9aGsmTNptgwhQNEhbfLXtXMS02X9ERA==</dsig:X509Certificate>
+              <dsig:X509IssuerSerial>
+                <dsig:X509IssuerName>CN=CertGenCA, OU=FOR TESTING ONLY, O=MyOrganization, L=MyTown, ST=MyState, C=US</dsig:X509IssuerName>
+                <dsig:X509SerialNumber>1487591003239</dsig:X509SerialNumber>
+              </dsig:X509IssuerSerial>
+              <dsig:X509SubjectName>CN=PCS</dsig:X509SubjectName>
+              <dsig:X509SKI>GmSbGo6cx8CguArWUUxaviniAiI=</dsig:X509SKI>
+              <dsig:X509Certificate>MIIDvzCCAqegAwIBAgIQQARIhsRB7ztkOoBmQJr8oDANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJVUzEQMA4GA1UECAwHTXlTdGF0ZTEPMA0GA1UEBwwGTXlUb3duMRcwFQYDVQQKDA5NeU9yZ2FuaXphdGlvbjEZMBcGA1UECwwQRk9SIFRFU1RJTkcgT05MWTESMBAGA1UEAwwJQ2VydEdlbkNBMB4XDTEyMTIwMTAzMDc1MVoXDTMyMTIwMjAzMDc1MVoweDELMAkGA1UEBhMCVVMxEDAOBgNVBAgMB015U3RhdGUxDzANBgNVBAcMBk15VG93bjEXMBUGA1UECgwOTXlPcmdhbml6YXRpb24xGTAXBgNVBAsMEEZPUiBURVNUSU5HIE9OTFkxEjAQBgNVBAMMCUNlcnRHZW5DQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKrdcNthuXGyFT2bNEb9CvWQ9khOemzobw5+DC4BPfr5WYeoFaUicduQIMK1fOVP4ScAJRLJLJ53n93lTJysUAquC1nCRXtpp8MeXtKKISn6y+9FrtkhHHiSGWh7hcgtB6xT8oE4XBpGHeljlP9rDwhq1iFy4QjuOTbqFjUPx7GZ9tqQCPjTk4iAi8pfAXES6FZMMH+M+pnBjnKRosY8l6bt3LIDrnxzd86ZQfHHaniK02eGtiOrjbH6o2HpzZfrmDHYnYkjh9dKx2WGA+t4eZmaOJdXAWFVDx9hR+2xxpAmemRvR7GwUry/9hbjVTQ0M1VLvU/ZC3FfyCr2y3snCikCAwEAAaNFMEMwDgYDVR0PAQH/BAQDAgIEMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFDQ4/UXYgM/H0ujfHfihObARiABqMA0GCSqGSIb3DQEBCwUAA4IBAQAXaXTPy5ZEMxezcA8q/6hjzHrIzXRZmd4QFv49FwBxuLD8xD+2sG13eJ+Dm+oio9rXNQDWxfM38Xwo36roLSoTnDhjtwjSDg0gk4Y9ovCGuSu0aj/G+2F3Nu5gB77CDuQzDOgIsTol3DviRzDxRkMGhe6rO2UpEjXU2ajskNtgak0Tme69Kaq7H5bJiPPjYzRzddRd7rcmzXjpqh64QhUB89kqZMRwHR7lmO8eeB9s333/S916U7LIDg0nJ0DbjRBHWy70dImFKhtqaj9l2SUrk6UzzgPMjmThn/E8pKsPxSg2Rrn0JGkKOOmmc5JorHn14dfL2P/+Ffe4OTPTZgMX</dsig:X509Certificate>
+            </dsig:X509Data>
+          </dsig:KeyInfo>
+        </wsid:Identity>
+      </wsa:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints/><con:operation id="9d201f9a-db75-4b59-a4f7-d5dddb491f6b" isOneWay="false" action="end" name="end" bindingOperationName="end" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="606aed65-483c-43f3-b785-80c89cae5c3b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <sub:endResponse/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="end"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="f26d8707-bf31-4486-986d-dd5784a91c21" name="SubmitActProposalBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="593cd283-3f7e-41f3-ba89-e12af1f593ce" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="start TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="77213378-df7d-48f9-80c3-fb1f0346f2fa" name="start"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SubmitActProposalBinding</con:interface><con:operation>start</con:operation><con:request name="start" id="e6406ef9-c962-458a-8f2b-0c54c234946e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://pcs4emeapartner-partnercloud17.process.us2.oraclecloud.com:443/soa-infra/services/default/ArtistProposalProcess!1.0*soa_aca4d9f2-f30c-44ee-abba-2c22d3693cef/SubmitActProposal.service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <sub:start>\r
+         <name>Nirvana</name>\r
+         <voteCount>5</voteCount>\r
+      </sub:start>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>lonneke.dikmans@eproseed.com</con:username><con:password>Xa4%33%J</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="start" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="04abffd9-7301-4d69-bf3a-e9b85aa6a52d" name="SubmitActProposalPortTypeCallBackBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="127e5abc-ced2-4a52-90a2-886e8955a4f5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="end TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7147c277-086c-4905-bcbf-7cd85c329b21" name="end"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SubmitActProposalPortTypeCallBackBinding</con:interface><con:operation>end</con:operation><con:request name="end" id="ebe6c93a-a0f6-42a9-a8e9-8bc74ec54c4e"><con:settings/><con:encoding>UTF-8</con:encoding><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sub="http://xmlns.oracle.com/bpmn/bpmnCloudProcess/ArtistProposalProcess/SubmitActProposal">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <sub:endResponse/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="end"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
