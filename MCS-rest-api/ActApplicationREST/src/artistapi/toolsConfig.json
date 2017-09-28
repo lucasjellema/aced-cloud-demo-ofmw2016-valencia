@@ -1,16 +1,15 @@
-
 {
     "apiName":"artistapi",
-    "apiVersion":"1.0",
-    "apiId":"8d2e530a-0632-4ec8-81ba-101d912798ca",
-    "baseUrl":"http://<MCS_SERVER>:<MCS_PORT>/",
+    "apiVersion":"1.1",
+    "apiId":"e7ecc032-1f3c-423f-9bf0-e794440a3513",
+    "baseUrl":"https://soaringoow-partnercloud17.mobileenv.us2.oraclecloud.com:443",
     "authorization":{
-        "mobileBackendID":"<YOUR_MOBILE_BACKEND_ID>",
-        "anonymousKey":"<MBE_ANONYMOUS_KEY>",
+        "mobileBackendID":"312fb3e6-89a1-480d-bbee-003f630924d9",
+        "anonymousKey":"UEFSVE5FUkNMT1VEMTdfU09BUklOR09PV19NT0JJTEVfQU5PTllNT1VTX0FQUElEOm9ybjVvYV91WWhqNHNn",
         "oauth":{
-            "tokenEndpoint":"<MBE_OAUTH_TOKEN_ENDPOINT>",
-            "clientId":"<MBE_OAUTH_CLIENT_ID>",
-            "clientSecret":"<MBE_OAUTH_CLIENT_ID>"
+            "tokenEndpoint":"https://partnercloud17.identity.us.oraclecloud.com/oam/oauth2/tokens",
+            "clientId":"5321646e-59cf-44b1-b89f-d1e0e6273d02",
+            "clientSecret":"aFlJQtlJEWtoRdhPIJd8"
         }
     },
     "container":{
@@ -21,9 +20,12 @@
         "tempDirectory":"/tmp/mcs-deploy"
     },
     "tests":{
-        "getActs":{
+        "getActsId":{
             "method":"GET",
-            "resource":"/acts"
+            "resource":"/acts/:id",
+            "uriParameters":{
+                "id":"<PARAMETER_VALUE>"
+            }
         },
         "getActsIdImageID":{
             "method":"GET",
@@ -33,12 +35,9 @@
                 "imageID":"<PARAMETER_VALUE>"
             }
         },
-        "getActsId":{
+        "getActs":{
             "method":"GET",
-            "resource":"/acts/:id",
-            "uriParameters":{
-                "id":"<PARAMETER_VALUE>"
-            }
+            "resource":"/acts"
         }
     }
 }

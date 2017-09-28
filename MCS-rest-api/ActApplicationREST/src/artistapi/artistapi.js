@@ -23,9 +23,9 @@ module.exports = function(service) {
 	});
 
 	service.get('/mobile/custom/artistapi/acts/:id/:imageID', function(req,res) {
-		var result = {};
-		var statusCode = 200;
-		res.status(statusCode).send(result);
+            var result = {};
+            var statusCode = 200;
+            res.status(statusCode).send(result);
 	});
 
 	service.get('/mobile/custom/artistapi/acts/:id', function(req,res) {

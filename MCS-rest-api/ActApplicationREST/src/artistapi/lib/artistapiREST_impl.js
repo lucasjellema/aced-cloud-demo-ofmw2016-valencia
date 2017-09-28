@@ -1,7 +1,9 @@
 var transform = require("./actTransformationsREST");
 
+const GETACTSRESOURCE =  '/proposedacts';
+const GETACTDETAILS = '/proposedactsdetails';
+
 exports.getActs = function (req, res) {
-    var errorMessage;
     var date = addedSince(req);
     var minimum = req.query.minimumVotes ? req.query.minimumVotes : 0;
     var max = req.query.max ? req.querymax : 0;
@@ -12,14 +14,14 @@ exports.getActs = function (req, res) {
         properties = {minimumNumberOfVotes: minimum, maxNumberOfProposals: max};
     }
 
-    req.oracleMobile.connectors.RESTActsAPI.get("OfmAcedemoActsApi", null, {qs: properties}).then(
+    req.oracleMobile.connectors.RESTActsAPI.get(GETACTSRESOURCE, null, {qs: properties}).then(
             function (result) {
-                if (result.statusCode == 204) {
-                    errorMessage = "no content sent back, please check the headers";
-                    console.error(error);
-                    logToOMC('errorMessage ' + errorMessage + ' from getActs', req);
-                    res.send(result.statusCode, acts);
-                } else if (result.statusCode == 200) {
+                if (result.statusCode === 204) {
+                    var message = "no content sent back, please check the headers";
+                    console.error(message);
+                    logToOMC('errorMessage ' + message + ' from getActs', req);
+                    res.status(result.statusCode).send(result.result);
+                } else if (result.statusCode === 200) {
                     console.info('result.result: ', result.result);
                     jsonResult = JSON.parse(result.result);
                     var resultArray = jsonResult.proposedActs.ProposedActSummary;
@@ -27,14 +29,14 @@ exports.getActs = function (req, res) {
                     var transformFunction = transform.actSummaryREST2REST;
                     var acts = resultArray.map(transformFunction);
                     logToOMC('returned ' + acts.length + ' acts', req);
-                    res.send(result.statusCode, acts);
+                    res.status(result.statusCode).send(acts);
                 }
             },
             function (error) {
-                errorMessage = "error occurred in function call to REST connector";
-                console.error(erroMessage, error.error);
+                var errorMessage = "error occurred in function call to REST connector";
+                console.error(errorMessage, error.error);
                 logToOMC(errorMessage, req);
-                res.send(500, error.error);
+                res.status(error.statusCode).send(error.error);
             }
 
     );
@@ -42,7 +44,7 @@ exports.getActs = function (req, res) {
 };
 
 function addedSince(request) {
-    if (request.query.addedSince || request.query.addedSince != '') {
+    if (request.query.addedSince || request.query.addedSince !== '') {
         return null;
     } else {
         return request.query.addedSince;
@@ -52,16 +54,16 @@ function addedSince(request) {
 
 exports.getActDetailsById = function (req, res) {
     var parameters = '?proposedActId=' + req.params.id;
-    resource = 'OfmAcedemoActsApi/proposedacts';
+    
     var errorMessage;
-    req.oracleMobile.connectors.RESTActsAPI.get(resource + parameters).then(
+    req.oracleMobile.connectors.RESTActsAPI.get(GETACTDETAILS + parameters).then(
             function (result) {
-                if (result.statusCode == 204) {
+                if (result.statusCode === 204) {
                     errorMessage = "no content sent back, please check the headers"
                     console.error(errorMessage);
                     logToOMC(errorMessage, req);
-                    res.send(result.statusCode, acts);
-                } else if (result.statusCode = 200) {
+                    res.status(result.statusCode).send({});
+                } else if (result.statusCode === 200) {
                     var responseMessage = '';
                     var resultJson = JSON.parse(result.result);
                     if (resultJson.proposedActDetails) {
@@ -70,9 +72,9 @@ exports.getActDetailsById = function (req, res) {
                         var actResponse = transform.actDetailsREST2REST(act);
                         logToOMC('returned ' + actResponse.name + ' from MCS', req);
                         responseMessage = JSON.stringify(actResponse);
-                        res.send(result.statusCode, responseMessage);
+                        res.status(result.statusCode).send(responseMessage);
                     }
-                } else if (result.statusCode == 400) {
+                } else if (result.statusCode === 400) {
                     responseMessage = "Invalid act ID " + req.params.id;
                     logToOMC(responseMessage, req);
                     res.status(400).send(responseMessage);
@@ -82,7 +84,7 @@ exports.getActDetailsById = function (req, res) {
                 errorMessage = 'error occurred when calling REST connector getActDetailsById';
                 console.error(errorMessage, error.error);
                 logToOMC(errorMessage, req);
-                res.send(500, error.error);
+                res.status(error.statusCode).send(error.error);
             }
 
     );
