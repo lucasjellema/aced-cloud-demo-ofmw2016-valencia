@@ -15,12 +15,12 @@
 					"name": "ProposedActs",
 					"request": {
 						"url": {
-							"raw": "{{protocol}}{{host}}{{contextRoot}}/proposedacts?mininumNumberOfVotes=2",
+							"raw": "{{protocol}}{{host}}{{contextRoot}}/?mininumNumberOfVotes=2",
 							"host": [
 								"{{protocol}}{{host}}{{contextRoot}}"
 							],
 							"path": [
-								"proposedacts"
+								""
 							],
 							"query": [
 								{
@@ -45,19 +45,18 @@
 								"description": ""
 							},
 							{
-								"key": "Authorization",
-								"value": "{{Authorization}}",
-								"description": "",
-								"disabled": true
-							},
-							{
 								"key": "X-api-key",
-								"value": "{{X-api-key}}",
+								"value": "ad8649cd-0829-48ec-8b71-1f0c25a0d08a",
 								"description": ""
 							},
 							{
 								"key": "X-tenant-id",
-								"value": "{{X-tenant-id}}",
+								"value": "ACEDEMO",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic b293YWNlZGVtbzpPT1cxN1BAJCRXMHJkQGNlREVNTw==",
 								"description": ""
 							}
 						],
@@ -69,7 +68,24 @@
 				{
 					"name": "ProposedAct details",
 					"request": {
-						"url": "{{protocol}}{{host}}{{contextRoot}}/proposedacts/21",
+						"url": {
+							"raw": "{{protocol}}{{host}}{{contextRoot}}/proposedacts?proposedActId=21",
+							"host": [
+								"{{protocol}}{{host}}{{contextRoot}}"
+							],
+							"path": [
+								"proposedacts"
+							],
+							"query": [
+								{
+									"key": "proposedActId",
+									"value": "21",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -83,19 +99,18 @@
 								"description": ""
 							},
 							{
-								"key": "Authorization",
-								"value": "{{Authorization}}",
-								"description": "",
-								"disabled": true
-							},
-							{
 								"key": "X-api-key",
-								"value": "{{X-api-key}}",
+								"value": "ad8649cd-0829-48ec-8b71-1f0c25a0d08a",
 								"description": ""
 							},
 							{
 								"key": "X-tenant-id",
-								"value": "{{X-tenant-id}}",
+								"value": "ACEDEMO",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic b293YWNlZGVtbzpPT1cxN1BAJCRXMHJkQGNlREVNTw==",
 								"description": ""
 							}
 						],
