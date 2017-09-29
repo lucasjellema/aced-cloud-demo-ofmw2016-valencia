@@ -1,7 +1,6 @@
 var transform = require("./actTransformationsREST");
 
-const GETACTSRESOURCE =  '/proposedacts';
-const GETACTDETAILS = '/proposedactsdetails';
+const GETACTSRESOURCE =  'acedemoacts';
 
 exports.getActs = function (req, res) {
     var date = addedSince(req);
@@ -53,10 +52,10 @@ function addedSince(request) {
 
 
 exports.getActDetailsById = function (req, res) {
-    var parameters = '?proposedActId=' + req.params.id;
+    var parameters = '/proposedacts/?proposedActId=' + req.params.id;
     
     var errorMessage;
-    req.oracleMobile.connectors.RESTActsAPI.get(GETACTDETAILS + parameters).then(
+    req.oracleMobile.connectors.RESTActsAPI.get(GETACTSRESOURCE + parameters).then(
             function (result) {
                 if (result.statusCode === 204) {
                     errorMessage = "no content sent back, please check the headers"
@@ -121,7 +120,7 @@ function logToOMC(logMessage, request) {
 
     request.oracleMobile.connectors.OMCLoggerAPI.post(logResourceName, logBody, {inType: 'json'}, {}).then(
             function (result) {
-                console.info('log result ', result.result);
+                console.finest('log result ', result.result);
             },
             function (error) {
                 console.error('log error ' + error.error);
