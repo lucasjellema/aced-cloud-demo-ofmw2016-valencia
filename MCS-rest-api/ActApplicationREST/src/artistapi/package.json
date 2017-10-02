@@ -1,12 +1,12 @@
 {
   "name" : "artistapi",
-  "version" : "1.1.0",
+  "version" : "1.1.1",
   "description" : "the API to get artist and attendance calling the REST API in the back",
   "main" : "artistapi.js",
   "oracleMobile" : {
     "dependencies" : {
       "apis" : { },
-      "connectors" : {"/mobile/connector/OMCLoggerAPI":"1.0", "/mobile/connector/RESTActsAPI":"1.0"}
+      "connectors" : {"/mobile/connector/OMCLoggerAPI":"1.0", "/mobile/connector/RESTActsAPI":"1.1"}
     }
   }
 }

@@ -58,7 +58,7 @@ exports.getActDetailsById = function (req, res) {
     req.oracleMobile.connectors.RESTActsAPI.get(GETACTSRESOURCE + parameters).then(
             function (result) {
                 if (result.statusCode === 204) {
-                    errorMessage = "no content sent back, please check the headers"
+                    errorMessage = "no content sent back, please check the headers";
                     console.error(errorMessage);
                     logToOMC(errorMessage, req);
                     res.status(result.statusCode).send({});
