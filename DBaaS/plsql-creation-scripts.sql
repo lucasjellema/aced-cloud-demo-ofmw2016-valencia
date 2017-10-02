@@ -29,6 +29,24 @@ type artist_t force as object
 , albums discography_t
 );
 
+create or replace 
+type artist2_t force as object
+( name varchar2(200)
+, legal_name varchar2(200)
+, genres varchar2(1000)
+, country_of_origin varchar2(200)
+, era varchar2(200)
+, genre varchar2(100)
+, biography varchar2(4000)
+, image_url varchar2(1000)
+, artist_type varchar2(20) -- group, person
+, popularity number(3)
+, birthdate_of_artist varchar2(50)
+, enddate_of_artist varchar2(50)
+, albums discography_t
+, registration_date date
+, number_of_votes number(10)
+);
 
 create or replace
 package act_proposal_api
@@ -36,7 +54,7 @@ is
 
 function get_act_details
 ( p_id in number)
-return artist_t
+return artist2_t
 ;
 
 procedure submit_act_proposal
@@ -67,11 +85,11 @@ is
 
 function get_act_details
 ( p_id in number)
-return artist_t
+return artist2_t
 is 
-  l_artist artist_t;
+  l_artist artist2_t;
 begin
-  select artist_t(
+  select artist2_t(
 name 
 , legal_name 
 , genres 
@@ -97,10 +115,23 @@ name
             )
           as discography_t
 )
+  
+  , proposal_timestamp
+  , number_of_votes
   )
   into l_artist
   from proposed_acts act
   where id = p_id;
+  if l_artist.name='Billy Joel' 
+  then
+    -- wait for 7 seconds!
+    dbms_lock.sleep(7);
+    l_artist.biography:='Sorry for that unnecssary sleep of 7 seconds in package body act_proposal_api ';
+  end if;
+if l_artist.name='David Bowie' 
+  then
+    raise too_many_rows;
+  end if;
   return l_artist;
 end get_act_details;  
 
@@ -186,6 +217,7 @@ begin
        p_number_of_votes:= 0;
   end;
 end verify_proposal_for_act;
+
 
 
 end act_proposal_api;

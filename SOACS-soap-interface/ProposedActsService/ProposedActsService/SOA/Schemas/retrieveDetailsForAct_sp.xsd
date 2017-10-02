@@ -9,7 +9,7 @@
    <element name="OutputParameters">
       <complexType>
          <sequence>
-            <element name="GET_ACT_DETAILS" type="db:ARTIST_T" db:index="0" db:type="Struct" minOccurs="0" nillable="true"/>
+            <element name="GET_ACT_DETAILS" type="db:ARTIST2_T" db:index="0" db:type="Struct" minOccurs="0" nillable="true"/>
          </sequence>
       </complexType>
    </element>
@@ -18,7 +18,7 @@
          <element name="ALBUMS_ITEM" type="db:ALBUM_T" db:type="Struct" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
       </sequence>
    </complexType>
-   <complexType name="ARTIST_T">
+   <complexType name="ARTIST2_T">
       <sequence>
          <element name="NAME" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="LEGAL_NAME" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
@@ -33,8 +33,10 @@
          <element name="BIRTHDATE_OF_ARTIST" type="db:string50" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="ENDDATE_OF_ARTIST" type="db:string50" db:type="VARCHAR2" minOccurs="0" nillable="true"/>
          <element name="ALBUMS" type="db:DISCOGRAPHY_T" db:type="Array" minOccurs="0" nillable="true"/>
-      </sequence>
-   </complexType>
+         <element name="REGISTRATION_DATE" type="dateTime" db:type="DATE" minOccurs="0" nillable="true"/>
+         <element name="NUMBER_OF_VOTES" type="decimal" db:type="NUMBER" minOccurs="0" nillable="true"/>  
+         </sequence>
+         </complexType>
    <complexType name="ALBUM_T">
       <sequence>
          <element name="TITLE" type="db:string200" db:type="VARCHAR2" minOccurs="0" nillable="true"/>

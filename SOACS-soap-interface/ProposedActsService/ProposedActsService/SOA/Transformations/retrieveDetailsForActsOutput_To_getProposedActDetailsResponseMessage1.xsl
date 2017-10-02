@@ -53,6 +53,12 @@
             <ns1:popularity>
                <xsl:value-of select="/ns0:OutputParameters/ns0:GET_ACT_DETAILS/ns0:POPULARITY"/>
             </ns1:popularity>
+            <ns1:numberOfVotes>
+               <xsl:value-of select="/ns0:OutputParameters/ns0:GET_ACT_DETAILS/ns0:NUMBER_OF_VOTES"/>
+            </ns1:numberOfVotes>
+            <ns1:registrationDate>
+               <xsl:value-of select="/ns0:OutputParameters/ns0:GET_ACT_DETAILS/ns0:REGISTRATION_DATE"/>
+            </ns1:registrationDate>
             <ns1:genres>
                <xsl:value-of select="/ns0:OutputParameters/ns0:GET_ACT_DETAILS/ns0:GENRES"/>
             </ns1:genres>
